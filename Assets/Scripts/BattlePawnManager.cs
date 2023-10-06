@@ -32,7 +32,6 @@ public class BattlePawnManager : MonoBehaviour
 
     public Vector2 GetNearestPawnFromCursor(Vector2 originPos)
     {
-        
         int closestPawnIndex = 0;
         float shortestDistance = 999;
         Vector2 closestPawnPosition = Vector2.zero;
@@ -49,11 +48,6 @@ public class BattlePawnManager : MonoBehaviour
                 closestPawnIndex = i;
             }
         }
-
-        Debug.Log($"BATTLEPAWN: " +
-                  $"\r\nclosest pawn is {pawnPositions[closestPawnIndex].name} with {shortestDistance}u." +
-                  $"\r\noriginal position x{originPos.x} y{originPos.y}\"");
-        
         return closestPawnPosition;
     }
 
