@@ -1,0 +1,5 @@
+D:/data/work/bachelor 2 game programming/project1_catastrophy/Catastrophy/.utmp/RelWithDebInfo/4r1y3w1q/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/data/work/bachelor 2 game programming/project1_catastrophy/Catastrophy/.utmp/RelWithDebInfo/4r1y3w1q/arm64-v8a/CMakeFiles/rebuild_cache.dir
+D:/data/work/bachelor 2 game programming/project1_catastrophy/Catastrophy/.utmp/RelWithDebInfo/4r1y3w1q/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+D:/data/work/bachelor 2 game programming/project1_catastrophy/Catastrophy/.utmp/RelWithDebInfo/4r1y3w1q/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+D:/data/work/bachelor 2 game programming/project1_catastrophy/Catastrophy/.utmp/RelWithDebInfo/4r1y3w1q/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

@@ -19,10 +19,9 @@ public class MainManager : MonoBehaviour
         }
         
         InputHandler.Instance.Initialize();
-        DragManager.Instance.Initialize();
-        BattlefieldPositionManager.Instance.Initialize();
+        BattlePawnManager.Instance.Initialize();
         
         // debug
-        HandHandler.Instance.AddCard(0);
+        HandManager.Instance.AddCard(0);
     }
 }

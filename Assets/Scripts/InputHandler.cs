@@ -4,10 +4,10 @@ public class InputHandler : MonoBehaviour
 {
     public static InputHandler Instance;
     
+    public Vector3 touchPos;
     public bool isTouching;
 
     private Camera cam;
-    private Vector2 fingerPosition;
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class InputHandler : MonoBehaviour
 
     public void Initialize()
     {
-        cam = GetComponent<Camera>();
+        cam = Camera.main;
     }
 
     private void Update()
@@ -26,17 +26,19 @@ public class InputHandler : MonoBehaviour
            Input.GetMouseButton(0))
         {
             isTouching = true;
-            fingerPosition = Input.GetTouch(0).position;
+            touchPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         }
         else
         {
             isTouching = false;
+            touchPos = Vector3.zero;
         }
 #endif
     }
 
-    public Vector3 GetMouseWorldPosition()
+    public Vector3 GetInputWorldPos()
     {
-        return cam.ScreenToWorldPoint(fingerPosition);
+        touchPos.z = cam.WorldToScreenPoint(transform.position).z;
+        return cam.ScreenToWorldPoint(touchPos);
     }
 }

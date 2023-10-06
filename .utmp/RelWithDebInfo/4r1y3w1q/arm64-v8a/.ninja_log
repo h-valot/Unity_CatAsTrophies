@@ -1,0 +1,5 @@
+# ninja log v5
+0	448	7182933332341559	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e0a4dd93d00b4db4
+449	662	7182933333851937	D:/data/work/bachelor 2 game programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4r1y3w1q/obj/arm64-v8a/libswappywrapper.so	ef5ec3eb3f661868
+7	488	7182943985047010	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e0a4dd93d00b4db4
+488	980	7182943988490354	D:/data/work/bachelor 2 game programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4r1y3w1q/obj/arm64-v8a/libswappywrapper.so	ef5ec3eb3f661868
