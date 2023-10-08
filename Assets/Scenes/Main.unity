@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 219985621}
   - component: {fileID: 219985622}
   m_Layer: 0
-  m_Name: HandRightLimit
+  m_Name: HandMiddlePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 219985620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -484,50 +484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b44856012f61045b9b3dc263767646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1257598537
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1257598538}
-  - component: {fileID: 1257598539}
-  m_Layer: 0
-  m_Name: HandLeftLimit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1257598538
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257598537}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1681583837}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1257598539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257598537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08b44856012f61045b9b3dc263767646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1329390584
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +663,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 219985621}
-  - {fileID: 1257598538}
   m_Father: {fileID: 1683151784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1681583838
@@ -723,8 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsInHand: 
-  rightLimit: {fileID: 219985621}
-  leftLimit: {fileID: 1257598538}
+  handCenterPoint: {fileID: 219985621}
 --- !u!1 &1683151783
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
-            transform.position = HandManager.Instance.leftLimit.position;
+            transform.position = HandManager.Instance.handCenterPoint.position;
         }
     }
 }

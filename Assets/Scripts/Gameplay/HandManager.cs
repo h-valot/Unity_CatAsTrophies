@@ -6,7 +6,7 @@ public class HandManager : MonoBehaviour
     public static HandManager Instance;
 
     public List<int> cardsInHand;
-    public Transform rightLimit, leftLimit;
+    public Transform handCenterPoint;
     
     private void Awake()
     {
@@ -16,9 +16,10 @@ public class HandManager : MonoBehaviour
     public void AddCard(int newCard)
     {
         cardsInHand.Add(newCard);
+        
         Instantiate(
             Registry.cardConfig.cards[newCard].prefab,
-            new Vector3(leftLimit.position.x, leftLimit.position.y, leftLimit.position.z),
+            new Vector3(handCenterPoint.position.x, handCenterPoint.position.y, handCenterPoint.position.z),
             Quaternion.identity,
             transform);
     }
