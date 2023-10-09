@@ -15,4 +15,4 @@ MonoBehaviour:
   cardName: Ranger
   strengh: 3
   health: 3
-  mesh: {fileID: 5307197524181520289, guid: f6261c178efc9b841b08f6b3a23f3082, type: 3}
+  prefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
