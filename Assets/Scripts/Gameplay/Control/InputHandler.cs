@@ -2,43 +2,18 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    public static InputHandler Instance;
-    
-    public Vector3 touchPos;
-    public bool isTouching;
-
-    private Camera cam;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    public void Initialize()
-    {
-        cam = Camera.main;
-    }
+    [SerializeField] private SO_Inputs inputs;
+    [SerializeField] private Camera cam;
 
     private void Update()
     {
-#if UNITY_ANDROID || UNITY_EDITOR
-        if(Input.touchCount > 0 ||
-           Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
-            isTouching = true;
-            touchPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+            var ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var hitInfo))
+            {
+                inputs.touchPos = hitInfo.point;
+            }
         }
-        else
-        {
-            isTouching = false;
-            touchPos = Vector3.zero;
-        }
-#endif
-    }
-
-    public Vector3 GetInputWorldPos()
-    {
-        touchPos.z = cam.WorldToScreenPoint(transform.position).z;
-        return cam.ScreenToWorldPoint(touchPos);
     }
 }

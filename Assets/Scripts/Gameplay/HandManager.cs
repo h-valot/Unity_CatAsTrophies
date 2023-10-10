@@ -1,31 +1,61 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
-    public static HandManager Instance;
-
-    public List<int> cardsInHand;
-    public Transform handCenterPoint;
+    [SerializeField] private CatGenerator catGenerator;
     
-    private void Awake()
+    public Transform[] handPoints;
+    
+    [Header("DEBUGGING")]
+    public int[] catsInHand;
+
+    private void Start()
     {
-        Instance = this;
+        catsInHand = new[] { -1, -1, -1, -1, -1 };
     }
 
-    public void AddCard(int newCard)
+    public void AddCat(int newCat)
     {
-        cardsInHand.Add(newCard);
+        for (int i = 0; i < catsInHand.Length; i++)
+        {
+            if (catsInHand[i] == -1)
+            {
+                catsInHand[i] = newCat;
+                catGenerator.CreateNewCat(newCat, GetNewCatPositionInHand());
+                break;
+            }
+        }
+    }
+
+    public void RemoveCat(int catToRemove)
+    {
+        for (int i = 0; i < catsInHand.Length; i++)
+        {
+            if (catsInHand[i] == catToRemove)
+            {
+                catsInHand[i] = -1;
+            }
+        }
+    }
+
+    public Vector3 GetNewCatPositionInHand()
+    {
+        Vector3 output = Vector3.one;
         
-        Instantiate(
-            Registry.cardConfig.cards[newCard].prefab,
-            new Vector3(handCenterPoint.position.x, handCenterPoint.position.y, handCenterPoint.position.z),
-            Quaternion.identity,
-            transform);
-    }
+        for (int i = 0; i < catsInHand.Length; i++)
+        {
+            if (catsInHand[i] == -1)
+            {
+                output = handPoints[i].position;
+            }
+        }
 
-    public void RemoveCard(int cardToRemove)
-    {
-        cardsInHand.Remove(cardToRemove);
+        if (output == Vector3.one)
+        {
+            Debug.LogError("HAND MANAGER: cats in hand limit reach. can't add move cat.", this);
+            Debug.Break();
+        }
+        
+        return output;
     }
 }

@@ -5,6 +5,8 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
 
+    public HandManager handManager;
+
     private void Awake()
     {
         Instance = this;
@@ -18,10 +20,9 @@ public class MainManager : MonoBehaviour
             return;
         }
         
-        InputHandler.Instance.Initialize();
         BattlePawnManager.Instance.Initialize();
         
         // debug
-        HandManager.Instance.AddCard(0);
+        handManager.AddCat(0);
     }
 }

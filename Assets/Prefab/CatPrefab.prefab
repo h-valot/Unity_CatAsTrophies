@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1865329375547874283}
   - component: {fileID: 5953717938143639913}
   - component: {fileID: 5266992805734522362}
-  - component: {fileID: 3396291459734034112}
+  - component: {fileID: 7849765948157064454}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &3396291459734034112
+--- !u!114 &7849765948157064454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,6 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ab11758824299408723ca22c060562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputs: {fileID: 11400000, guid: fd62bfd92f46e2e47bdd4810c6448c47, type: 2}
+  handManager: {fileID: 0}
 --- !u!1 &1184799638771992382
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 921232570580790867}
+  - component: {fileID: 4053573383019069241}
   m_Layer: 0
   m_Name: CatPrefab
   m_TagString: Untagged
@@ -178,6 +181,18 @@ Transform:
   - {fileID: 6110347387237189368}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4053573383019069241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184799638771992382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18eac737ac6340488f010cbc0ade3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5399714602900072910
 GameObject:
   m_ObjectHideFlags: 0

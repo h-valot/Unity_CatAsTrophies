@@ -1,11 +1,22 @@
-using System;
 using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
+    [SerializeField] private SO_Inputs inputs;
+    [System.NonSerialized] public HandManager handManager;
+
+    private void Start()
+    {
+        if (inputs == null)
+        {
+            Debug.LogError("DRAG AND DROP: inputs is null.", this);
+            Debug.Break();
+        }
+    }
+
     private void OnMouseDrag()
     {
-        transform.position = InputHandler.Instance.GetInputWorldPos();
+        transform.position = inputs.touchPos;
     }
     
     private void OnMouseUp()
@@ -19,7 +30,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
-            transform.position = HandManager.Instance.handCenterPoint.position;
+            transform.position = handManager.GetNewCatPositionInHand();
         }
     }
 }
