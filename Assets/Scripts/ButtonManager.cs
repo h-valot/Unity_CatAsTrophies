@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -21,6 +22,15 @@ public class ButtonManager : MonoBehaviour
         {
             text.text = text2;
             isActivated = true;
-        }    
+        }
     }
+    //Switch 2 texts by clicking the same button
+
+    public void Quit()
+    {
+        Application.Quit();
+        EditorApplication.isPlaying = false;
+        Debug.Log("Quitter le jeu?");
+    }
+    //Exit game button
 }
