@@ -20,7 +20,6 @@ public class InputHandler : MonoBehaviour
             if (Physics.Raycast(ray, out var hitInfo, maxCastDistance, ~mask))
             {
                 touchPos = hitInfo.point;
-                Debug.Log($"INPUT HANDLER: mask hit {hitInfo.transform.gameObject.layer}");
             }
         }
     }

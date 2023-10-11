@@ -5,7 +5,6 @@ public class HandManager : MonoBehaviour
     public static HandManager Instance;
     
     [Header("REFERENCES")]
-    [SerializeField] private CatGenerator catGenerator;
     public Transform[] handPoints;
     
     [Header("DEBUGGING")]
@@ -13,44 +12,44 @@ public class HandManager : MonoBehaviour
 
     private void Awake() => Instance = this;
     
-    private void Start()
+    public void Initialize()
     {
-        catsInHand = new[] { -1, -1, -1, -1, -1 };
+        Instance.catsInHand = new[] { -1, -1, -1, -1, -1 };
     }
 
-    public void AddCat(int newCatIndex)
+    public void AddCat(int _catIndex)
     {
-        for (int i = 0; i < catsInHand.Length; i++)
+        for (int i = 0; i < Instance.catsInHand.Length; i++)
         {
-            if (catsInHand[i] == -1)
+            if (Instance.catsInHand[i] == -1)
             {
-                catGenerator.CreateCatGraphics(newCatIndex, GetNewCatPositionInHand());
-                catsInHand[i] = newCatIndex;
+                CatGenerator.Instance.SpawnCat(_catIndex, GetAvailablePosition());
+                Instance.catsInHand[i] = _catIndex;
                 break;
             }
         }
     }
 
-    public void RemoveCat(int catToRemove)
+    public void RemoveCat(int _catToRemove)
     {
-        for (int i = 0; i < catsInHand.Length; i++)
+        for (int i = 0; i < Instance.catsInHand.Length; i++)
         {
-            if (catsInHand[i] == catToRemove)
+            if (Instance.catsInHand[i] == _catToRemove)
             {
-                catsInHand[i] = -1;
+                Instance.catsInHand[i] = -1;
             }
         }
     }
 
-    public Vector3 GetNewCatPositionInHand()
+    public Vector3 GetAvailablePosition()
     {
         Vector3 output = Vector3.one;
         
-        for (int i = 0; i < catsInHand.Length; i++)
+        for (int i = 0; i < Instance.catsInHand.Length; i++)
         {
-            if (catsInHand[i] == -1)
+            if (Instance.catsInHand[i] == -1)
             {
-                output = handPoints[i].position;
+                output = Instance.handPoints[i].position;
                 break;
             }
         }

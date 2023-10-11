@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    public float verticalOffset;
-
     private void OnMouseDrag()
     {
         transform.position = InputHandler.Instance.touchPos;
@@ -24,7 +22,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
-            transform.position = HandManager.Instance.GetNewCatPositionInHand();
+            transform.position = HandManager.Instance.GetAvailablePosition();
         }
     }
 }

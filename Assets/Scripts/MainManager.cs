@@ -16,6 +16,8 @@ public class MainManager : MonoBehaviour
             return;
         }
         
+        CatGenerator.Instance.Initialize();
+        HandManager.Instance.Initialize();
         BattlePawnManager.Instance.Initialize();
         
         // DEBUGGING
