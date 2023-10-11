@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Cat
+public class Cat : MonoBehaviour
 {
-    public GameObject graphics;
+    // do nothing for the moment
 }

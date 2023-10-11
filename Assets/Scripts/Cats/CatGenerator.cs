@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class CatGenerator : MonoBehaviour
 {
-    [SerializeField] public HandManager handManager;
-
     [Header("DEBUGGING")] 
     public Queue<Cat> cats;
 
@@ -13,16 +11,12 @@ public class CatGenerator : MonoBehaviour
         cats = new Queue<Cat>();
     }
 
-    public void CreateNewCat(int catIndex, Vector3 position)
+    public void CreateCatGraphics(int catIndex, Vector3 position)
     {
         var newCat = Instantiate(
-            Registry.cardConfig.cards[catIndex].prefab, 
-            position, 
-            Quaternion.identity, 
+            Registry.cardConfig.cards[catIndex].prefab,
+            position,
+            Quaternion.identity,
             transform);
-        
-        newCat.AddComponent<CatGraphics>();
-        
-        
     }
 }

@@ -2,26 +2,30 @@ using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
-    [SerializeField] private CatGenerator catGenerator;
+    public static HandManager Instance;
     
+    [Header("REFERENCES")]
+    [SerializeField] private CatGenerator catGenerator;
     public Transform[] handPoints;
     
     [Header("DEBUGGING")]
     public int[] catsInHand;
 
+    private void Awake() => Instance = this;
+    
     private void Start()
     {
         catsInHand = new[] { -1, -1, -1, -1, -1 };
     }
 
-    public void AddCat(int newCat)
+    public void AddCat(int newCatIndex)
     {
         for (int i = 0; i < catsInHand.Length; i++)
         {
             if (catsInHand[i] == -1)
             {
-                catsInHand[i] = newCat;
-                catGenerator.CreateNewCat(newCat, GetNewCatPositionInHand());
+                catGenerator.CreateCatGraphics(newCatIndex, GetNewCatPositionInHand());
+                catsInHand[i] = newCatIndex;
                 break;
             }
         }
@@ -47,6 +51,7 @@ public class HandManager : MonoBehaviour
             if (catsInHand[i] == -1)
             {
                 output = handPoints[i].position;
+                break;
             }
         }
 

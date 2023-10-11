@@ -2,23 +2,17 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    [SerializeField] private SO_Inputs inputs;
-    [System.NonSerialized] public HandManager handManager;
-
-    private void Start()
-    {
-        if (inputs == null)
-        {
-            Debug.LogError("DRAG AND DROP: inputs is null.", this);
-            Debug.Break();
-        }
-    }
+    public float verticalOffset;
 
     private void OnMouseDrag()
     {
-        transform.position = inputs.touchPos;
+        transform.position = InputHandler.Instance.touchPos;
     }
-    
+ 
+    /// <summary>
+    /// Snap the object on the nearest pawn position if close enough
+    /// Otherwise, it's get back to the player's hand
+    /// </summary>
     private void OnMouseUp()
     {
         Vector2 closestPawnPos = BattlePawnManager.Instance.GetNearestPawnFromCursor(new Vector2(transform.position.x, transform.position.y));
@@ -30,7 +24,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
-            transform.position = handManager.GetNewCatPositionInHand();
+            transform.position = HandManager.Instance.GetNewCatPositionInHand();
         }
     }
 }

@@ -5,15 +5,11 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
 
-    public HandManager handManager;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    private void Awake() => Instance = this;
 
     private void Start()
     {
+        // load the init scene if it hasn't been loaded yet
         if (!Registry.isInitialized)
         {
             SceneManager.LoadScene("Init");
@@ -22,7 +18,7 @@ public class MainManager : MonoBehaviour
         
         BattlePawnManager.Instance.Initialize();
         
-        // debug
-        handManager.AddCat(0);
+        // DEBUGGING
+        HandManager.Instance.AddCat(0);
     }
 }
