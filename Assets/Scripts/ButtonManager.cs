@@ -6,18 +6,20 @@ using TMPro;
 public class ButtonManager : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI text;
+    [SerializeField] public string text1;
+    [SerializeField] public string text2;
     [SerializeField] public bool isActivated;
 
     public void OnButtonClick()
     {
         if (isActivated == true)
         {
-            text.text = "Colorblind: OFF";
+            text.text = text1;
             isActivated = false;
         }
         else
         {
-            text.text = "Colorblind: ON";
+            text.text = text2;
             isActivated = true;
         }    
     }
