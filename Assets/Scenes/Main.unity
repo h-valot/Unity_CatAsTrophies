@@ -1361,6 +1361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81ea9af9bceb2d4f957cb43e3956c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolSize: 10
+  activeCats: []
 --- !u!1 &1074436028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313b93036b4a3cd4296ec8c7c889d544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catGenerator: {fileID: 1025373245}
   handPoints:
   - {fileID: 219985621}
   - {fileID: 1003991715}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efde5030d145b124a937051b0f13ddd4, type: 3}
-  m_Name: CardsConfig
+  m_Name: CatsConfig
   m_EditorClassIdentifier: 
-  cards:
+  cats:
   - {fileID: 11400000, guid: 201f1702376971746bd31d3b513783e9, type: 2}
   - {fileID: 11400000, guid: 5a9a6ba1a510c944f8b0b5d72a78fd4d, type: 2}
   - {fileID: 11400000, guid: 5be28d436f6950e4799bb4460a22792e, type: 2}

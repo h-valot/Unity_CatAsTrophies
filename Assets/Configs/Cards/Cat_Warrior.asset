@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d8bf9f601adc3478d30276cd5a2f5d, type: 3}
-  m_Name: Card_Wizard
+  m_Name: Cat_Warrior
   m_EditorClassIdentifier: 
-  cardName: Wizard
-  strengh: 4
-  health: 2
-  prefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
+  catName: Warrior
+  strengh: 2
+  health: 4
+  catBasePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
+  rightHandAddon: {fileID: 0}
+  leftHandAddon: {fileID: 0}
+  headAddon: {fileID: 0}

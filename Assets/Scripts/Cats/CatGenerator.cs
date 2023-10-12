@@ -6,92 +6,65 @@ public class CatGenerator : MonoBehaviour
     public static CatGenerator Instance;
     
     [Header("CAT POOLING")] 
-    public int catPoolAmount;
-    public Queue<GameObject>[] catPool;
+    public int poolSize;
+    
+    [Header("DEBUGGING")]
     public List<Cat> activeCats;
+    private Queue<Cat> pool;
     
-    private GameObject newGameObject;
-    private Cat newCat;
-    
+    private int totalCatCount;
     private Cat spawnedCat;
     private GameObject spawnedCatGO;
-    private Vector3 spawnedCatPos;
-    private int value;
-    private int totalCatCount;
 
     private void Awake() => Instance = this;
     
-    public void CreateCatGraphics(int catIndex, Vector3 position)
-    {
-        var newCat = Instantiate(
-            Registry.cardConfig.cards[catIndex].prefab,
-            position,
-            Quaternion.identity,
-            transform);
-    }
-
+    
     public void Initialize()
     {
-        // create cat pool and fill it
-        catPool = new Queue<GameObject>[Registry.cardConfig.cards.Length];
-        activeCats = new List<Cat>();
-        InitializeCatPool();
+        pool = new Queue<Cat>();
+        FillPool();
     }
 
-    private void InitializeCatPool()
+    private void FillPool()
     {
-        for (int i = 0; i < Registry.cardConfig.cards.Length; i++)
+        for (int i = 0; i < poolSize; i++)
         {
-            catPool[i] = new Queue<GameObject>();
-            FillCatPool(i);
+            Pool(Instantiate(Registry.catConfig.cats[0].catBasePrefab, transform).GetComponent<Cat>());
         }
     }
 
-    private void FillCatPool(int _index)
+    private void Pool(Cat _toPool)
     {
-        for (int j = 0; j < catPoolAmount; j++)
-        {
-            newGameObject = Instantiate(Registry.cardConfig.cards[_index].prefab, transform);
-            newCat.typeIndex = _index;
-            newGameObject.SetActive(false);
-            catPool[_index].Enqueue(newGameObject);
-        }
+        _toPool.gameObject.SetActive(false);
+        pool.Enqueue(_toPool);
     }
+    
+    private Cat Depool()
+    {
+        if (pool.Count < 1) FillPool();
 
+        Cat depooled = pool.Dequeue();
+        depooled.gameObject.SetActive(true);
+        return depooled;
+    }
+    
     public void SpawnCat(int _typeIndex, Vector3 _pos)
     {
         totalCatCount++;
 
-        // determine cat position
-        spawnedCatPos = _pos;
-
-        if (catPool[_typeIndex].Count <= 0)
-        {
-            FillCatPool(_typeIndex);
-        }
-
         // get cat game object and place it
-        spawnedCatGO = catPool[_typeIndex].Dequeue();
-        spawnedCatGO.transform.position = spawnedCatPos;
+        spawnedCatGO = Depool().gameObject;
+        spawnedCatGO.transform.position = _pos;
+        spawnedCatGO.name = $"Cat_{totalCatCount}_{Registry.catConfig.cats[_typeIndex].catName}";
 
-        // set the chick up
+        // set the cat up
         spawnedCat = spawnedCatGO.GetComponent<Cat>();
         spawnedCat.Initialize(_typeIndex);
 
         activeCats.Add(spawnedCat);
 
-        spawnedCatGO.name = "Cat_" + totalCatCount + "_" + Registry.cardConfig.cards[_typeIndex].cardName;
-
         // activate the cat
         spawnedCatGO.SetActive(true);
         spawnedCat.state = BattleState.InHand;
-    }
-
-    public void RemoveAllChicks()
-    {
-        foreach(Cat cat in FindObjectsOfType<Cat>())
-        {
-            cat.Remove();
-        }
     }
 }

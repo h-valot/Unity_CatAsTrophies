@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 public class Init : MonoBehaviour
 {
     public GameSettings gameSettings;
-    public CardsConfig cardConfig;
+    public CatsConfig catConfig;
 
     private void Start()
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(gameSettings.startingScene);
         
-        Registry.cardConfig = cardConfig;
+        Registry.catConfig = catConfig;
         Registry.gameSettings = gameSettings;
 
         Registry.isInitialized = true;
