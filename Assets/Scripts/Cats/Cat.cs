@@ -2,26 +2,36 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-    public BattleState state;
+    [Header("DEBUGGING")]
+    public CatState state;
     public int typeIndex;
+    public string id;
 
     public void Initialize(int _typeIndex)
     {
+        state = CatState.InDeck;
         typeIndex = _typeIndex;
+        id = Misc.GetRandomId();
     }
     
-    public bool CanMove() => state == BattleState.InHand;
+    public bool CanMove() => state == CatState.InHand;
 
-    public void Remove()
+    /// <summary>
+    /// Remove this cat from the cat pool
+    /// </summary>
+    public void Replace()
     {
-        // remove this chick
+        GraveyardManager.Instance.AddCat(this);
+        
+        // finally repool the cat and desactivating it
+        CatGenerator.Instance.Pool(this);
     }
 }
 
-public enum BattleState
+public enum CatState
 {
-    InHand = 0,
+    InDeck = 0,
+    InHand,
     OnBattle,
-    Discarded,
-    InDeck
+    InGraveyard
 }

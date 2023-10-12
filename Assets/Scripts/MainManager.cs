@@ -18,9 +18,8 @@ public class MainManager : MonoBehaviour
         
         CatGenerator.Instance.Initialize();
         HandManager.Instance.Initialize();
+        DeckManager.Instance.Initialize();
+        GraveyardManager.Instance.Initialize();
         BattlePawnManager.Instance.Initialize();
-        
-        // DEBUGGING
-        HandManager.Instance.AddCat(0);
     }
 }

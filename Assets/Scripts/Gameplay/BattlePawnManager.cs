@@ -5,54 +5,39 @@ public class BattlePawnManager : MonoBehaviour
 {
     public static BattlePawnManager Instance;
     
-    public GameObject[] pawnPositions;
+    public BattlePawn[] battlePawns;
     public float distanceThreshold = 1f;
 
-    public void Awake()
-    {
-        Instance = this;
-    }
+    public void Awake() => Instance = this;
 
     public void Initialize()
     {
         // do nothing
     }
 
-    private void Update()
+    public BattlePawn GetNearestPawnFromCursor(Vector2 originPos)
     {
-        // debugging
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            for (int i = 0; i < pawnPositions.Length; i++)
-            {
-                Debug.Log($"{pawnPositions[i].name} at x{pawnPositions[i].transform.position.x} y{pawnPositions[i].transform.position.y} z{pawnPositions[i].transform.position.z}");
-            }
-        }
-    }
-
-    public Vector2 GetNearestPawnFromCursor(Vector2 originPos)
-    {
-        int closestPawnIndex = 0;
+        int closestPawnIndex = -1;
         float shortestDistance = 999;
-        Vector2 closestPawnPosition = Vector2.zero;
         
-        for (int i = 0; i < pawnPositions.Length; i++)
+        for (int i = 0; i < Instance.battlePawns.Length; i++)
         {
-            Vector2 pawnPosition = new Vector2(pawnPositions[i].transform.position.x, pawnPositions[i].transform.position.y);
+            // getting the distance between both vectors
+            Vector2 pawnPosition = new Vector2(Instance.battlePawns[i].transform.position.x, Instance.battlePawns[i].transform.position.y);
             float distanceBetweenPositions = Vector2.Distance(originPos, pawnPosition);
 
             if (distanceBetweenPositions < shortestDistance)
             {
                 shortestDistance = distanceBetweenPositions;
-                closestPawnPosition = pawnPosition;
                 closestPawnIndex = i;
             }
         }
-        return closestPawnPosition;
+
+        return Instance.battlePawns[closestPawnIndex];
     }
 
-    public bool IsCloseEnough(Vector2 originPos, Vector2 destinationPos)
+    public bool IsCloseEnough(Vector2 u, Vector2 v)
     {
-        return Vector2.Distance(originPos, destinationPos) <= distanceThreshold;
+        return Vector2.Distance(u, v) <= Instance.distanceThreshold;
     }
 }

@@ -8,46 +8,74 @@ public class HandManager : MonoBehaviour
     public Transform[] handPoints;
     
     [Header("DEBUGGING")]
-    public int[] catsInHand;
+    public string[] catsInHand;
 
     private void Awake() => Instance = this;
     
     public void Initialize()
     {
-        Instance.catsInHand = new[] { -1, -1, -1, -1, -1 };
+        Instance.catsInHand = new[] {"", "", "", "", ""};
     }
 
-    public void AddCat(int _catIndex)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instance.DebugDraw(0);
+        }
+    }
+
+    /// <summary>
+    /// Spawn a cat and add it to the player's hand
+    /// </summary>
+    /// <param name="_catIndex">Type index of the cat</param>
+    public void DebugDraw(int _catIndex)
+    {
+        Cat spawnCat = CatGenerator.Instance.SpawnCat(_catIndex, GetAvailablePosition());
+        spawnCat.state = CatState.InHand;
+        
+        Instance.AddToHand(spawnCat.id);
+    }
+    
+    /// <summary>
+    /// Remove a cat from the player's hand
+    /// </summary>
+    public void RemoveFromHand(string _catId)
     {
         for (int i = 0; i < Instance.catsInHand.Length; i++)
         {
-            if (Instance.catsInHand[i] == -1)
+            if (Instance.catsInHand[i] == _catId)
             {
-                CatGenerator.Instance.SpawnCat(_catIndex, GetAvailablePosition());
-                Instance.catsInHand[i] = _catIndex;
+                Instance.catsInHand[i] = "";
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Add a cat to the player's hand
+    /// </summary>
+    public void AddToHand(string _catId)
+    {
+        for (int i = 0; i < Instance.catsInHand.Length; i++)
+        {
+            if (Instance.catsInHand[i] == "")
+            {
+                Instance.catsInHand[i] = _catId;
                 break;
             }
         }
     }
 
-    public void RemoveCat(int _catToRemove)
-    {
-        for (int i = 0; i < Instance.catsInHand.Length; i++)
-        {
-            if (Instance.catsInHand[i] == _catToRemove)
-            {
-                Instance.catsInHand[i] = -1;
-            }
-        }
-    }
-
+    /// <summary>
+    /// Seek available position in the player's hand
+    /// </summary>
     public Vector3 GetAvailablePosition()
     {
         Vector3 output = Vector3.one;
         
         for (int i = 0; i < Instance.catsInHand.Length; i++)
         {
-            if (Instance.catsInHand[i] == -1)
+            if (Instance.catsInHand[i] == "")
             {
                 output = Instance.handPoints[i].position;
                 break;
