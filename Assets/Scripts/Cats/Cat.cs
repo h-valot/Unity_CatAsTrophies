@@ -7,11 +7,15 @@ public class Cat : MonoBehaviour
     public int typeIndex;
     public string id;
 
+    public float health;
+
     public void Initialize(int _typeIndex)
     {
         state = CatState.InDeck;
         typeIndex = _typeIndex;
         id = Misc.GetRandomId();
+
+        health = Registry.catConfig.cats[typeIndex].health;
     }
     
     public bool CanMove() => state == CatState.InHand;
