@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 921232570580790867}
   - component: {fileID: 4053573383019069241}
   m_Layer: 6
-  m_Name: CatPrefab
+  m_Name: CatPrefab_Type1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,9 +192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18eac737ac6340488f010cbc0ade3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  typeIndex: 0
+  graphicsParent: {fileID: 5399714602900072910}
   id: 0
+  typeIndex: 0
+  state: 0
+  health: 0
 --- !u!1 &5399714602900072910
 GameObject:
   m_ObjectHideFlags: 0

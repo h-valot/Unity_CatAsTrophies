@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
+    public GameObject graphicsParent;
+    
     [Header("DEBUGGING")]
-    public CatState state;
-    public int typeIndex;
     public string id;
-
+    public int typeIndex;
+    public CatState state;
     public float health;
 
     public void Initialize(int _typeIndex)
@@ -20,15 +21,34 @@ public class Cat : MonoBehaviour
     
     public bool CanMove() => state == CatState.InHand;
 
+    public void Place()
+    {
+        // place the cat onto the battlefield
+        state = CatState.OnBattle;
+        UseAbility();
+    }
+
+    public void UseAbility()
+    {
+        // use the cat's custom ability
+        TurnManager.Instance.actionCounter++;
+    }
+    
+    public void UseAutoAttack()
+    {
+        // deal fix amout of damage to an enemy 
+    }
+    
     /// <summary>
-    /// Remove this cat from the cat pool
+    /// Withdraw a cat from the battlefield to place it into the graveyard
     /// </summary>
-    public void Replace()
+    public void Withdraw()
     {
         GraveyardManager.Instance.AddCat(this);
+        state = CatState.InGraveyard;
         
         // finally repool the cat and desactivating it
-        CatGenerator.Instance.Pool(this);
+        graphicsParent.SetActive(false);
     }
 }
 

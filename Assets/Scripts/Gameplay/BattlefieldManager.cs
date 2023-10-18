@@ -1,18 +1,32 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class BattlePawnManager : MonoBehaviour
+public class BattlefieldManager : MonoBehaviour
 {
-    public static BattlePawnManager Instance;
+    public static BattlefieldManager Instance;
     
     public BattlePawn[] battlePawns;
     public float distanceThreshold = 1f;
 
+    public string[] catsOnBattlefield;
+        
     public void Awake() => Instance = this;
 
     public void Initialize()
     {
-        // do nothing
+        catsOnBattlefield = new string[3];
+    }
+
+    /// <summary>
+    /// Make all cats on the battlefield auto attack there enemies
+    /// </summary>
+    public void AutoAttackEnemies()
+    {
+        for (int i = 0; i < catsOnBattlefield.Length; i++)
+        {
+            Misc.GetCatById(CatGenerator.Instance.cats, catsOnBattlefield[i]).UseAutoAttack();
+        }
     }
 
     public BattlePawn GetNearestPawnFromCursor(Vector2 originPos)

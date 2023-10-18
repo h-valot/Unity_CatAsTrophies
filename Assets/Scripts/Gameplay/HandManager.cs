@@ -17,38 +17,16 @@ public class HandManager : MonoBehaviour
         Instance.catsInHand = new[] {"", "", "", "", ""};
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instance.DebugDraw(0);
-        }
-    }
-
     /// <summary>
     /// Spawn a cat and add it to the player's hand
     /// </summary>
     /// <param name="_catIndex">Type index of the cat</param>
-    public void DebugDraw(int _catIndex)
+    public void DrawCat(int _catIndex)
     {
-        Cat catSpawned = CatGenerator.Instance.SpawnCat(_catIndex, GetAvailablePosition());
+        Cat catSpawned = CatGenerator.Instance.SpawnCatGraphics(_catIndex, GetAvailablePosition());
         catSpawned.state = CatState.InHand;
         
         Instance.AddToHand(catSpawned.id);
-    }
-    
-    /// <summary>
-    /// Remove a cat from the player's hand
-    /// </summary>
-    public void RemoveFromHand(string _catId)
-    {
-        for (int i = 0; i < Instance.catsInHand.Length; i++)
-        {
-            if (Instance.catsInHand[i] == _catId)
-            {
-                Instance.catsInHand[i] = "";
-            }
-        }
     }
     
     /// <summary>
@@ -62,6 +40,32 @@ public class HandManager : MonoBehaviour
             {
                 Instance.catsInHand[i] = _catId;
                 break;
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Remove a cat from the player's hand
+    /// </summary>
+    public void RemoveFromHand(string _catId)
+    {
+        for (int i = 0; i < catsInHand.Length; i++)
+        {
+            catsInHand[i] = catsInHand[i] == _catId ? "" : catsInHand[i];
+        }
+    }
+
+    /// <summary>
+    /// Discard all cats in the player's hand
+    /// </summary>
+    public void DiscardHand()
+    {
+        for (int i = 0; i < catsInHand.Length; i++)
+        {
+            if (catsInHand[i] != "")
+            {
+                Misc.GetCatById(CatGenerator.Instance.cats, catsInHand[i]).Withdraw();
+                RemoveFromHand(catsInHand[i]);
             }
         }
     }

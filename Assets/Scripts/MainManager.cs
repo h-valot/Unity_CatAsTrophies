@@ -16,10 +16,15 @@ public class MainManager : MonoBehaviour
             return;
         }
         
-        CatGenerator.Instance.Initialize();
-        HandManager.Instance.Initialize();
+        // the order matters
         DeckManager.Instance.Initialize();
+        CatGenerator.Instance.Initialize();
+        TurnManager.Instance.Initialize();
+        HandManager.Instance.Initialize();
+        BattlefieldManager.Instance.Initialize();
         GraveyardManager.Instance.Initialize();
-        BattlePawnManager.Instance.Initialize();
+        
+        // start the game loop
+        TurnManager.Instance.HandleTurnState();
     }
 }

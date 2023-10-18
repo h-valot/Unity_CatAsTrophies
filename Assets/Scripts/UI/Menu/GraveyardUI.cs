@@ -17,7 +17,7 @@ public class GraveyardUI : MonoBehaviour
     {
         // if there are less ui cat cards than cats in the graveyard
         // then instantiate new ui cat cards 
-        if (catCards.Count < GraveyardManager.Instance.graveyard.Count)
+        if (catCards.Count < GraveyardManager.Instance.catsInGraveyard.Count)
         {
             InstantiateAllCats();
             return;
@@ -28,7 +28,7 @@ public class GraveyardUI : MonoBehaviour
         {
             // if there are less cats in the graveyard than ui cat cards
             // then hide and remove ui cat cards from the list
-            if (i > GraveyardManager.Instance.graveyard.Count)
+            if (i > GraveyardManager.Instance.catsInGraveyard.Count)
             {
                 catCards[i].Hide();
                 catCards.Remove(catCards[i]);
@@ -43,7 +43,7 @@ public class GraveyardUI : MonoBehaviour
 
     private void InstantiateAllCats()
     {
-        for (int i = 0; i < GraveyardManager.Instance.graveyard.Count; i++)
+        for (int i = 0; i < GraveyardManager.Instance.catsInGraveyard.Count; i++)
         {
             if (i < catCards.Count)
             {
@@ -55,7 +55,7 @@ public class GraveyardUI : MonoBehaviour
             {
                 // instantiate a new display
                 var newCard = Instantiate(cardCatPrefab, verticalLayoutGroup.transform).GetComponent<CatCardDisplay>();
-                newCard.Initialize(GraveyardManager.Instance.graveyard[i].id);
+                newCard.Initialize(GraveyardManager.Instance.catsInGraveyard[i].id);
                 newCard.UpdateDisplay();
                 catCards.Add(newCard);
             }

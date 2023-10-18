@@ -18,7 +18,7 @@ public class BattlePawn : MonoBehaviour
         if (isOccupied) return;
         
         spriteRenderer.color = 
-            BattlePawnManager.Instance.IsCloseEnough(transform.position, InputHandler.Instance.touchPos) 
+            BattlefieldManager.Instance.IsCloseEnough(transform.position, InputHandler.Instance.touchPos) 
                 ? Color.yellow 
                 : Color.white;
     }

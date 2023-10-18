@@ -28,22 +28,22 @@ public class DragAndDrop : MonoBehaviour
     /// </summary>
     private void VerifyDistances()
     {
-        BattlePawn closestPawn = BattlePawnManager.Instance.GetNearestPawnFromCursor(new Vector2(transform.position.x, transform.position.y));
+        BattlePawn closestPawn = BattlefieldManager.Instance.GetNearestPawnFromCursor(new Vector2(transform.position.x, transform.position.y));
         Vector2 transformPos = new Vector2(transform.position.x, transform.position.y);
         
         // snap to the closest battle pawn
         // else gets back into the player's hand
-        if (BattlePawnManager.Instance.IsCloseEnough(transformPos, closestPawn.transform.position))
+        if (BattlefieldManager.Instance.IsCloseEnough(transformPos, closestPawn.transform.position))
         {
             // if there is already a cat on that battle pawn,
             // put the former cat into the graveyard and place the new one
             if (closestPawn.catIdLinked != "")
             {
-                Misc.GetCatById(CatGenerator.Instance.instantiatedCats, closestPawn.catIdLinked).Replace();
+                Misc.GetCatById(CatGenerator.Instance.cats, closestPawn.catIdLinked).Withdraw();
             }
             closestPawn.Setup(catDragged.id);
             transform.position = closestPawn.transform.position;
-            catDragged.state = CatState.OnBattle;
+            catDragged.Place();
         }
         else
         {

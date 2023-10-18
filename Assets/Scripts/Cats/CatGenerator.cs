@@ -5,48 +5,31 @@ public class CatGenerator : MonoBehaviour
 {
     public static CatGenerator Instance;
     
-    [Header("CAT POOLING")] 
-    public int poolSize;
-    
     [Header("DEBUGGING")]
-    public List<Cat> instantiatedCats;
+    public List<Cat> cats;
     
-    private Queue<Cat> pool;
     private int totalCatCount;
     private Cat spawnedCat;
     private GameObject spawnedCatGO;
 
     private void Awake() => Instance = this;
     
-    
     public void Initialize()
     {
-        Instance.pool = new Queue<Cat>();
-        Instance.FillPool();
+        InstantiateCats();
     }
 
-    private void FillPool()
+    private void InstantiateCats()
     {
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < Registry.playerConfig.deckLenght; i++)
         {
-            Instance.Pool(Instantiate(Registry.catConfig.cats[0].catBasePrefab, Instance.transform).GetComponent<Cat>());
+            var newCat = Instantiate(Registry.catConfig.cats[0].catBasePrefab, transform).GetComponent<Cat>();
+            newCat.gameObject.SetActive(false);
+            cats.Add(newCat);
+            
+            // add this new cat into the deck
+            DeckManager.Instance.AddCat(newCat.id);
         }
-    }
-
-    public void Pool(Cat _toPool)
-    {
-        instantiatedCats.Remove(_toPool);
-        Instance.pool.Enqueue(_toPool);
-        _toPool.gameObject.SetActive(false);
-    }
-    
-    private Cat Depool()
-    {
-        if (Instance.pool.Count < 1) Instance.FillPool();
-
-        Cat depooled = Instance.pool.Dequeue();
-        depooled.gameObject.SetActive(true);
-        return depooled;
     }
     
     /// <summary>
@@ -54,40 +37,19 @@ public class CatGenerator : MonoBehaviour
     /// </summary>
     /// <param name="_typeIndex">Type of the cat</param>
     /// <param name="_pos">Position of the cat</param>
-    public Cat SpawnCat(int _typeIndex, Vector3 _pos)
+    public Cat SpawnCatGraphics(int _typeIndex, Vector3 _pos)
     {
-        Instance.totalCatCount++;
-
         // get cat game object and place it
-        Instance.spawnedCatGO = Instance.Depool().gameObject;
-        Instance.spawnedCatGO.transform.position = _pos;
-        Instance.spawnedCatGO.name = $"Cat_{Instance.totalCatCount}_{Registry.catConfig.cats[_typeIndex].catName}";
+        spawnedCatGO = cats[totalCatCount].gameObject;
+        spawnedCatGO.transform.position = _pos;
+        spawnedCatGO.name = $"Cat_{totalCatCount}_{Registry.catConfig.cats[_typeIndex].catName}";
 
         // setup the cat
-        Instance.spawnedCat = Instance.spawnedCatGO.GetComponent<Cat>();
-        Instance.spawnedCat.Initialize(_typeIndex);
-        Instance.instantiatedCats.Add(Instance.spawnedCat);
-        Instance.spawnedCatGO.SetActive(true);
+        spawnedCat = spawnedCatGO.GetComponent<Cat>();
+        spawnedCat.Initialize(_typeIndex);
+        spawnedCatGO.SetActive(true);
+        totalCatCount++;
 
-        return Instance.spawnedCat;
-    }
-
-    /// <summary>
-    /// Get a reference to a cat thanks to its id
-    /// </summary>
-    public Cat GetCatById(string _id)
-    {
-        Cat output = new Cat();
-        
-        for (int i = 0; i < Instance.instantiatedCats.Count; i++)
-        {
-            if (Instance.instantiatedCats[i].id == _id)
-            {
-                output = Instance.instantiatedCats[i];
-                break;
-            }
-        }
-        
-        return output;
+        return spawnedCat;
     }
 }
