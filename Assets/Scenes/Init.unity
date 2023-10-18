@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 11400000, guid: 5ecbe0496ee895944bb2d2b1a1bbf8b6, type: 2}
   catConfig: {fileID: 11400000, guid: cf72c7c23012a4f4d991102165d93b27, type: 2}
+  playerConfig: {fileID: 11400000, guid: ec3c8e6c6bee9ac4ab5315ea24b3ce84, type: 2}
 --- !u!1 &1515939220
 GameObject:
   m_ObjectHideFlags: 0

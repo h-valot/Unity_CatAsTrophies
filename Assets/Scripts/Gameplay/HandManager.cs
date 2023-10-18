@@ -31,10 +31,10 @@ public class HandManager : MonoBehaviour
     /// <param name="_catIndex">Type index of the cat</param>
     public void DebugDraw(int _catIndex)
     {
-        Cat spawnCat = CatGenerator.Instance.SpawnCat(_catIndex, GetAvailablePosition());
-        spawnCat.state = CatState.InHand;
+        Cat catSpawned = CatGenerator.Instance.SpawnCat(_catIndex, GetAvailablePosition());
+        catSpawned.state = CatState.InHand;
         
-        Instance.AddToHand(spawnCat.id);
+        Instance.AddToHand(catSpawned.id);
     }
     
     /// <summary>

@@ -5,6 +5,7 @@ public class Init : MonoBehaviour
 {
     public GameSettings gameSettings;
     public CatsConfig catConfig;
+    public PlayerConfig playerConfig;
 
     private void Start()
     {
@@ -12,6 +13,7 @@ public class Init : MonoBehaviour
         
         Registry.catConfig = catConfig;
         Registry.gameSettings = gameSettings;
+        Registry.playerConfig = playerConfig;
 
         Registry.isInitialized = true;
         asyncLoad.allowSceneActivation = true;

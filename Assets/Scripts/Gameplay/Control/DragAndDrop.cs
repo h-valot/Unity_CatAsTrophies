@@ -39,7 +39,7 @@ public class DragAndDrop : MonoBehaviour
             // put the former cat into the graveyard and place the new one
             if (closestPawn.catIdLinked != "")
             {
-                CatGenerator.Instance.GetCatById(closestPawn.catIdLinked).Replace();
+                Misc.GetCatById(CatGenerator.Instance.instantiatedCats, closestPawn.catIdLinked).Replace();
             }
             closestPawn.Setup(catDragged.id);
             transform.position = closestPawn.transform.position;

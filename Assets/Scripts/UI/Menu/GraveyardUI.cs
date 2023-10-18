@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,34 +12,53 @@ public class GraveyardUI : MonoBehaviour
     {
         UpdateAllDisplays();
     }
-
-    private void InstantiateAllCats()
-    {
-        for (int i = 0; i < GraveyardManager.Instance.graveyard.Count; i++)
-        {
-            var newCard = Instantiate(cardCatPrefab, verticalLayoutGroup.transform)
-                .GetComponent<CatCardDisplay>();
-            
-            newCard.UpdateDisplay(Registry.catConfig.cats[GraveyardManager.Instance.graveyard[i].typeIndex].catName,
-                GraveyardManager.Instance.graveyard[i].health);
-            
-            catCards.Add(newCard);
-        }
-    }
-
+    
     private void UpdateAllDisplays()
     {
+        // if there are less ui cat cards than cats in the graveyard
+        // then instantiate new ui cat cards 
         if (catCards.Count < GraveyardManager.Instance.graveyard.Count)
         {
             InstantiateAllCats();
             return;
         }
         
+        // update all ui cat cards 
         for (int i = 0; i < catCards.Count; i++)
         {
-            catCards[i].UpdateDisplay(
-                Registry.catConfig.cats[GraveyardManager.Instance.graveyard[i].typeIndex].catName,
-                GraveyardManager.Instance.graveyard[i].health);
+            // if there are less cats in the graveyard than ui cat cards
+            // then hide and remove ui cat cards from the list
+            if (i > GraveyardManager.Instance.graveyard.Count)
+            {
+                catCards[i].Hide();
+                catCards.Remove(catCards[i]);
+            }
+            else
+            {
+                catCards[i].Show();
+                catCards[i].UpdateDisplay();
+            }
+        }
+    }
+
+    private void InstantiateAllCats()
+    {
+        for (int i = 0; i < GraveyardManager.Instance.graveyard.Count; i++)
+        {
+            if (i < catCards.Count)
+            {
+                // update display that already exists
+                catCards[i].Show();
+                catCards[i].UpdateDisplay();
+            }
+            else
+            {
+                // instantiate a new display
+                var newCard = Instantiate(cardCatPrefab, verticalLayoutGroup.transform).GetComponent<CatCardDisplay>();
+                newCard.Initialize(GraveyardManager.Instance.graveyard[i].id);
+                newCard.UpdateDisplay();
+                catCards.Add(newCard);
+            }
         }
     }
 }
