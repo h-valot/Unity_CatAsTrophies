@@ -29,8 +29,10 @@ public class ButtonManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+        #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
         Debug.Log("Quitter le jeu?");
+        #endif
     }
     //Exit game button
 }
