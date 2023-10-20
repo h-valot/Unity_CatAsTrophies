@@ -9,6 +9,7 @@ public class HandManager : MonoBehaviour
     
     [Header("DEBUGGING")]
     public string[] catsInHand;
+    public Cat catSpawned;
 
     private void Awake() => Instance = this;
     
@@ -20,13 +21,18 @@ public class HandManager : MonoBehaviour
     /// <summary>
     /// Spawn a cat and add it to the player's hand
     /// </summary>
-    /// <param name="_catIndex">Type index of the cat</param>
-    public void DrawCat(int _catIndex)
+    /// <param name="_catId">Type index of the cat</param>
+    public void DrawCat(string _catId)
     {
-        Cat catSpawned = CatGenerator.Instance.SpawnCatGraphics(_catIndex, GetAvailablePosition());
-        catSpawned.state = CatState.InHand;
-        
-        Instance.AddToHand(catSpawned.id);
+        if (CatGenerator.Instance.totalCatCount < Registry.playerConfig.deckLenght)
+        {
+            catSpawned = CatGenerator.Instance.SpawnCatGraphics(Misc.GetCatById(_catId).typeIndex);
+        }
+        else
+        {
+            Misc.GetCatById(_catId).PutInHand();
+        }
+        AddToHand(catSpawned.id);
     }
     
     /// <summary>
@@ -34,11 +40,11 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void AddToHand(string _catId)
     {
-        for (int i = 0; i < Instance.catsInHand.Length; i++)
+        for (int i = 0; i < catsInHand.Length; i++)
         {
-            if (Instance.catsInHand[i] == "")
+            if (catsInHand[i] == "")
             {
-                Instance.catsInHand[i] = _catId;
+                catsInHand[i] = _catId;
                 break;
             }
         }
@@ -51,7 +57,10 @@ public class HandManager : MonoBehaviour
     {
         for (int i = 0; i < catsInHand.Length; i++)
         {
-            catsInHand[i] = catsInHand[i] == _catId ? "" : catsInHand[i];
+            if (catsInHand[i] == _catId)
+            {
+                catsInHand[i] = "";
+            }
         }
     }
 
@@ -64,7 +73,7 @@ public class HandManager : MonoBehaviour
         {
             if (catsInHand[i] != "")
             {
-                Misc.GetCatById(CatGenerator.Instance.cats, catsInHand[i]).Withdraw();
+                Misc.GetCatById(catsInHand[i]).Withdraw();
                 RemoveFromHand(catsInHand[i]);
             }
         }
@@ -77,18 +86,18 @@ public class HandManager : MonoBehaviour
     {
         Vector3 output = Vector3.one;
         
-        for (int i = 0; i < Instance.catsInHand.Length; i++)
+        for (int i = 0; i < catsInHand.Length; i++)
         {
-            if (Instance.catsInHand[i] == "")
+            if (catsInHand[i] == "")
             {
-                output = Instance.handPoints[i].position;
+                output = handPoints[i].position;
                 break;
             }
         }
 
         if (output == Vector3.one)
         {
-            Debug.LogError("HAND MANAGER: cats in hand limit reach. can't add move cat.", this);
+            Debug.LogError("HAND MANAGER: cats in hand limit reach. can't add cat.", this);
             Debug.Break();
         }
         

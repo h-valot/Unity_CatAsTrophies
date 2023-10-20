@@ -28,15 +28,15 @@ public static class Misc
     /// <param name="_cats">List of cats to browse the cat</param>
     /// <param name="_id">Id of the cat</param>
     /// <returns>Cat that own the given id</returns>
-    public static Cat GetCatById(List<Cat> _cats, string _id)
+    public static Cat GetCatById(string _id)
     {
         Cat output = new Cat();
         
-        for (int i = 0; i < _cats.Count; i++)
+        for (int i = 0; i < CatGenerator.Instance.cats.Count; i++)
         {
-            if (_cats[i].id == _id)
+            if (CatGenerator.Instance.cats[i].id == _id)
             {
-                output = _cats[i];
+                output = CatGenerator.Instance.cats[i];
                 break;
             }
         }

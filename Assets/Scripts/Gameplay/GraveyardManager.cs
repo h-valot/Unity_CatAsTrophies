@@ -6,16 +6,16 @@ public class GraveyardManager : MonoBehaviour
     public static GraveyardManager Instance;
 
     [Header("DEBUGGING")] 
-    public List<Cat> catsInGraveyard;
+    public List<string> catsInGraveyard;
 
     private void Awake() => Instance = this;
 
     public void Initialize()
     {
-        Instance.catsInGraveyard = new List<Cat>();
+        Instance.catsInGraveyard = new List<string>();
     }
     
-    public void AddCat(Cat _cat)
+    public void AddCat(string _cat)
     {
         Instance.catsInGraveyard.Add(_cat); 
     }

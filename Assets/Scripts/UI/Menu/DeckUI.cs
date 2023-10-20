@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GraveyardUI : MonoBehaviour
+public class DeckUI : MonoBehaviour
 {
     public GameObject cardCatPrefab;
     public VerticalLayoutGroup verticalLayoutGroup;
@@ -17,7 +17,7 @@ public class GraveyardUI : MonoBehaviour
     {
         // if there are less ui cat cards than cats in the graveyard
         // then instantiate new ui cat cards 
-        if (catCards.Count < GraveyardManager.Instance.catsInGraveyard.Count)
+        if (catCards.Count < DeckManager.Instance.catsInDeck.Count)
         {
             InstantiateAllCats();
             return;
@@ -26,9 +26,9 @@ public class GraveyardUI : MonoBehaviour
         // update all ui cat cards 
         for (int i = 0; i < catCards.Count; i++)
         {
-            // if there are less cats in the graveyard than ui cat cards
+            // if there are less cats in the deck than ui cat cards
             // then hide and remove ui cat cards from the list
-            if (i > GraveyardManager.Instance.catsInGraveyard.Count)
+            if (i > DeckManager.Instance.catsInDeck.Count)
             {
                 catCards[i].Hide();
                 catCards.Remove(catCards[i]);
@@ -43,7 +43,7 @@ public class GraveyardUI : MonoBehaviour
 
     private void InstantiateAllCats()
     {
-        for (int i = 0; i < GraveyardManager.Instance.catsInGraveyard.Count; i++)
+        for (int i = 0; i < DeckManager.Instance.catsInDeck.Count; i++)
         {
             if (i < catCards.Count)
             {
@@ -55,7 +55,7 @@ public class GraveyardUI : MonoBehaviour
             {
                 // instantiate a new display
                 var newCard = Instantiate(cardCatPrefab, verticalLayoutGroup.transform).GetComponent<CatCardDisplay>();
-                newCard.Initialize(GraveyardManager.Instance.catsInGraveyard[i]);
+                newCard.Initialize(DeckManager.Instance.catsInDeck[i]);
                 newCard.UpdateDisplay();
                 catCards.Add(newCard);
             }

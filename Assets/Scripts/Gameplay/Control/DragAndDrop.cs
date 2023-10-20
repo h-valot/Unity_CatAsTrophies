@@ -13,7 +13,7 @@ public class DragAndDrop : MonoBehaviour
     private void OnMouseDrag()
     {
         if (!catDragged.CanMove()) return;
-        transform.position = InputHandler.Instance.touchPos;
+        catDragged.transform.position = InputHandler.Instance.touchPos;
     }
  
     private void OnMouseUp()
@@ -29,7 +29,7 @@ public class DragAndDrop : MonoBehaviour
     private void VerifyDistances()
     {
         BattlePawn closestPawn = BattlefieldManager.Instance.GetNearestPawnFromCursor(new Vector2(transform.position.x, transform.position.y));
-        Vector2 transformPos = new Vector2(transform.position.x, transform.position.y);
+        Vector2 transformPos = new Vector2(catDragged.transform.position.x, catDragged.transform.position.y);
         
         // snap to the closest battle pawn
         // else gets back into the player's hand
@@ -39,17 +39,16 @@ public class DragAndDrop : MonoBehaviour
             // put the former cat into the graveyard and place the new one
             if (closestPawn.catIdLinked != "")
             {
-                Misc.GetCatById(CatGenerator.Instance.cats, closestPawn.catIdLinked).Withdraw();
+                Misc.GetCatById(closestPawn.catIdLinked).Withdraw();
             }
             closestPawn.Setup(catDragged.id);
-            transform.position = closestPawn.transform.position;
-            catDragged.Place();
+            catDragged.transform.position = closestPawn.transform.position;
+            catDragged.PlaceOnBattlefield();
         }
         else
         {
             HandManager.Instance.AddToHand(catDragged.id);
-            transform.position = HandManager.Instance.GetAvailablePosition();
-            catDragged.state = CatState.InHand;
+            catDragged.PutInHand();
         }
     }
 }

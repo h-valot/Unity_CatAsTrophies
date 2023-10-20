@@ -38,6 +38,9 @@ public class TurnManager : MonoBehaviour
                 await HandlePlayerActions();
                 Debug.Log("TURNMANAGER: the player did its three actions");
                 
+                // discard the player's hand
+                HandManager.Instance.DiscardHand();
+                
                 // cats use their auto attacks
                 BattlefieldManager.Instance.AutoAttackEnemies();
                 Debug.Log("TURNMANAGER: cats attacked enemies");
@@ -63,10 +66,9 @@ public class TurnManager : MonoBehaviour
 
     private void FulfillHand(int _catCount)
     {
-        HandManager.Instance.DiscardHand();
         for (int i = 0; i < _catCount; i++)
         {
-            HandManager.Instance.DrawCat(Misc.GetCatById(CatGenerator.Instance.cats, DeckManager.Instance.RemoveCat()).typeIndex);
+            HandManager.Instance.DrawCat(DeckManager.Instance.RemoveCat());
         }
     }
 
