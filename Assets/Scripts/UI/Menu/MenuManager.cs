@@ -7,6 +7,14 @@ public class MenuManager : MonoBehaviour
     
     [Header("REFERENCES")] 
     public GameMenu[] gameMenus;
+
+    public void Initialize()
+    {
+        foreach (GameMenu menu in gameMenus)
+        {
+            menu.Initialize();
+        }
+    }
     
     /// <summary>
     /// Check if there is any ui menu currently opened

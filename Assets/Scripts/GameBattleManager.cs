@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainManager : MonoBehaviour
+public class GameBattleManager : MonoBehaviour
 {
-    public static MainManager Instance;
-
+    public static GameBattleManager Instance;
     private void Awake() => Instance = this;
 
     private void Start()
@@ -17,12 +16,15 @@ public class MainManager : MonoBehaviour
         }
         
         // the order matters
+        // gameplay
         DeckManager.Instance.Initialize();
         CatGenerator.Instance.Initialize();
         TurnManager.Instance.Initialize();
         HandManager.Instance.Initialize();
         BattlefieldManager.Instance.Initialize();
         GraveyardManager.Instance.Initialize();
+        // ui
+        MenuManager.Instance.Initialize();
         
         // start the game loop
         TurnManager.Instance.HandleTurnState();

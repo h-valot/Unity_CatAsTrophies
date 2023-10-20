@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,12 @@ public class DeckUI : MonoBehaviour
     {
         UpdateAllDisplays();
     }
-    
+
+    private void OnDisable()
+    {
+        //DestroyAllCats();
+    }
+
     private void UpdateAllDisplays()
     {
         // if there are less ui cat cards than cats in the graveyard
@@ -22,15 +28,18 @@ public class DeckUI : MonoBehaviour
             InstantiateAllCats();
             return;
         }
+        int temp = 0;
         
         // update all ui cat cards 
         for (int i = 0; i < catCards.Count; i++)
         {
             // if there are less cats in the deck than ui cat cards
             // then hide and remove ui cat cards from the list
-            if (i > DeckManager.Instance.catsInDeck.Count)
+            if (i > DeckManager.Instance.catsInDeck.Count ||
+                DeckManager.Instance.catsInDeck.Count == 0)
             {
-                catCards[i].Hide();
+                temp++;
+                Destroy(catCards[i].gameObject);
                 catCards.Remove(catCards[i]);
             }
             else
@@ -39,6 +48,9 @@ public class DeckUI : MonoBehaviour
                 catCards[i].UpdateDisplay();
             }
         }
+        
+        Debug.Log($"catCards {catCards.Count} - catsInDeck {DeckManager.Instance.catsInDeck.Count} = {catCards.Count - DeckManager.Instance.catsInDeck.Count}" +
+                  $"\r\n{temp} cat(s) have been destroyed --but {catCards.Count - DeckManager.Instance.catsInDeck.Count - temp} cat(s) remain instead of being destroyed");
     }
 
     private void InstantiateAllCats()
@@ -53,12 +65,21 @@ public class DeckUI : MonoBehaviour
             }
             else
             {
+                Debug.Log("DECK UI: Instantiating a new catCard");
                 // instantiate a new display
                 var newCard = Instantiate(cardCatPrefab, verticalLayoutGroup.transform).GetComponent<CatCardDisplay>();
                 newCard.Initialize(DeckManager.Instance.catsInDeck[i]);
                 newCard.UpdateDisplay();
                 catCards.Add(newCard);
             }
+        }
+    }
+
+    private void DestroyAllCats()
+    {
+        foreach (var catCard in catCards)
+        {
+            Destroy(catCard);
         }
     }
 }

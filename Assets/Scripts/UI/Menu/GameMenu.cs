@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameMenu : MonoBehaviour
@@ -7,6 +8,11 @@ public class GameMenu : MonoBehaviour
     
     [HideInInspector] public bool isActivated;
 
+    public void Initialize()
+    {
+        CloseMenu();
+    }
+    
     public void OpenMenu()
     {
         menuGraphicsParent.SetActive(true);

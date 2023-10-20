@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Init : MonoBehaviour
 {
-    public GameSettings gameSettings;
     public CatsConfig catConfig;
+    public GameSettings gameSettings;
     public PlayerConfig playerConfig;
 
     private void Start()

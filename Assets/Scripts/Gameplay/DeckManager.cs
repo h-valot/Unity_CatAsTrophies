@@ -7,11 +7,10 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     public static DeckManager Instance;
+    private void Awake() => Instance = this;
 
     [Header("DEBUGGING")] 
     public List<string> catsInDeck;
-
-    private void Awake() => Instance = this;
 
     public void Initialize()
     {
