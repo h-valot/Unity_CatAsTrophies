@@ -4,6 +4,6 @@ public class DebugDrawButton : MonoBehaviour
 {
     public void Press()
     {
-        HandManager.Instance.DrawCat(0);
+        HandManager.Instance.DrawCat(DeckManager.Instance.RemoveCat());
     }
 }

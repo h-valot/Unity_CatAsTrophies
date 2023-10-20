@@ -8,7 +8,7 @@ public class CatGenerator : MonoBehaviour
     [Header("DEBUGGING")]
     public List<Cat> cats;
     
-    private int totalCatCount;
+    public int totalCatCount;
     private Cat spawnedCat;
     private GameObject spawnedCatGO;
 
@@ -37,17 +37,17 @@ public class CatGenerator : MonoBehaviour
     /// </summary>
     /// <param name="_typeIndex">Type of the cat</param>
     /// <param name="_pos">Position of the cat</param>
-    public Cat SpawnCatGraphics(int _typeIndex, Vector3 _pos)
+    public Cat SpawnCatGraphics(int _typeIndex)
     {
         // get cat game object and place it
         spawnedCatGO = cats[totalCatCount].gameObject;
-        spawnedCatGO.transform.position = _pos;
+        spawnedCatGO.transform.position = HandManager.Instance.GetAvailablePosition();
         spawnedCatGO.name = $"Cat_{totalCatCount}_{Registry.catConfig.cats[_typeIndex].catName}";
 
         // setup the cat
         spawnedCat = spawnedCatGO.GetComponent<Cat>();
         spawnedCat.Initialize(_typeIndex);
-        spawnedCatGO.SetActive(true);
+        spawnedCat.PutInHand();
         totalCatCount++;
 
         return spawnedCat;

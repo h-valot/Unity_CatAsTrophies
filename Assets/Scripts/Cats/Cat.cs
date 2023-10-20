@@ -2,7 +2,16 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
+    [Header("REFERENCES")]
     public GameObject graphicsParent;
+
+    [Header("BONES")] 
+    public GameObject bone;
+    
+    [Header("GRAPHICS TWEAKING")] 
+    public Vector3 battleRotation;
+    public Vector3 baseRotation;
+    public float battleScale;
     
     [Header("DEBUGGING")]
     public string id;
@@ -21,22 +30,48 @@ public class Cat : MonoBehaviour
     
     public bool CanMove() => state == CatState.InHand;
 
-    public void Place()
+    /// <summary>
+    /// Put the cat in the player's hand, reset rotation and scale and update the state
+    /// </summary>
+    public void PutInHand()
     {
-        // place the cat onto the battlefield
+        transform.position = HandManager.Instance.GetAvailablePosition();
+        
+        graphicsParent.transform.eulerAngles = baseRotation;
+        graphicsParent.transform.localScale = Vector3.one;
+        graphicsParent.SetActive(true);
+        gameObject.SetActive(true);
+        
+        state = CatState.InHand;
+    }
+    
+    /// <summary>
+    /// Place the cat onto the battlefield, update rotation, scale and the state
+    /// </summary>
+    public void PlaceOnBattlefield()
+    {
+        graphicsParent.transform.eulerAngles = battleRotation;
+        graphicsParent.transform.localScale *= battleScale;
+        
         state = CatState.OnBattle;
         UseAbility();
     }
 
+    /// <summary>
+    /// Use the cat's custom ability
+    /// </summary>
     public void UseAbility()
     {
-        // use the cat's custom ability
+        // count as a player action
         TurnManager.Instance.actionCounter++;
     }
     
+    /// <summary>
+    /// Deal a fix amout of damage to an enemy
+    /// </summary>
     public void UseAutoAttack()
     {
-        // deal fix amout of damage to an enemy 
+        // do nothing for the moment
     }
     
     /// <summary>
@@ -44,11 +79,10 @@ public class Cat : MonoBehaviour
     /// </summary>
     public void Withdraw()
     {
-        GraveyardManager.Instance.AddCat(this);
-        state = CatState.InGraveyard;
-        
-        // finally repool the cat and desactivating it
+        GraveyardManager.Instance.AddCat(id);
         graphicsParent.SetActive(false);
+        
+        state = CatState.InGraveyard;
     }
 }
 
