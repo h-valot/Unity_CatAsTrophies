@@ -3,6 +3,8 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     public static InputHandler Instance;
+    
+    [Header("REFERENCES")]
     [SerializeField] private Camera cam;
     [SerializeField] private LayerMask mask;
     
@@ -21,5 +23,15 @@ public class InputHandler : MonoBehaviour
                 touchPos = hitInfo.point;
             }
         }
+    }
+
+    /// <summary>
+    /// Check if inputs are likely to be used:
+    /// (1) if all ui menus are closed 
+    /// </summary>
+    public bool CanAccessInput()
+    {
+        // if there is no ui menu opened
+        return !MenuManager.Instance.IsMenuOpened();
     }
 }

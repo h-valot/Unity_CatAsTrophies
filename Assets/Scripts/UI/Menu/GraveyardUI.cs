@@ -30,7 +30,7 @@ public class GraveyardUI : MonoBehaviour
             // then hide and remove ui cat cards from the list
             if (i > GraveyardManager.Instance.catsInGraveyard.Count)
             {
-                catCards[i].Hide();
+                Destroy(catCards[i]);
                 catCards.Remove(catCards[i]);
             }
             else

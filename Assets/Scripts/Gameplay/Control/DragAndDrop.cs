@@ -6,22 +6,33 @@ public class DragAndDrop : MonoBehaviour
     
     private void OnMouseDown()
     {
-        if (!catDragged.CanMove()) return;
+        if (!CanDragExceptions()) return;
         HandManager.Instance.RemoveFromHand(catDragged.id);
     }
 
     private void OnMouseDrag()
     {
-        if (!catDragged.CanMove()) return;
+        if (!CanDragExceptions()) return;
         catDragged.transform.position = InputHandler.Instance.touchPos;
     }
  
     private void OnMouseUp()
     {
-        if (!catDragged.CanMove()) return;
+        if (!CanDragExceptions()) return;
         VerifyDistances();
     }
 
+    /// <summary>
+    /// Check if OnMouse() function can be used:
+    /// (1) if the cat can move (is in the player's hand)
+    /// (2) if the player can access inputs
+    /// </summary>
+    private bool CanDragExceptions()
+    {
+        return catDragged.CanMove() && 
+               InputHandler.Instance.CanAccessInput();
+    }
+    
     /// <summary>
     /// Snap the object on the nearest pawn position if close enough
     /// Otherwise, it's get back to the player's hand
