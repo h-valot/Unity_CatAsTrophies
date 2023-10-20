@@ -7,6 +7,6 @@ public class NewRunButton : MonoBehaviour
 {
     public void LaunchGame ()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Main");
     }
 }
