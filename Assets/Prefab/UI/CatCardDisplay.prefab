@@ -246,7 +246,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6041705254233464794
 MonoBehaviour:
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphicsParent: {fileID: 9123171305524093681}
+  catId: 
   nameTM: {fileID: 90784745627858832}
   healthTM: {fileID: 6449481507705625152}
 --- !u!1 &4720473752453500181

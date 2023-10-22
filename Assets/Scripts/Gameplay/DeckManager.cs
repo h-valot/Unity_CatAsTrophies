@@ -26,26 +26,17 @@ public class DeckManager : MonoBehaviour
     {
         if (catsInDeck.Count <= 0)
         {
-            MergeGraveyardIntoDeck();
+            GraveyardManager.Instance.MergeGraveyardIntoDeck();
+            ShuffleDeck();
         }
         
         string output = catsInDeck[0];
-        catsInDeck.Remove(catsInDeck[0]);        
+        catsInDeck.Remove(catsInDeck[0]);
         return output;
     }
 
-    public void ShuffleDeck()
+    private void ShuffleDeck()
     {
-        catsInDeck = catsInDeck.OrderBy(s => Guid.NewGuid()).ToList();
-    }
-
-    public void MergeGraveyardIntoDeck()
-    {
-        for (int i = 0; i < GraveyardManager.Instance.catsInGraveyard.Count; i++)
-        {
-            catsInDeck.Add(GraveyardManager.Instance.catsInGraveyard[i]);
-            GraveyardManager.Instance.catsInGraveyard.Remove(GraveyardManager.Instance.catsInGraveyard[i]);
-        }
-        ShuffleDeck();
+        catsInDeck = catsInDeck.OrderBy(_catId => Guid.NewGuid()).ToList();
     }
 }

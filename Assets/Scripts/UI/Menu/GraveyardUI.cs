@@ -10,55 +10,32 @@ public class GraveyardUI : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdateAllDisplays();
+        InstantiateAllCats();
     }
-    
-    private void UpdateAllDisplays()
+
+    private void OnDisable()
     {
-        // if there are less ui cat cards than cats in the graveyard
-        // then instantiate new ui cat cards 
-        if (catCards.Count < GraveyardManager.Instance.catsInGraveyard.Count)
-        {
-            InstantiateAllCats();
-            return;
-        }
-        
-        // update all ui cat cards 
-        for (int i = 0; i < catCards.Count; i++)
-        {
-            // if there are less cats in the graveyard than ui cat cards
-            // then hide and remove ui cat cards from the list
-            if (i > GraveyardManager.Instance.catsInGraveyard.Count)
-            {
-                Destroy(catCards[i]);
-                catCards.Remove(catCards[i]);
-            }
-            else
-            {
-                catCards[i].Show();
-                catCards[i].UpdateDisplay();
-            }
-        }
+        DestroyAllCats();
     }
 
     private void InstantiateAllCats()
     {
-        for (int i = 0; i < GraveyardManager.Instance.catsInGraveyard.Count; i++)
+        foreach (string catId in GraveyardManager.Instance.catsInGraveyard)
         {
-            if (i < catCards.Count)
-            {
-                // update display that already exists
-                catCards[i].Show();
-                catCards[i].UpdateDisplay();
-            }
-            else
-            {
-                // instantiate a new display
-                var newCard = Instantiate(cardCatPrefab, verticalLayoutGroup.transform).GetComponent<CatCardDisplay>();
-                newCard.Initialize(GraveyardManager.Instance.catsInGraveyard[i]);
-                newCard.UpdateDisplay();
-                catCards.Add(newCard);
-            }
+            // instantiate a new display
+            var newCard = Instantiate(cardCatPrefab, verticalLayoutGroup.transform).GetComponent<CatCardDisplay>();
+            newCard.Initialize(catId);
+            newCard.UpdateDisplay();
+            catCards.Add(newCard);
         }
+    }
+
+    private void DestroyAllCats()
+    {
+        foreach (var catCard in catCards)
+        {
+            Destroy(catCard.gameObject);
+        }
+        catCards.Clear();
     }
 }

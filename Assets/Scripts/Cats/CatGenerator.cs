@@ -23,7 +23,7 @@ public class CatGenerator : MonoBehaviour
     {
         for (int i = 0; i < Registry.playerConfig.deckLenght; i++)
         {
-            var newCat = Instantiate(Registry.catConfig.cats[0].catBasePrefab, transform).GetComponent<Cat>();
+            Cat newCat = Instantiate(Registry.catConfig.cats[0].catBasePrefab, transform).GetComponent<Cat>();
             newCat.gameObject.SetActive(false);
             cats.Add(newCat);
             
@@ -37,11 +37,10 @@ public class CatGenerator : MonoBehaviour
     /// </summary>
     /// <param name="_typeIndex">Type of the cat</param>
     /// <param name="_pos">Position of the cat</param>
-    public Cat SpawnCatGraphics(int _typeIndex)
+    public string SpawnCatGraphics(int _typeIndex)
     {
         // get cat game object and place it
         spawnedCatGO = cats[totalCatCount].gameObject;
-        spawnedCatGO.transform.position = HandManager.Instance.GetAvailablePosition();
         spawnedCatGO.name = $"Cat_{totalCatCount}_{Registry.catConfig.cats[_typeIndex].catName}";
 
         // setup the cat
@@ -50,6 +49,6 @@ public class CatGenerator : MonoBehaviour
         spawnedCat.PutInHand();
         totalCatCount++;
 
-        return spawnedCat;
+        return spawnedCat.id;
     }
 }

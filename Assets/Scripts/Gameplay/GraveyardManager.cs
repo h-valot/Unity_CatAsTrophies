@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class GraveyardManager : MonoBehaviour
@@ -18,5 +19,14 @@ public class GraveyardManager : MonoBehaviour
     public void AddCat(string _cat)
     {
         Instance.catsInGraveyard.Add(_cat); 
+    }
+    
+    public void MergeGraveyardIntoDeck()
+    {
+        foreach (string catId in catsInGraveyard)
+        {
+            DeckManager.Instance.AddCat(catId);
+        }
+        catsInGraveyard.Clear();
     }
 }

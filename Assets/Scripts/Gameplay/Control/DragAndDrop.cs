@@ -6,19 +6,25 @@ public class DragAndDrop : MonoBehaviour
     
     private void OnMouseDown()
     {
-        if (!CanDragExceptions()) return;
+        //exceptions
+        if (!CanDrag()) return;
+        
         HandManager.Instance.RemoveFromHand(catDragged.id);
     }
 
     private void OnMouseDrag()
     {
-        if (!CanDragExceptions()) return;
+        //exceptions
+        if (!CanDrag()) return;
+        
         catDragged.transform.position = InputHandler.Instance.touchPos;
     }
  
     private void OnMouseUp()
     {
-        if (!CanDragExceptions()) return;
+        //exceptions
+        if (!CanDrag()) return;
+        
         VerifyDistances();
     }
 
@@ -27,7 +33,7 @@ public class DragAndDrop : MonoBehaviour
     /// (1) if the cat can move (is in the player's hand)
     /// (2) if the player can access inputs
     /// </summary>
-    private bool CanDragExceptions()
+    private bool CanDrag()
     {
         return catDragged.CanMove() && 
                InputHandler.Instance.CanAccessInput();
@@ -58,8 +64,8 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
-            HandManager.Instance.AddToHand(catDragged.id);
             catDragged.PutInHand();
+            HandManager.Instance.AddToHand(catDragged.id);
         }
     }
 }

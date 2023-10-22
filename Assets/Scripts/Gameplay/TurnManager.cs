@@ -68,7 +68,11 @@ public class TurnManager : MonoBehaviour
     {
         for (int i = 0; i < _catCount; i++)
         {
-            HandManager.Instance.DrawCat(DeckManager.Instance.RemoveCat());
+            if (DeckManager.Instance.catsInDeck.Count > 0 ||
+                GraveyardManager.Instance.catsInGraveyard.Count > 0)
+            {
+                HandManager.Instance.DrawCat(DeckManager.Instance.RemoveCat());
+            }
         }
     }
 

@@ -9,13 +9,14 @@ public class HandManager : MonoBehaviour
     
     [Header("DEBUGGING")]
     public string[] catsInHand;
-    public Cat catSpawned;
+    public string newCatId;
 
     private void Awake() => Instance = this;
     
     public void Initialize()
     {
-        Instance.catsInHand = new[] {"", "", "", "", ""};
+        // hand limit is 5
+        Instance.catsInHand = new[] {"empty", "empty", "empty", "empty", "empty"};
     }
 
     /// <summary>
@@ -26,13 +27,13 @@ public class HandManager : MonoBehaviour
     {
         if (CatGenerator.Instance.totalCatCount < Registry.playerConfig.deckLenght)
         {
-            catSpawned = CatGenerator.Instance.SpawnCatGraphics(Misc.GetCatById(_catId).typeIndex);
+            newCatId = CatGenerator.Instance.SpawnCatGraphics(Misc.GetCatById(_catId).typeIndex);
         }
         else
         {
-            Misc.GetCatById(_catId).PutInHand();
+            newCatId = Misc.GetCatById(_catId).PutInHand();
         }
-        AddToHand(catSpawned.id);
+        AddToHand(newCatId);
     }
     
     /// <summary>
@@ -42,7 +43,7 @@ public class HandManager : MonoBehaviour
     {
         for (int i = 0; i < catsInHand.Length; i++)
         {
-            if (catsInHand[i] == "")
+            if (catsInHand[i] == "empty")
             {
                 catsInHand[i] = _catId;
                 break;
@@ -59,7 +60,7 @@ public class HandManager : MonoBehaviour
         {
             if (catsInHand[i] == _catId)
             {
-                catsInHand[i] = "";
+                catsInHand[i] = "empty";
             }
         }
     }
@@ -69,12 +70,12 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void DiscardHand()
     {
-        for (int i = 0; i < catsInHand.Length; i++)
+        foreach (string catId in catsInHand)
         {
-            if (catsInHand[i] != "")
+            if (catId != "empty")
             {
-                Misc.GetCatById(catsInHand[i]).Withdraw();
-                RemoveFromHand(catsInHand[i]);
+                Misc.GetCatById(catId).Withdraw();
+                RemoveFromHand(catId);
             }
         }
     }
@@ -88,7 +89,7 @@ public class HandManager : MonoBehaviour
         
         for (int i = 0; i < catsInHand.Length; i++)
         {
-            if (catsInHand[i] == "")
+            if (catsInHand[i] == "empty")
             {
                 output = handPoints[i].position;
                 break;

@@ -33,7 +33,7 @@ public class Cat : MonoBehaviour
     /// <summary>
     /// Put the cat in the player's hand, reset rotation and scale and update the state
     /// </summary>
-    public void PutInHand()
+    public string PutInHand()
     {
         transform.position = HandManager.Instance.GetAvailablePosition();
         
@@ -43,6 +43,7 @@ public class Cat : MonoBehaviour
         gameObject.SetActive(true);
         
         state = CatState.InHand;
+        return id;
     }
     
     /// <summary>
