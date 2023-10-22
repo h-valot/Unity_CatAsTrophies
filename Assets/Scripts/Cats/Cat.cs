@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Cat : MonoBehaviour
@@ -18,6 +20,7 @@ public class Cat : MonoBehaviour
     public int typeIndex;
     public CatState state;
     public float health;
+    public bool isAbilityUsed;
 
     public void Initialize(int _typeIndex)
     {
@@ -27,6 +30,18 @@ public class Cat : MonoBehaviour
 
         health = Registry.catConfig.cats[typeIndex].health;
     }
+
+    private void OnEnable()
+    {
+        Registry.events.OnNewPlayerTurn += ResetAbility;
+    }
+
+    private void OnDisable()
+    {
+        Registry.events.OnNewPlayerTurn -= ResetAbility;
+    }
+
+    private void ResetAbility() => isAbilityUsed = false;
     
     public bool CanMove() => state == CatState.InHand;
 
@@ -65,6 +80,8 @@ public class Cat : MonoBehaviour
     {
         // count as a player action
         TurnManager.Instance.actionCounter++;
+
+        isAbilityUsed = true;
     }
     
     /// <summary>

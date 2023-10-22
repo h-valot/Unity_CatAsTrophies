@@ -5,4 +5,5 @@ public static class Registry
     public static CatsConfig catConfig;
     public static GameSettings gameSettings;
     public static PlayerConfig playerConfig;
+    public static Events events;
 }

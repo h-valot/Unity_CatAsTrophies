@@ -36,6 +36,9 @@ public class BattlefieldManager : MonoBehaviour
         
         for (int i = 0; i < Instance.battlePawns.Length; i++)
         {
+            // exceptions
+            if (battlePawns[i].IsLocked()) continue;
+            
             // getting the distance between both vectors
             Vector2 pawnPosition = new Vector2(Instance.battlePawns[i].transform.position.x, Instance.battlePawns[i].transform.position.y);
             float distanceBetweenPositions = Vector2.Distance(originPos, pawnPosition);

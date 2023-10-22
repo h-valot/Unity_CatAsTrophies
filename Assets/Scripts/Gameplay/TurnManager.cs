@@ -32,6 +32,8 @@ public class TurnManager : MonoBehaviour
                 FulfillHand(5);
                 // Debug.Log("TURNMANAGER: the player's is filled");
                 
+                Registry.events.OnNewPlayerTurn?.Invoke();
+                
                 // await for the player to perform three actions:
                 // 1. place/replace cat on the battlefield to trigger their ability
                 // 2. activate the ability of a cat that is already on the battlefield
