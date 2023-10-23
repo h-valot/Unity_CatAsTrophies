@@ -8,8 +8,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsSleeping
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsTwoHanded
@@ -101,7 +101,7 @@ AnimatorStateMachine:
     m_Position: {x: 560, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7501433968084781951}
-    m_Position: {x: 1110, y: -70, z: 0}
+    m_Position: {x: 1110, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7889726773700758401}
     m_Position: {x: 1360, y: 250, z: 0}
@@ -138,9 +138,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsFalling
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsInHand
     m_EventTreshold: 0
@@ -191,8 +188,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsAttacking
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsTwoHanded
@@ -219,8 +216,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsCasting
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsTwoHanded
@@ -272,8 +269,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsAttacking
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsTwoHanded
@@ -381,11 +378,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsInHand
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsFighting
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsTwoHanded
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7533814491966034395}
@@ -409,8 +406,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsReceivingDamage
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsTwoHanded
@@ -437,8 +434,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsCasting
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsTwoHanded
@@ -465,8 +462,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsSleeping
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsTwoHanded
@@ -495,9 +492,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFalling
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsInHand
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3822432959273812039}
@@ -575,20 +569,20 @@ AnimatorController:
   m_Name: CatAnimator
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsFalling
-    m_Type: 4
+  - m_Name: IsInHand
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsInHand
-    m_Type: 4
+  - m_Name: IsFalling
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: IsFighting
-    m_Type: 4
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -600,31 +594,31 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: IsKicking
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: IsSleeping
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: IsReceivingDamage
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: IsCasting
-    m_Type: 4
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: IsAttacking
-    m_Type: 4
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IsCasting
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IsReceivingDamage
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IsSleeping
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -725,8 +719,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsReceivingDamage
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsTwoHanded
@@ -784,8 +778,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsKicking
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFighting
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsTwoHanded
@@ -866,9 +860,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsKicking
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsFighting
     m_EventTreshold: 0
@@ -922,9 +913,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsFalling
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsFighting
     m_EventTreshold: 0
@@ -953,9 +941,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsFalling
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsFighting
     m_EventTreshold: 0
