@@ -7487,7 +7487,7 @@ MonoBehaviour:
   - {fileID: 1969955394}
   - {fileID: 1534802072}
   catsInHand: []
-  catSpawned: {fileID: 0}
+  newCatId: 
 --- !u!1 &1683151783
 GameObject:
   m_ObjectHideFlags: 0
