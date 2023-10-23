@@ -6,6 +6,7 @@ public class Cat : MonoBehaviour
 {
     [Header("REFERENCES")]
     public GameObject graphicsParent;
+    public Animator animator;
 
     [Header("BONES")] 
     public GameObject bone;
@@ -58,6 +59,9 @@ public class Cat : MonoBehaviour
         gameObject.SetActive(true);
         
         state = CatState.InHand;
+
+        animator.SetTrigger("IsInHand");
+
         return id;
     }
     
@@ -70,6 +74,9 @@ public class Cat : MonoBehaviour
         graphicsParent.transform.localScale *= battleScale;
         
         state = CatState.OnBattle;
+
+        animator.SetTrigger("IsFighting");
+
         UseAbility();
     }
 

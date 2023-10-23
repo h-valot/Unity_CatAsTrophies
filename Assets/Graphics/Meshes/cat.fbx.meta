@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: catCharacter|attack
-      takeName: catCharacter|attack
-      internalID: -268909323439845353
+      name: idle_hand
+      takeName: idle_hand
+      internalID: 4247040993327134615
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -60,38 +60,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: catCharacter|falling
-      takeName: catCharacter|falling
-      internalID: -4626422237397001607
-      firstFrame: 0
-      lastFrame: 19
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: catCharacter|idle_combatOneHand
-      takeName: catCharacter|idle_combatOneHand
-      internalID: -730452614581493346
+      name: idle_falling
+      takeName: idle_falling
+      internalID: 780574962146792421
       firstFrame: 0
       lastFrame: 39
       wrapMode: 0
@@ -118,9 +89,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: catCharacter|idle_combatTwoHand
-      takeName: catCharacter|idle_combatTwoHand
-      internalID: 6258438670252961569
+      name: idle_combatOneHand
+      takeName: idle_combatOneHand
+      internalID: 2351328337740522806
       firstFrame: 0
       lastFrame: 39
       wrapMode: 0
@@ -129,7 +100,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -147,9 +118,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: catCharacter|idle_falling
-      takeName: catCharacter|idle_falling
-      internalID: 2229332820604798474
+      name: idle_combatTwoHand
+      takeName: idle_combatTwoHand
+      internalID: 1768685545264872705
       firstFrame: 0
       lastFrame: 39
       wrapMode: 0
@@ -158,7 +129,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -176,38 +147,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: catCharacter|idle_hand
-      takeName: catCharacter|idle_hand
-      internalID: 7649599366373888601
-      firstFrame: 0
-      lastFrame: 128
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: catCharacter|idle_Sleeping
-      takeName: catCharacter|idle_Sleeping
-      internalID: -7073802981367923825
+      name: idle_Sleeping
+      takeName: idle_Sleeping
+      internalID: -8944365197199476710
       firstFrame: 0
       lastFrame: 239
       wrapMode: 0
@@ -216,7 +158,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -234,9 +176,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: catCharacter|idle_tPose
-      takeName: catCharacter|idle_tPose
-      internalID: 3009729279470710737
+      name: instant_attack
+      takeName: instant_attack
+      internalID: -7988627509229957688
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0
@@ -263,9 +205,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: catCharacter|instant_damageRecieve
-      takeName: catCharacter|instant_damageRecieve
-      internalID: -4291975081546639777
+      name: instant_damageRecieve
+      takeName: instant_damageRecieve
+      internalID: 4214234210968750795
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0
@@ -292,9 +234,67 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: catCharacter|instant_kick
-      takeName: catCharacter|instant_kick
-      internalID: -4111448790907981587
+      name: instant_kick
+      takeName: instant_kick
+      internalID: -5541432592938221847
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: instant_spell
+      takeName: instant_spell
+      internalID: 7316772265523715780
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle_tPose
+      takeName: idle_tPose
+      internalID: 3859521420536196573
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0

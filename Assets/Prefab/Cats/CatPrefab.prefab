@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphicsParent: {fileID: 5399714602900072910}
+  animator: {fileID: 5293904323421610953}
   bone: {fileID: 0}
   battleRotation: {x: 0, y: 100, z: 0}
   baseRotation: {x: -45, y: 165, z: 10}
@@ -54,6 +55,7 @@ MonoBehaviour:
   typeIndex: 0
   state: 0
   health: 0
+  isAbilityUsed: 0
 --- !u!1 &5399714602900072910
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,5 +253,10 @@ PrefabInstance:
 --- !u!4 &3395971014196780588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4452158013514642628, guid: fb1c72d67cd254e42b5f4173ef3cc37a, type: 3}
+  m_PrefabInstance: {fileID: 1362857560411613928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5293904323421610953 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6601835419144882465, guid: fb1c72d67cd254e42b5f4173ef3cc37a, type: 3}
   m_PrefabInstance: {fileID: 1362857560411613928}
   m_PrefabAsset: {fileID: 0}
