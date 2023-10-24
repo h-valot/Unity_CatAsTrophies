@@ -5,7 +5,7 @@ public class EnemyConfig : ScriptableObject
 {
     [Header("STATS")]
     public string catName;
-    public float strengh;
+    public float strength;
     public float health;
 
     [Header("GRAPHICS")]
