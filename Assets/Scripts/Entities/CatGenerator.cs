@@ -26,6 +26,7 @@ public class CatGenerator : MonoBehaviour
             Cat newCat = Instantiate(Registry.catConfig.cats[0].catBasePrefab, transform).GetComponent<Cat>();
             newCat.gameObject.SetActive(false);
             cats.Add(newCat);
+            EntityManager.Instance.entities.Add(newCat);
             
             // add this new cat into the deck
             DeckManager.Instance.AddCat(newCat.id);
@@ -46,6 +47,7 @@ public class CatGenerator : MonoBehaviour
         // setup the cat
         spawnedCat = spawnedCatGO.GetComponent<Cat>();
         spawnedCat.Initialize(_typeIndex);
+        spawnedCat.ability = Registry.catConfig.cats[_typeIndex].ability;
         spawnedCat.PutInHand();
         totalCatCount++;
 

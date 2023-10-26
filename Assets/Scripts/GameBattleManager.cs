@@ -19,12 +19,20 @@ public class GameBattleManager : MonoBehaviour
         // gameplay
         DeckManager.Instance.Initialize();
         CatGenerator.Instance.Initialize();
+        EnemyGenerator.Instance.Initialize();
         TurnManager.Instance.Initialize();
         HandManager.Instance.Initialize();
         BattlefieldManager.Instance.Initialize();
         GraveyardManager.Instance.Initialize();
         // ui
         MenuManager.Instance.Initialize();
+
+        foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
+        {
+            var newEnemy = EnemyGenerator.Instance.CreateEnemy();
+            battlePawn.Setup(newEnemy.id);
+            newEnemy.transform.position = battlePawn.transform.position;
+        }
         
         // start the game loop
         TurnManager.Instance.HandleTurnState();

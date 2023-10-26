@@ -1,8 +1,6 @@
-using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Cat : MonoBehaviour
+public class Cat : Entity
 {
     [Header("REFERENCES")]
     public GameObject graphicsParent;
@@ -17,19 +15,20 @@ public class Cat : MonoBehaviour
     public float battleScale;
     
     [Header("DEBUGGING")]
-    public string id;
-    public int typeIndex;
+    public int catType;
     public CatState state;
-    public float health;
+    public Ability ability;
     public bool isAbilityUsed;
 
     public void Initialize(int _typeIndex)
     {
+        base.Initialize();
+        
         state = CatState.InDeck;
-        typeIndex = _typeIndex;
+        catType = _typeIndex;
         id = Misc.GetRandomId();
 
-        health = Registry.catConfig.cats[typeIndex].health;
+        health = Registry.catConfig.cats[catType].health;
     }
 
     private void OnEnable()
@@ -76,7 +75,7 @@ public class Cat : MonoBehaviour
         state = CatState.OnBattle;
 
         animator.SetTrigger("IsFighting");
-
+        
         UseAbility();
     }
 
@@ -88,6 +87,8 @@ public class Cat : MonoBehaviour
         // count as a player action
         TurnManager.Instance.actionCounter++;
 
+        AbilityManager.Instance.Use(ability, this);
+        Debug.Log("CAT: ability used");
         isAbilityUsed = true;
     }
     

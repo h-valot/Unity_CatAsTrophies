@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Misc
@@ -21,22 +20,41 @@ public static class Misc
         return output;
     }
     
-    
     /// <summary>
     /// Get a reference to a cat thanks to its id.
     /// </summary>
-    /// <param name="_cats">List of cats to browse the cat</param>
     /// <param name="_id">Id of the cat</param>
     /// <returns>Cat that own the given id</returns>
     public static Cat GetCatById(string _id)
     {
-        Cat output = new Cat();
+        Cat? output = null;
         
         for (int i = 0; i < CatGenerator.Instance.cats.Count; i++)
         {
             if (CatGenerator.Instance.cats[i].id == _id)
             {
                 output = CatGenerator.Instance.cats[i];
+                break;
+            }
+        }
+        
+        return output;
+    }
+
+    /// <summary>
+    /// Get a reference to an entity thanks to its id.
+    /// </summary>
+    /// <param name="_id">Id of the entity</param>
+    /// <returns>Entity that own the given id</returns>
+    public static Entity GetEntityById(string _id)
+    {
+        Entity output = new Entity();
+        
+        for (int i = 0; i < EntityManager.Instance.entities.Count; i++)
+        {
+            if (EntityManager.Instance.entities[i].id == _id)
+            {
+                output = EntityManager.Instance.entities[i];
                 break;
             }
         }

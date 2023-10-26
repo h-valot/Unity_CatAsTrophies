@@ -27,7 +27,7 @@ public class HandManager : MonoBehaviour
     {
         if (CatGenerator.Instance.totalCatCount < Registry.playerConfig.deckLenght)
         {
-            newCatId = CatGenerator.Instance.SpawnCatGraphics(Misc.GetCatById(_catId).typeIndex);
+            newCatId = CatGenerator.Instance.SpawnCatGraphics(Misc.GetCatById(_catId).catType);
         }
         else
         {

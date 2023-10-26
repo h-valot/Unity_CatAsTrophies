@@ -14,7 +14,7 @@ public class CatCardDisplay : MonoBehaviour
     
     public void UpdateDisplay()
     {
-        nameTM.text = Registry.catConfig.cats[Misc.GetCatById(catId).typeIndex].catName;
+        nameTM.text = Registry.catConfig.cats[Misc.GetCatById(catId).catType].catName;
         healthTM.text = $"{Misc.GetCatById(catId).health}";
     }
 }

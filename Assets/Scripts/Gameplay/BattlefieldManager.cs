@@ -1,15 +1,19 @@
-using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class BattlefieldManager : MonoBehaviour
 {
     public static BattlefieldManager Instance;
     
-    public BattlePawn[] battlePawns;
+    [Header("REFERENCES")]
+    public BattlePawn[] catBattlePawns;
+    public BattlePawn[] enemyBattlePawns;
+    
+    [Header("SETTINGS")]
     public float distanceThreshold = 1f;
 
+    [Header("DEBUGGING")]
     public string[] catsOnBattlefield;
+    public string[] enemiesOnBattlefield;
         
     public void Awake() => Instance = this;
 
@@ -29,18 +33,29 @@ public class BattlefieldManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Make all enemies on the battlefield auto attack cats
+    /// </summary>
+    public void AutoAttackCats()
+    {
+        for (int i = 0; i < enemiesOnBattlefield.Length; i++)
+        {
+            // create a enemies generator
+        }
+    }
+
     public BattlePawn GetNearestPawnFromCursor(Vector2 originPos)
     {
         int closestPawnIndex = -1;
         float shortestDistance = 999;
         
-        for (int i = 0; i < Instance.battlePawns.Length; i++)
+        for (int i = 0; i < Instance.catBattlePawns.Length; i++)
         {
             // exceptions
-            if (battlePawns[i].IsLocked()) continue;
+            if (catBattlePawns[i].IsLocked()) continue;
             
             // getting the distance between both vectors
-            Vector2 pawnPosition = new Vector2(Instance.battlePawns[i].transform.position.x, Instance.battlePawns[i].transform.position.y);
+            Vector2 pawnPosition = new Vector2(Instance.catBattlePawns[i].transform.position.x, Instance.catBattlePawns[i].transform.position.y);
             float distanceBetweenPositions = Vector2.Distance(originPos, pawnPosition);
 
             if (distanceBetweenPositions < shortestDistance)
@@ -50,7 +65,7 @@ public class BattlefieldManager : MonoBehaviour
             }
         }
 
-        return Instance.battlePawns[closestPawnIndex];
+        return Instance.catBattlePawns[closestPawnIndex];
     }
 
     public bool IsCloseEnough(Vector2 u, Vector2 v)

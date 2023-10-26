@@ -54,9 +54,9 @@ public class DragAndDrop : MonoBehaviour
         {
             // if there is already a cat on that battle pawn,
             // put the former cat into the graveyard and place the new one
-            if (closestPawn.catIdLinked != "")
+            if (closestPawn.entityIdLinked != "")
             {
-                Misc.GetCatById(closestPawn.catIdLinked).Withdraw();
+                Misc.GetCatById(closestPawn.entityIdLinked).Withdraw();
             }
             closestPawn.Setup(catDragged.id);
             catDragged.transform.position = closestPawn.transform.position;

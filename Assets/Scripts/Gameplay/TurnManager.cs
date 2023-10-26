@@ -56,6 +56,7 @@ public class TurnManager : MonoBehaviour
             case TurnState.EnemyTurn:
                 
                 // enemies uses their auto attacks
+                BattlefieldManager.Instance.AutoAttackCats();
                 // Debug.Log("TURNMANAGER: enemies attacked cats");
                 
                 // re-launched a new turn
