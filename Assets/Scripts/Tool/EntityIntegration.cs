@@ -6,14 +6,16 @@ using UnityEngine;
 public class EntityIntegration : EditorWindow
 {
     #region INITIALIZATION
-
+    
     // lists of entities
     private List<EntityConfig> enemies;
     private List<EntityConfig> cats;
 
     // entities attributes
     private string name;
-    private int strength, health;
+    private int health;
+    private Ability ability;
+    private List<Ability> autoAttack;
     private GameObject basePrefab, rightHandAddon, leftHandAddon, headAddon;
     
     // window editor component
@@ -58,22 +60,18 @@ public class EntityIntegration : EditorWindow
         // ENTITY INFOS
         GUILayout.Label("Entity infos", EditorStyles.boldLabel);
         
-        // get the entity's name
+        // get entity's name and health
         name = EditorGUILayout.TextField("Name", name);
+        health = EditorGUILayout.IntField("Health", health);
         
-        // get the entity's strength and health
-        EditorGUILayout.BeginHorizontal();
-        {
-            strength = EditorGUILayout.IntField("Strength", strength);
-            health = EditorGUILayout.IntField("Health", health);
-        }
-        EditorGUILayout.EndHorizontal();
+        // get entity's abilities
+        
         
         // ENTITY MESHES
         GUILayout.Space(10);
         GUILayout.Label("Entity meshes", EditorStyles.boldLabel);
         
-        // get the entity's meshes references
+        // get entity's meshes references
         basePrefab = (GameObject)EditorGUILayout.ObjectField("Base mesh prefab", basePrefab, typeof(GameObject), true);
         rightHandAddon = (GameObject)EditorGUILayout.ObjectField("Right hand addon", rightHandAddon, typeof(GameObject), true);
         leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", leftHandAddon, typeof(GameObject), true);
