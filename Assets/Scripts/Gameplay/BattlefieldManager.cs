@@ -29,7 +29,10 @@ public class BattlefieldManager : MonoBehaviour
     {
         for (int i = 0; i < catsOnBattlefield.Length; i++)
         {
-            Misc.GetCatById(catsOnBattlefield[i]).UseAutoAttack();
+            if (Misc.GetCatById(catsOnBattlefield[i]) != null)
+            {
+                Misc.GetCatById(catsOnBattlefield[i]).UseAutoAttack();
+            }   
         }
     }
 
