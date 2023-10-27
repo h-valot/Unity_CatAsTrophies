@@ -2,7 +2,7 @@ public static class Registry
 {
     public static bool isInitialized = false;
     
-    public static CatsConfig catConfig;
+    public static EntitiesConfig entitiesConfig;
     public static GameSettings gameSettings;
     public static PlayerConfig playerConfig;
     public static Events events;

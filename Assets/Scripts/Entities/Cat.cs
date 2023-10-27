@@ -28,7 +28,7 @@ public class Cat : Entity
         catType = _typeIndex;
         id = Misc.GetRandomId();
 
-        health = Registry.catConfig.cats[catType].health;
+        health = Registry.entitiesConfig.cats[catType].health;
     }
 
     private void OnEnable()
@@ -73,7 +73,6 @@ public class Cat : Entity
         graphicsParent.transform.localScale *= battleScale;
         
         state = CatState.OnBattle;
-
         animator.SetTrigger("IsFighting");
         
         UseAbility();
@@ -87,9 +86,9 @@ public class Cat : Entity
         // count as a player action
         TurnManager.Instance.actionCounter++;
 
-        AbilityManager.Instance.Use(ability, this);
-        Debug.Log("CAT: ability used");
+        ability.Use(this);
         isAbilityUsed = true;
+        Debug.Log("CAT: ability used");
     }
     
     /// <summary>

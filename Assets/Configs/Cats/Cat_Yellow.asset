@@ -20,10 +20,6 @@ MonoBehaviour:
       value: 2
       target: 1
       us: 0
-    - type: 15
-      value: 0
-      target: 1
-      us: 0
   autoAttack:
   - instructions:
     - type: 0

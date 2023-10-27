@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Init : MonoBehaviour
 {
-    public CatsConfig catConfig;
+    public EntitiesConfig entitiesConfig;
     public GameSettings gameSettings;
     public PlayerConfig playerConfig;
     public Events events;
@@ -12,7 +12,7 @@ public class Init : MonoBehaviour
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(gameSettings.startingScene);
         
-        Registry.catConfig = catConfig;
+        Registry.entitiesConfig = entitiesConfig;
         Registry.gameSettings = gameSettings;
         Registry.playerConfig = playerConfig;
         Registry.events = events;

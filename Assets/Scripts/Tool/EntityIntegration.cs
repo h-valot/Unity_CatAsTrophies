@@ -8,8 +8,8 @@ public class EntityIntegration : EditorWindow
     #region INITIALIZATION
 
     // lists of entities
-    private List<EnemyConfig> enemies;
-    private List<CatConfig> cats;
+    private List<EntityConfig> enemies;
+    private List<EntityConfig> cats;
 
     // entities attributes
     private string name;
