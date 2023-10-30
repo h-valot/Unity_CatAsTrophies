@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cats:
   - {fileID: 11400000, guid: 201f1702376971746bd31d3b513783e9, type: 2}
-  enemies: []
+  enemies:
+  - {fileID: 11400000, guid: 841f04ccbb65aa246bcd5ba2abe5b86f, type: 2}
