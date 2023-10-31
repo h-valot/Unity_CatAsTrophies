@@ -45,16 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18eac737ac6340488f010cbc0ade3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  health: 0
+  maxHealth: 0
+  autoAttacks: []
   graphicsParent: {fileID: 5399714602900072910}
   animator: {fileID: 5293904323421610953}
-  bone: {fileID: 0}
+  boneHead: {fileID: 7760746558946775798}
   battleRotation: {x: 0, y: 100, z: 0}
   baseRotation: {x: -45, y: 165, z: 10}
   battleScale: 1.5
-  id: 0
-  typeIndex: 0
+  catType: 0
   state: 0
-  health: 0
+  ability:
+    instructions: []
   isAbilityUsed: 0
 --- !u!1 &5399714602900072910
 GameObject:
@@ -258,5 +262,10 @@ Transform:
 --- !u!95 &5293904323421610953 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6601835419144882465, guid: fb1c72d67cd254e42b5f4173ef3cc37a, type: 3}
+  m_PrefabInstance: {fileID: 1362857560411613928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7760746558946775798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8744409767093581854, guid: fb1c72d67cd254e42b5f4173ef3cc37a, type: 3}
   m_PrefabInstance: {fileID: 1362857560411613928}
   m_PrefabAsset: {fileID: 0}
