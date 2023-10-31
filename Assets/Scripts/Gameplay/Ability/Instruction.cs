@@ -1,5 +1,7 @@
+using UnityEngine;
+
 [System.Serializable]
-public class Instruction 
+public class Instruction
 {
     public InstructionType type;
     public int value;
