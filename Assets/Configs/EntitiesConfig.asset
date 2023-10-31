@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: EntitiesConfig
   m_EditorClassIdentifier: 
   cats:
-  - {fileID: 11400000, guid: 201f1702376971746bd31d3b513783e9, type: 2}
+  - {fileID: 11400000, guid: ac6f3a84325be3343977e90feaaf3a9d, type: 2}
+  - {fileID: 11400000, guid: 6722085a7732a5b43b6727803f74023d, type: 2}
   enemies:
   - {fileID: 11400000, guid: 841f04ccbb65aa246bcd5ba2abe5b86f, type: 2}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class EntityIntegration : EditorWindow
     private int id;
     private Vector2 sideScrollPos, detailsScrollPos;
     private bool canDisplayDetails = true;
+    private ReorderableList reorderableList;
     #endregion
     
     [MenuItem("Tool/Entity Integration")]
@@ -75,107 +77,6 @@ public class EntityIntegration : EditorWindow
         {
             canDisplayDetails = false;
         }
-
-        OnSelectionChange();
-        InitList();
-    }
-
-    private SerializedObject serializedObject;
-    private SerializedProperty SomeClasses;
-    private ReorderableList list;
-
-    private Dictionary<string, ReorderableList> innerListDict = new Dictionary<string, ReorderableList>();
-
-    private void OnSelectionChange()
-    {
-        // Get editable `SomeBehaviour` objects from selection.
-        var filtered = Selection.GetFiltered(typeof(Ability), SelectionMode.Editable);
-        if (filtered.Length == 0) {
-            serializedObject = null;
-            SomeClasses = null;
-        }
-        else {
-            // Let's work with the first filtered result.
-            serializedObject = new SerializedObject(filtered[0]);
-            SomeClasses = serializedObject.FindProperty("wishlist");
-        }
-
-        Repaint();
-    }
-    
-    private void InitList()
-    {
-        SomeClasses = serializedObject.FindProperty("instructions");
-
-        // setupt the outer list
-        list = new ReorderableList(serializedObject, SomeClasses)
-        {
-            displayAdd = true,
-            displayRemove = true,
-            draggable = true,
-
-            drawHeaderCallback = rect =>
-            {
-                EditorGUI.LabelField(rect, "Outer List");
-            },
-
-            drawElementCallback = (rect, index, a, h) =>
-            {
-                // get outer element
-                var element = SomeClasses.GetArrayElementAtIndex(index);
-
-                var InnerList = element.FindPropertyRelative("InnerList");
-
-                string listKey = element.propertyPath;
-
-                ReorderableList innerReorderableList;
-
-                if (innerListDict.ContainsKey(listKey))
-                {
-                    // fetch the reorderable list in dict
-                    innerReorderableList = innerListDict[listKey];
-                }
-                else
-                {
-                    // create reorderabl list and store it in dict
-                    innerReorderableList = new ReorderableList(element.serializedObject, InnerList)
-                    {
-                        displayAdd = true,
-                        displayRemove = true,
-                        draggable = true,
-
-                        drawHeaderCallback = innerRect =>
-                        {
-                            EditorGUI.LabelField(innerRect, "Inner List");
-                        },
-
-                        drawElementCallback = (innerRect, innerIndex, innerA, innerH) =>
-                        {
-                            // Get element of inner list
-                            var innerElement = InnerList.GetArrayElementAtIndex(innerIndex);
-
-                            var name = innerElement.FindPropertyRelative("Name");
-
-                            EditorGUI.PropertyField(innerRect, name);
-                        }
-                    };
-                    innerListDict[listKey] = innerReorderableList;
-                }
-
-                // Setup the inner list
-                var height = (InnerList.arraySize + 3) * EditorGUIUtility.singleLineHeight;
-                innerReorderableList.DoList(new Rect(rect.x, rect.y, rect.width, height));
-            },
-
-            elementHeightCallback = index =>
-            {
-                var element = SomeClasses.GetArrayElementAtIndex(index);
-
-                var innerList = element.FindPropertyRelative("InnerList");
-
-                return (innerList.arraySize + 4) * EditorGUIUtility.singleLineHeight;
-            }
-        };
     }
     
     private void OnDisable()
@@ -261,21 +162,50 @@ public class EntityIntegration : EditorWindow
             // ABILITY
             GUILayout.Space(10);
             GUILayout.Label("ABILITY", EditorStyles.boldLabel);
-            // isn't completed
+            // isn't completed 
+
+            reorderableList = new ReorderableList(currentEntity.ability.instructions, typeof(Instruction), true, false, true, true)
+            {
+                onReorderCallback = (ReorderableList rList) =>
+                {
+                    if (Application.isPlaying) return;
+                    
+                    // ReorderAndRefreshRList(rList)
+                },
+                onAddCallback = (ReorderableList rList) =>
+                {
+                    if (Application.isPlaying) return;
+                    
+                    // handle new instruction added
+                    var newInstruction = new Instruction(); 
+                    currentEntity.ability.instructions.Add(newInstruction);
+                },
+                drawElementCallback = (rect, index, isActive, isFocused) => 
+                {
+                    GUILayout.BeginArea(new Rect(rect.x, rect.y, Mathf.Abs(rect.width), rect.height));
+                    {
+                        GUILayout.BeginHorizontal();
+                        {
+                            currentEntity.ability.instructions[index].type = (InstructionType)EditorGUILayout.EnumPopup(currentEntity.ability.instructions[index].type);
+                            currentEntity.ability.instructions[index].value = EditorGUILayout.IntField("Value", currentEntity.ability.instructions[index].value);
+                            currentEntity.ability.instructions[index].target = (TargetType)EditorGUILayout.EnumPopup(currentEntity.ability.instructions[index].target);
+                            currentEntity.ability.instructions[index].us = EditorGUILayout.ToggleLeft("Us", currentEntity.ability.instructions[index].us);
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndArea();
+                }
+            };
+            
+            reorderableList.DoLayoutList();
             
             
             // AUTO ATTACK
             GUILayout.Space(10);
             GUILayout.Label("AUTO ATTACK", EditorStyles.boldLabel);
+            // isn't completed
+            
 
-            if (serializedObject != null)
-            {
-                serializedObject.Update();
-                list.DoLayoutList();
-                serializedObject.ApplyModifiedProperties();
-            }
-            
-            
             // GRAPHICS
             GUILayout.Space(10);
             GUILayout.Label("GRAPHICS", EditorStyles.boldLabel);
