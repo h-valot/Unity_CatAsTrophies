@@ -22,7 +22,6 @@ public class Cat : Entity
     public Ability ability;
     public bool isAbilityUsed;
 
-    private GameObject headAddon;
     private GameObject headAddonRef;
 
     public void Initialize(int _typeIndex)
@@ -35,9 +34,8 @@ public class Cat : Entity
 
         health = Registry.entitiesConfig.cats[catType].health;
 
-        headAddon = Registry.entitiesConfig.cats[catType].headAddon;
-        headAddonRef = Instantiate(headAddon);
-        headAddonRef.transform.parent = boneHead.transform;
+        // GRAPHICS
+        headAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform, true);
         headAddonRef.transform.localPosition = Vector3.zero;
         headAddonRef.transform.localRotation = Quaternion.identity;
     }
@@ -45,14 +43,17 @@ public class Cat : Entity
     private void OnEnable()
     {
         Registry.events.OnNewPlayerTurn += ResetAbility;
+        Registry.events.OnNewPlayerTurn += TriggerAllEffects;
     }
 
     private void OnDisable()
     {
         Registry.events.OnNewPlayerTurn -= ResetAbility;
+        Registry.events.OnNewPlayerTurn -= TriggerAllEffects;
     }
 
     private void ResetAbility() => isAbilityUsed = false;
+
     
     public bool CanMove() => state == CatState.InHand;
 

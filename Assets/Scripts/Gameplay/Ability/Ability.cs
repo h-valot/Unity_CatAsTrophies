@@ -337,6 +337,7 @@ public class Ability
         switch (_instruction.type)
         {
             case InstructionType.Damage:
+                Misc.GetEntityById(_targetId).UpdateHealth(_instruction.value);
                 break;
             
             case InstructionType.Dot:
