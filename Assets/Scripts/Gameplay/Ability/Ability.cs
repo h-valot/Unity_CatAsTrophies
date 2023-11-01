@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Ability 
 {
-    public List<Instruction> instructions;
+    public List<Instruction> instructions = new List<Instruction>();
     
     private Entity source;
 

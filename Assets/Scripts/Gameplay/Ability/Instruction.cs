@@ -4,7 +4,7 @@ using UnityEngine;
 public class Instruction
 {
     public InstructionType type;
-    public int value;
+    public int value = 1;
     public TargetType target;
     public bool us;
 }

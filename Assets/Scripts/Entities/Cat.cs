@@ -92,7 +92,7 @@ public class Cat : Entity
     }
     
     /// <summary>
-    /// Deal a fix amout of damage to an enemy
+    /// Use auto attacks abilities
     /// </summary>
     public void UseAutoAttack()
     {

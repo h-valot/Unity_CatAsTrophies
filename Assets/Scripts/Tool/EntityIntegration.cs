@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -17,7 +17,7 @@ public class EntityIntegration : EditorWindow
     private string entityName;
     private float health;
     private Ability ability;
-    private Ability[] autoAttack;
+    private List<Ability> autoAttacks = new List<Ability>();
     private GameObject basePrefab, rightHandAddon, leftHandAddon, headAddon;
     
     // window editor component
@@ -86,7 +86,7 @@ public class EntityIntegration : EditorWindow
     
     private void DisplaySideLists()
     {
-        GUILayout.BeginVertical();
+        GUILayout.BeginVertical("HelpBox");
         {
             sideScrollPos = EditorGUILayout.BeginScrollView(sideScrollPos);
             #region CATS SIDE LIST
@@ -94,12 +94,16 @@ public class EntityIntegration : EditorWindow
             GUILayout.BeginHorizontal();
             {
                 GUILayout.Label("CATS", EditorStyles.boldLabel);
-                if (GUILayout.Button("+", GUILayout.Width(20), GUILayout.Height(20)))
+                if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                 {
                     var newInstance = CreateInstance<EntityConfig>();
                     newInstance.isCat = true;
+                    var date = DateTime.Now;
+                    newInstance.id = "Cat_" + date.ToString("yyyyMMdd_HHmmss_fff");
+                    
                     cats.Add(newInstance);
                     UpdateDetails(newInstance);
+                    canDisplayDetails = true;
                 }
             }
             GUILayout.EndHorizontal();
@@ -122,12 +126,16 @@ public class EntityIntegration : EditorWindow
             GUILayout.BeginHorizontal();
             {
                 GUILayout.Label("ENEMIES", EditorStyles.boldLabel);
-                if (GUILayout.Button("+", GUILayout.Width(20), GUILayout.Height(20)))
+                if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                 {
                     var newInstance = CreateInstance<EntityConfig>();
                     newInstance.isCat = false;
+                    var date = DateTime.Now;
+                    newInstance.id = "Enemy_" + date.ToString("yyyyMMdd_HHmmss_fff");
+                    
                     enemies.Add(newInstance);
                     UpdateDetails(newInstance);
+                    canDisplayDetails = true;
                 }
             }
             GUILayout.EndHorizontal();
@@ -162,48 +170,13 @@ public class EntityIntegration : EditorWindow
             // ABILITY
             GUILayout.Space(10);
             GUILayout.Label("ABILITY", EditorStyles.boldLabel);
-            // isn't completed 
+            DisplayInstructionList(ability.instructions);
+            
 
-            reorderableList = new ReorderableList(currentEntity.ability.instructions, typeof(Instruction), true, false, true, true)
-            {
-                onReorderCallback = (ReorderableList rList) =>
-                {
-                    if (Application.isPlaying) return;
-                    
-                    // ReorderAndRefreshRList(rList)
-                },
-                onAddCallback = (ReorderableList rList) =>
-                {
-                    if (Application.isPlaying) return;
-                    
-                    // handle new instruction added
-                    var newInstruction = new Instruction(); 
-                    currentEntity.ability.instructions.Add(newInstruction);
-                },
-                drawElementCallback = (rect, index, isActive, isFocused) => 
-                {
-                    GUILayout.BeginArea(new Rect(rect.x, rect.y, Mathf.Abs(rect.width), rect.height));
-                    {
-                        GUILayout.BeginHorizontal();
-                        {
-                            currentEntity.ability.instructions[index].type = (InstructionType)EditorGUILayout.EnumPopup(currentEntity.ability.instructions[index].type);
-                            currentEntity.ability.instructions[index].value = EditorGUILayout.IntField("Value", currentEntity.ability.instructions[index].value);
-                            currentEntity.ability.instructions[index].target = (TargetType)EditorGUILayout.EnumPopup(currentEntity.ability.instructions[index].target);
-                            currentEntity.ability.instructions[index].us = EditorGUILayout.ToggleLeft("Us", currentEntity.ability.instructions[index].us);
-                        }
-                        GUILayout.EndHorizontal();
-                    }
-                    GUILayout.EndArea();
-                }
-            };
-            
-            reorderableList.DoLayoutList();
-            
-            
             // AUTO ATTACK
             GUILayout.Space(10);
             GUILayout.Label("AUTO ATTACK", EditorStyles.boldLabel);
-            // isn't completed
+            DisplayAbilityList(autoAttacks);
             
 
             // GRAPHICS
@@ -237,6 +210,111 @@ public class EntityIntegration : EditorWindow
         EditorGUILayout.EndScrollView();
     }
 
+    private void DisplayAbilityList(List<Ability> _autoAttack)
+    {
+        GUILayout.BeginVertical("HelpBox");
+        {
+            // HEADER
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.Label("Abilities");
+                if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                {
+                    var newAutoAttackAbility = new Ability();
+                    newAutoAttackAbility.instructions.Add(new Instruction());
+                    _autoAttack.Add(newAutoAttackAbility);
+                }
+            }
+            GUILayout.EndHorizontal();
+
+            // LIST
+            foreach (Ability autoAttackAbility in _autoAttack)
+            {
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.BeginVertical();
+                    {
+                        DisplayInstructionList(autoAttackAbility.instructions);
+                    }
+                    GUILayout.EndVertical();
+                    GUILayout.BeginVertical();
+                    {
+                        GUI.backgroundColor = Color.red;
+                        if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))
+                        {
+                            if (EditorUtility.DisplayDialog("Delete Ability", "Do you really want to permanently delete this Ability?", "Yes", "No"))
+                            {
+                                _autoAttack.Remove(autoAttackAbility);
+                                return;
+                            }
+                        }
+                        GUI.backgroundColor = Color.white;
+                    }
+                    GUILayout.EndVertical();
+                }
+                GUILayout.EndHorizontal();
+            }
+        }
+        GUILayout.EndVertical();
+    }
+
+    private void DisplayInstructionList(List<Instruction> _instructions)
+    {
+        GUILayout.BeginVertical("HelpBox");
+        {
+            // HEADER
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.Label("Instructions");
+                if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                {
+                    var newInstruction = new Instruction();
+                    _instructions.Add(newInstruction);
+                }
+            }
+            GUILayout.EndHorizontal();
+
+            // LIST
+            if (_instructions != null)
+            {
+                foreach (Instruction instruction in _instructions)
+                {
+                    GUILayout.BeginHorizontal("HelpBox");
+                    {
+                        GUILayout.BeginVertical();
+                        {
+                            instruction.type = (InstructionType)EditorGUILayout.EnumPopup("Type", instruction.type);
+                            instruction.target = (TargetType)EditorGUILayout.EnumPopup("Target", instruction.target);
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.BeginVertical();
+                        {
+                            instruction.value = EditorGUILayout.IntField("Value", instruction.value);
+                            instruction.us = EditorGUILayout.Toggle("Us", instruction.us);
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.BeginVertical();
+                        {
+                            GUI.backgroundColor = Color.red;
+                            if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))
+                            {
+                                if (EditorUtility.DisplayDialog("Delete Instruction", "Do you really want to permanently delete this instruction?", "Yes", "No"))
+                                {
+                                    _instructions.Remove(instruction);
+                                    return;
+                                }
+                            }
+                            GUI.backgroundColor = Color.white;
+                        }
+                        GUILayout.EndVertical();
+                    }
+                    GUILayout.EndHorizontal();
+                }
+            }
+        }
+        GUILayout.EndVertical();
+    }
+    
     private void SaveData()
     {
         // exceptions
@@ -246,16 +324,14 @@ public class EntityIntegration : EditorWindow
         currentEntity.entityName = entityName;
         currentEntity.health = health;
         currentEntity.ability = ability;
-        currentEntity.autoAttack = autoAttack;
+        currentEntity.autoAttack = autoAttacks;
         currentEntity.basePrefab = basePrefab;
         currentEntity.rightHandAddon = rightHandAddon;
         currentEntity.leftHandAddon = leftHandAddon;
         currentEntity.headAddon = headAddon;
 
-        // get the path depending on the entity
-        string path = currentEntity.isCat 
-            ? $"Assets/Configs/Cats/Cat_{currentEntity.entityName}.asset" 
-            : $"Assets/Configs/Enemies/Enemy_{currentEntity.entityName}.asset";
+        // get the path
+        string path = $"Assets/Configs/Entities/{currentEntity.id}.asset";
 
         // if the asset does not already exists then create a new one 
         if (!AssetDatabase.LoadAssetAtPath<EntityConfig>(path))
@@ -269,22 +345,18 @@ public class EntityIntegration : EditorWindow
 
     private void DeleteData()
     {
-        string path; 
-            
-        // get path and remove from lists depending on the entity
+        // remove from lists depending on the entity
         if (currentEntity.isCat)
         {
             cats.Remove(currentEntity);
-            path = $"Assets/Configs/Cats/Cat_{currentEntity.entityName}.asset";
         }
         else
         {
             enemies.Remove(currentEntity);
-            path = $"Assets/Configs/Enemies/Enemy_{currentEntity.entityName}.asset";
         }
 
         // deleting the asset
-        AssetDatabase.DeleteAsset(path);
+        AssetDatabase.DeleteAsset($"Assets/Configs/Entities/{currentEntity.id}.asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
@@ -321,7 +393,7 @@ public class EntityIntegration : EditorWindow
 
         // ABILITY
         ability = currentEntity.ability;
-        autoAttack = currentEntity.autoAttack;
+        autoAttacks = currentEntity.autoAttack;
 
         // GRAPHICS
         basePrefab = currentEntity.basePrefab;
