@@ -7,8 +7,10 @@ public class Cat : Entity
     public Animator animator;
 
     [Header("BONES")] 
-    public GameObject bone;
-    
+    public GameObject boneHead;
+    public GameObject boneHand_R;
+    public GameObject boneHand_L;
+
     [Header("GRAPHICS TWEAKING")] 
     public Vector3 battleRotation;
     public Vector3 baseRotation;
@@ -20,6 +22,9 @@ public class Cat : Entity
     public Ability ability;
     public bool isAbilityUsed;
 
+    private GameObject headAddon;
+    private GameObject headAddonRef;
+
     public void Initialize(int _typeIndex)
     {
         base.Initialize();
@@ -29,6 +34,12 @@ public class Cat : Entity
         id = Misc.GetRandomId();
 
         health = Registry.entitiesConfig.cats[catType].health;
+
+        headAddon = Registry.entitiesConfig.cats[catType].headAddon;
+        headAddonRef = Instantiate(headAddon);
+        headAddonRef.transform.parent = boneHead.transform;
+        headAddonRef.transform.localPosition = Vector3.zero;
+        headAddonRef.transform.localRotation = Quaternion.identity;
     }
 
     private void OnEnable()
