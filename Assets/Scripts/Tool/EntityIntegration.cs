@@ -328,6 +328,7 @@ public class EntityIntegration : EditorWindow
         currentEntity.ability = ability;
         currentEntity.autoAttack = autoAttacks;
         currentEntity.basePrefab = basePrefab;
+        currentEntity.baseMaterial = baseMaterial; 
         currentEntity.rightHandAddon = rightHandAddon;
         currentEntity.leftHandAddon = leftHandAddon;
         currentEntity.headAddon = headAddon;
@@ -399,6 +400,7 @@ public class EntityIntegration : EditorWindow
 
         // GRAPHICS
         basePrefab = currentEntity.basePrefab;
+        baseMaterial = currentEntity.baseMaterial;
         rightHandAddon = currentEntity.rightHandAddon;
         leftHandAddon = currentEntity.leftHandAddon;
         headAddon = currentEntity.headAddon;
