@@ -19,6 +19,7 @@ public class EntityIntegration : EditorWindow
     private Ability ability;
     private List<Ability> autoAttacks = new List<Ability>();
     private GameObject basePrefab, rightHandAddon, leftHandAddon, headAddon;
+    private Material baseMaterial;
     
     // window editor component
     private int id;
@@ -183,6 +184,7 @@ public class EntityIntegration : EditorWindow
             GUILayout.Space(10);
             GUILayout.Label("GRAPHICS", EditorStyles.boldLabel);
             basePrefab = (GameObject)EditorGUILayout.ObjectField("Base mesh prefab", basePrefab, typeof(GameObject), true);
+            baseMaterial = (Material)EditorGUILayout.ObjectField("Cat skin", baseMaterial, typeof(Material), true);
             rightHandAddon = (GameObject)EditorGUILayout.ObjectField("Right hand addon", rightHandAddon, typeof(GameObject), true);
             leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", leftHandAddon, typeof(GameObject), true);
             headAddon = (GameObject)EditorGUILayout.ObjectField("Head addon", headAddon, typeof(GameObject), true);
