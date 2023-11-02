@@ -23,6 +23,7 @@ public class Cat : Entity
     public bool isAbilityUsed;
 
     private GameObject headAddonRef;
+    private GameObject rightHandAddonRef;
 
     public void Initialize(int _typeIndex)
     {
@@ -35,9 +36,18 @@ public class Cat : Entity
         health = Registry.entitiesConfig.cats[catType].health;
 
         // GRAPHICS
+        // Head
         headAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform, true);
         headAddonRef.transform.localPosition = Vector3.zero;
         headAddonRef.transform.localRotation = Quaternion.identity;
+        // Right Hand
+        if (Registry.entitiesConfig.cats[catType].rightHandAddon)
+        {
+            rightHandAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].rightHandAddon, boneHand_R.transform, true);
+            rightHandAddonRef.transform.localPosition = Vector3.zero;
+            rightHandAddonRef.transform.localRotation = Quaternion.identity;
+            rightHandAddonRef.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -83,7 +93,8 @@ public class Cat : Entity
     {
         graphicsParent.transform.eulerAngles = battleRotation;
         graphicsParent.transform.localScale *= battleScale;
-        
+        rightHandAddonRef.SetActive(true);
+
         state = CatState.OnBattle;
         animator.SetTrigger("IsFighting");
         
