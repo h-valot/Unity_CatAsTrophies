@@ -4,9 +4,10 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public string id;
-    
-    [Header("GAMEPLAY")]
-    public float health, maxHealth;
+
+    [Header("GAMEPLAY")] 
+    public float health;
+    public float maxHealth;
     public List<Ability> autoAttacks = new List<Ability>();
     public List<Effect> effects = new List<Effect>();
 
