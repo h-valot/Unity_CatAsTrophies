@@ -52,8 +52,8 @@ MonoBehaviour:
   graphicsParent: {fileID: 5399714602900072910}
   animator: {fileID: 319391137215211856}
   boneHead: {fileID: 2288940876047503702}
-  boneHand_R: {fileID: 0}
-  boneHand_L: {fileID: 0}
+  boneHand_R: {fileID: 7414425664818722317}
+  boneHand_L: {fileID: 3937091611081182108}
   battleRotation: {x: 0, y: 100, z: 0}
   baseRotation: {x: -45, y: 165, z: 10}
   battleScale: 1.5
@@ -264,6 +264,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4835147707462855473, guid: 4f214bdbffd40ec40b8c370c75b9e53e, type: 3}
   m_PrefabInstance: {fileID: 6690685079698602599}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3937091611081182108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1551123571435441669, guid: 4f214bdbffd40ec40b8c370c75b9e53e, type: 3}
+  m_PrefabInstance: {fileID: 6690685079698602599}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5772347468356110134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f214bdbffd40ec40b8c370c75b9e53e, type: 3}
@@ -294,5 +299,10 @@ Animator:
 --- !u!4 &6579952418938527116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f214bdbffd40ec40b8c370c75b9e53e, type: 3}
+  m_PrefabInstance: {fileID: 6690685079698602599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7414425664818722317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5026225566118851478, guid: 4f214bdbffd40ec40b8c370c75b9e53e, type: 3}
   m_PrefabInstance: {fileID: 6690685079698602599}
   m_PrefabAsset: {fileID: 0}

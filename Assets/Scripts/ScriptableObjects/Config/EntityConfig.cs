@@ -18,8 +18,8 @@ public class EntityConfig : ScriptableObject
 
     [Header("GRAPHICS")]
     public GameObject basePrefab;
+    public Material baseMaterial;
     public GameObject rightHandAddon;
     public GameObject leftHandAddon;
     public GameObject headAddon;
-    public Material baseMaterial;
 }
