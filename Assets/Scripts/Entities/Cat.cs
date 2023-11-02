@@ -32,17 +32,17 @@ public class Cat : Entity
         
         state = CatState.InDeck;
         catType = _typeIndex;
-        id = Misc.GetRandomId();
         
+        // GAME STATS
         maxHealth = Registry.entitiesConfig.cats[catType].health;
         health = maxHealth;
 
         // GRAPHICS
-        // Head
+        // head addon
         headAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform, true);
         headAddonRef.transform.localPosition = Vector3.zero;
         headAddonRef.transform.localRotation = Quaternion.identity;
-        // Right Hand
+        // right hand addon
         if (Registry.entitiesConfig.cats[catType].rightHandAddon)
         {
             rightHandAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].rightHandAddon, boneHand_R.transform, true);

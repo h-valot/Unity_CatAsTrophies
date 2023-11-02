@@ -5,4 +5,5 @@ using UnityEngine;
 public class Events : ScriptableObject
 {
     public Action OnNewPlayerTurn;
+    public Action OnNewEnemyTurn;
 }

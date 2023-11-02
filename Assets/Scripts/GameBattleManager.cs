@@ -16,7 +16,7 @@ public class GameBattleManager : MonoBehaviour
         }
         
         // the order matters
-        // gameplay
+        // GAMEPLAY
         DeckManager.Instance.Initialize();
         CatGenerator.Instance.Initialize();
         EnemyGenerator.Instance.Initialize();
@@ -24,15 +24,11 @@ public class GameBattleManager : MonoBehaviour
         HandManager.Instance.Initialize();
         BattlefieldManager.Instance.Initialize();
         GraveyardManager.Instance.Initialize();
-        // ui
+        // UI
         MenuManager.Instance.Initialize();
 
-        foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
-        {
-            var newEnemy = EnemyGenerator.Instance.CreateEnemy();
-            battlePawn.Setup(newEnemy.id);
-            newEnemy.transform.position = battlePawn.transform.position;
-        }
+        // DEBUGGING
+        EnemyGenerator.Instance.GenerateComposition(0);
         
         // start the game loop
         TurnManager.Instance.HandleTurnState();
