@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 629490240392768250, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 629490240392768250, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3432,7 +3432,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1

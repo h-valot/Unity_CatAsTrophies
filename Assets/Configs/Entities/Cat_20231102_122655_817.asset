@@ -20,7 +20,7 @@ MonoBehaviour:
     instructions: []
   autoAttack: []
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
-  baseMaterial: {fileID: 0}
+  baseMaterial: {fileID: 2100000, guid: 3c9ffcb3914817a44af16c2466b8bc32, type: 2}
   rightHandAddon: {fileID: 919132149155446097, guid: e445f06349941714e85ca1454aee7ca8, type: 3}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 919132149155446097, guid: fd243656595e0184e8005304a854ea7b, type: 3}
