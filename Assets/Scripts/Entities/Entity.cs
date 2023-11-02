@@ -7,8 +7,8 @@ public class Entity : MonoBehaviour
     
     [Header("GAMEPLAY")]
     public float health, maxHealth;
-    public List<Ability> autoAttacks;
-    public List<Effect> effects;
+    public List<Ability> autoAttacks = new List<Ability>();
+    public List<Effect> effects = new List<Effect>();
 
     public virtual void Initialize()
     {

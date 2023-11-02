@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efde5030d145b124a937051b0f13ddd4, type: 3}
-  m_Name: EntitiesConfig
+  m_Script: {fileID: 11500000, guid: ccd7e178cdc42464dbd80b6f37c59b6b, type: 3}
+  m_Name: Comp_20231102_071342_429
   m_EditorClassIdentifier: 
-  compositions:
-  - {fileID: 11400000, guid: 5f127857b6596dc4799dc7768e85ad4e, type: 2}
-  cats:
-  - {fileID: 11400000, guid: bfed1e256fa39d945b75f5bc98849459, type: 2}
   enemies:
   - {fileID: 11400000, guid: 49516181fd2586043957d00b559e4bb3, type: 2}
   - {fileID: 11400000, guid: a9a3d8422b008744aacfba9cec208a38, type: 2}
