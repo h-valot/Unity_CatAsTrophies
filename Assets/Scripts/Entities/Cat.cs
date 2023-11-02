@@ -24,6 +24,7 @@ public class Cat : Entity
 
     private GameObject headAddonRef;
     private GameObject rightHandAddonRef;
+    private GameObject leftHandAddonRef;
 
     public void Initialize(int _typeIndex)
     {
@@ -93,7 +94,10 @@ public class Cat : Entity
     {
         graphicsParent.transform.eulerAngles = battleRotation;
         graphicsParent.transform.localScale *= battleScale;
-        rightHandAddonRef.SetActive(true);
+        if (rightHandAddonRef)
+        {
+            rightHandAddonRef.SetActive(true);
+        }
 
         state = CatState.OnBattle;
         animator.SetTrigger("IsFighting");
