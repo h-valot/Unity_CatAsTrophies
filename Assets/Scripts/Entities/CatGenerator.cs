@@ -21,9 +21,25 @@ public class CatGenerator : MonoBehaviour
 
     private void InstantiateCats()
     {
+        Cat newCat = null;
         for (int i = 0; i < Registry.playerConfig.deckLenght; i++)
         {
-            Cat newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
+            if (i%2 == 0)
+            {
+                newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
+            }
+            else
+            {
+                if (Registry.entitiesConfig.cats[1] != null)
+                {
+                    newCat = Instantiate(Registry.entitiesConfig.cats[1].basePrefab, transform).GetComponent<Cat>();
+                }
+                else
+                {
+                    newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
+                }
+            }
+            
             newCat.gameObject.SetActive(false);
             cats.Add(newCat);
             EntityManager.Instance.entities.Add(newCat);

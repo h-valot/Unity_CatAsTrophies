@@ -22,4 +22,5 @@ public class EntityConfig : ScriptableObject
     public GameObject rightHandAddon;
     public GameObject leftHandAddon;
     public GameObject headAddon;
+    public Material baseMaterial;
 }
