@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: EntitiesConfig
   m_EditorClassIdentifier: 
   compositions:
-  - {fileID: 11400000, guid: 5f127857b6596dc4799dc7768e85ad4e, type: 2}
+  - {fileID: 11400000, guid: 8648e0109100dec4cafc17768804a81d, type: 2}
+  - {fileID: 11400000, guid: 4ff95d308fea5e54b9f898d3b007ed27, type: 2}
+  - {fileID: 11400000, guid: e2a418e2c60c3dd4a9ab25b92c5cb517, type: 2}
   cats:
   - {fileID: 11400000, guid: bfed1e256fa39d945b75f5bc98849459, type: 2}
   enemies:
