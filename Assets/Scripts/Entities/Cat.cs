@@ -31,8 +31,9 @@ public class Cat : Entity
         state = CatState.InDeck;
         catType = _typeIndex;
         id = Misc.GetRandomId();
-
-        health = Registry.entitiesConfig.cats[catType].health;
+        
+        maxHealth = Registry.entitiesConfig.cats[catType].health;
+        health = maxHealth;
 
         // GRAPHICS
         headAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform, true);

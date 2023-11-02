@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class EntityIntegration : EditorWindow
+public class EntityWindowEditor : EditorWindow
 {
     #region INITIALIZATION
     // lists of entities
@@ -30,7 +30,7 @@ public class EntityIntegration : EditorWindow
     [MenuItem("Tool/Entity Integration")]
     static void InitializeWindow()
     {
-        EntityIntegration window = GetWindow<EntityIntegration>();
+        EntityWindowEditor window = GetWindow<EntityWindowEditor>();
         window.titleContent = new GUIContent("Entity Integration");
         window.Show();
     }
@@ -39,7 +39,7 @@ public class EntityIntegration : EditorWindow
     {
         EditorGUILayout.BeginHorizontal();
         {
-            EditorGUILayout.BeginVertical(GUILayout.Width(150), GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical("HelpBox", GUILayout.Width(150), GUILayout.ExpandHeight(true));
             {
                 DisplaySideLists();
             }
@@ -86,7 +86,7 @@ public class EntityIntegration : EditorWindow
     
     private void DisplaySideLists()
     {
-        GUILayout.BeginVertical("HelpBox");
+        GUILayout.BeginVertical();
         {
             sideScrollPos = EditorGUILayout.BeginScrollView(sideScrollPos);
             #region CATS SIDE LIST
@@ -110,7 +110,7 @@ public class EntityIntegration : EditorWindow
             
             GUILayout.Space(5);
         
-            // LIST OF CATS
+            // LIST OF COMPOSITION
             foreach (EntityConfig cat in cats)
             {
                 string buttonName = cat.entityName == "" ? "New cat" : cat.entityName;
@@ -400,6 +400,8 @@ public class EntityIntegration : EditorWindow
         rightHandAddon = currentEntity.rightHandAddon;
         leftHandAddon = currentEntity.leftHandAddon;
         headAddon = currentEntity.headAddon;
+        
+        canDisplayDetails = true;
     }
     
     private static EntitiesConfig FindEntitiesConfig()
