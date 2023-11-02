@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class EntityWindowEditor : EditorWindow
+public class EntityIntegration : EditorWindow
 {
     #region INITIALIZATION
     // lists of entities
@@ -19,59 +19,30 @@ public class EntityWindowEditor : EditorWindow
     private Ability ability;
     private List<Ability> autoAttacks = new List<Ability>();
     private GameObject basePrefab, rightHandAddon, leftHandAddon, headAddon;
+    private Material baseMaterial;
     
     // window editor component
     private int id;
-    private Vector2 sideBarScroll, informationsScroll;
+    private Vector2 sideScrollPos, detailsScrollPos;
     private bool canDisplayDetails = true;
     private ReorderableList reorderableList;
     #endregion
     
-    [MenuItem("Tool/Entity")]
+    [MenuItem("Tool/Entity Integration")]
     static void InitializeWindow()
     {
-        EntityWindowEditor window = GetWindow<EntityWindowEditor>();
+        EntityIntegration window = GetWindow<EntityIntegration>();
         window.titleContent = new GUIContent("Entity Integration");
-        window.maxSize = new Vector2(801, 421);
-        window.minSize = new Vector2(800, 420);
         window.Show();
     }
     
-    private void OnEnable()
-    {
-        // initialize lists
-        cats.Clear();
-        enemies.Clear();
-        
-        // load the data from the entities config
-        LoadDataFromAsset();
-        
-        // display the first entity
-        if (cats.Count > 0)
-        {
-            UpdateInformations(cats[0]);
-        }
-        else if (enemies.Count > 0)
-        {
-            UpdateInformations(enemies[0]);
-        }
-        else
-        {
-            canDisplayDetails = false;
-        }
-    }
-
     private void OnGUI()
     {
         EditorGUILayout.BeginHorizontal();
         {
-            EditorGUILayout.BeginVertical("HelpBox", GUILayout.Width(150), GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical(GUILayout.Width(150), GUILayout.ExpandHeight(true));
             {
-                sideBarScroll = EditorGUILayout.BeginScrollView(sideBarScroll);
-                {
-                    DisplaySideBar();
-                }
-                EditorGUILayout.EndScrollView();
+                DisplaySideLists();
             }
             EditorGUILayout.EndVertical();
             
@@ -79,156 +50,166 @@ public class EntityWindowEditor : EditorWindow
             {
                 if (canDisplayDetails)
                 {
-                    informationsScroll = EditorGUILayout.BeginScrollView(informationsScroll);
-                    {
-                        DisplayInformations();
-                    }
-                    EditorGUILayout.EndScrollView();
+                    DisplayDetails();
                 }
             }
             EditorGUILayout.EndVertical();
         }
         EditorGUILayout.EndHorizontal();
+    }
+
+    private void OnEnable()
+    {
+        cats.Clear();
+        enemies.Clear();
         
-        // update modifications
+        // load the data from the entities config
+        LoadData();
+        
+        if (cats.Count > 0)
+        {
+            UpdateDetails(cats[0]);
+        }
+        else if (enemies.Count > 0)
+        {
+            UpdateDetails(enemies[0]);
+        }
+        else
+        {
+            canDisplayDetails = false;
+        }
+    }
+    
+    private void OnDisable()
+    {
         UpdateEntitiesConfig();
     }
-
-    private void DisplaySideBar()
+    
+    private void DisplaySideLists()
     {
-        #region CATS SIDE LIST
-        // HEADER
-        GUILayout.BeginHorizontal();
+        GUILayout.BeginVertical("HelpBox");
         {
-            GUILayout.Label("CATS", EditorStyles.boldLabel);
-            if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+            sideScrollPos = EditorGUILayout.BeginScrollView(sideScrollPos);
+            #region CATS SIDE LIST
+            // HEADER
+            GUILayout.BeginHorizontal();
             {
-                var newInstance = CreateInstance<EntityConfig>();
-                newInstance.isCat = true;
-                var date = DateTime.Now;
-                newInstance.id = "Cat_" + date.ToString("yyyyMMdd_HHmmss_fff");
-                
-                cats.Add(newInstance);
-                UpdateInformations(newInstance);
-                canDisplayDetails = true;
+                GUILayout.Label("CATS", EditorStyles.boldLabel);
+                if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                {
+                    var newInstance = CreateInstance<EntityConfig>();
+                    newInstance.isCat = true;
+                    var date = DateTime.Now;
+                    newInstance.id = "Cat_" + date.ToString("yyyyMMdd_HHmmss_fff");
+                    
+                    cats.Add(newInstance);
+                    UpdateDetails(newInstance);
+                    canDisplayDetails = true;
+                }
             }
-        }
-        GUILayout.EndHorizontal();
+            GUILayout.EndHorizontal();
+            
+            GUILayout.Space(5);
         
-        GUILayout.Space(5);
-    
-        // LIST OF COMPOSITION
-        foreach (EntityConfig cat in cats)
-        {
-            string buttonName = cat.entityName == "" ? "New cat" : cat.entityName;
-            if (GUILayout.Button($"{buttonName}", GUILayout.ExpandWidth(true), GUILayout.Height(20)))
+            // LIST OF CATS
+            foreach (EntityConfig cat in cats)
             {
-                UpdateInformations(cat);
+                string buttonName = cat.entityName == "" ? "New cat" : cat.entityName;
+                if (GUILayout.Button($"{buttonName}", GUILayout.ExpandWidth(true), GUILayout.Height(20)))
+                {
+                    UpdateDetails(cat);
+                }
             }
-        }
-        #endregion
-        #region ENEMIES SIDE LIST
-        // HEADER
-        GUILayout.Space(15);
-        GUILayout.BeginHorizontal();
-        {
-            GUILayout.Label("ENEMIES", EditorStyles.boldLabel);
-            if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+            #endregion
+            GUILayout.Space(15);
+            #region ENEMIES SIDE LIST
+            // HEADER
+            GUILayout.BeginHorizontal();
             {
-                var newInstance = CreateInstance<EntityConfig>();
-                newInstance.isCat = false;
-                var date = DateTime.Now;
-                newInstance.id = "Enemy_" + date.ToString("yyyyMMdd_HHmmss_fff");
-                
-                enemies.Add(newInstance);
-                UpdateInformations(newInstance);
-                canDisplayDetails = true;
+                GUILayout.Label("ENEMIES", EditorStyles.boldLabel);
+                if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                {
+                    var newInstance = CreateInstance<EntityConfig>();
+                    newInstance.isCat = false;
+                    var date = DateTime.Now;
+                    newInstance.id = "Enemy_" + date.ToString("yyyyMMdd_HHmmss_fff");
+                    
+                    enemies.Add(newInstance);
+                    UpdateDetails(newInstance);
+                    canDisplayDetails = true;
+                }
             }
-        }
-        GUILayout.EndHorizontal();
-    
-        GUILayout.Space(5);
+            GUILayout.EndHorizontal();
         
-        // LIST OF ENEMIES
-        foreach (EntityConfig enemy in enemies)
-        {
-            string buttonName = enemy.entityName == "" ? "New enemy" : enemy.entityName;
-            if (GUILayout.Button($"{buttonName}", GUILayout.ExpandWidth(true), GUILayout.Height(20)))
+            GUILayout.Space(5);
+            
+            // LIST OF ENEMIES
+            foreach (EntityConfig enemy in enemies)
             {
-                UpdateInformations(enemy);
+                string buttonName = enemy.entityName == "" ? "New enemy" : enemy.entityName;
+                if (GUILayout.Button($"{buttonName}", GUILayout.ExpandWidth(true), GUILayout.Height(20)))
+                {
+                    UpdateDetails(enemy);
+                }
             }
+            #endregion
+            EditorGUILayout.EndScrollView();
         }
-        #endregion
+        GUILayout.EndVertical();
     }
     
-    private void DisplayInformations()
+    private void DisplayDetails()
     {
-        // INFORMATIONS
-        GUILayout.Label("INFORMATION", EditorStyles.boldLabel);
-        entityName = EditorGUILayout.TextField("Name", entityName);
-        health = EditorGUILayout.FloatField("Health", health);
-    
-        
-        // ABILITY
-        GUILayout.Space(10);
-        GUILayout.Label("ABILITY", EditorStyles.boldLabel);
-        DisplayInstructionList(ability.instructions);
-        
-
-        // AUTO ATTACK
-        GUILayout.Space(10);
-        GUILayout.Label("AUTO ATTACK", EditorStyles.boldLabel);
-        DisplayAbilityList(autoAttacks);
-        
-
-        // GRAPHICS
-        GUILayout.Space(10);
-        GUILayout.Label("GRAPHICS", EditorStyles.boldLabel);
-        basePrefab = (GameObject)EditorGUILayout.ObjectField("Base mesh prefab", basePrefab, typeof(GameObject), true);
-        rightHandAddon = (GameObject)EditorGUILayout.ObjectField("Right hand addon", rightHandAddon, typeof(GameObject), true);
-        leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", leftHandAddon, typeof(GameObject), true);
-        headAddon = (GameObject)EditorGUILayout.ObjectField("Head addon", headAddon, typeof(GameObject), true);
-
-        
-        // DATA MANAGEMENT
-        // save button
-        GUILayout.Space(20);
-        if (GUILayout.Button("SAVE", GUILayout.ExpandWidth(true)))
+        detailsScrollPos = EditorGUILayout.BeginScrollView(detailsScrollPos);
         {
-            SaveDataToAsset();
-        }
-    
-        // delete button
-        GUI.backgroundColor = Color.red;
-        if (GUILayout.Button("DELETE", GUILayout.ExpandWidth(true)))
-        {
-            if (EditorUtility.DisplayDialog("Delete Entity", "Do you really want to permanently delete this entity?", "Yes", "No"))
+            // INFORMATIONS
+            GUILayout.Label("INFORMATION", EditorStyles.boldLabel);
+            entityName = EditorGUILayout.TextField("Name", entityName);
+            health = EditorGUILayout.FloatField("Health", health);
+        
+            
+            // ABILITY
+            GUILayout.Space(10);
+            GUILayout.Label("ABILITY", EditorStyles.boldLabel);
+            DisplayInstructionList(ability.instructions);
+            
+
+            // AUTO ATTACK
+            GUILayout.Space(10);
+            GUILayout.Label("AUTO ATTACK", EditorStyles.boldLabel);
+            DisplayAbilityList(autoAttacks);
+            
+
+            // GRAPHICS
+            GUILayout.Space(10);
+            GUILayout.Label("GRAPHICS", EditorStyles.boldLabel);
+            basePrefab = (GameObject)EditorGUILayout.ObjectField("Base mesh prefab", basePrefab, typeof(GameObject), true);
+            baseMaterial = (Material)EditorGUILayout.ObjectField("Cat skin", baseMaterial, typeof(Material), true);
+            rightHandAddon = (GameObject)EditorGUILayout.ObjectField("Right hand addon", rightHandAddon, typeof(GameObject), true);
+            leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", leftHandAddon, typeof(GameObject), true);
+            headAddon = (GameObject)EditorGUILayout.ObjectField("Head addon", headAddon, typeof(GameObject), true);
+
+            
+            // DATA MANAGEMENT
+            // save button
+            GUILayout.Space(20);
+            if (GUILayout.Button("SAVE", GUILayout.ExpandWidth(true)))
             {
-                DeleteData();
+                SaveData();
             }
+        
+            // delete button
+            GUI.backgroundColor = Color.red;
+            if (GUILayout.Button("DELETE", GUILayout.ExpandWidth(true)))
+            {
+                if (EditorUtility.DisplayDialog("Delete Entity", "Do you really want to permanently delete this entity?", "Yes", "No"))
+                {
+                    DeleteData();
+                }
+            }
+            GUI.backgroundColor = Color.white;
         }
-        GUI.backgroundColor = Color.white;
-    }
-
-    private void UpdateInformations(EntityConfig _entityConfig)
-    {
-        currentEntity = _entityConfig;
-        
-        // INFORMATIONS
-        entityName = currentEntity.entityName;
-        health = currentEntity.health;
-
-        // ABILITY
-        ability = currentEntity.ability;
-        autoAttacks = currentEntity.autoAttack;
-
-        // GRAPHICS
-        basePrefab = currentEntity.basePrefab;
-        rightHandAddon = currentEntity.rightHandAddon;
-        leftHandAddon = currentEntity.leftHandAddon;
-        headAddon = currentEntity.headAddon;
-        
-        canDisplayDetails = true;
+        EditorGUILayout.EndScrollView();
     }
 
     private void DisplayAbilityList(List<Ability> _autoAttack)
@@ -336,7 +317,7 @@ public class EntityWindowEditor : EditorWindow
         GUILayout.EndVertical();
     }
     
-    private void SaveDataToAsset()
+    private void SaveData()
     {
         // exceptions
         if (entityName == "") return;
@@ -347,6 +328,7 @@ public class EntityWindowEditor : EditorWindow
         currentEntity.ability = ability;
         currentEntity.autoAttack = autoAttacks;
         currentEntity.basePrefab = basePrefab;
+        currentEntity.baseMaterial = baseMaterial; 
         currentEntity.rightHandAddon = rightHandAddon;
         currentEntity.leftHandAddon = leftHandAddon;
         currentEntity.headAddon = headAddon;
@@ -382,7 +364,7 @@ public class EntityWindowEditor : EditorWindow
         AssetDatabase.Refresh();
     }
     
-    private void LoadDataFromAsset()
+    private void LoadData()
     {
         // get all files with type "EntityConfig" in the project
         string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(EntityConfig));
@@ -402,6 +384,26 @@ public class EntityWindowEditor : EditorWindow
                 enemies.Add(entityConfig);
             }
         }
+    }
+    
+    private void UpdateDetails(EntityConfig _entityConfig)
+    {
+        currentEntity = _entityConfig;
+        
+        // INFORMATIONS
+        entityName = currentEntity.entityName;
+        health = currentEntity.health;
+
+        // ABILITY
+        ability = currentEntity.ability;
+        autoAttacks = currentEntity.autoAttack;
+
+        // GRAPHICS
+        basePrefab = currentEntity.basePrefab;
+        baseMaterial = currentEntity.baseMaterial;
+        rightHandAddon = currentEntity.rightHandAddon;
+        leftHandAddon = currentEntity.leftHandAddon;
+        headAddon = currentEntity.headAddon;
     }
     
     private static EntitiesConfig FindEntitiesConfig()
@@ -425,9 +427,14 @@ public class EntityWindowEditor : EditorWindow
         }
     }
     
+    /// <summary>
+    /// Update cats and enemies list in the EntitiesConfig
+    /// </summary>
     private void UpdateEntitiesConfig()
     {
+        FindEntitiesConfig().cats.Clear();
         FindEntitiesConfig().cats = cats;
+        FindEntitiesConfig().enemies.Clear();
         FindEntitiesConfig().enemies = enemies;
     }
 }
