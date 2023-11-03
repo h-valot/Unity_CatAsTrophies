@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Cat : Entity
@@ -126,6 +127,19 @@ public class Cat : Entity
     /// </summary>
     public void Withdraw()
     {
+        // exception
+        if (state == CatState.InGraveyard) return;
+        
+        DiscardManager.Instance.AddCat(id);
+        graphicsParent.SetActive(false);
+        
+        state = CatState.Discarded;
+    }
+    
+    protected override void HandleDeath()
+    {
+        health = 0;
+        
         GraveyardManager.Instance.AddCat(id);
         graphicsParent.SetActive(false);
         
@@ -138,5 +152,6 @@ public enum CatState
     InDeck = 0,
     InHand,
     OnBattle,
+    Discarded,
     InGraveyard
 }

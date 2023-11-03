@@ -44,8 +44,8 @@ public class Entity : MonoBehaviour
         }
     }
     
-    private void HandleDeath()
+    protected virtual void HandleDeath()
     {
-        
+        // do nothing in the parent
     }
 }

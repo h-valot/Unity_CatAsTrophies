@@ -233,7 +233,9 @@ public class CompositionWindowEditor : EditorWindow
         }
         
         // save changes
+        EditorUtility.SetDirty(currentComposition);
         AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
 
     private void DeleteAssetData()

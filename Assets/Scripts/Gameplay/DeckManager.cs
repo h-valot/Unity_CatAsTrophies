@@ -26,7 +26,7 @@ public class DeckManager : MonoBehaviour
     {
         if (catsInDeck.Count <= 0)
         {
-            GraveyardManager.Instance.MergeGraveyardIntoDeck();
+            DiscardManager.Instance.MergeDiscardIntoDeck();
             ShuffleDeck();
         }
         

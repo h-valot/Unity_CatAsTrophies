@@ -366,7 +366,9 @@ public class EntityIntegration : EditorWindow
         }
         
         // save changes
+        EditorUtility.SetDirty(currentEntity);
         AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
 
     private void DeleteData()

@@ -18,8 +18,14 @@ MonoBehaviour:
   health: 7
   ability:
     instructions: []
-  autoAttack: []
+  autoAttack:
+  - instructions:
+    - type: 0
+      value: 5
+      target: 1
+      us: 0
   basePrefab: {fileID: 5087666672669579333, guid: ca51a6e961891774b8c880dcd1d812f5, type: 3}
+  baseMaterial: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}

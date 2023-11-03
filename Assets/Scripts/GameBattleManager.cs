@@ -23,7 +23,7 @@ public class GameBattleManager : MonoBehaviour
         TurnManager.Instance.Initialize();
         HandManager.Instance.Initialize();
         BattlefieldManager.Instance.Initialize();
-        GraveyardManager.Instance.Initialize();
+        DiscardManager.Instance.Initialize();
         // UI
         MenuManager.Instance.Initialize();
 
