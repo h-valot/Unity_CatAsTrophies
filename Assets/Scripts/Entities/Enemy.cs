@@ -5,8 +5,10 @@ public class Enemy : Entity
     public void Initialize(int _enemyType)
     {
         base.Initialize();
-
         enemyType = _enemyType;
+        
+        // GAME STATS
+        autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;
     }
     
     private void OnEnable()

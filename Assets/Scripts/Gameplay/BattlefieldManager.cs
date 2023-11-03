@@ -25,25 +25,22 @@ public class BattlefieldManager : MonoBehaviour
     /// <summary>
     /// Make all cats on the battlefield auto attack there enemies
     /// </summary>
-    public void AutoAttackEnemies()
+    public void UseAutoAttackOnEnemies()
     {
-        for (int i = 0; i < catsOnBattlefield.Length; i++)
+        foreach (string catId in catsOnBattlefield)
         {
-            if (Misc.GetCatById(catsOnBattlefield[i]) != null)
-            {
-                Misc.GetCatById(catsOnBattlefield[i]).UseAutoAttack();
-            }   
+            Misc.GetEntityById(catId).UseAutoAttack();
         }
     }
 
     /// <summary>
     /// Make all enemies on the battlefield auto attack cats
     /// </summary>
-    public void AutoAttackCats()
+    public void UseAutoAttackOnCats()
     {
-        for (int i = 0; i < enemiesOnBattlefield.Length; i++)
+        foreach (string enemyId in enemiesOnBattlefield)
         {
-            // create a enemies generator
+            Misc.GetEntityById(enemyId).UseAutoAttack();
         }
     }
 

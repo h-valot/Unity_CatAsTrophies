@@ -11,11 +11,22 @@ public class Entity : MonoBehaviour
     public List<Ability> autoAttacks = new List<Ability>();
     public List<Effect> effects = new List<Effect>();
 
-    public virtual void Initialize()
+    public void Initialize()
     {
         id = Misc.GetRandomId();
     }
 
+    /// <summary>
+    /// Use auto attacks abilities
+    /// </summary>
+    public void UseAutoAttack()
+    {
+        foreach (Ability ability in autoAttacks)
+        {
+            ability.Use(this);
+        }
+    }
+    
     public void UpdateHealth(int _value)
     {
         health -= _value;

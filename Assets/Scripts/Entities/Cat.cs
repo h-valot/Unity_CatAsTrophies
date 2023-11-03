@@ -29,13 +29,14 @@ public class Cat : Entity
     public void Initialize(int _typeIndex)
     {
         base.Initialize();
-        
         state = CatState.InDeck;
         catType = _typeIndex;
         
         // GAME STATS
         maxHealth = Registry.entitiesConfig.cats[catType].health;
         health = maxHealth;
+        autoAttacks = Registry.entitiesConfig.cats[catType].autoAttack;
+        ability = Registry.entitiesConfig.cats[catType].ability;
 
         // GRAPHICS
         // head addon
@@ -116,15 +117,6 @@ public class Cat : Entity
 
         ability.Use(this);
         isAbilityUsed = true;
-        Debug.Log("CAT: ability used");
-    }
-    
-    /// <summary>
-    /// Use auto attacks abilities
-    /// </summary>
-    public void UseAutoAttack()
-    {
-        // do nothing for the moment
     }
     
     /// <summary>

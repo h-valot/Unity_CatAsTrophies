@@ -13,6 +13,7 @@ public class Ability
     {
         // store last ability cast
         source = _source;
+        Debug.Log($"ABILITY: use function entered with {source.name}");
         
         foreach (var instruction in instructions)
         {
@@ -337,7 +338,8 @@ public class Ability
         switch (_instruction.type)
         {
             case InstructionType.Damage:
-                Misc.GetEntityById(_targetId).UpdateHealth(_instruction.value);
+                int damage = -_instruction.value;
+                Misc.GetEntityById(_targetId).UpdateHealth(damage);
                 break;
             
             case InstructionType.Dot:

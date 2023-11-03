@@ -44,7 +44,7 @@ public class TurnManager : MonoBehaviour
                 HandManager.Instance.DiscardHand();
                 
                 // cats use their auto attacks
-                BattlefieldManager.Instance.AutoAttackEnemies();
+                BattlefieldManager.Instance.UseAutoAttackOnEnemies();
                 // Debug.Log("TURNMANAGER: cats attacked enemies");
                 
                 // give the turn to the enemies
@@ -58,8 +58,8 @@ public class TurnManager : MonoBehaviour
                 Registry.events.OnNewEnemyTurn?.Invoke();
                 
                 // enemies uses their auto attacks
-                BattlefieldManager.Instance.AutoAttackCats();
-                // Debug.Log("TURNMANAGER: enemies attacked cats");
+                BattlefieldManager.Instance.UseAutoAttackOnCats();
+                Debug.Log("TURNMANAGER: enemies attacked cats");
                 
                 // re-launched a new turn
                 state = TurnState.PlayerTurn;
