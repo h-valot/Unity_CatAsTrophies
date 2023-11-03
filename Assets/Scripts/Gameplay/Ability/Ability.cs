@@ -338,86 +338,122 @@ public class Ability
         switch (_instruction.type)
         {
             case InstructionType.Damage:
-                int damage = -_instruction.value;
-                Misc.GetEntityById(_targetId).UpdateHealth(damage);
+                Misc.GetEntityById(_targetId).UpdateHealth(-_instruction.value);
                 break;
             
             case InstructionType.Dot:
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Dot, _instruction.value);
                 break;
             
             case InstructionType.SelfExplosion:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).UpdateHealth(-_instruction.value);
+                source.HandleDeath();
                 break;
             
             case InstructionType.ToxicMagic:
+                // isn't use for the moment
                 break;
             
             case InstructionType.Hook:
+                // TODO - hook enemy toward the caster by the value amount 
                 break;
             
             case InstructionType.Repulse:
+                // isn't use for the moment
                 break;
             
             case InstructionType.Switch:
+                // isn't use for the moment
                 break;
             
             case InstructionType.Heal:
+                Misc.GetEntityById(_targetId).UpdateHealth(_instruction.value);
                 break;
             
             case InstructionType.Hot:
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Hot, _instruction.value);
                 break;
             
             case InstructionType.LinkHealth:
+                // isn't use for the moment
                 break;
             
             case InstructionType.Res:
+                // isn't use for the moment
                 break;
             
             case InstructionType.DebuffAttack:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.DebuffAttack, _instruction.value);
                 break;
             
             case InstructionType.DebuffArmor:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.DebuffArmor, _instruction.value);
                 break;
             
             case InstructionType.Stun:
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Stun, _instruction.value);
                 break;
             
             case InstructionType.Sleep:
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Sleep, _instruction.value);
                 break;
             
             case InstructionType.AntiHeal:
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.AntiHeal, _instruction.value);
                 break;
             
             case InstructionType.BuffAttack:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.BuffAttack, _instruction.value);
                 break;
             
             case InstructionType.BuffArmor:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.BuffArmor, _instruction.value);
                 break;
             
             case InstructionType.Summon:
+                // isn't use for the moment
                 break;
             
             case InstructionType.BonusAction:
+                // isn't use for the moment
                 break;
             
             case InstructionType.Resistance:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Resistance, _instruction.value);
                 break;
             
             case InstructionType.PassArmor:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.PassArmor, _instruction.value);
                 break;
             
             case InstructionType.ImmunityTurn:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.ImmunityTurn, _instruction.value);
                 break;
             
             case InstructionType.Invisible:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Invisible, _instruction.value);
                 break;
             
             case InstructionType.Repeat:
+                // isn't use for the moment
                 break;
             
             case InstructionType.Cleanse:
+                // isn't use for the moment
+                Misc.GetEntityById(_targetId).ClearAllHarmfulEffects();
                 break;
             
             case InstructionType.Clone:
+                // isn't use for the moment
                 break;
         }
     }

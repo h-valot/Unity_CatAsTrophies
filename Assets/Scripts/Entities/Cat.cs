@@ -136,10 +136,8 @@ public class Cat : Entity
         state = CatState.Discarded;
     }
     
-    protected override void HandleDeath()
+    public override void HandleDeath()
     {
-        health = 0;
-        
         GraveyardManager.Instance.AddCat(id);
         graphicsParent.SetActive(false);
         
