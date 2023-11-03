@@ -29,10 +29,10 @@ public class Entity : MonoBehaviour
     
     public void UpdateHealth(int _value)
     {
-        health -= _value;
+        health += _value;
         if (health <= 0)
         {
-            HandleDeath();
+            HandleDeath(); 
         }
     }
 

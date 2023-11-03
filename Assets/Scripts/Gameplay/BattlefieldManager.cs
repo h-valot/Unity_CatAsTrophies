@@ -22,28 +22,6 @@ public class BattlefieldManager : MonoBehaviour
         catsOnBattlefield = new string[3];
     }
 
-    /// <summary>
-    /// Make all cats on the battlefield auto attack there enemies
-    /// </summary>
-    public void UseAutoAttackOnEnemies()
-    {
-        foreach (string catId in catsOnBattlefield)
-        {
-            Misc.GetEntityById(catId).UseAutoAttack();
-        }
-    }
-
-    /// <summary>
-    /// Make all enemies on the battlefield auto attack cats
-    /// </summary>
-    public void UseAutoAttackOnCats()
-    {
-        foreach (string enemyId in enemiesOnBattlefield)
-        {
-            Misc.GetEntityById(enemyId).UseAutoAttack();
-        }
-    }
-
     public BattlePawn GetNearestPawnFromCursor(Vector2 originPos)
     {
         int closestPawnIndex = -1;

@@ -6,4 +6,7 @@ public class Events : ScriptableObject
 {
     public Action OnNewPlayerTurn;
     public Action OnNewEnemyTurn;
+
+    public Action OnCatsUseAutoAttack;
+    public Action OnEnemiesUseAutoAttack;
 }

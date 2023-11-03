@@ -57,12 +57,14 @@ public class Cat : Entity
     {
         Registry.events.OnNewPlayerTurn += ResetAbility;
         Registry.events.OnNewPlayerTurn += TriggerAllEffects;
+        Registry.events.OnCatsUseAutoAttack += UseAutoAttack;
     }
 
     private void OnDisable()
     {
         Registry.events.OnNewPlayerTurn -= ResetAbility;
         Registry.events.OnNewPlayerTurn -= TriggerAllEffects;
+        Registry.events.OnCatsUseAutoAttack -= UseAutoAttack;
     }
 
     private void ResetAbility() => isAbilityUsed = false;
