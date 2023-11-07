@@ -85,7 +85,7 @@ public class Entity : MonoBehaviour
             effects.Remove(effect);
         }
     }
-    
+
     public virtual void HandleDeath()
     {
         // do nothing in the parent

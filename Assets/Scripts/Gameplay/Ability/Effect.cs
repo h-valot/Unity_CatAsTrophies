@@ -1,3 +1,5 @@
+using Mono.Reflection;
+
 public class Effect
 {
     public EffectType type;
@@ -10,6 +12,7 @@ public class Effect
         type = _type;
         turnDuration = _turnDuration;
         sourceId = _sourceId;
+        
     }
     
     public void Trigger()
@@ -17,8 +20,10 @@ public class Effect
         switch (type)
         {
             case EffectType.Dot:
+                Misc.GetEntityById(sourceId).UpdateHealth(-1);
                 break;
             case EffectType.Hot:
+                Misc.GetEntityById(sourceId).UpdateHealth(1);
                 break;
             case EffectType.DebuffAttack:
                 break;
