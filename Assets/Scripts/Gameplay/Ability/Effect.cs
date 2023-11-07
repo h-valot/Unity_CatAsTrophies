@@ -41,7 +41,7 @@ public class Effect
                 break;
             case EffectType.Resistance: //Usable but actual value of resistance is to be determined
                 break;
-            case EffectType.PassArmor:
+            case EffectType.PassArmor: //Usable
                 break;
             case EffectType.ImmunityTurn:
                 break;

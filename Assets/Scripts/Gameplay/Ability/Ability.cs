@@ -348,7 +348,12 @@ public class Ability
                 {
                     temporaryAttack = temporaryAttack + 1;
                 }
-                Misc.GetEntityById(_targetId).UpdateHealth(-temporaryAttack);
+
+                if (source.HasEffect(EffectType.PassArmor))
+                {
+                    Misc.GetEntityById(_targetId).UpdateHealthNoArmor(-temporaryAttack);
+                }
+                else Misc.GetEntityById(_targetId).UpdateHealth(-temporaryAttack);
                 break;
 
             case InstructionType.Dot:

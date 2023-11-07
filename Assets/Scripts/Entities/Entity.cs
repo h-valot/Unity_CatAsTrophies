@@ -163,4 +163,25 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
     }
+
+    public void UpdateHealthNoArmor(int _value)
+    {
+        if (HasEffect(EffectType.Resistance))
+        {
+            _value = _value / 2;
+        }
+
+        health += _value;
+
+        if (health <= 0)
+        {
+            health = 0;
+            HandleDeath();
+        }
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
 }
