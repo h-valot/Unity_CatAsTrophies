@@ -17,12 +17,13 @@ MonoBehaviour:
   entityName: Ranger
   health: 10
   ability:
-    instructions:
-    - type: 26
-      value: 0
+    instructions: []
+  autoAttack:
+  - instructions:
+    - type: 20
+      value: 3
       target: 1
       us: 1
-  autoAttack: []
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
   baseMaterial: {fileID: 2100000, guid: dd0f14b6cd1dd3546b04d0fea6efb9c3, type: 2}
   rightHandAddon: {fileID: 919132149155446097, guid: ab7222940a5440640975341ada9eeaca, type: 3}

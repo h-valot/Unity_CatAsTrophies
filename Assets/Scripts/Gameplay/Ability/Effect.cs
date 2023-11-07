@@ -39,7 +39,7 @@ public class Effect
                 break;
             case EffectType.BuffArmor: //Usable
                 break;
-            case EffectType.Resistance:
+            case EffectType.Resistance: //Usable but actual value of resistance is to be determined
                 break;
             case EffectType.PassArmor:
                 break;

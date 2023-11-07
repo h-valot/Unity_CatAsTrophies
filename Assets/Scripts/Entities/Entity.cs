@@ -38,6 +38,11 @@ public class Entity : MonoBehaviour
     
     public void UpdateHealth(int _value)
     {
+        if(HasEffect(EffectType.Resistance))
+        {
+            _value = _value / 2;
+        }
+
         _value += armor;
         if (_value > 0)
         {
