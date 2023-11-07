@@ -338,9 +338,19 @@ public class Ability
         switch (_instruction.type)
         {
             case InstructionType.Damage:
-                Misc.GetEntityById(_targetId).UpdateHealth(-_instruction.value);
+                int temporaryAttack = _instruction.value;
+                if (source.HasEffect(EffectType.DebuffAttack))
+                {
+                    temporaryAttack= temporaryAttack - 1;
+                }
+                if (source.HasEffect(EffectType.BuffAttack))
+                {
+                    temporaryAttack = temporaryAttack + 1;
+                }
+                Misc.GetEntityById(_targetId).UpdateHealth(-temporaryAttack);
+                Debug.Log("Attack was "+ temporaryAttack);
                 break;
-            
+
             case InstructionType.Dot:
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Dot, _instruction.value);
                 break;

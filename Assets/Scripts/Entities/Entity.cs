@@ -36,6 +36,7 @@ public class Entity : MonoBehaviour
     public void UpdateHealth(int _value)
     {
         health += _value;
+        Debug.Log("Health is now " + health);
         
         if (health <= 0)
         {
