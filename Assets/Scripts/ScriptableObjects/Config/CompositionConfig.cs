@@ -5,15 +5,16 @@ using UnityEngine;
 public class CompositionConfig : ScriptableObject
 {
     public string id;
+    public bool isPlayerDeck;
 
     public string compositionName;
-    public List<EntityConfig> enemies = new List<EntityConfig>();
+    public List<EntityConfig> entities = new List<EntityConfig>();
 
     public void Initialize()
     {
         for (int i = 0; i < 3; i++)
         {
-            enemies.Add(new EntityConfig());
+            entities.Add(new EntityConfig());
         }
     }
 }

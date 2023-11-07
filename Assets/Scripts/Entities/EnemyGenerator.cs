@@ -31,7 +31,7 @@ public class EnemyGenerator : MonoBehaviour
         for (int enemyIndex = 0; enemyIndex < BattlefieldManager.Instance.enemyBattlePawns.Length; enemyIndex++)
         {
             // continue if the composition slot is empty
-            if (Registry.entitiesConfig.compositions[_compositionIndex].enemies[enemyIndex] == null) continue;
+            if (Registry.entitiesConfig.compositions[_compositionIndex].entities[enemyIndex] == null) continue;
             
             var newEnemyid = SpawnEnemyGraphics(_compositionIndex, enemyIndex);
             BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].Setup(newEnemyid);
@@ -42,9 +42,9 @@ public class EnemyGenerator : MonoBehaviour
     public string SpawnEnemyGraphics(int _compositionIndex, int _enemyIndex)
     {
         // creating enemy        
-        Enemy newEnemy = Instantiate(Registry.entitiesConfig.compositions[_compositionIndex].enemies[_enemyIndex].basePrefab, transform).GetComponent<Enemy>();
-        newEnemy.Initialize(Registry.entitiesConfig.enemies.IndexOf(Registry.entitiesConfig.compositions[_compositionIndex].enemies[_enemyIndex]));
-        newEnemy.name = $"Enemy_{totalEnemyCount}_{Registry.entitiesConfig.compositions[_compositionIndex].enemies[_enemyIndex].entityName}";
+        Enemy newEnemy = Instantiate(Registry.entitiesConfig.compositions[_compositionIndex].entities[_enemyIndex].basePrefab, transform).GetComponent<Enemy>();
+        newEnemy.Initialize(Registry.entitiesConfig.enemies.IndexOf(Registry.entitiesConfig.compositions[_compositionIndex].entities[_enemyIndex]));
+        newEnemy.name = $"Enemy_{totalEnemyCount}_{Registry.entitiesConfig.compositions[_compositionIndex].entities[_enemyIndex].entityName}";
         totalEnemyCount++;
         
         // store entities to lists (reference for misc's functions)

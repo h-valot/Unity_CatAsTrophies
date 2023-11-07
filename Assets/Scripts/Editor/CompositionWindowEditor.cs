@@ -14,6 +14,7 @@ public class CompositionWindowEditor : EditorWindow
     private string compositionName;
     private List<String> enemiesName = new List<string>();
     private List<int> enemiesIndex = new List<int>();
+        
     
     // window editor component
     private int id;
@@ -100,14 +101,14 @@ public class CompositionWindowEditor : EditorWindow
                 newInstance.Initialize();
                 var date = DateTime.Now;
                 newInstance.id = "Comp_" + date.ToString("yyyyMMdd_HHmmss_fff");
-            
+        
                 compositions.Add(newInstance);
                 UpdateInformations(newInstance);
                 canDisplayDetails = true;
             }
         }
         GUILayout.EndHorizontal();
-    
+
         GUILayout.Space(5);
 
         // LIST OF CATS
@@ -160,12 +161,12 @@ public class CompositionWindowEditor : EditorWindow
         
         // BASE INFORMATIONS
         compositionName = currentComposition.compositionName;
-        enemies = currentComposition.enemies;
+        enemies = currentComposition.entities;
 
         // INDEX TRANSPOSITIONS
         for (int i = 0; i < 3; i++)
         {
-            enemiesIndex[i] = FindEntitiesConfig().enemies.IndexOf(currentComposition.enemies[i]) + 1; 
+            enemiesIndex[i] = EditorMisc.FindEntitiesConfig().enemies.IndexOf(currentComposition.entities[i]) + 1; 
         }
         
         canDisplayDetails = true;
@@ -176,7 +177,7 @@ public class CompositionWindowEditor : EditorWindow
         GUILayout.BeginVertical("HelpBox");
         {
             enemiesName.Add("None");
-            foreach (EntityConfig enemy in FindEntitiesConfig().enemies)
+            foreach (EntityConfig enemy in EditorMisc.FindEntitiesConfig().enemies)
             {
                 enemiesName.Add(enemy.entityName);
             }
@@ -200,7 +201,7 @@ public class CompositionWindowEditor : EditorWindow
             }
             else
             {
-                enemies[_index] = FindEntitiesConfig().enemies[enemiesIndex[_index] - 1];
+                enemies[_index] = EditorMisc.FindEntitiesConfig().enemies[enemiesIndex[_index] - 1];
             }
             
             GUI.backgroundColor = Color.red;
@@ -220,7 +221,7 @@ public class CompositionWindowEditor : EditorWindow
         if (compositionName == "") return;
             
         // update data into current entity
-        currentComposition.enemies = enemies;
+        currentComposition.entities = enemies;
         currentComposition.compositionName = compositionName;
 
         // get the path
@@ -259,33 +260,15 @@ public class CompositionWindowEditor : EditorWindow
         {
             string assetPath = AssetDatabase.GUIDToAssetPath(fileGuid);
             CompositionConfig compositionConfig = AssetDatabase.LoadAssetAtPath<CompositionConfig>(assetPath);
-            compositions.Add(compositionConfig);
-        }
-    }
-    
-    private static EntitiesConfig FindEntitiesConfig()
-    {
-        // get all files with type "EntitiesConfig" in the project
-        string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(EntitiesConfig));
-        
-        if (fileGuidsArray.Length > 0)
-        {
-            // if file exists, get first EntitiesConfig and return it
-            string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
-            return AssetDatabase.LoadAssetAtPath<EntitiesConfig>(assetPath);
-        }
-        else
-        {
-            // if file does not exist, create a new EntitiesConfig and save it into a dedicated path
-            EntitiesConfig entitiesConfig = CreateInstance<EntitiesConfig>();
-            AssetDatabase.CreateAsset(entitiesConfig, "Assets/Configs/EntitiesConfig.asset");
-            AssetDatabase.SaveAssets();
-            return entitiesConfig;
+            if (!compositionConfig.isPlayerDeck)
+            {
+                compositions.Add(compositionConfig);
+            }
         }
     }
     
     private void UpdateEntitiesConfig()
     {
-        FindEntitiesConfig().compositions = compositions;
+        EditorMisc.FindEntitiesConfig().compositions = compositions;
     }
 }
