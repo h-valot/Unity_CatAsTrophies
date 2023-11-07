@@ -18,9 +18,9 @@ MonoBehaviour:
   health: 10
   ability:
     instructions:
-    - type: 16
-      value: 2
-      target: 1
+    - type: 17
+      value: 3
+      target: 4
       us: 1
   autoAttack: []
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}

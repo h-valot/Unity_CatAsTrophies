@@ -341,7 +341,7 @@ public class Ability
                 int temporaryAttack = _instruction.value;
                 if (source.HasEffect(EffectType.DebuffAttack))
                 {
-                    temporaryAttack= temporaryAttack - 1;
+                    temporaryAttack = temporaryAttack - 1;
                 }
                 if (source.HasEffect(EffectType.BuffAttack))
                 {
@@ -467,7 +467,16 @@ public class Ability
 
             case InstructionType.AddArmor:
                 // add armor to the target
-                Misc.GetEntityById(_targetId).UpdateArmor(_instruction.value);
+                int temporaryArmor = _instruction.value;
+                if (source.HasEffect(EffectType.BuffArmor))
+                {
+                    temporaryArmor = temporaryArmor + 1;
+                }
+                if (source.HasEffect(EffectType.DebuffArmor))
+                {
+                    temporaryArmor = temporaryArmor - 1;
+                }
+                Misc.GetEntityById(_targetId).UpdateArmor(temporaryArmor);
                 break;
         }
     }

@@ -15,7 +15,7 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_122655_817
   entityName: Priest
-  health: 5
+  health: 10
   ability:
     instructions: []
   autoAttack: []
