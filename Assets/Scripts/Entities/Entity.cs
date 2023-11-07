@@ -41,12 +41,12 @@ public class Entity : MonoBehaviour
         _value += armor;
         if (_value > 0)
         {
-            UpdateArmor(_value);
+            ArmorLoss(_value);
             _value = 0;
         }
         else
         {
-            UpdateArmor(0);
+            ArmorLoss(0);
         }
         health += _value;
 
@@ -136,5 +136,11 @@ public class Entity : MonoBehaviour
         }
         armor = temporaryArmor;
         Debug.Log("Armor is now set to " + temporaryArmor);
+    }
+
+    public void ArmorLoss(int _value)
+    {
+        armor = _value;
+        Debug.Log("Armor after the hit is " + armor);
     }
 }
