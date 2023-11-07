@@ -26,8 +26,10 @@ public class Entity : MonoBehaviour
         {
             // exceptions
             if (HasEffect(EffectType.Stun)) continue;
+            if (HasEffect(EffectType.Sleep)) continue;
 
             ability.Use(this);
+            break;
         }
     }
     

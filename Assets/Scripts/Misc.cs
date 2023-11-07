@@ -27,7 +27,7 @@ public static class Misc
     /// <returns>Cat that own the given id</returns>
     public static Cat GetCatById(string _id)
     {
-        Cat? output = null;
+        Cat output = null;
         
         for (int i = 0; i < CatGenerator.Instance.cats.Count; i++)
         {
