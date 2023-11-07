@@ -18,8 +18,8 @@ MonoBehaviour:
   health: 10
   ability:
     instructions:
-    - type: 17
-      value: 3
+    - type: 26
+      value: 0
       target: 1
       us: 1
   autoAttack: []

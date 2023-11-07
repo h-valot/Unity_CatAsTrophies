@@ -143,4 +143,19 @@ public class Entity : MonoBehaviour
         armor = _value;
         Debug.Log("Armor after the hit is " + armor);
     }
+
+    public void HealUpdate(int _value)
+    {
+        int temporaryHeal = _value;
+        if (HasEffect(EffectType.AntiHeal))
+        {
+            temporaryHeal = temporaryHeal - 1;
+        }
+        health = health + temporaryHeal;
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
 }

@@ -17,7 +17,11 @@ MonoBehaviour:
   entityName: Priest
   health: 10
   ability:
-    instructions: []
+    instructions:
+    - type: 7
+      value: 3
+      target: 1
+      us: 1
   autoAttack: []
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
   baseMaterial: {fileID: 2100000, guid: 3c9ffcb3914817a44af16c2466b8bc32, type: 2}

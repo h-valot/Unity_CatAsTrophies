@@ -27,17 +27,17 @@ public class Effect
                 break;
             case EffectType.DebuffAttack: //Usable
                 break;
-            case EffectType.DebuffArmor:
+            case EffectType.DebuffArmor: //Usable
                 break;
             case EffectType.Stun: //Usable
                 break;
             case EffectType.Sleep: //Usable
                 break;
-            case EffectType.AntiHeal:
+            case EffectType.AntiHeal: //Usable
                 break;
             case EffectType.BuffAttack: //Usable
                 break;
-            case EffectType.BuffArmor:
+            case EffectType.BuffArmor: //Usable
                 break;
             case EffectType.Resistance:
                 break;

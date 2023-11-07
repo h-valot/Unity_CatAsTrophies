@@ -377,7 +377,7 @@ public class Ability
                 break;
             
             case InstructionType.Heal:
-                Misc.GetEntityById(_targetId).UpdateHealth(_instruction.value);
+                Misc.GetEntityById(_targetId).HealUpdate(_instruction.value);
                 break;
             
             case InstructionType.Hot:
