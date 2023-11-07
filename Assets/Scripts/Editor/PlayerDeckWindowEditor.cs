@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -80,18 +79,10 @@ public class PlayerDeckWindowEditor : EditorWindow
     {
         catsIndex.Clear();
         catsName.Clear();
-        catsConfig.Clear();
-        catsCount.Clear();
         
         foreach (var cat in playerConfig.deckEntities)
         {
-            catsConfig.Add(cat);
             catsIndex.Add(EditorMisc.FindEntitiesConfig().cats.IndexOf(cat));
-        }
-
-        foreach (int count in playerConfig.deckEntitiesCount)
-        {
-            catsCount.Add(count);
         }
     }
     
@@ -186,8 +177,8 @@ public class PlayerDeckWindowEditor : EditorWindow
     private void LoadDataFromAsset()
     {
         playerConfig = EditorMisc.FindPlayerConfig();
-        catsConfig = playerConfig.deckEntities;
-        catsCount = playerConfig.deckEntitiesCount;
+        catsConfig = EditorMisc.FindPlayerConfig().deckEntities;
+        catsCount = EditorMisc.FindPlayerConfig().deckEntitiesCount;
     }
     
     private void UpdateEntitiesConfig()
