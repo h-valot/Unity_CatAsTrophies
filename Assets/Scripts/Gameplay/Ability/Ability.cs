@@ -467,16 +467,7 @@ public class Ability
 
             case InstructionType.AddArmor:
                 // add armor to the target
-                int temporaryArmor = _instruction.value;
-                if (source.HasEffect(EffectType.BuffArmor))
-                {
-                    temporaryArmor = temporaryArmor + 1;
-                }
-                if (source.HasEffect(EffectType.DebuffArmor))
-                {
-                    temporaryArmor = temporaryArmor - 1;
-                }
-                Misc.GetEntityById(_targetId).UpdateArmor(temporaryArmor);
+                Misc.GetEntityById(_targetId).UpdateArmor(_instruction.value);
                 break;
         }
     }

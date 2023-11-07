@@ -1,5 +1,7 @@
+using Mono.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Entity : MonoBehaviour
 {
@@ -123,7 +125,16 @@ public class Entity : MonoBehaviour
 
     public void UpdateArmor(int _value)
     {
-        armor = _value;
-        Debug.Log("Armor is now set to " + armor);
+        int temporaryArmor = _value;
+        if (HasEffect(EffectType.BuffArmor))
+        {
+            temporaryArmor = temporaryArmor + 1;
+        }
+        if (HasEffect(EffectType.DebuffArmor))
+        {
+            temporaryArmor = temporaryArmor - 1;
+        }
+        armor = temporaryArmor;
+        Debug.Log("Armor is now set to " + temporaryArmor);
     }
 }
