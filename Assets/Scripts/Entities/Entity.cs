@@ -24,6 +24,9 @@ public class Entity : MonoBehaviour
     {
         foreach (Ability ability in autoAttacks)
         {
+            // exceptions
+            if (HasEffect(EffectType.Stun)) continue;
+
             ability.Use(this);
         }
     }
@@ -89,5 +92,19 @@ public class Entity : MonoBehaviour
     public virtual void HandleDeath()
     {
         // do nothing in the parent
+    }
+
+    public bool HasEffect(EffectType _effectType)
+    {
+        bool output = false;
+        foreach (var effect in effects)
+        {
+            if (effect.type == _effectType)
+            {
+                output = true;
+                break;
+            }
+        }
+        return output;
     }
 }
