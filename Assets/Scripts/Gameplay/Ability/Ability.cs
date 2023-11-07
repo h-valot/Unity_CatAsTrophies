@@ -338,6 +338,7 @@ public class Ability
         switch (_instruction.type)
         {
             case InstructionType.Damage:
+                // Damage target for X amount
                 int temporaryAttack = _instruction.value;
                 if (source.HasEffect(EffectType.DebuffAttack))
                 {
@@ -351,6 +352,7 @@ public class Ability
                 break;
 
             case InstructionType.Dot:
+                // Aplies a 1 damage per turn at the begenning of the turn 
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Dot, _instruction.value);
                 break;
             
@@ -377,10 +379,12 @@ public class Ability
                 break;
             
             case InstructionType.Heal:
+                // Heals for an X amount
                 Misc.GetEntityById(_targetId).HealUpdate(_instruction.value);
                 break;
             
             case InstructionType.Hot:
+                // Heals 1 damage per turn at the beginning
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Hot, _instruction.value);
                 break;
             
@@ -393,34 +397,37 @@ public class Ability
                 break;
             
             case InstructionType.DebuffAttack:
-                // isn't use for the moment
+                // Debuff Damage done by 1
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.DebuffAttack, _instruction.value);
                 break;
             
             case InstructionType.DebuffArmor:
-                // isn't use for the moment
+                // Debuff armor gain by 1
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.DebuffArmor, _instruction.value);
                 break;
             
             case InstructionType.Stun:
+                // Forbids to an Entity to attack at the end of a turn
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Stun, _instruction.value);
                 break;
             
             case InstructionType.Sleep:
+                // Forbids to an Entity to attack at the end of a turn
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Sleep, _instruction.value);
                 break;
             
             case InstructionType.AntiHeal:
+                // Reduce heals received by 1
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.AntiHeal, _instruction.value);
                 break;
             
             case InstructionType.BuffAttack:
-                // isn't use for the moment
+                // Buff damage done by 1
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.BuffAttack, _instruction.value);
                 break;
             
             case InstructionType.BuffArmor:
-                // isn't use for the moment
+                // Buff armor gain by 1
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.BuffArmor, _instruction.value);
                 break;
             
