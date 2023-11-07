@@ -348,7 +348,6 @@ public class Ability
                     temporaryAttack = temporaryAttack + 1;
                 }
                 Misc.GetEntityById(_targetId).UpdateHealth(-temporaryAttack);
-                Debug.Log("Attack was "+ temporaryAttack);
                 break;
 
             case InstructionType.Dot:
@@ -464,6 +463,11 @@ public class Ability
             
             case InstructionType.Clone:
                 // isn't use for the moment
+                break;
+
+            case InstructionType.AddArmor:
+                // add armor to the target
+                Misc.GetEntityById(_targetId).UpdateArmor(_instruction.value);
                 break;
         }
     }

@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     [Header("GAMEPLAY")] 
     public float health;
     public float maxHealth;
+    public int armor = 0;
     public List<Ability> autoAttacks = new List<Ability>();
     public List<Effect> effects = new List<Effect>();
 
@@ -35,9 +36,18 @@ public class Entity : MonoBehaviour
     
     public void UpdateHealth(int _value)
     {
+        _value += armor;
+        if (_value > 0)
+        {
+            UpdateArmor(_value);
+            _value = 0;
+        }
+        else
+        {
+            UpdateArmor(0);
+        }
         health += _value;
-        Debug.Log("Health is now " + health);
-        
+
         if (health <= 0)
         {
             health = 0;
@@ -109,5 +119,11 @@ public class Entity : MonoBehaviour
             }
         }
         return output;
+    }
+
+    public void UpdateArmor(int _value)
+    {
+        armor = _value;
+        Debug.Log("Armor is now set to " + armor);
     }
 }

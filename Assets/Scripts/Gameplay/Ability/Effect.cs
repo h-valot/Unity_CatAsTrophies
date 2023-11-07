@@ -19,23 +19,23 @@ public class Effect
     {
         switch (type)
         {
-            case EffectType.Dot:
+            case EffectType.Dot: //Usable
                 Misc.GetEntityById(sourceId).UpdateHealth(-1);
                 break;
-            case EffectType.Hot:
+            case EffectType.Hot: //Usable
                 Misc.GetEntityById(sourceId).UpdateHealth(1);
                 break;
-            case EffectType.DebuffAttack:
+            case EffectType.DebuffAttack: //Usable
                 break;
             case EffectType.DebuffArmor:
                 break;
-            case EffectType.Stun:
+            case EffectType.Stun: //Usable
                 break;
-            case EffectType.Sleep:
+            case EffectType.Sleep: //Usable
                 break;
             case EffectType.AntiHeal:
                 break;
-            case EffectType.BuffAttack:
+            case EffectType.BuffAttack: //Usable
                 break;
             case EffectType.BuffArmor:
                 break;

@@ -37,7 +37,8 @@ public enum InstructionType
     Invisible,
     Repeat,
     Cleanse,
-    Clone
+    Clone,
+    AddArmor
 }
 
 public enum TargetType
