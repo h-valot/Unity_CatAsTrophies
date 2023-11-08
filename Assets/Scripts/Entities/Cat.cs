@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class Cat : Entity
@@ -69,7 +68,6 @@ public class Cat : Entity
     }
 
     private void ResetAbility() => isAbilityUsed = false;
-
     
     public bool CanMove() => state == CatState.InHand;
 
@@ -78,17 +76,19 @@ public class Cat : Entity
     /// </summary>
     public string PutInHand()
     {
+        // set the cat's position at an available position in the player's hand
         transform.position = HandManager.Instance.GetAvailablePosition();
         
+        // handle graphics tweaking
         graphicsParent.transform.eulerAngles = baseRotation;
         graphicsParent.transform.localScale = Vector3.one;
         graphicsParent.SetActive(true);
         gameObject.SetActive(true);
         
-        state = CatState.InHand;
-
+        // trigger animations
         animator.SetTrigger("IsInHand");
 
+        state = CatState.InHand;
         return id;
     }
     
@@ -97,6 +97,7 @@ public class Cat : Entity
     /// </summary>
     public void PlaceOnBattlefield()
     {
+        // handle graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;
         graphicsParent.transform.localScale *= battleScale;
         if (rightHandAddonRef)
@@ -104,10 +105,11 @@ public class Cat : Entity
             rightHandAddonRef.SetActive(true);
         }
 
-        state = CatState.OnBattle;
+        // trigger animations
         animator.SetTrigger("IsFighting");
         
         UseAbility();
+        state = CatState.OnBattle;
     }
 
     /// <summary>
@@ -127,21 +129,34 @@ public class Cat : Entity
     /// </summary>
     public void Withdraw()
     {
-        // exception
+        // exit if the cat is in the graveyard
         if (state == CatState.InGraveyard) return;
         
-        DiscardManager.Instance.AddCat(id);
+        // handle graphics tweaking
         graphicsParent.SetActive(false);
+        if (rightHandAddonRef)
+        {
+            rightHandAddonRef.SetActive(false);
+        }
         
+        DiscardManager.Instance.AddCat(id);
         state = CatState.Discarded;
     }
     
+    /// <summary>
+    /// Hide the cat's graphics and add a reference to it 
+    /// </summary>
     public override void HandleDeath()
     {
-        GraveyardManager.Instance.AddCat(id);
+        // handle graphics tweaking
         graphicsParent.SetActive(false);
+        if (rightHandAddonRef)
+        {
+            rightHandAddonRef.SetActive(false);
+        }
         
         state = CatState.InGraveyard;
+        GraveyardManager.Instance.AddCat(id);
     }
 }
 

@@ -15,8 +15,7 @@ public class GameBattleManager : MonoBehaviour
             return;
         }
         
-        // the order matters
-        // GAMEPLAY
+        // initialize all managers - the order matters
         DeckManager.Instance.Initialize();
         CatGenerator.Instance.Initialize();
         EnemyGenerator.Instance.Initialize();
@@ -24,11 +23,14 @@ public class GameBattleManager : MonoBehaviour
         HandManager.Instance.Initialize();
         BattlefieldManager.Instance.Initialize();
         DiscardManager.Instance.Initialize();
-        // UI
         MenuManager.Instance.Initialize();
 
-        // DEBUGGING
-        EnemyGenerator.Instance.GenerateComposition(0);
+        // instantiate player's deck of cats
+        DeckManager.Instance.LoadPlayerDeck();
+        DeckManager.Instance.ShuffleDeck();
+        
+        // debugging
+        DebugCompManager.Instance.InstantiateAllButtons();
         
         // start the game loop
         TurnManager.Instance.HandleTurnState();
