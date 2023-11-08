@@ -31,7 +31,7 @@ public class EnemyGenerator : MonoBehaviour
         for (int enemyIndex = 0; enemyIndex < BattlefieldManager.Instance.enemyBattlePawns.Length; enemyIndex++)
         {
             // continue if the composition slot is empty
-            if (Registry.entitiesConfig.compositions[_compositionIndex].entities[enemyIndex] == null) continue;
+            if (!Registry.entitiesConfig.compositions[_compositionIndex].entities[enemyIndex]) continue;
             
             var newEnemyid = SpawnEnemyGraphics(_compositionIndex, enemyIndex);
             BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].Setup(newEnemyid);

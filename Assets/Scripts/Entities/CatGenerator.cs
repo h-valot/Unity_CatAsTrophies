@@ -10,55 +10,38 @@ public class CatGenerator : MonoBehaviour
     
     public int totalCatCount;
     private Cat spawnedCat;
-    private GameObject spawnedCatGO;
+    private GameObject newCatGO;
 
     private void Awake() => Instance = this;
     
     public void Initialize()
     {
-        InstantiateCats();
-    }
-
-    private void InstantiateCats()
-    {
-        int j = 0;
-        for (int i = 0; i < Registry.playerConfig.deckLenght; i++)
-        {
-            Cat newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
-
-            newCat.gameObject.SetActive(false);
-            if (j > 3)
-            {
-                j = 0;
-            }
-            newCat.catType = j;
-            j++;
-            cats.Add(newCat);
-            EntityManager.Instance.entities.Add(newCat);
-            
-            // add this new cat into the deck
-            DeckManager.Instance.AddCat(newCat.id);
-        }
+        cats = new List<Cat>();
     }
     
     /// <summary>
-    /// Depool cat from the pool the instantiate them 
+    /// Link all cat type's specificities into the new instantiated cat.
     /// </summary>
     /// <param name="_typeIndex">Type of the cat</param>
     /// <param name="_pos">Position of the cat</param>
-    public string SpawnCatGraphics(int _typeIndex)
+    public void SpawnCatGraphics(int _typeIndex)
     {
-        // get cat game object and place it
-        spawnedCatGO = cats[totalCatCount].gameObject;
-        spawnedCatGO.name = $"Cat_{totalCatCount}_{Registry.entitiesConfig.cats[_typeIndex].entityName}";
-
+        Cat newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
+        
         // setup the cat
-        spawnedCat = spawnedCatGO.GetComponent<Cat>();
-        spawnedCat.Initialize(_typeIndex);
-        spawnedCat.ability = Registry.entitiesConfig.cats[_typeIndex].ability;
-        spawnedCat.PutInHand();
-        totalCatCount++;
+        newCat.Initialize(_typeIndex);
+        newCat.ability = Registry.entitiesConfig.cats[_typeIndex].ability;
+        newCat.autoAttacks = Registry.entitiesConfig.cats[_typeIndex].autoAttack;
+        
+        // register the entity in lists 
+        cats.Add(newCat);
+        EntityManager.Instance.entities.Add(newCat);
+        DeckManager.Instance.AddCat(newCat.id);
+        
+        // name the cat's game object
+        newCat.gameObject.name = $"Cat_{totalCatCount}_{Registry.entitiesConfig.cats[_typeIndex].entityName}";
+        newCat.graphicsParent.SetActive(false);
 
-        return spawnedCat.id;
+        totalCatCount++;
     }
 }
