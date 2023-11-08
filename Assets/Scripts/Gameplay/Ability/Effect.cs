@@ -1,3 +1,5 @@
+using Mono.Reflection;
+
 public class Effect
 {
     public EffectType type;
@@ -10,33 +12,36 @@ public class Effect
         type = _type;
         turnDuration = _turnDuration;
         sourceId = _sourceId;
+        
     }
     
     public void Trigger()
     {
         switch (type)
         {
-            case EffectType.Dot:
+            case EffectType.Dot: //Usable
+                Misc.GetEntityById(sourceId).UpdateHealth(-1);
                 break;
-            case EffectType.Hot:
+            case EffectType.Hot: //Usable
+                Misc.GetEntityById(sourceId).UpdateHealth(1);
                 break;
-            case EffectType.DebuffAttack:
+            case EffectType.DebuffAttack: //Usable
                 break;
-            case EffectType.DebuffArmor:
+            case EffectType.DebuffArmor: //Usable
                 break;
-            case EffectType.Stun:
+            case EffectType.Stun: //Usable
                 break;
-            case EffectType.Sleep:
+            case EffectType.Sleep: //Usable
                 break;
-            case EffectType.AntiHeal:
+            case EffectType.AntiHeal: //Usable
                 break;
-            case EffectType.BuffAttack:
+            case EffectType.BuffAttack: //Usable
                 break;
-            case EffectType.BuffArmor:
+            case EffectType.BuffArmor: //Usable
                 break;
-            case EffectType.Resistance:
+            case EffectType.Resistance: //Usable but actual value of resistance is to be determined
                 break;
-            case EffectType.PassArmor:
+            case EffectType.PassArmor: //Usable
                 break;
             case EffectType.ImmunityTurn:
                 break;

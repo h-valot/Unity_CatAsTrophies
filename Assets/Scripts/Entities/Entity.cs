@@ -1,5 +1,7 @@
+using Mono.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Entity : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Entity : MonoBehaviour
     [Header("GAMEPLAY")] 
     public float health;
     public float maxHealth;
+    public int armor = 0;
     public List<Ability> autoAttacks = new List<Ability>();
     public List<Effect> effects = new List<Effect>();
 
@@ -24,14 +27,34 @@ public class Entity : MonoBehaviour
     {
         foreach (Ability ability in autoAttacks)
         {
+            // exceptions
+            if (HasEffect(EffectType.Stun)) continue;
+            if (HasEffect(EffectType.Sleep)) continue;
+
             ability.Use(this);
+            break;
         }
     }
     
     public void UpdateHealth(int _value)
     {
+        if(HasEffect(EffectType.Resistance))
+        {
+            _value = _value / 2;
+        }
+
+        _value += armor;
+        if (_value > 0)
+        {
+            ArmorLoss(_value);
+            _value = 0;
+        }
+        else
+        {
+            ArmorLoss(0);
+        }
         health += _value;
-        
+
         if (health <= 0)
         {
             health = 0;
@@ -85,9 +108,80 @@ public class Entity : MonoBehaviour
             effects.Remove(effect);
         }
     }
-    
+
     public virtual void HandleDeath()
     {
         // do nothing in the parent
+    }
+
+    public bool HasEffect(EffectType _effectType)
+    {
+        bool output = false;
+        foreach (var effect in effects)
+        {
+            if (effect.type == _effectType)
+            {
+                output = true;
+                break;
+            }
+        }
+        return output;
+    }
+
+    public void UpdateArmor(int _value)
+    {
+        int temporaryArmor = _value;
+        if (HasEffect(EffectType.BuffArmor))
+        {
+            temporaryArmor = temporaryArmor + 1;
+        }
+        if (HasEffect(EffectType.DebuffArmor))
+        {
+            temporaryArmor = temporaryArmor - 1;
+        }
+        armor = temporaryArmor;
+        Debug.Log("Armor is now set to " + temporaryArmor);
+    }
+
+    public void ArmorLoss(int _value)
+    {
+        armor = _value;
+        Debug.Log("Armor after the hit is " + armor);
+    }
+
+    public void HealUpdate(int _value)
+    {
+        int temporaryHeal = _value;
+        if (HasEffect(EffectType.AntiHeal))
+        {
+            temporaryHeal = temporaryHeal - 1;
+        }
+        health = health + temporaryHeal;
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
+    public void UpdateHealthNoArmor(int _value)
+    {
+        if (HasEffect(EffectType.Resistance))
+        {
+            _value = _value / 2;
+        }
+
+        health += _value;
+
+        if (health <= 0)
+        {
+            health = 0;
+            HandleDeath();
+        }
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
 }

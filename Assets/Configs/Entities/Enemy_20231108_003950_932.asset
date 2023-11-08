@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d8bf9f601adc3478d30276cd5a2f5d, type: 3}
-  m_Name: Enemy_20231101_193616_032
+  m_Name: Enemy_20231108_003950_932
   m_EditorClassIdentifier: 
   isCat: 0
-  id: Enemy_20231101_193616_032
-  entityName: Debug
+  id: Enemy_20231108_003950_932
+  entityName: Debug 2
   health: 7
   ability:
     instructions: []
   autoAttack:
   - instructions:
-    - type: 21
-      value: 5
-      target: 0
-      us: 0
     - type: 0
       value: 5
       target: 1
       us: 0
-  basePrefab: {fileID: 5087666672669579333, guid: ca51a6e961891774b8c880dcd1d812f5, type: 3}
+  basePrefab: {fileID: 0}
   baseMaterial: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
