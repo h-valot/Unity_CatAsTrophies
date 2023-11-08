@@ -85,10 +85,23 @@ public class Entity : MonoBehaviour
     
     protected void TriggerAllEffects()
     {
-        foreach (Effect effect in effects)
+        List<Effect> effectsToRemove = new List<Effect>();
+        foreach (var effect in effects)
         {
             effect.Trigger();
+            
+            // if the effect expire, add it to a list of all effects to remove
+            if (effect.turnDuration <= 0)
+            {
+                effectsToRemove.Add(effect);
+            }
         }
+
+        // removes all expired effects
+        foreach (var effect in effectsToRemove)
+        {
+            effects.Remove(effect);
+        }        
     }
     
     public void ClearAllHarmfulEffects()
