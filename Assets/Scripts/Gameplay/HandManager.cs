@@ -25,14 +25,7 @@ public class HandManager : MonoBehaviour
     /// <param name="_catId">Type index of the cat</param>
     public void DrawCat(string _catId)
     {
-        if (CatGenerator.Instance.totalCatCount < Registry.playerConfig.deckLenght)
-        {
-            newCatId = CatGenerator.Instance.SpawnCatGraphics(Misc.GetCatById(_catId).catType);
-        }
-        else
-        {
-            newCatId = Misc.GetCatById(_catId).PutInHand();
-        }
+        newCatId = Misc.GetCatById(_catId).PutInHand();
         AddToHand(newCatId);
     }
     

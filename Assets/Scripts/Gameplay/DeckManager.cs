@@ -12,16 +12,42 @@ public class DeckManager : MonoBehaviour
     [Header("DEBUGGING")] 
     public List<string> catsInDeck;
 
+    /// <summary>
+    /// Initialize the list of cats
+    /// </summary>
     public void Initialize()
     {
         catsInDeck = new List<string>();
     }
 
-    public void AddCat(string _catIndex)
+    /// <summary>
+    /// Fulfill the player's deck with cats stored in the tool "Player Deck"
+    /// </summary>
+    public void LoadPlayerDeck()
     {
-        catsInDeck.Add(_catIndex);
+        for (int i = 0; i < Registry.playerConfig.deckEntities.Count; i++)
+        {
+            for (int j = 0; j < Registry.playerConfig.deckEntitiesCount[i]; j++)
+            {
+                CatGenerator.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(Registry.playerConfig.deckEntities[i]));
+            }
+        }
     }
 
+    /// <summary>
+    /// Add a new cat into the player's deck
+    /// </summary>
+    /// <param name="_catId">ID of the cat</param>
+    public void AddCat(string _catId)
+    {
+        catsInDeck.Add(_catId);
+    }
+
+    /// <summary>
+    /// Remove a cat from the deck.
+    /// If there are no more cats in the deck, merge all discarded cats into the deck, then shuffle it.
+    /// </summary>
+    /// <returns>The cat's id of the cat that has been removed</returns>
     public string RemoveCat()
     {
         if (catsInDeck.Count <= 0)
@@ -35,7 +61,10 @@ public class DeckManager : MonoBehaviour
         return output;
     }
 
-    private void ShuffleDeck()
+    /// <summary>
+    /// Randomly shuffle the player's deck
+    /// </summary>
+    public void ShuffleDeck()
     {
         catsInDeck = catsInDeck.OrderBy(_catId => Guid.NewGuid()).ToList();
     }
