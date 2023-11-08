@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class Cat : Entity
 {
-    [Header("REFERENCES")]
-    public GameObject graphicsParent;
-    public Animator animator;
-
     [Header("BONES")] 
     public GameObject boneHead;
     public GameObject boneHand_R;

@@ -17,7 +17,7 @@ public class DebugCompButton : MonoBehaviour
         bool battlefieldEmpty = true;
         foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
         {
-            if (battlePawn.entityIdLinked != "empty")
+            if (battlePawn.entityIdLinked != "")
             {
                 battlefieldEmpty = false;
                 break;

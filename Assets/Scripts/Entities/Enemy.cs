@@ -22,4 +22,14 @@ public class Enemy : Entity
         Registry.events.OnNewEnemyTurn -= TriggerAllEffects;
         Registry.events.OnEnemiesUseAutoAttack -= UseAutoAttack;
     }
+    
+    /// <summary>
+    /// Hide the cat's graphics and add a reference to it 
+    /// </summary>
+    public override void HandleDeath()
+    {
+        // handle graphics tweaking
+        graphicsParent.SetActive(false);
+        GraveyardManager.Instance.AddCat(id);
+    }
 }

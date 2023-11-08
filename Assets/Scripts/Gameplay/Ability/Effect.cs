@@ -1,5 +1,4 @@
-using Mono.Reflection;
-
+[System.Serializable]
 public class Effect
 {
     public EffectType type;

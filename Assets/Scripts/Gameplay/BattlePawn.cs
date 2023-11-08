@@ -3,7 +3,7 @@ using UnityEngine;
 public class BattlePawn : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [HideInInspector] public string entityIdLinked = "empty";
+    public string entityIdLinked;
 
     public void Setup(string _entityIdLinked)
     {

@@ -78,9 +78,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  graphicsParent: {fileID: 3045761098863965795}
+  animator: {fileID: 0}
   health: 0
   maxHealth: 0
+  armor: 0
   autoAttacks: []
+  effects: []
+  enemyType: 0
 --- !u!1 &7695710305184812310
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,14 @@
-using Mono.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public class Entity : MonoBehaviour
 {
     public string id;
 
+    [Header("REFERENCES")]
+    public GameObject graphicsParent;
+    public Animator animator;
+    
     [Header("GAMEPLAY")] 
     public float health;
     public float maxHealth;
@@ -18,7 +20,6 @@ public class Entity : MonoBehaviour
     {
         id = Misc.GetRandomId();
     }
-
 
     /// <summary>
     /// Use auto attacks abilities
