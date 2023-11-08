@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,9 @@ public class Entity : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject graphicsParent;
     public Animator animator;
-    
+
     [Header("GAMEPLAY")] 
+    public BattlePosition battlePosition;
     public float health;
     public float maxHealth;
     public int armor = 0;
@@ -198,4 +200,20 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
     }
+
+    /// <summary>
+    /// Update the entity position depending on the desired battle position
+    /// </summary>
+    /// <param name="_battlePosition">Desired position</param>
+    public virtual void UpdateBattlePosition(BattlePosition _battlePosition)
+    {
+        battlePosition = _battlePosition;
+    }
+}
+
+public enum BattlePosition
+{
+    Front = 0,
+    Middle,
+    Back
 }

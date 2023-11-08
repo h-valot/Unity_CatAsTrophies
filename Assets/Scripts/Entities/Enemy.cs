@@ -23,6 +23,14 @@ public class Enemy : Entity
         Registry.events.OnEnemiesUseAutoAttack -= UseAutoAttack;
     }
     
+    public override void UpdateBattlePosition(BattlePosition _battlePosition)
+    {
+        base.UpdateBattlePosition(_battlePosition);
+        
+        // set the entity position to the corresponding battle pawn
+        transform.position = BattlefieldManager.Instance.enemyBattlePawns[(int)battlePosition].transform.position;
+    }
+    
     /// <summary>
     /// Hide the cat's graphics and add a reference to it 
     /// </summary>
@@ -30,6 +38,6 @@ public class Enemy : Entity
     {
         // handle graphics tweaking
         graphicsParent.SetActive(false);
-        GraveyardManager.Instance.AddCat(id);
+        BattlefieldManager.Instance.RemoveFromBattlePawn(id);
     }
 }

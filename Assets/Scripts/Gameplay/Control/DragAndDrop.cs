@@ -62,7 +62,7 @@ public class DragAndDrop : MonoBehaviour
                 }
             }
             closestPawn.Setup(catDragged.id);
-            catDragged.transform.position = closestPawn.transform.position;
+            catDragged.UpdateBattlePosition(closestPawn.battlePosition);
             catDragged.PlaceOnBattlefield();
         }
         else

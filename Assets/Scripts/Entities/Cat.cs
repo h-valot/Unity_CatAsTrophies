@@ -89,7 +89,7 @@ public class Cat : Entity
     }
     
     /// <summary>
-    /// Place the cat onto the battlefield, update rotation, scale and the state
+    /// Update cat's rotation, scale, state and use this ability
     /// </summary>
     public void PlaceOnBattlefield()
     {
@@ -106,6 +106,14 @@ public class Cat : Entity
         
         UseAbility();
         state = CatState.OnBattle;
+    }
+    
+    public override void UpdateBattlePosition(BattlePosition _battlePosition)
+    {
+        base.UpdateBattlePosition(_battlePosition);
+        
+        // set the entity position to the corresponding battle pawn
+        transform.position = BattlefieldManager.Instance.catBattlePawns[(int)battlePosition].transform.position;
     }
 
     /// <summary>
@@ -150,6 +158,8 @@ public class Cat : Entity
         {
             rightHandAddonRef.SetActive(false);
         }
+        
+        BattlefieldManager.Instance.RemoveFromBattlePawn(id);
         
         state = CatState.InGraveyard;
         GraveyardManager.Instance.AddCat(id);
