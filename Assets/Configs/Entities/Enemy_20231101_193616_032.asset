@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCat: 0
   id: Enemy_20231101_193616_032
-  entityName: Debug
+  entityName: ChocoMuffin
   health: 7
   ability:
     instructions: []

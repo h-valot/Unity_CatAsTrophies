@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4053573383019069241}
   - component: {fileID: 7873850882373317942}
   m_Layer: 6
-  m_Name: CatGrey
+  m_Name: CatPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   id: 0
   health: 0
   maxHealth: 0
+  armor: 0
   autoAttacks: []
   graphicsParent: {fileID: 5399714602900072910}
   animator: {fileID: 319391137215211856}

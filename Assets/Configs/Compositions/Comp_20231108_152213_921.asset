@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccd7e178cdc42464dbd80b6f37c59b6b, type: 3}
-  m_Name: Comp_20231102_124651_268
+  m_Name: Comp_20231108_152213_921
   m_EditorClassIdentifier: 
-  id: Comp_20231102_124651_268
+  id: Comp_20231108_152213_921
+  isPlayerDeck: 0
   compositionName: Test
-  enemies:
-  - {fileID: 0}
+  entities:
   - {fileID: 11400000, guid: 49516181fd2586043957d00b559e4bb3, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
