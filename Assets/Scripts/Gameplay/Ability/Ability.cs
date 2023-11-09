@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
-public class Ability 
+public class Ability
 {
+    public AbilityAnimation animation;
     public List<Instruction> instructions = new List<Instruction>();
     
     private Entity source;
@@ -14,6 +16,8 @@ public class Ability
         // store last ability cast
         source = _source;
         Debug.Log($"ABILITY: use function entered with {source.name}");
+        
+        Animate();
         
         foreach (var instruction in instructions)
         {
@@ -28,6 +32,22 @@ public class Ability
         }
     }
 
+    public void Animate()
+    {
+        switch (animation)
+        {
+            case AbilityAnimation.Attacking:
+                source.animator.SetTrigger("IsAttacking");
+                break;
+            case AbilityAnimation.Casting:
+                source.animator.SetTrigger("IsCasting");
+                break;
+            case AbilityAnimation.Kicking:
+                source.animator.SetTrigger("IsKicking");
+                break;
+        }
+    }
+    
     private List<string> GetTargets(Instruction _instruction)
     {
         // initialization
@@ -483,4 +503,11 @@ public class Ability
                 break;
         }
     }
+}
+
+public enum AbilityAnimation
+{
+    Attacking = 0,
+    Casting,
+    Kicking
 }
