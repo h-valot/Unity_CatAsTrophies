@@ -17,6 +17,7 @@ MonoBehaviour:
   entityName: Wizard
   health: 10
   ability:
+    animation: 1
     instructions:
     - type: 15
       value: 3
