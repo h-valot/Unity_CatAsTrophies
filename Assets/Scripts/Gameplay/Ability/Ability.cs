@@ -329,11 +329,6 @@ public class Ability
         {
             Debug.Log("ABILITY MANAGER: there is no target for this ability");
         }
-
-        foreach (string targetId in targets)
-        {
-            Debug.Log($"ABILITY MANAGER: {Misc.GetEntityById(targetId).id} is a target");
-        }
         
         return targets;
     }
@@ -347,11 +342,11 @@ public class Ability
                 int temporaryAttack = _instruction.value;
                 if (source.HasEffect(EffectType.DebuffAttack))
                 {
-                    temporaryAttack = temporaryAttack - 1;
+                    temporaryAttack = temporaryAttack - Registry.gameSettings.debuffAttackAmout;
                 }
                 if (source.HasEffect(EffectType.BuffAttack))
                 {
-                    temporaryAttack = temporaryAttack + 1;
+                    temporaryAttack = temporaryAttack + Registry.gameSettings.buffAttackAmout;
                 }
 
                 if (source.HasEffect(EffectType.PassArmor))
@@ -362,7 +357,7 @@ public class Ability
                 break;
 
             case InstructionType.Dot:
-                // Aplies a 1 damage per turn at the begenning of the turn 
+                // Apply 1 damage per turn at the beginning of the turn 
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Dot, _instruction.value);
                 break;
             
@@ -495,6 +490,9 @@ public class Ability
         
         switch (animation)
         {
+            case AbilityAnimation.None:
+                // do nothing
+                break;
             case AbilityAnimation.Attacking:
                 source.animator.SetTrigger("IsAttacking");
                 break;
@@ -517,7 +515,8 @@ public class Ability
 
 public enum AbilityAnimation
 {
-    Attacking = 0,
+    None = 0,
+    Attacking,
     Casting,
     Kicking
 }

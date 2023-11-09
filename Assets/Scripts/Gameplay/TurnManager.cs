@@ -30,7 +30,6 @@ public class TurnManager : MonoBehaviour
                 // if there is no more cats in the deck, shuffle the graveyard into the deck
                 // handle the case where no cats can be draw
                 FulfillHand(5);
-                // Debug.Log("TURNMANAGER: the player's is filled");
                 
                 Registry.events.OnNewPlayerTurn?.Invoke();
                 
@@ -38,14 +37,12 @@ public class TurnManager : MonoBehaviour
                 // 1. place/replace cat on the battlefield to trigger their ability
                 // 2. activate the ability of a cat that is already on the battlefield
                 await HandlePlayerActions();
-                // Debug.Log("TURNMANAGER: the player did its three actions");
                 
                 // discard the player's hand
                 HandManager.Instance.DiscardHand();
                 
                 // cats use their auto attacks
                 Registry.events.OnCatsUseAutoAttack?.Invoke();
-                // Debug.Log("TURNMANAGER: cats attacked enemies");
                 
                 // give the turn to the enemies
                 state = TurnState.EnemyTurn;
@@ -60,7 +57,6 @@ public class TurnManager : MonoBehaviour
                 
                 // enemies uses their auto attacks
                 Registry.events.OnEnemiesUseAutoAttack?.Invoke();
-                Debug.Log("TURNMANAGER: enemies attacked cats");
                 
                 // re-launched a new turn
                 state = TurnState.PlayerTurn;

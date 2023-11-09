@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +23,12 @@ public class Entity : MonoBehaviour
     public Vector3 battleRotation;
     public Vector3 baseRotation;
     public float battleScale;
-
+    
+    public Action OnHealthChange;
+    public Action OnEffectAdded;
+    public Action OnEffectRemoved;
+    public Action OnBattlefieldEntered;
+    
     public void Initialize()
     {
         id = Misc.GetRandomId();
@@ -33,7 +39,7 @@ public class Entity : MonoBehaviour
     /// </summary>
     public void UseAutoAttack()
     {
-        foreach (Ability ability in autoAttacks)
+        foreach (var ability in autoAttacks)
         {
             // exceptions
             if (HasEffect(EffectType.Stun)) continue;
@@ -49,8 +55,7 @@ public class Entity : MonoBehaviour
         // apply resistance if
         // - has effect
         // - value update if inferior to 0 (we don't want to resistance the healing)
-        if(HasEffect(EffectType.Resistance) &&
-           _value < 0)
+        if(HasEffect(EffectType.Resistance))
         {
             // multiply the damage value by the resistance modifier
             _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
@@ -78,6 +83,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
+        
+        OnHealthChange?.Invoke();
     }
 
     public void ApplyEffect(EffectType _effectType, int _turnDuration)
@@ -94,6 +101,8 @@ public class Entity : MonoBehaviour
         
         // else, create a new effect
         effects.Add(new Effect(_effectType, _turnDuration, id));
+        
+        OnEffectAdded?.Invoke();
     }
     
     protected void TriggerAllEffects()
@@ -115,6 +124,8 @@ public class Entity : MonoBehaviour
         {
             effects.Remove(effect);
         }        
+        
+        OnEffectRemoved?.Invoke();
     }
     
     public void ClearAllHarmfulEffects()
@@ -133,11 +144,8 @@ public class Entity : MonoBehaviour
         {
             effects.Remove(effect);
         }
-    }
-
-    public virtual void HandleDeath()
-    {
-        // do nothing in the parent
+        
+        OnEffectRemoved?.Invoke();
     }
 
     public bool HasEffect(EffectType _effectType)
@@ -153,17 +161,22 @@ public class Entity : MonoBehaviour
         }
         return output;
     }
-
+    
+    public virtual void HandleDeath()
+    {
+        // do nothing in the parent
+    }
+    
     public void UpdateArmor(int _value)
     {
         int temporaryArmor = _value;
         if (HasEffect(EffectType.BuffArmor))
         {
-            temporaryArmor = temporaryArmor + 1;
+            temporaryArmor = temporaryArmor + Registry.gameSettings.buffArmorAmount;
         }
         if (HasEffect(EffectType.DebuffArmor))
         {
-            temporaryArmor = temporaryArmor - 1;
+            temporaryArmor = temporaryArmor - Registry.gameSettings.debuffArmorAmout;
         }
         armor = temporaryArmor;
         Debug.Log("Armor is now set to " + temporaryArmor);
@@ -180,7 +193,7 @@ public class Entity : MonoBehaviour
         int temporaryHeal = _value;
         if (HasEffect(EffectType.AntiHeal))
         {
-            temporaryHeal = temporaryHeal - 1;
+            temporaryHeal = temporaryHeal - Registry.gameSettings.antiHealAmout;
         }
         health = health + temporaryHeal;
 
@@ -188,13 +201,16 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
+        
+        OnHealthChange?.Invoke();
     }
 
     public void UpdateHealthNoArmor(int _value)
     {
         if (HasEffect(EffectType.Resistance))
         {
-            _value = _value / 2;
+            // multiply the damage value by the resistance modifier
+            _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
         }
 
         health += _value;
@@ -209,6 +225,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
+        
+        OnHealthChange?.Invoke();
     }
 
     /// <summary>

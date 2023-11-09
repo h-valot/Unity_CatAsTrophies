@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -15,9 +16,15 @@ public class Enemy : Entity
         health = maxHealth;
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
         
+        // update game stat on ui displayer
+        OnHealthChange?.Invoke();
+        OnEffectAdded?.Invoke();
+        
         // graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;
         graphicsParent.transform.localScale *= battleScale;
+        
+        OnBattlefieldEntered?.Invoke();
     }
     
     private void OnEnable()

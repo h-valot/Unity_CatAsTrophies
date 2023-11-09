@@ -17,9 +17,11 @@ MonoBehaviour:
   entityName: Ranger
   health: 10
   ability:
+    animation: 0
     instructions: []
   autoAttack:
-  - instructions:
+  - animation: 1
+    instructions:
     - type: 20
       value: 3
       target: 1

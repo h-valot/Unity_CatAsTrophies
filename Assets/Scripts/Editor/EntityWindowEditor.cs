@@ -58,7 +58,6 @@ public class EntityIntegration : EditorWindow
         {
             canDisplayDetails = false;
         }
-        
     }
 
     private void OnGUI()
@@ -176,7 +175,7 @@ public class EntityIntegration : EditorWindow
         // ABILITY
         GUILayout.Space(10);
         GUILayout.Label("ABILITY", EditorStyles.boldLabel);
-        DisplayInstructionList(ability.instructions);
+        DisplayInstructionList(ability);
         
 
         // AUTO ATTACK
@@ -259,7 +258,7 @@ public class EntityIntegration : EditorWindow
                 {
                     GUILayout.BeginVertical();
                     {
-                        DisplayInstructionList(autoAttackAbility.instructions);
+                        DisplayInstructionList(autoAttackAbility);
                     }
                     GUILayout.EndVertical();
                     GUILayout.BeginVertical();
@@ -283,10 +282,12 @@ public class EntityIntegration : EditorWindow
         GUILayout.EndVertical();
     }
 
-    private void DisplayInstructionList(List<Instruction> _instructions)
+    private void DisplayInstructionList(Ability _ability)
     {
         GUILayout.BeginVertical("HelpBox");
         {
+            _ability.animation = (AbilityAnimation)EditorGUILayout.EnumPopup("Animation type", _ability.animation);
+            
             // HEADER
             GUILayout.BeginHorizontal();
             {
@@ -294,15 +295,15 @@ public class EntityIntegration : EditorWindow
                 if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                 {
                     var newInstruction = new Instruction();
-                    _instructions.Add(newInstruction);
+                    _ability.instructions.Add(newInstruction);
                 }
             }
             GUILayout.EndHorizontal();
 
             // LIST
-            if (_instructions != null)
+            if (_ability != null)
             {
-                foreach (Instruction instruction in _instructions)
+                foreach (Instruction instruction in _ability.instructions)
                 {
                     GUILayout.BeginHorizontal("HelpBox");
                     {
@@ -325,7 +326,7 @@ public class EntityIntegration : EditorWindow
                             {
                                 if (EditorUtility.DisplayDialog("Delete Instruction", "Do you really want to permanently delete this instruction?", "Yes", "No"))
                                 {
-                                    _instructions.Remove(instruction);
+                                    _ability.instructions.Remove(instruction);
                                     return;
                                 }
                             }

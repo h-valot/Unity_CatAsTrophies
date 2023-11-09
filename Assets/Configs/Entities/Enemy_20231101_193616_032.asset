@@ -17,9 +17,11 @@ MonoBehaviour:
   entityName: ChocoMuffin
   health: 7
   ability:
+    animation: 0
     instructions: []
   autoAttack:
-  - instructions:
+  - animation: 1
+    instructions:
     - type: 21
       value: 5
       target: 0

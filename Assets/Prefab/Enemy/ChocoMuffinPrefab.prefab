@@ -78,16 +78,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  graphicsParent: {fileID: 3045761098863965795}
+  animator: {fileID: 2092680620852310547}
+  battlePosition: 0
   health: 0
   maxHealth: 0
   armor: 0
   autoAttacks: []
-  enemyType: 0
-  graphicsParent: {fileID: 3045761098863965795}
-  animator: {fileID: 2092680620852310547}
+  effects: []
   battleRotation: {x: 0, y: -90, z: 0}
   baseRotation: {x: 0, y: 0, z: 0}
   battleScale: 1.25
+  enemyType: 0
 --- !u!1001 &1369495421748448422
 PrefabInstance:
   m_ObjectHideFlags: 0

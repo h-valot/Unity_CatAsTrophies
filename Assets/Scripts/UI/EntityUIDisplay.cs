@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,30 +7,102 @@ using UnityEngine.UI;
 public class EntityUIDisplay : MonoBehaviour
 {
     [Header("REFERENCES")] 
-    public Entity entity;
+    public BattlePawn battlePawn;
+    public GameObject effectPrefab;
+    public Transform layoutGroup;
     
     [Header("UI DISPLAY")] 
     public GameObject canvasGO;
     public Image healthFillImage;
     public TextMeshProUGUI healthTM;
+    public TextMeshProUGUI armorTM;
+    public GameObject armorParent;
 
-    private void Update()
+    private List<GameObject> effectDisplays = new List<GameObject>();
+    private Entity entityRef;
+
+    private void Start()
     {
-        if (entity.TryGetComponent(out Cat cat))
+        armorParent.SetActive(false);
+        canvasGO.SetActive(false);
+    }
+    
+    public void OnEnable()
+    {
+        battlePawn.OnEntityUpdated += UpdateEntityRef;
+    }
+    
+    public void OnDisable()
+    {
+        battlePawn.OnEntityUpdated -= UpdateEntityRef;
+    }
+
+    private void UpdateEntityRef()
+    {
+        if (battlePawn.entityIdLinked != "")
+        {
+            entityRef = Misc.GetEntityById(battlePawn.entityIdLinked);
+            canvasGO.SetActive(true);
+            
+            entityRef.OnEffectAdded += UpdateEffectsDisplay;
+            entityRef.OnEffectRemoved += UpdateEffectsDisplay;
+            entityRef.OnHealthChange += UpdateHealthDisplay;
+            entityRef.OnBattlefieldEntered += UpdateHealthDisplay;
+        }
+        else
+        {
+            entityRef.OnEffectAdded -= UpdateEffectsDisplay;
+            entityRef.OnEffectRemoved -= UpdateEffectsDisplay;
+            entityRef.OnHealthChange -= UpdateHealthDisplay;
+            entityRef.OnBattlefieldEntered -= UpdateHealthDisplay;
+
+            canvasGO.SetActive(false);
+            entityRef = null;
+        }
+    }
+
+    private void UpdateHealthDisplay()
+    {
+        if (battlePawn.TryGetComponent(out Cat cat))
         {
             canvasGO.gameObject.SetActive(cat.state == CatState.OnBattle);
         }
         
-        if (entity.TryGetComponent(out Enemy enemy))
+        if (battlePawn.TryGetComponent(out Enemy enemy))
         {
             canvasGO.gameObject.SetActive(enemy.health > 0);
         }
 
-        // exit if the canvas isn't active
-        if (!canvasGO.activeInHierarchy) return;
-
         // update ui displays
-        healthFillImage.fillAmount = (float)entity.health / (float)entity.maxHealth;
-        healthTM.text = $"{entity.health}/{entity.maxHealth}";
+        healthFillImage.fillAmount = (float)entityRef.health / (float)entityRef.maxHealth;
+        healthTM.text = $"{entityRef.health}/{entityRef.maxHealth}";
+
+        if (entityRef.armor > 0)
+        {
+            armorParent.SetActive(true);
+            armorTM.text = entityRef.armor.ToString();
+        }
+        else
+        {
+            armorParent.SetActive(false);
+        }
+    }
+
+    private void UpdateEffectsDisplay()
+    {
+        // destroy all effects display
+        int effectDisplayCount = effectDisplays.Count;
+        for (int index = effectDisplayCount - 1; index >= 0; index--)
+        {
+            Destroy(effectDisplays[index]);
+        }
+
+        // instantiate all effects
+        foreach (var effect in entityRef.effects)
+        {
+            var newEffectDisplay = Instantiate(effectPrefab, layoutGroup).GetComponent<EffectUIDiplay>();
+            newEffectDisplay.UpdateDisplay(effect.type, effect.turnDuration);
+            effectDisplays.Add(newEffectDisplay.gameObject);
+        }
     }
 }
