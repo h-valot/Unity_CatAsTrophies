@@ -14,5 +14,7 @@ public class MainMenuManager : MonoBehaviour
             SceneManager.LoadScene("Init");
             return;
         }
+        
+        MenuManager.Instance.Initialize();
     }
 }
