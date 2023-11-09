@@ -13,6 +13,7 @@ public class Cat : Entity
     public Ability ability;
     public bool isAbilityUsed;
 
+    private Material material;
     private GameObject headAddonRef;
     private GameObject rightHandAddonRef;
     private GameObject leftHandAddonRef;
@@ -30,6 +31,9 @@ public class Cat : Entity
         ability = Registry.entitiesConfig.cats[catType].ability;
 
         // GRAPHICS
+        // Material update
+        material = Registry.entitiesConfig.cats[catType].baseMaterial;
+        skinnedMeshRenderer.material = material;
         // head addon
         headAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform, true);
         headAddonRef.transform.localPosition = Vector3.zero;

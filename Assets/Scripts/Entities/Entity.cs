@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject graphicsParent;
     public Animator animator;
+    public SkinnedMeshRenderer skinnedMeshRenderer;
 
     [Header("GAMEPLAY")] 
     public BattlePosition battlePosition;
