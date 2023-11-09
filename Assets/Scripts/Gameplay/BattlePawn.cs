@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BattlePawn : MonoBehaviour
@@ -6,14 +7,18 @@ public class BattlePawn : MonoBehaviour
     [HideInInspector] public BattlePosition battlePosition;
     public string entityIdLinked;
 
+    public Action OnEntityUpdated;
+    
     public void Setup(string _entityIdLinked)
     {
         entityIdLinked = _entityIdLinked;
+        OnEntityUpdated?.Invoke();
     }
 
     public void Free()
     {
         entityIdLinked = "";
+        OnEntityUpdated?.Invoke();
     }
 
     public bool IsLocked()

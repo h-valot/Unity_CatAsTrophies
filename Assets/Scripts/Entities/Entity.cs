@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +22,12 @@ public class Entity : MonoBehaviour
     public Vector3 battleRotation;
     public Vector3 baseRotation;
     public float battleScale;
-
+    
+    public Action OnHealthChange;
+    public Action OnEffectAdded;
+    public Action OnEffectRemoved;
+    public Action OnBattlefieldEntered;
+    
     public void Initialize()
     {
         id = Misc.GetRandomId();
@@ -76,6 +82,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
+        
+        OnHealthChange?.Invoke();
     }
 
     public void ApplyEffect(EffectType _effectType, int _turnDuration)
@@ -92,6 +100,8 @@ public class Entity : MonoBehaviour
         
         // else, create a new effect
         effects.Add(new Effect(_effectType, _turnDuration, id));
+        
+        OnEffectAdded?.Invoke();
     }
     
     protected void TriggerAllEffects()
@@ -113,6 +123,8 @@ public class Entity : MonoBehaviour
         {
             effects.Remove(effect);
         }        
+        
+        OnEffectRemoved?.Invoke();
     }
     
     public void ClearAllHarmfulEffects()
@@ -131,11 +143,8 @@ public class Entity : MonoBehaviour
         {
             effects.Remove(effect);
         }
-    }
-
-    public virtual void HandleDeath()
-    {
-        // do nothing in the parent
+        
+        OnEffectRemoved?.Invoke();
     }
 
     public bool HasEffect(EffectType _effectType)
@@ -151,7 +160,12 @@ public class Entity : MonoBehaviour
         }
         return output;
     }
-
+    
+    public virtual void HandleDeath()
+    {
+        // do nothing in the parent
+    }
+    
     public void UpdateArmor(int _value)
     {
         int temporaryArmor = _value;
@@ -186,6 +200,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
+        
+        OnHealthChange?.Invoke();
     }
 
     public void UpdateHealthNoArmor(int _value)
@@ -208,6 +224,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
+        
+        OnHealthChange?.Invoke();
     }
 
     /// <summary>

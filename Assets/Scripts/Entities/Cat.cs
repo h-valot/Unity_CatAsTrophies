@@ -28,6 +28,10 @@ public class Cat : Entity
         health = maxHealth;
         autoAttacks = Registry.entitiesConfig.cats[catType].autoAttack;
         ability = Registry.entitiesConfig.cats[catType].ability;
+        
+        // update game stat on ui displayer
+        OnHealthChange?.Invoke();
+        OnEffectAdded?.Invoke();
 
         // GRAPHICS
         // head addon
@@ -101,6 +105,7 @@ public class Cat : Entity
         
         UseAbility();
         state = CatState.OnBattle;
+        OnBattlefieldEntered?.Invoke();
     }
     
     public override void UpdateBattlePosition(BattlePosition _battlePosition)
