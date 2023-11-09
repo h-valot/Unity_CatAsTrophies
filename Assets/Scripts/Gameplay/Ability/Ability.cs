@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
-public class Ability 
+public class Ability
 {
+    public AbilityAnimation animation;
     public List<Instruction> instructions = new List<Instruction>();
     
     private Entity source;
@@ -14,6 +16,8 @@ public class Ability
         // store last ability cast
         source = _source;
         Debug.Log($"ABILITY: use function entered with {source.name}");
+        
+        Animate();
         
         foreach (var instruction in instructions)
         {
@@ -28,6 +32,22 @@ public class Ability
         }
     }
 
+    public void Animate()
+    {
+        switch (animation)
+        {
+            case AbilityAnimation.Attacking:
+                source.animator.SetTrigger("IsAttacking");
+                break;
+            case AbilityAnimation.Casting:
+                source.animator.SetTrigger("IsCasting");
+                break;
+            case AbilityAnimation.Kicking:
+                source.animator.SetTrigger("IsKicking");
+                break;
+        }
+    }
+    
     private List<string> GetTargets(Instruction _instruction)
     {
         // initialization
@@ -50,7 +70,7 @@ public class Ability
                 {
                     foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
                     {
-                        if (battlePawn.entityIdLinked != "empty")
+                        if (battlePawn.entityIdLinked != "")
                         {
                             targets.Add(battlePawn.entityIdLinked);
                         }
@@ -60,7 +80,7 @@ public class Ability
                 {
                     foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
                     {
-                        if (battlePawn.entityIdLinked != "empty")
+                        if (battlePawn.entityIdLinked != "")
                         {
                             targets.Add(battlePawn.entityIdLinked);
                         }
@@ -72,7 +92,7 @@ public class Ability
                 {
                     for (int i = 0; i < BattlefieldManager.Instance.catBattlePawns.Length; i++)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             break;
@@ -83,7 +103,7 @@ public class Ability
                 {
                     for (int i = 0; i < BattlefieldManager.Instance.enemyBattlePawns.Length; i++)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             break;
@@ -96,7 +116,7 @@ public class Ability
                 {
                     for (int i = 0; i < BattlefieldManager.Instance.catBattlePawns.Length; i++)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             if (targets.Count == 2)
@@ -110,7 +130,7 @@ public class Ability
                 {
                     for (int i = 0; i < BattlefieldManager.Instance.enemyBattlePawns.Length; i++)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             if (targets.Count == 2)
@@ -126,7 +146,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.catBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             break;
@@ -137,7 +157,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.enemyBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             break;
@@ -150,7 +170,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.catBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             if (targets.Count == 2)
@@ -164,7 +184,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.enemyBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             if (targets.Count == 2)
@@ -181,7 +201,7 @@ public class Ability
                     while (true)
                     {
                         int rndIndex = Random.Range(0, BattlefieldManager.Instance.catBattlePawns.Length);
-                        if (BattlefieldManager.Instance.catBattlePawns[rndIndex].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[rndIndex].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.catBattlePawns[rndIndex].entityIdLinked);
                             break;
@@ -193,7 +213,7 @@ public class Ability
                     while (true)
                     {
                         int rndIndex = Random.Range(0, BattlefieldManager.Instance.enemyBattlePawns.Length);
-                        if (BattlefieldManager.Instance.enemyBattlePawns[rndIndex].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[rndIndex].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.enemyBattlePawns[rndIndex].entityIdLinked);
                             break;
@@ -207,7 +227,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.catBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked).health;
                             if (currentEntityhealth < weakestEntityHealth)
@@ -223,7 +243,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.enemyBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked).health;
                             if (currentEntityhealth < weakestEntityHealth)
@@ -242,7 +262,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.catBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked).health;
                             if (currentEntityhealth > strongestEntityHealth)
@@ -258,7 +278,7 @@ public class Ability
                 {
                     for (int i = BattlefieldManager.Instance.enemyBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked).health;
                             if (currentEntityhealth > strongestEntityHealth)
@@ -277,7 +297,7 @@ public class Ability
                     // front
                     for (int i = 0; i < BattlefieldManager.Instance.catBattlePawns.Length; i++)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             break;
@@ -286,7 +306,7 @@ public class Ability
                     // back
                     for (int i = BattlefieldManager.Instance.catBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             break;
@@ -298,7 +318,7 @@ public class Ability
                     // front
                     for (int i = 0; i < BattlefieldManager.Instance.enemyBattlePawns.Length; i++)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             break;
@@ -307,7 +327,7 @@ public class Ability
                     // back
                     for (int i = BattlefieldManager.Instance.enemyBattlePawns.Length - 1; i >= 0; i--)
                     {
-                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "empty")
+                        if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
                             targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             break;
@@ -483,4 +503,11 @@ public class Ability
                 break;
         }
     }
+}
+
+public enum AbilityAnimation
+{
+    Attacking = 0,
+    Casting,
+    Kicking
 }

@@ -11,18 +11,43 @@ public class BattlefieldManager : MonoBehaviour
     [Header("SETTINGS")]
     public float distanceThreshold = 1f;
 
-    [Header("DEBUGGING")]
-    public string[] catsOnBattlefield;
-    public string[] enemiesOnBattlefield;
-        
     public void Awake() => Instance = this;
 
     public void Initialize()
     {
-        catsOnBattlefield = new string[3];
+        for (int i = 0; i < 3; i++)
+        {
+            catBattlePawns[i].battlePosition = (BattlePosition)i;
+            enemyBattlePawns[i].battlePosition = (BattlePosition)i;
+        }
     }
 
-    public BattlePawn GetNearestPawnFromCursor(Vector2 originPos)
+    public void RemoveFromBattlePawn(string _entityId)
+    {
+        if (Misc.GetEntityById(_entityId).TryGetComponent<Cat>(out var cat))
+        {
+            foreach (var battlePawn in catBattlePawns)
+            {
+                if (battlePawn.entityIdLinked == _entityId)
+                {
+                    battlePawn.Free();
+                }
+            }
+        }
+        
+        if (Misc.GetEntityById(_entityId).TryGetComponent<Enemy>(out var enemy))
+        {
+            foreach (var battlePawn in enemyBattlePawns)
+            {
+                if (battlePawn.entityIdLinked == _entityId)
+                {
+                    battlePawn.Free();
+                }
+            }
+        }
+    }
+
+    public BattlePawn GetNearestPawnFromCursor(Vector2 _originPos)
     {
         int closestPawnIndex = -1;
         float shortestDistance = 999;
@@ -34,7 +59,7 @@ public class BattlefieldManager : MonoBehaviour
             
             // getting the distance between both vectors
             Vector2 pawnPosition = new Vector2(Instance.catBattlePawns[i].transform.position.x, Instance.catBattlePawns[i].transform.position.y);
-            float distanceBetweenPositions = Vector2.Distance(originPos, pawnPosition);
+            float distanceBetweenPositions = Vector2.Distance(_originPos, pawnPosition);
 
             if (distanceBetweenPositions < shortestDistance)
             {
@@ -46,8 +71,8 @@ public class BattlefieldManager : MonoBehaviour
         return Instance.catBattlePawns[closestPawnIndex];
     }
 
-    public bool IsCloseEnough(Vector2 u, Vector2 v)
+    public bool IsCloseEnough(Vector2 _u, Vector2 _v)
     {
-        return Vector2.Distance(u, v) <= Instance.distanceThreshold;
+        return Vector2.Distance(_u, _v) <= Instance.distanceThreshold;
     }
 }

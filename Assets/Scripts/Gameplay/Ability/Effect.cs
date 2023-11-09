@@ -1,5 +1,4 @@
-using Mono.Reflection;
-
+[System.Serializable]
 public class Effect
 {
     public EffectType type;
@@ -50,12 +49,6 @@ public class Effect
         }
 
         turnDuration--;
-        
-        // if the effect expire, remove it
-        if (turnDuration <= 0)
-        {
-            Misc.GetEntityById(sourceId).effects.Remove(this);
-        }
     }
 }
 

@@ -18,6 +18,11 @@ public class EntityUIDisplay : MonoBehaviour
         {
             canvasGO.gameObject.SetActive(cat.state == CatState.OnBattle);
         }
+        
+        if (entity.TryGetComponent(out Enemy enemy))
+        {
+            canvasGO.gameObject.SetActive(enemy.health > 0);
+        }
 
         // exit if the canvas isn't active
         if (!canvasGO.activeInHierarchy) return;

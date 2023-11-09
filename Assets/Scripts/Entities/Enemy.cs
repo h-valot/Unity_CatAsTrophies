@@ -1,31 +1,16 @@
-using JetBrains.Annotations;
-using UnityEngine;
-
 public class Enemy : Entity
 {
     public int enemyType;
 
-    [Header("REFERENCES")]
-    public GameObject graphicsParent;
-    public Animator animator;
-
-    [Header("GRAPHICS TWEAKING")]
-    public Vector3 battleRotation;
-    public Vector3 baseRotation;
-    public float battleScale;
-
-
-    // Place enemy on battlefield 
     public void Initialize(int _enemyType)
     {
         base.Initialize();
         enemyType = _enemyType;
-
-        graphicsParent.transform.eulerAngles = battleRotation;
-        graphicsParent.transform.localScale *= battleScale;
-
+        
         // GAME STATS
-        autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;
+        maxHealth = Registry.entitiesConfig.cats[enemyType].health;
+        health = maxHealth;
+        autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
     }
     
     private void OnEnable()
@@ -38,5 +23,23 @@ public class Enemy : Entity
     {
         Registry.events.OnNewEnemyTurn -= TriggerAllEffects;
         Registry.events.OnEnemiesUseAutoAttack -= UseAutoAttack;
+    }
+    
+    public override void UpdateBattlePosition(BattlePosition _battlePosition)
+    {
+        base.UpdateBattlePosition(_battlePosition);
+        
+        // set the entity position to the corresponding battle pawn
+        transform.position = BattlefieldManager.Instance.enemyBattlePawns[(int)battlePosition].transform.position;
+    }
+    
+    /// <summary>
+    /// Hide the cat's graphics and add a reference to it 
+    /// </summary>
+    public override void HandleDeath()
+    {
+        // handle graphics tweaking
+        graphicsParent.SetActive(false);
+        BattlefieldManager.Instance.RemoveFromBattlePawn(id);
     }
 }

@@ -5,7 +5,7 @@ public class InputHandler : MonoBehaviour
     public static InputHandler Instance;
     
     [Header("REFERENCES")]
-    [SerializeField] private Camera cam;
+    [SerializeField] public Camera cam;
     [SerializeField] private LayerMask mask;
     
     [Header("DEBUGGING")]

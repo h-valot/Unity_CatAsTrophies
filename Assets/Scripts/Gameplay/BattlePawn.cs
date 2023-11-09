@@ -3,11 +3,17 @@ using UnityEngine;
 public class BattlePawn : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [HideInInspector] public string entityIdLinked = "empty";
+    [HideInInspector] public BattlePosition battlePosition;
+    public string entityIdLinked;
 
     public void Setup(string _entityIdLinked)
     {
         entityIdLinked = _entityIdLinked;
+    }
+
+    public void Free()
+    {
+        entityIdLinked = "";
     }
 
     public bool IsLocked()

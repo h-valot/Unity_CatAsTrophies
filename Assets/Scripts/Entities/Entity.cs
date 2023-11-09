@@ -1,13 +1,17 @@
-using Mono.Reflection;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public class Entity : MonoBehaviour
 {
     public string id;
 
+    [Header("REFERENCES")]
+    public GameObject graphicsParent;
+    public Animator animator;
+
     [Header("GAMEPLAY")] 
+    public BattlePosition battlePosition;
     public float health;
     public float maxHealth;
     public int armor = 0;
@@ -18,7 +22,6 @@ public class Entity : MonoBehaviour
     {
         id = Misc.GetRandomId();
     }
-
 
     /// <summary>
     /// Use auto attacks abilities
@@ -85,10 +88,23 @@ public class Entity : MonoBehaviour
     
     protected void TriggerAllEffects()
     {
-        foreach (Effect effect in effects)
+        List<Effect> effectsToRemove = new List<Effect>();
+        foreach (var effect in effects)
         {
             effect.Trigger();
+            
+            // if the effect expire, add it to a list of all effects to remove
+            if (effect.turnDuration <= 0)
+            {
+                effectsToRemove.Add(effect);
+            }
         }
+
+        // removes all expired effects
+        foreach (var effect in effectsToRemove)
+        {
+            effects.Remove(effect);
+        }        
     }
     
     public void ClearAllHarmfulEffects()
@@ -184,4 +200,20 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
     }
+
+    /// <summary>
+    /// Update the entity position depending on the desired battle position
+    /// </summary>
+    /// <param name="_battlePosition">Desired position</param>
+    public virtual void UpdateBattlePosition(BattlePosition _battlePosition)
+    {
+        battlePosition = _battlePosition;
+    }
+}
+
+public enum BattlePosition
+{
+    Front = 0,
+    Middle,
+    Back
 }
