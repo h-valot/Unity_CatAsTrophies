@@ -368,6 +368,7 @@ public class EntityIntegration : EditorWindow
         
         // save changes
         EditorUtility.SetDirty(currentEntity);
+        EditorUtility.SetDirty(EditorMisc.FindEntitiesConfig());
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }

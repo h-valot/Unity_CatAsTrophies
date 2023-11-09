@@ -170,6 +170,7 @@ public class PlayerDeckWindowEditor : EditorWindow
         
         // save changes
         EditorUtility.SetDirty(playerConfig);
+        EditorUtility.SetDirty(EditorMisc.FindPlayerConfig());
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }

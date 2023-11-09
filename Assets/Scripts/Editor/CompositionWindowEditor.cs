@@ -235,6 +235,7 @@ public class CompositionWindowEditor : EditorWindow
         
         // save changes
         EditorUtility.SetDirty(currentComposition);
+        EditorUtility.SetDirty(EditorMisc.FindEntitiesConfig());
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
