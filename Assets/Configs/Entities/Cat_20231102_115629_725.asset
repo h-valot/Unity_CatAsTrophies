@@ -17,9 +17,11 @@ MonoBehaviour:
   entityName: Warrior
   health: 10
   ability:
+    animation: 1
     instructions: []
   autoAttack:
-  - instructions:
+  - animation: 2
+    instructions:
     - type: 27
       value: 3
       target: 1
