@@ -20,7 +20,7 @@ MonoBehaviour:
     animation: 0
     instructions: []
   autoAttack:
-  - animation: 2
+  - animation: 1
     instructions:
     - type: 21
       value: 5

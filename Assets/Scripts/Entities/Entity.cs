@@ -32,7 +32,7 @@ public class Entity : MonoBehaviour
     /// </summary>
     public void UseAutoAttack()
     {
-        foreach (Ability ability in autoAttacks)
+        foreach (var ability in autoAttacks)
         {
             // exceptions
             if (HasEffect(EffectType.Stun)) continue;

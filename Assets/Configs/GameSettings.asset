@@ -13,3 +13,13 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   startingScene: GameBattle
+  abilityAnimationDuration: 0.75
+  holdingTimeToTriggerAbility: 0.75
+  dotDamageAmount: 1
+  hotHealAmount: 1
+  damageResistanceModifier: 0.5
+  antiHealAmout: 1
+  buffArmorAmount: 1
+  debuffArmorAmout: 1
+  buffAttackAmout: 1
+  debuffAttackAmout: 1

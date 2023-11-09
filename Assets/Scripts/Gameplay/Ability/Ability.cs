@@ -329,11 +329,6 @@ public class Ability
         {
             Debug.Log("ABILITY MANAGER: there is no target for this ability");
         }
-
-        foreach (string targetId in targets)
-        {
-            Debug.Log($"ABILITY MANAGER: {Misc.GetEntityById(targetId).id} is a target");
-        }
         
         return targets;
     }
@@ -495,6 +490,9 @@ public class Ability
         
         switch (animation)
         {
+            case AbilityAnimation.None:
+                // do nothing
+                break;
             case AbilityAnimation.Attacking:
                 source.animator.SetTrigger("IsAttacking");
                 break;
@@ -517,7 +515,8 @@ public class Ability
 
 public enum AbilityAnimation
 {
-    Attacking = 0,
+    None = 0,
+    Attacking,
     Casting,
     Kicking
 }

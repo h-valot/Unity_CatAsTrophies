@@ -17,7 +17,7 @@ MonoBehaviour:
   entityName: Priest
   health: 10
   ability:
-    animation: 1
+    animation: 2
     instructions:
     - type: 7
       value: 3
