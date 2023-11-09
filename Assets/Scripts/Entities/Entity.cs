@@ -48,8 +48,7 @@ public class Entity : MonoBehaviour
         // apply resistance if
         // - has effect
         // - value update if inferior to 0 (we don't want to resistance the healing)
-        if(HasEffect(EffectType.Resistance) &&
-           _value < 0)
+        if(HasEffect(EffectType.Resistance))
         {
             // multiply the damage value by the resistance modifier
             _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
@@ -158,11 +157,11 @@ public class Entity : MonoBehaviour
         int temporaryArmor = _value;
         if (HasEffect(EffectType.BuffArmor))
         {
-            temporaryArmor = temporaryArmor + 1;
+            temporaryArmor = temporaryArmor + Registry.gameSettings.buffArmorAmount;
         }
         if (HasEffect(EffectType.DebuffArmor))
         {
-            temporaryArmor = temporaryArmor - 1;
+            temporaryArmor = temporaryArmor - Registry.gameSettings.debuffArmorAmout;
         }
         armor = temporaryArmor;
         Debug.Log("Armor is now set to " + temporaryArmor);
@@ -179,7 +178,7 @@ public class Entity : MonoBehaviour
         int temporaryHeal = _value;
         if (HasEffect(EffectType.AntiHeal))
         {
-            temporaryHeal = temporaryHeal - 1;
+            temporaryHeal = temporaryHeal - Registry.gameSettings.antiHealAmout;
         }
         health = health + temporaryHeal;
 
@@ -193,7 +192,8 @@ public class Entity : MonoBehaviour
     {
         if (HasEffect(EffectType.Resistance))
         {
-            _value = _value / 2;
+            // multiply the damage value by the resistance modifier
+            _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
         }
 
         health += _value;

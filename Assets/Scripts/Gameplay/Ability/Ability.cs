@@ -347,11 +347,11 @@ public class Ability
                 int temporaryAttack = _instruction.value;
                 if (source.HasEffect(EffectType.DebuffAttack))
                 {
-                    temporaryAttack = temporaryAttack - 1;
+                    temporaryAttack = temporaryAttack - Registry.gameSettings.debuffAttackAmout;
                 }
                 if (source.HasEffect(EffectType.BuffAttack))
                 {
-                    temporaryAttack = temporaryAttack + 1;
+                    temporaryAttack = temporaryAttack + Registry.gameSettings.buffAttackAmout;
                 }
 
                 if (source.HasEffect(EffectType.PassArmor))
@@ -362,7 +362,7 @@ public class Ability
                 break;
 
             case InstructionType.Dot:
-                // Aplies a 1 damage per turn at the begenning of the turn 
+                // Apply 1 damage per turn at the beginning of the turn 
                 Misc.GetEntityById(_targetId).ApplyEffect(EffectType.Dot, _instruction.value);
                 break;
             

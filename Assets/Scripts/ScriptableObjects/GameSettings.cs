@@ -14,5 +14,11 @@ public class GameSettings : ScriptableObject
     [Header("EFFECTS")]
     public int dotDamageAmount;
     public int hotHealAmount;
-    public float damageResistanceModifier;
+    [Range(0f, 1f)] public float damageResistanceModifier;
+    public int antiHealAmout;
+    public int buffArmorAmount;
+    public int debuffArmorAmout;
+    public int buffAttackAmout;
+    public int debuffAttackAmout;
+    
 }
