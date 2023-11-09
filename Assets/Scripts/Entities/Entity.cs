@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     public GameObject graphicsParent;
     public Animator animator;
     public SkinnedMeshRenderer skinnedMeshRenderer;
+    public SpriteRenderer blobShadowRenderer;
 
     [Header("GAMEPLAY")] 
     public BattlePosition battlePosition;
