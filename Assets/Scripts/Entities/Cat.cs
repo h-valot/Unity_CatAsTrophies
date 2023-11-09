@@ -37,7 +37,7 @@ public class Cat : Entity
         // GRAPHICS
         // Material update
         material = Registry.entitiesConfig.cats[catType].baseMaterial;
-        skinnedMeshRenderer.material = material;
+        skinnedMeshRenderer.sharedMaterial = material;
         // head addon
         headAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform, true);
         headAddonRef.transform.localPosition = Vector3.zero;
