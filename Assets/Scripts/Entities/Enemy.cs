@@ -1,5 +1,8 @@
+using UnityEngine;
+
 public class Enemy : Entity
 {
+    [Header("DEBUGGING")]
     public int enemyType;
 
     public void Initialize(int _enemyType)
@@ -11,6 +14,10 @@ public class Enemy : Entity
         maxHealth = Registry.entitiesConfig.cats[enemyType].health;
         health = maxHealth;
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
+        
+        // graphics tweaking
+        graphicsParent.transform.eulerAngles = battleRotation;
+        graphicsParent.transform.localScale *= battleScale;
     }
     
     private void OnEnable()

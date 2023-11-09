@@ -122,22 +122,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18eac737ac6340488f010cbc0ade3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 
+  graphicsParent: {fileID: 5399714602900072910}
+  animator: {fileID: 319391137215211856}
+  battlePosition: 0
   health: 0
   maxHealth: 0
   armor: 0
   autoAttacks: []
-  graphicsParent: {fileID: 5399714602900072910}
-  animator: {fileID: 319391137215211856}
-  boneHead: {fileID: 2288940876047503702}
-  boneHand_R: {fileID: 7414425664818722317}
-  boneHand_L: {fileID: 3937091611081182108}
+  effects: []
   battleRotation: {x: 0, y: 100, z: 0}
   baseRotation: {x: -45, y: 165, z: 10}
   battleScale: 1.5
+  boneHead: {fileID: 2288940876047503702}
+  boneHand_R: {fileID: 7414425664818722317}
+  boneHand_L: {fileID: 3937091611081182108}
   catType: 0
   state: 0
   ability:
+    animation: 2
     instructions: []
   isAbilityUsed: 0
 --- !u!114 &7873850882373317942
@@ -548,6 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8350858523391789299}
   - component: {fileID: 1619854089767578772}
+  - component: {fileID: 9213590086497479054}
   - component: {fileID: 762712032296414012}
   - component: {fileID: 2567456898729281393}
   - component: {fileID: 1384480582567031425}
@@ -586,6 +590,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catDragged: {fileID: 4053573383019069241}
+--- !u!114 &9213590086497479054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025057064129520968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0dc3d932e2ab8459117f75ed6f1e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catUsed: {fileID: 4053573383019069241}
+  holdingTime: 0.75
 --- !u!33 &762712032296414012
 MeshFilter:
   m_ObjectHideFlags: 0

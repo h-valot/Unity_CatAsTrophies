@@ -6,11 +6,6 @@ public class Cat : Entity
     public GameObject boneHead;
     public GameObject boneHand_R;
     public GameObject boneHand_L;
-
-    [Header("GRAPHICS TWEAKING")] 
-    public Vector3 battleRotation;
-    public Vector3 baseRotation;
-    public float battleScale;
     
     [Header("DEBUGGING")]
     public int catType;

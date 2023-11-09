@@ -19,10 +19,10 @@ public class Effect
         switch (type)
         {
             case EffectType.Dot: //Usable
-                Misc.GetEntityById(sourceId).UpdateHealth(-1);
+                Misc.GetEntityById(sourceId).UpdateHealth(-Registry.gameSettings.dotDamageAmount);
                 break;
             case EffectType.Hot: //Usable
-                Misc.GetEntityById(sourceId).UpdateHealth(1);
+                Misc.GetEntityById(sourceId).UpdateHealth(Registry.gameSettings.hotHealAmount);
                 break;
             case EffectType.DebuffAttack: //Usable
                 break;

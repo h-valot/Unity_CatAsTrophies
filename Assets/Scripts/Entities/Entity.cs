@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +16,11 @@ public class Entity : MonoBehaviour
     public int armor = 0;
     public List<Ability> autoAttacks = new List<Ability>();
     public List<Effect> effects = new List<Effect>();
+
+    [Header("GRAPHICS TWEAKING")] 
+    public Vector3 battleRotation;
+    public Vector3 baseRotation;
+    public float battleScale;
 
     public void Initialize()
     {
@@ -41,9 +45,14 @@ public class Entity : MonoBehaviour
     
     public void UpdateHealth(int _value)
     {
-        if(HasEffect(EffectType.Resistance))
+        // apply resistance if
+        // - has effect
+        // - value update if inferior to 0 (we don't want to resistance the healing)
+        if(HasEffect(EffectType.Resistance) &&
+           _value < 0)
         {
-            _value = _value / 2;
+            // multiply the damage value by the resistance modifier
+            _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
         }
 
         _value += armor;

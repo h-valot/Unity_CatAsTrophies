@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,7 +17,7 @@ public class Ability
         // store last ability cast
         source = _source;
         Debug.Log($"ABILITY: use function entered with {source.name}");
-        
+
         Animate();
         
         foreach (var instruction in instructions)
@@ -29,22 +30,6 @@ public class Ability
             {
                 ApplyEffect(instruction, targetId);
             }
-        }
-    }
-
-    public void Animate()
-    {
-        switch (animation)
-        {
-            case AbilityAnimation.Attacking:
-                source.animator.SetTrigger("IsAttacking");
-                break;
-            case AbilityAnimation.Casting:
-                source.animator.SetTrigger("IsCasting");
-                break;
-            case AbilityAnimation.Kicking:
-                source.animator.SetTrigger("IsKicking");
-                break;
         }
     }
     
@@ -502,6 +487,31 @@ public class Ability
                 Misc.GetEntityById(_targetId).UpdateArmor(_instruction.value);
                 break;
         }
+    }
+    
+    public void Animate()
+    {
+        Timer(Registry.gameSettings.abilityAnimationDuration);
+        
+        switch (animation)
+        {
+            case AbilityAnimation.Attacking:
+                source.animator.SetTrigger("IsAttacking");
+                break;
+            case AbilityAnimation.Casting:
+                source.animator.SetTrigger("IsCasting");
+                break;
+            case AbilityAnimation.Kicking:
+                source.animator.SetTrigger("IsKicking");
+                break;
+        }
+    }
+
+    private async Task Timer(float _timerToWait)
+    {
+        await Task.Delay((int)(_timerToWait * 1000));
+        
+        source.animator.SetTrigger("IsFighting");
     }
 }
 

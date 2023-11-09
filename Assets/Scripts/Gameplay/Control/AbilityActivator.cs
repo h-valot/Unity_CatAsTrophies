@@ -4,7 +4,6 @@ using UnityEngine;
 public class AbilityActivator : MonoBehaviour
 {
     public Cat catUsed;
-    public float holdingTime;
     
     private bool isTouching;
     
@@ -14,7 +13,7 @@ public class AbilityActivator : MonoBehaviour
         if (!CanTriggerAbility()) return;
         
         isTouching = true;
-        Timer(holdingTime);
+        Timer(Registry.gameSettings.holdingTimeToTriggerAbility);
     }
 
     private void OnMouseUp()
