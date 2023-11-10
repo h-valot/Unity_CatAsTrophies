@@ -25,7 +25,7 @@ public class EntityIntegration : EditorWindow
     private int id;
     private Vector2 sideBarScroll, informationsScroll;
     private bool canDisplayDetails = true;
-    private ReorderableList reorderableList;
+    private EntitiesConfig entitiesConfig;
     #endregion
     
     [MenuItem("Tool/Entity")]
@@ -92,9 +92,6 @@ public class EntityIntegration : EditorWindow
             EditorGUILayout.EndVertical();
         }
         EditorGUILayout.EndHorizontal();
-        
-        // update modifications
-        UpdateEntitiesConfig();
     }
 
     private void DisplaySideBar()
@@ -366,11 +363,13 @@ public class EntityIntegration : EditorWindow
             AssetDatabase.CreateAsset(currentEntity, path);
         }
         
-        // save changes
+        // save changes on the entityConfig
         EditorUtility.SetDirty(currentEntity);
-        EditorUtility.SetDirty(EditorMisc.FindEntitiesConfig());
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+        
+        // update entities config
+        UpdateEntitiesConfig();
     }
 
     private void DeleteData()
@@ -389,10 +388,16 @@ public class EntityIntegration : EditorWindow
         AssetDatabase.DeleteAsset($"Assets/Configs/Entities/{currentEntity.id}.asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+        
+        // update entities config
+        UpdateEntitiesConfig();
     }
     
     private void LoadDataFromAsset()
     {
+        // load entities config
+        entitiesConfig = EditorMisc.FindEntitiesConfig();
+        
         // get all files with type "EntityConfig" in the project
         string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(EntityConfig));
 
@@ -412,10 +417,10 @@ public class EntityIntegration : EditorWindow
             }
         }
     }
-    
+
     private void UpdateEntitiesConfig()
     {
-        var entitiesConfig = EditorMisc.FindEntitiesConfig();
+        entitiesConfig = EditorMisc.FindEntitiesConfig();
         entitiesConfig.cats = cats;
         entitiesConfig.enemies = enemies;
         EditorUtility.SetDirty(entitiesConfig);

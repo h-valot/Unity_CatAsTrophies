@@ -20,6 +20,7 @@ public class CompositionWindowEditor : EditorWindow
     private int id;
     private Vector2 sideBarScroll, informationsScroll;
     private bool canDisplayDetails = true;
+    private EntitiesConfig entitiesConfig;
     #endregion
     
     [MenuItem("Tool/Compositions")]
@@ -84,9 +85,6 @@ public class CompositionWindowEditor : EditorWindow
             EditorGUILayout.EndVertical();
         }
         EditorGUILayout.EndHorizontal();
-        
-        // update modifications
-        UpdateEntitiesConfig();
     }
     
     private void DisplaySideBar()
@@ -166,7 +164,7 @@ public class CompositionWindowEditor : EditorWindow
         // INDEX TRANSPOSITIONS
         for (int i = 0; i < 3; i++)
         {
-            enemiesIndex[i] = EditorMisc.FindEntitiesConfig().enemies.IndexOf(currentComposition.entities[i]) + 1; 
+            enemiesIndex[i] = entitiesConfig.enemies.IndexOf(currentComposition.entities[i]) + 1; 
         }
         
         canDisplayDetails = true;
@@ -177,7 +175,7 @@ public class CompositionWindowEditor : EditorWindow
         GUILayout.BeginVertical("HelpBox");
         {
             enemiesName.Add("None");
-            foreach (EntityConfig enemy in EditorMisc.FindEntitiesConfig().enemies)
+            foreach (EntityConfig enemy in entitiesConfig.enemies)
             {
                 enemiesName.Add(enemy.entityName);
             }
@@ -201,7 +199,7 @@ public class CompositionWindowEditor : EditorWindow
             }
             else
             {
-                enemies[_index] = EditorMisc.FindEntitiesConfig().enemies[enemiesIndex[_index] - 1];
+                enemies[_index] = entitiesConfig.enemies[enemiesIndex[_index] - 1];
             }
             
             GUI.backgroundColor = Color.red;
@@ -235,9 +233,11 @@ public class CompositionWindowEditor : EditorWindow
         
         // save changes
         EditorUtility.SetDirty(currentComposition);
-        EditorUtility.SetDirty(EditorMisc.FindEntitiesConfig());
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+        
+        // update entities config
+        UpdateEntitiesConfig();
     }
 
     private void DeleteAssetData()
@@ -249,10 +249,16 @@ public class CompositionWindowEditor : EditorWindow
         AssetDatabase.DeleteAsset($"Assets/Configs/Compositions/{currentComposition.id}.asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+        
+        // update entities config
+        UpdateEntitiesConfig();
     }
     
     private void LoadDataFromAsset()
     {
+        // load entities config
+        entitiesConfig = EditorMisc.FindEntitiesConfig();
+        
         // get all files with type "CompositionConfig" in the project
         string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(CompositionConfig));
 
@@ -267,9 +273,11 @@ public class CompositionWindowEditor : EditorWindow
             }
         }
     }
-    
+
     private void UpdateEntitiesConfig()
     {
-        EditorMisc.FindEntitiesConfig().compositions = compositions;
+        entitiesConfig = EditorMisc.FindEntitiesConfig();
+        entitiesConfig.compositions = compositions;
+        EditorUtility.SetDirty(entitiesConfig);
     }
 }
