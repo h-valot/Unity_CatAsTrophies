@@ -17,8 +17,7 @@ public class Enemy : Entity
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
         
         // update game stat on ui displayer
-        OnHealthChange?.Invoke();
-        OnEffectAdded?.Invoke();
+        OnStatsUpdate?.Invoke();
         
         // graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;

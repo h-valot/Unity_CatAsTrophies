@@ -44,25 +44,22 @@ public class EntityUIDisplay : MonoBehaviour
             entityRef = Misc.GetEntityById(battlePawn.entityIdLinked);
             canvasGO.SetActive(true);
             
-            entityRef.OnEffectAdded += UpdateEffectsDisplay;
-            entityRef.OnEffectRemoved += UpdateEffectsDisplay;
-            entityRef.OnHealthChange += UpdateHealthDisplay;
-            entityRef.OnBattlefieldEntered += UpdateHealthDisplay;
+            entityRef.OnStatsUpdate += UpdateDisplay;
+
+            UpdateDisplay();
         }
         else
         {
-            entityRef.OnEffectAdded -= UpdateEffectsDisplay;
-            entityRef.OnEffectRemoved -= UpdateEffectsDisplay;
-            entityRef.OnHealthChange -= UpdateHealthDisplay;
-            entityRef.OnBattlefieldEntered -= UpdateHealthDisplay;
+            entityRef.OnStatsUpdate -= UpdateDisplay;
 
             canvasGO.SetActive(false);
             entityRef = null;
         }
     }
 
-    private void UpdateHealthDisplay()
+    private void UpdateDisplay()
     {
+        // get if the entity is a cat or an enemy
         if (battlePawn.TryGetComponent(out Cat cat))
         {
             canvasGO.gameObject.SetActive(cat.state == CatState.OnBattle);
@@ -77,6 +74,7 @@ public class EntityUIDisplay : MonoBehaviour
         healthFillImage.fillAmount = (float)entityRef.health / (float)entityRef.maxHealth;
         healthTM.text = $"{entityRef.health}/{entityRef.maxHealth}";
 
+        // update armor display
         if (entityRef.armor > 0)
         {
             armorParent.SetActive(true);
@@ -86,10 +84,7 @@ public class EntityUIDisplay : MonoBehaviour
         {
             armorParent.SetActive(false);
         }
-    }
-
-    private void UpdateEffectsDisplay()
-    {
+        
         // destroy all effects display
         int effectDisplayCount = effectDisplays.Count;
         for (int index = effectDisplayCount - 1; index >= 0; index--)

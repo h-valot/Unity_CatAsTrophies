@@ -25,9 +25,7 @@ public class Entity : MonoBehaviour
     public Vector3 baseRotation;
     public float battleScale;
     
-    public Action OnHealthChange;
-    public Action OnEffectAdded;
-    public Action OnEffectRemoved;
+    public Action OnStatsUpdate;
     public Action OnBattlefieldEntered;
     
     public void Initialize()
@@ -36,19 +34,20 @@ public class Entity : MonoBehaviour
     }
 
     /// <summary>
-    /// Use auto attacks abilities
+    /// Use a random auto attacks ability amoung the list of auto attacks abilities.
+    /// Cannot be used if the entity is stunned or slep
     /// </summary>
-    public void UseAutoAttack()
+    public virtual void UseAutoAttack()
     {
-        foreach (var ability in autoAttacks)
-        {
-            // exceptions
-            if (HasEffect(EffectType.Stun)) continue;
-            if (HasEffect(EffectType.Sleep)) continue;
+        // exit if entity is stunned or slep
+        if (HasEffect(EffectType.Stun)) return;
+        if (HasEffect(EffectType.Sleep)) return;
 
-            ability.Use(this);
-            break;
-        }
+        // exif if entity hasn't auto attacks
+        if (autoAttacks.Count == 0) return;
+        
+        // use a random ability
+        autoAttacks[UnityEngine.Random.Range(0, autoAttacks.Count - 1)].Use(this);
     }
     
     public void UpdateHealth(int _value)
@@ -85,9 +84,13 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
         
-        OnHealthChange?.Invoke();
+        OnStatsUpdate?.Invoke();
     }
 
+    /// <summary>
+    /// Apply the desired effect to this entity
+    /// </summary>
+    /// <param name="_turnDuration">Number of turn this effect will last</param>
     public void ApplyEffect(EffectType _effectType, int _turnDuration)
     {
         // increment the effect if already exists
@@ -96,6 +99,7 @@ public class Entity : MonoBehaviour
             if (effect.type == _effectType)
             {
                 effect.turnDuration += _turnDuration;
+                OnStatsUpdate?.Invoke();
                 return;
             }
         }
@@ -103,9 +107,12 @@ public class Entity : MonoBehaviour
         // else, create a new effect
         effects.Add(new Effect(_effectType, _turnDuration, id));
         
-        OnEffectAdded?.Invoke();
+        OnStatsUpdate?.Invoke();
     }
     
+    /// <summary>
+    /// Trigger all effects
+    /// </summary>
     protected void TriggerAllEffects()
     {
         List<Effect> effectsToRemove = new List<Effect>();
@@ -126,7 +133,7 @@ public class Entity : MonoBehaviour
             effects.Remove(effect);
         }        
         
-        OnEffectRemoved?.Invoke();
+        OnStatsUpdate?.Invoke();
     }
     
     public void ClearAllHarmfulEffects()
@@ -146,9 +153,12 @@ public class Entity : MonoBehaviour
             effects.Remove(effect);
         }
         
-        OnEffectRemoved?.Invoke();
+        OnStatsUpdate?.Invoke();
     }
 
+    /// <summary>
+    /// Browse all effects to check if this entity has the requested effect
+    /// </summary>
     public bool HasEffect(EffectType _effectType)
     {
         bool output = false;
@@ -181,12 +191,16 @@ public class Entity : MonoBehaviour
         }
         armor = temporaryArmor;
         Debug.Log("Armor is now set to " + temporaryArmor);
+        
+        OnStatsUpdate?.Invoke();
     }
 
     public void ArmorLoss(int _value)
     {
         armor = _value;
         Debug.Log("Armor after the hit is " + armor);
+        
+        OnStatsUpdate?.Invoke();
     }
 
     public void HealUpdate(int _value)
@@ -203,7 +217,7 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
         
-        OnHealthChange?.Invoke();
+        OnStatsUpdate?.Invoke();
     }
 
     public void UpdateHealthNoArmor(int _value)
@@ -227,7 +241,7 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
         
-        OnHealthChange?.Invoke();
+        OnStatsUpdate?.Invoke();
     }
 
     /// <summary>
