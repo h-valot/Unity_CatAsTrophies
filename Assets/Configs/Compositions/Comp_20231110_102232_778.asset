@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Comp_20231110_102232_778
   isPlayerDeck: 0
-  compositionName: B
+  compositionName: RGP
   entities:
-  - {fileID: 11400000, guid: 3dfd646d1dc55e049a884fdb9920fd18, type: 2}
+  - {fileID: 11400000, guid: 92e463e6d5d75624fb7b0595a6fd5d3d, type: 2}
+  - {fileID: 11400000, guid: 0a71da92363fb634d90ed10a94f31d6b, type: 2}
   - {fileID: 11400000, guid: 045f7c8b3c689dc449e05e129211e555, type: 2}
-  - {fileID: 11400000, guid: 2d617157b03d0204d91f618fea007689, type: 2}

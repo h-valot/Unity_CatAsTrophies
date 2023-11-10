@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Comp_20231110_175838_423
   isPlayerDeck: 0
-  compositionName: TEST3
+  compositionName: RYG
   entities:
-  - {fileID: 11400000, guid: d1e09af159e857d43828ea9a70a8fb7c, type: 2}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 2d617157b03d0204d91f618fea007689, type: 2}
+  - {fileID: 11400000, guid: 92e463e6d5d75624fb7b0595a6fd5d3d, type: 2}
+  - {fileID: 11400000, guid: 2a1dcafab2958734a89ae4ef6048c69c, type: 2}
+  - {fileID: 11400000, guid: 0a71da92363fb634d90ed10a94f31d6b, type: 2}
