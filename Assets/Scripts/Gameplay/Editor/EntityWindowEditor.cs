@@ -415,7 +415,9 @@ public class EntityIntegration : EditorWindow
     
     private void UpdateEntitiesConfig()
     {
-        EditorMisc.FindEntitiesConfig().cats = cats;
-        EditorMisc.FindEntitiesConfig().enemies = enemies;
+        var entitiesConfig = EditorMisc.FindEntitiesConfig();
+        entitiesConfig.cats = cats;
+        entitiesConfig.enemies = enemies;
+        EditorUtility.SetDirty(entitiesConfig);
     }
 }
