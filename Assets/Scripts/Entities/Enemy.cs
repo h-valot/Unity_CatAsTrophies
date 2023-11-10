@@ -12,7 +12,7 @@ public class Enemy : Entity
         enemyType = _enemyType;
         
         // GAME STATS
-        maxHealth = Registry.entitiesConfig.cats[enemyType].health;
+        maxHealth = Registry.entitiesConfig.enemies[enemyType].health;
         health = maxHealth;
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
         
