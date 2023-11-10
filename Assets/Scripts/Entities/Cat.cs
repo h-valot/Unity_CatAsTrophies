@@ -31,8 +31,7 @@ public class Cat : Entity
         ability = Registry.entitiesConfig.cats[catType].ability;
         
         // update game stat on ui displayer
-        OnHealthChange?.Invoke();
-        OnEffectAdded?.Invoke();
+        OnStatsUpdate?.Invoke();
 
         // GRAPHICS
         // Material update
@@ -83,7 +82,8 @@ public class Cat : Entity
         graphicsParent.transform.localScale = Vector3.one;
         graphicsParent.SetActive(true);
         gameObject.SetActive(true);
-        
+        blobShadowRenderer.enabled = false;
+
         // trigger animations
         animator.SetTrigger("IsInHand");
 
@@ -103,6 +103,7 @@ public class Cat : Entity
         {
             rightHandAddonRef.SetActive(true);
         }
+        blobShadowRenderer.enabled = true;
 
         // trigger animations
         animator.SetTrigger("IsFighting");
@@ -130,6 +131,17 @@ public class Cat : Entity
 
         ability.Use(this);
         isAbilityUsed = true;
+    }
+    
+    /// <summary>
+    /// Use auto attacks abilities
+    /// </summary>
+    public override void UseAutoAttack()
+    {
+        // exit if cat isn't on the battlefield
+        if (state != CatState.OnBattle) return;
+        
+        base.UseAutoAttack();
     }
     
     /// <summary>
