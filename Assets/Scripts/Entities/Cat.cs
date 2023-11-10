@@ -83,7 +83,8 @@ public class Cat : Entity
         graphicsParent.transform.localScale = Vector3.one;
         graphicsParent.SetActive(true);
         gameObject.SetActive(true);
-        
+        blobShadowRenderer.enabled = false;
+
         // trigger animations
         animator.SetTrigger("IsInHand");
 
@@ -103,6 +104,7 @@ public class Cat : Entity
         {
             rightHandAddonRef.SetActive(true);
         }
+        blobShadowRenderer.enabled = true;
 
         // trigger animations
         animator.SetTrigger("IsFighting");
