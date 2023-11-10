@@ -10,12 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccd7e178cdc42464dbd80b6f37c59b6b, type: 3}
-  m_Name: Comp_20231110_094846_671
+  m_Name: Comp_20231110_175823_734
   m_EditorClassIdentifier: 
-  id: Comp_20231110_094846_671
+  id: Comp_20231110_175823_734
   isPlayerDeck: 0
+<<<<<<< HEAD:Assets/Configs/Compositions/Comp_20231110_094846_671.asset
   compositionName: Yellow-Green-Pink
   entities:
   - {fileID: 11400000, guid: 2a1dcafab2958734a89ae4ef6048c69c, type: 2}
   - {fileID: 11400000, guid: 0a71da92363fb634d90ed10a94f31d6b, type: 2}
   - {fileID: 11400000, guid: 2a1dcafab2958734a89ae4ef6048c69c, type: 2}
+=======
+  compositionName: TEST2
+  entities:
+  - {fileID: 11400000, guid: 2a1dcafab2958734a89ae4ef6048c69c, type: 2}
+  - {fileID: 11400000, guid: 92e463e6d5d75624fb7b0595a6fd5d3d, type: 2}
+  - {fileID: 11400000, guid: 3dfd646d1dc55e049a884fdb9920fd18, type: 2}
+>>>>>>> gameplay:Assets/Configs/Compositions/Comp_20231110_175823_734.asset

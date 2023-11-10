@@ -12,11 +12,11 @@ public class Enemy : Entity
         enemyType = _enemyType;
         
         // GAME STATS
-        maxHealth = Registry.entitiesConfig.cats[enemyType].health;
+        maxHealth = Registry.entitiesConfig.enemies[enemyType].health;
         health = maxHealth;
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
         
-        // update game stat on ui displayer
+        // update game stat on ui display
         OnStatsUpdate?.Invoke();
         
         // graphics tweaking
@@ -52,7 +52,9 @@ public class Enemy : Entity
     public override void HandleDeath()
     {
         // handle graphics tweaking
-        graphicsParent.SetActive(false);
         BattlefieldManager.Instance.RemoveFromBattlePawn(id);
+        
+        // destroy the enemy
+        Destroy(gameObject);
     }
 }

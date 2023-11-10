@@ -1,3 +1,4 @@
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class HandManager : MonoBehaviour
@@ -17,6 +18,35 @@ public class HandManager : MonoBehaviour
     {
         // hand limit is 5
         Instance.catsInHand = new[] {"empty", "empty", "empty", "empty", "empty"};
+        ShowHand();
+    }
+    
+    /// <summary>
+    /// Set each cat in the hand inactive in the hierarchy
+    /// </summary>
+    public void HideHand()
+    {
+        foreach (string catId in catsInHand)
+        {
+            if (Misc.GetCatById(catId) != null)
+            {
+                Misc.GetCatById(catId).graphicsParent.SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Set each cat in the hand active in the hierarchy
+    /// </summary>
+    public void ShowHand()
+    {
+        foreach (string catId in catsInHand)
+        {
+            if (Misc.GetCatById(catId) != null)
+            {
+                Misc.GetCatById(catId).graphicsParent.SetActive(true);
+            }
+        }
     }
 
     /// <summary>

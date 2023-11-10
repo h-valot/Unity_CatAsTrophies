@@ -70,6 +70,9 @@ public class EntityUIDisplay : MonoBehaviour
             canvasGO.gameObject.SetActive(enemy.health > 0);
         }
 
+        // exit if the canvas isn't active in the hierarchy
+        if (!canvasGO.activeInHierarchy) return;
+        
         // update ui displays
         healthFillImage.fillAmount = (float)entityRef.health / (float)entityRef.maxHealth;
         healthTM.text = $"{entityRef.health}/{entityRef.maxHealth}";
