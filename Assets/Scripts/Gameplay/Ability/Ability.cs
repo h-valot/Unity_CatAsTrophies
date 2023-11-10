@@ -207,17 +207,17 @@ public class Ability
                 }
                 break;
             case TargetType.MostHealth:
-                float weakestEntityHealth = Mathf.Infinity; 
+                float strongestEntityHealth = 0; 
                 if (isTargetingCats)
                 {
                     for (int i = BattlefieldManager.Instance.catBattlePawns.Length - 1; i >= 0; i--)
                     {
                         if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
-                            float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked).health;
-                            if (currentEntityhealth < weakestEntityHealth)
+                            float currentEntityHealth = Misc.GetEntityById(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked).health;
+                            if (currentEntityHealth >= strongestEntityHealth)
                             {
-                                weakestEntityHealth = currentEntityhealth;
+                                strongestEntityHealth = currentEntityHealth;
                                 targets.Clear();
                                 targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             }
@@ -230,10 +230,10 @@ public class Ability
                     {
                         if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
-                            float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked).health;
-                            if (currentEntityhealth < weakestEntityHealth)
+                            float currentEntityHealth = Misc.GetEntityById(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked).health;
+                            if (currentEntityHealth >= strongestEntityHealth)
                             {
-                                weakestEntityHealth = currentEntityhealth;
+                                strongestEntityHealth = currentEntityHealth;
                                 targets.Clear();
                                 targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             }
@@ -242,17 +242,17 @@ public class Ability
                 }
                 break;
             case TargetType.LessHealth:
-                float strongestEntityHealth = 0; 
+                float weakestEntityHealth = 999999; 
                 if (isTargetingCats)
                 {
                     for (int i = BattlefieldManager.Instance.catBattlePawns.Length - 1; i >= 0; i--)
                     {
                         if (BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked != "")
                         {
-                            float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked).health;
-                            if (currentEntityhealth > strongestEntityHealth)
+                            float currentEntityHealth = Misc.GetEntityById(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked).health;
+                            if (currentEntityHealth <= weakestEntityHealth)
                             {
-                                strongestEntityHealth = currentEntityhealth;
+                                weakestEntityHealth = currentEntityHealth;
                                 targets.Clear();
                                 targets.Add(BattlefieldManager.Instance.catBattlePawns[i].entityIdLinked);
                             }
@@ -265,10 +265,10 @@ public class Ability
                     {
                         if (BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked != "")
                         {
-                            float currentEntityhealth = Misc.GetEntityById(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked).health;
-                            if (currentEntityhealth > strongestEntityHealth)
+                            float currentEntityHealth = Misc.GetEntityById(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked).health;
+                            if (currentEntityHealth <= weakestEntityHealth)
                             {
-                                strongestEntityHealth = currentEntityhealth;
+                                weakestEntityHealth = currentEntityHealth;
                                 targets.Clear();
                                 targets.Add(BattlefieldManager.Instance.enemyBattlePawns[i].entityIdLinked);
                             }
@@ -340,20 +340,25 @@ public class Ability
             case InstructionType.Damage:
                 // Damage target for X amount
                 int temporaryAttack = _instruction.value;
+                
                 if (source.HasEffect(EffectType.DebuffAttack))
                 {
-                    temporaryAttack = temporaryAttack - Registry.gameSettings.debuffAttackAmout;
+                    temporaryAttack -= Registry.gameSettings.debuffAttackAmout;
                 }
+                
                 if (source.HasEffect(EffectType.BuffAttack))
                 {
-                    temporaryAttack = temporaryAttack + Registry.gameSettings.buffAttackAmout;
+                    temporaryAttack += Registry.gameSettings.buffAttackAmout;
                 }
 
                 if (source.HasEffect(EffectType.PassArmor))
                 {
                     Misc.GetEntityById(_targetId).UpdateHealthNoArmor(-temporaryAttack);
                 }
-                else Misc.GetEntityById(_targetId).UpdateHealth(-temporaryAttack);
+                else
+                {
+                    Misc.GetEntityById(_targetId).UpdateHealth(-temporaryAttack);
+                }
                 break;
 
             case InstructionType.Dot:

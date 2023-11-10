@@ -16,7 +16,7 @@ public class Enemy : Entity
         health = maxHealth;
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
         
-        // update game stat on ui displayer
+        // update game stat on ui display
         OnStatsUpdate?.Invoke();
         
         // graphics tweaking
