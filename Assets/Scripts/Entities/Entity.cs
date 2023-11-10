@@ -181,12 +181,14 @@ public class Entity : MonoBehaviour
         }
         armor = temporaryArmor;
         Debug.Log("Armor is now set to " + temporaryArmor);
+        OnHealthChange?.Invoke();
     }
 
     public void ArmorLoss(int _value)
     {
         armor = _value;
         Debug.Log("Armor after the hit is " + armor);
+        OnHealthChange?.Invoke();
     }
 
     public void HealUpdate(int _value)

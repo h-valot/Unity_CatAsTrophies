@@ -17,17 +17,23 @@ MonoBehaviour:
   entityName: Wizard
   health: 10
   ability:
-    animation: 3
+    animation: 2
     instructions:
     - type: 15
-      value: 3
-      target: 1
-      us: 0
-    - type: 0
       value: 1
       target: 1
       us: 0
-  autoAttack: []
+    - type: 0
+      value: 2
+      target: 1
+      us: 0
+  autoAttack:
+  - animation: 2
+    instructions:
+    - type: 0
+      value: 2
+      target: 4
+      us: 0
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
   baseMaterial: {fileID: 2100000, guid: e0eae934c2b901440baae437076df3e1, type: 2}
   rightHandAddon: {fileID: 919132149155446097, guid: f82d0236c336666469fefc4d73861431, type: 3}
