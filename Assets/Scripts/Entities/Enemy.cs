@@ -52,7 +52,9 @@ public class Enemy : Entity
     public override void HandleDeath()
     {
         // handle graphics tweaking
-        graphicsParent.SetActive(false);
         BattlefieldManager.Instance.RemoveFromBattlePawn(id);
+        
+        // destroy the enemy
+        Destroy(gameObject);
     }
 }
