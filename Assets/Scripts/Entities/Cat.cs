@@ -31,8 +31,7 @@ public class Cat : Entity
         ability = Registry.entitiesConfig.cats[catType].ability;
         
         // update game stat on ui displayer
-        OnHealthChange?.Invoke();
-        OnEffectAdded?.Invoke();
+        OnStatsUpdate?.Invoke();
 
         // GRAPHICS
         // Material update
@@ -132,6 +131,17 @@ public class Cat : Entity
 
         ability.Use(this);
         isAbilityUsed = true;
+    }
+    
+    /// <summary>
+    /// Use auto attacks abilities
+    /// </summary>
+    public override void UseAutoAttack()
+    {
+        // exit if cat isn't on the battlefield
+        if (state != CatState.OnBattle) return;
+        
+        base.UseAutoAttack();
     }
     
     /// <summary>
