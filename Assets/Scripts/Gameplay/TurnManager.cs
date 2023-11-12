@@ -40,9 +40,10 @@ public class TurnManager : MonoBehaviour
                 
                 // discard the player's hand
                 HandManager.Instance.DiscardHand();
-                
+
                 // cats use their auto attacks
-                Registry.events.OnCatsUseAutoAttack?.Invoke();
+                await HandleCatsAutoAttacks();
+                //Registry.events.OnCatsUseAutoAttack?.Invoke(); //Old method using event (cool) but trigger every cat at the same time (not cool)
                 
                 // give the turn to the enemies
                 state = TurnState.EnemyTurn;
@@ -84,6 +85,15 @@ public class TurnManager : MonoBehaviour
         while (actionCounter < 3)
         {
             await Task.Delay(250);
+        }
+    }
+
+    //For each battle pawn associated with a cat (the white circle on the battlefield), get the entityId and trigger the UseAutoAttack function
+    private async Task HandleCatsAutoAttacks()
+    {
+        foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
+        {
+            Misc.GetEntityById(battlePawn.entityIdLinked).UseAutoAttack();
         }
     }
 }

@@ -84,6 +84,7 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
         
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -106,7 +107,8 @@ public class Entity : MonoBehaviour
         
         // else, create a new effect
         effects.Add(new Effect(_effectType, _turnDuration, id));
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
     
@@ -131,8 +133,9 @@ public class Entity : MonoBehaviour
         foreach (var effect in effectsToRemove)
         {
             effects.Remove(effect);
-        }        
-        
+        }
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
     
@@ -152,7 +155,8 @@ public class Entity : MonoBehaviour
         {
             effects.Remove(effect);
         }
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -191,7 +195,8 @@ public class Entity : MonoBehaviour
         }
         armor = temporaryArmor;
         Debug.Log("Armor is now set to " + temporaryArmor);
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -199,7 +204,8 @@ public class Entity : MonoBehaviour
     {
         armor = _value;
         Debug.Log("Armor after the hit is " + armor);
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -216,7 +222,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -240,7 +247,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
