@@ -94,6 +94,7 @@ public class TurnManager : MonoBehaviour
         foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
         {
             Misc.GetEntityById(battlePawn.entityIdLinked).UseAutoAttack();
+            await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
         }
     }
 }
