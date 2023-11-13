@@ -24,33 +24,47 @@ public class Cat : Entity
         state = CatState.InDeck;
         catType = _typeIndex;
         
-        // GAME STATS
+        // setup entity stats
         maxHealth = Registry.entitiesConfig.cats[catType].health;
         health = maxHealth;
         autoAttacks = Registry.entitiesConfig.cats[catType].autoAttack;
         ability = Registry.entitiesConfig.cats[catType].ability;
         
-        // update game stat on ui displayer
+        // update entity stats on the ui displayer
         OnStatsUpdate?.Invoke();
 
-        // GRAPHICS
-        // Material update
+        // graphics scale update
+        graphicsParent.transform.localScale *= battleScale;
+        
+        // graphics material update
         material = Registry.entitiesConfig.cats[catType].baseMaterial;
         skinnedMeshRenderer.sharedMaterial = material;
-        // head addon
-        headAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform, true);
-        headAddonRef.transform.localPosition = Vector3.zero;
-        headAddonRef.transform.localRotation = Quaternion.identity;
-        // right hand addon
-        if (Registry.entitiesConfig.cats[catType].rightHandAddon)
-        {
-            rightHandAddonRef = Instantiate(Registry.entitiesConfig.cats[catType].rightHandAddon, boneHand_R.transform, true);
-            rightHandAddonRef.transform.localPosition = Vector3.zero;
-            rightHandAddonRef.transform.localRotation = Quaternion.identity;
-            rightHandAddonRef.SetActive(false);
-        }
+        
+        // graphics instantiate addons
+        headAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform);
+        headAddonRef.SetActive(true);
+        rightHandAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].rightHandAddon, boneHand_R.transform);
+        leftHandAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].leftHandAddon, boneHand_L.transform);
     }
 
+    /// <summary>
+    /// Create a new addon and snap it to the desired bone
+    /// </summary>
+    /// <returns>The newly instantiated addon</returns>
+    private GameObject InstantiateAddon(GameObject _addonToInstantiate, Transform _bone)
+    {
+        // exit if the addon doesn't exist
+        if (!_addonToInstantiate) return null;
+        
+        var newAddon = Instantiate(_addonToInstantiate, _bone, true);
+        newAddon.transform.localPosition = Vector3.zero;
+        newAddon.transform.localRotation = Quaternion.identity;
+        newAddon.transform.localScale *= battleScale;
+        newAddon.SetActive(false);
+
+        return newAddon;
+    }
+    
     private void OnEnable()
     {
         Registry.events.OnNewPlayerTurn += ResetAbility;
@@ -79,7 +93,6 @@ public class Cat : Entity
         
         // handle graphics tweaking
         graphicsParent.transform.eulerAngles = baseRotation;
-        graphicsParent.transform.localScale = Vector3.one;
         graphicsParent.SetActive(true);
         gameObject.SetActive(true);
         blobShadowRenderer.enabled = false;
@@ -98,11 +111,8 @@ public class Cat : Entity
     {
         // handle graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;
-        graphicsParent.transform.localScale *= battleScale;
-        if (rightHandAddonRef)
-        {
-            rightHandAddonRef.SetActive(true);
-        }
+        if (rightHandAddonRef) rightHandAddonRef.SetActive(true);
+        if (leftHandAddonRef) leftHandAddonRef.SetActive(true);
         blobShadowRenderer.enabled = true;
 
         // trigger animations
@@ -151,13 +161,14 @@ public class Cat : Entity
     {
         // exit if the cat is in the graveyard
         if (state == CatState.InGraveyard) return;
+     
+        // handle entity stats tweaking 
+        armor = 0;
         
         // handle graphics tweaking
         graphicsParent.SetActive(false);
-        if (rightHandAddonRef)
-        {
-            rightHandAddonRef.SetActive(false);
-        }
+        if (rightHandAddonRef) rightHandAddonRef.SetActive(false);
+        if (leftHandAddonRef) leftHandAddonRef.SetActive(false);
         
         DiscardManager.Instance.AddCat(id);
         state = CatState.Discarded;

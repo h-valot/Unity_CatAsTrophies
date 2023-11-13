@@ -29,11 +29,11 @@ MonoBehaviour:
     - type: 7
       value: 2
       target: 0
-      us: 1
+      us: 0
     - type: 13
       value: 2
       target: 0
-      us: 1
+      us: 0
   basePrefab: {fileID: 5087666672669579333, guid: ca51a6e961891774b8c880dcd1d812f5, type: 3}
   baseMaterial: {fileID: 0}
   rightHandAddon: {fileID: 0}
