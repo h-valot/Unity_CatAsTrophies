@@ -33,9 +33,9 @@ public class EnemyGenerator : MonoBehaviour
             // continue if the composition slot is empty
             if (!Registry.entitiesConfig.compositions[_compositionIndex].entities[enemyIndex]) continue;
             
-            var newEnemyid = SpawnEnemyGraphics(_compositionIndex, enemyIndex);
-            BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].Setup(newEnemyid);
-            Misc.GetEntityById(newEnemyid).gameObject.transform.position = BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].transform.position;
+            var newEnemyId = SpawnEnemyGraphics(_compositionIndex, enemyIndex);
+            BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].Setup(newEnemyId);
+            Misc.GetEntityById(newEnemyId).gameObject.transform.position = BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].transform.position;
         }
     }
 

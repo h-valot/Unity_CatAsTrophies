@@ -10,6 +10,7 @@ public class DragAndDrop : MonoBehaviour
         if (!CanDrag()) return;
         
         HandManager.Instance.RemoveFromHand(catDragged.id);
+        HandManager.Instance.HideHand();
     }
 
     private void OnMouseDrag()
@@ -26,6 +27,7 @@ public class DragAndDrop : MonoBehaviour
         if (!CanDrag()) return;
         
         VerifyDistances();
+        HandManager.Instance.ShowHand();
     }
 
     /// <summary>

@@ -3,8 +3,15 @@ using UnityEngine;
 
 public static class EditorMisc
 {
+    private static EntitiesConfig entitiesConfigCache;
+    private static PlayerConfig playerConfigCache;
+    
     public static EntitiesConfig FindEntitiesConfig()
     {
+        // return the load already loaded in cache asset
+        if (entitiesConfigCache) return entitiesConfigCache;
+        
+        // else find this asset
         // get all files with type "EntitiesConfig" in the project
         string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(EntitiesConfig));
         
@@ -12,7 +19,7 @@ public static class EditorMisc
         {
             // if file exists, get first EntitiesConfig and return it
             string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
-            return AssetDatabase.LoadAssetAtPath<EntitiesConfig>(assetPath);
+            entitiesConfigCache = AssetDatabase.LoadAssetAtPath<EntitiesConfig>(assetPath);
         }
         else
         {
@@ -20,12 +27,18 @@ public static class EditorMisc
             EntitiesConfig entitiesConfig = ScriptableObject.CreateInstance<EntitiesConfig>();
             AssetDatabase.CreateAsset(entitiesConfig, "Assets/Configs/EntitiesConfig.asset");
             AssetDatabase.SaveAssets();
-            return entitiesConfig;
+            entitiesConfigCache = entitiesConfig;
         }
+
+        return entitiesConfigCache;
     }
     
     public static PlayerConfig FindPlayerConfig()
     {
+        // return the load already loaded in cache asset
+        if (playerConfigCache) return playerConfigCache;
+        
+        // else find this asset
         // get all files with type "PlayerConfig" in the project
         string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(PlayerConfig));
         
@@ -33,7 +46,7 @@ public static class EditorMisc
         {
             // if file exists, get first PlayerConfig and return it
             string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
-            return AssetDatabase.LoadAssetAtPath<PlayerConfig>(assetPath);
+            playerConfigCache = AssetDatabase.LoadAssetAtPath<PlayerConfig>(assetPath);
         }
         else
         {
@@ -41,7 +54,9 @@ public static class EditorMisc
             PlayerConfig playerConfig = ScriptableObject.CreateInstance<PlayerConfig>();
             AssetDatabase.CreateAsset(playerConfig, "Assets/Configs/PlayerConfig.asset");
             AssetDatabase.SaveAssets();
-            return playerConfig;
+            playerConfigCache = playerConfig;
         }
+
+        return playerConfigCache;
     }
 }
