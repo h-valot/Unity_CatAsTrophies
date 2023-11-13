@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     
     public Action OnStatsUpdate;
     public Action OnBattlefieldEntered;
+    public Action<string> OnDamageRecieved;
     
     public void Initialize()
     {
@@ -52,10 +53,11 @@ public class Entity : MonoBehaviour
     
     public void UpdateHealth(int _value)
     {
+        OnDamageRecieved?.Invoke(_value.ToString());
         // apply resistance if
         // - has effect
         // - value update if inferior to 0 (we don't want to resistance the healing)
-        if(HasEffect(EffectType.Resistance))
+        if (HasEffect(EffectType.Resistance))
         {
             // multiply the damage value by the resistance modifier
             _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);

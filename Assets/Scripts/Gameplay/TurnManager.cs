@@ -37,6 +37,8 @@ public class TurnManager : MonoBehaviour
                 // 1. place/replace cat on the battlefield to trigger their ability
                 // 2. activate the ability of a cat that is already on the battlefield
                 await HandlePlayerActions();
+
+
                 
                 // discard the player's hand
                 HandManager.Instance.DiscardHand();
@@ -57,8 +59,9 @@ public class TurnManager : MonoBehaviour
                 Registry.events.OnNewEnemyTurn?.Invoke();
                 
                 // enemies uses their auto attacks
-                Registry.events.OnEnemiesUseAutoAttack?.Invoke();
-                
+                await HandleEnemiesAutoAttacks();
+                //Registry.events.OnEnemiesUseAutoAttack?.Invoke(); //Old method using event (cool) but trigger every enemy at the same time (not cool)
+
                 // re-launched a new turn
                 state = TurnState.PlayerTurn;
                 HandleTurnState();
@@ -84,14 +87,23 @@ public class TurnManager : MonoBehaviour
         actionCounter = 0;
         while (actionCounter < 3)
         {
-            await Task.Delay(250);
+            await Task.Delay(100);
         }
+        await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
     }
 
     //For each battle pawn associated with a cat (the white circle on the battlefield), get the entityId and trigger the UseAutoAttack function
     private async Task HandleCatsAutoAttacks()
     {
         foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
+        {
+            Misc.GetEntityById(battlePawn.entityIdLinked).UseAutoAttack();
+            await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
+        }
+    }
+    private async Task HandleEnemiesAutoAttacks()
+    {
+        foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
         {
             Misc.GetEntityById(battlePawn.entityIdLinked).UseAutoAttack();
             await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));

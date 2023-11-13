@@ -5773,6 +5773,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1664467892403220765, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3787883428686790821, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_Name
       value: FrontPawnPosition
