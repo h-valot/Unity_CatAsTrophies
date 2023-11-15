@@ -224,6 +224,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3390268501445641277, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
+      propertyPath: battlePawn
+      value: 
+      objectReference: {fileID: 1385853207754393307}
     - target: {fileID: 3822459326892282776, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -254,11 +258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalPosition.x
@@ -270,23 +274,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7073306
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7068831
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -294,11 +298,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -315,30 +319,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7122918588479185929, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7891764731360700815}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
---- !u!1 &2328424499990284731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7122918588479185929, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}
-  m_PrefabInstance: {fileID: 4794513948691459506}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7891764731360700815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2328424499990284731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2b36e5d2a2e5b4eb4b7f6eed0c9bf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battlePawn: {fileID: 1385853207754393307}
-  effectPrefab: {fileID: 7185768634529788462, guid: c37035378f58172468396997f7244199, type: 3}
 --- !u!224 &2542762823056659775 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7043696167711176845, guid: f6e56ce43db940d498aee4f3a9bf6316, type: 3}

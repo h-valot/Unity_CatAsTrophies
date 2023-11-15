@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3745417304049161230}
   - component: {fileID: 3822459326892282776}
   - component: {fileID: 8738501669661680415}
+  - component: {fileID: 3390268501445641277}
   m_Layer: 6
   m_Name: ScrollingFeedback
   m_TagString: Untagged
@@ -102,6 +103,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3390268501445641277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122918588479185929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2b36e5d2a2e5b4eb4b7f6eed0c9bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battlePawn: {fileID: 0}
+  scrollingFeedbackElementPrefab: {fileID: 7759695325596405962, guid: c37035378f58172468396997f7244199, type: 3}
 --- !u!1 &7431704123299412443
 GameObject:
   m_ObjectHideFlags: 0

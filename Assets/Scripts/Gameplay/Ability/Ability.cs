@@ -16,7 +16,6 @@ public class Ability
     {
         // store last ability cast
         source = _source;
-        Debug.Log($"ABILITY: use function entered with {source.name}");
 
         Animate();
         
@@ -351,7 +350,7 @@ public class Ability
 
                 if (source.HasEffect(EffectType.PassArmor))
                 {
-                    Misc.GetEntityById(_targetId).UpdateHealthNoArmor(-temporaryAttack);
+                    Misc.GetEntityById(_targetId).UpdateHealthPassArmor(-temporaryAttack);
                 }
                 else Misc.GetEntityById(_targetId).UpdateHealth(-temporaryAttack);
                 break;
@@ -479,7 +478,7 @@ public class Ability
 
             case InstructionType.AddArmor:
                 // add armor to the target
-                Misc.GetEntityById(_targetId).UpdateArmor(_instruction.value);
+                Misc.GetEntityById(_targetId).IncreaseArmor(_instruction.value);
                 break;
         }
     }
