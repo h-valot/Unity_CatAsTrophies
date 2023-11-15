@@ -68,6 +68,7 @@ public class Cat : Entity
     private void OnEnable()
     {
         Registry.events.OnNewPlayerTurn += ResetAbility;
+        Registry.events.OnNewPlayerTurn += ResetArmor;
         Registry.events.OnNewPlayerTurn += TriggerAllEffects;
         Registry.events.OnCatsUseAutoAttack += UseAutoAttack;
     }
@@ -75,6 +76,7 @@ public class Cat : Entity
     private void OnDisable()
     {
         Registry.events.OnNewPlayerTurn -= ResetAbility;
+        Registry.events.OnNewPlayerTurn -= ResetArmor;
         Registry.events.OnNewPlayerTurn -= TriggerAllEffects;
         Registry.events.OnCatsUseAutoAttack -= UseAutoAttack;
     }
