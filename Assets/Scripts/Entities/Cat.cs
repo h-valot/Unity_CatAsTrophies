@@ -121,7 +121,6 @@ public class Cat : Entity
         animator.SetTrigger("IsFighting");
 
         int AttackingOrder = TurnManager.Instance.addCatAttackQueue(this); //Add the cat to the attack queue in the turn manager and return it's order of attack
-        Debug.Log(AttackingOrder);
 
         state = CatState.OnBattle;
         OnBattlefieldEntered?.Invoke();
@@ -147,7 +146,6 @@ public class Cat : Entity
     public void AddCatAttackQueue()
     {
         int AttackingOrder = TurnManager.Instance.addCatAttackQueue(this); //Add the cat to the attack queue in the turn manager and return it's order of attack
-        Debug.Log(AttackingOrder);
         isAbilityUsed = true;
     }
 
