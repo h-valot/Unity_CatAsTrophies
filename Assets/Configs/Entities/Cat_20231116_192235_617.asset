@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d8bf9f601adc3478d30276cd5a2f5d, type: 3}
-  m_Name: Cat_20231102_112940_322
+  m_Name: Cat_20231116_192235_617
   m_EditorClassIdentifier: 
   isCat: 1
-  id: Cat_20231102_112940_322
-  entityName: Ranger
+  id: Cat_20231116_192235_617
+  entityName: name1
   health: 10
   ability:
     animation: 0
     instructions: []
   autoAttack:
-  - animation: 1
+  - animation: 3
     instructions:
-    - type: 0
-      value: 4
-      target: 2
+    - type: 4
+      value: 2
+      target: 4
       us: 0
-  basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
-  baseMaterial: {fileID: 2100000, guid: 5cb2cc996cbb1924eb5a2f7980b36945, type: 2}
-  rightHandAddon: {fileID: 919132149155446097, guid: ab7222940a5440640975341ada9eeaca, type: 3}
+  basePrefab: {fileID: 0}
+  baseMaterial: {fileID: 0}
+  rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
-  headAddon: {fileID: 919132149155446097, guid: 8fee9ea669b768945b05af6c2100631c, type: 3}
+  headAddon: {fileID: 0}

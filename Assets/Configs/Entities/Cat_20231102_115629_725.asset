@@ -17,19 +17,15 @@ MonoBehaviour:
   entityName: Warrior
   health: 10
   ability:
-    animation: 2
+    animation: 0
+    instructions: []
+  autoAttack:
+  - animation: 2
     instructions:
     - type: 27
       value: 2
-      target: 3
-      us: 1
-  autoAttack:
-  - animation: 1
-    instructions:
-    - type: 0
-      value: 3
       target: 2
-      us: 0
+      us: 1
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
   baseMaterial: {fileID: 2100000, guid: dd0f14b6cd1dd3546b04d0fea6efb9c3, type: 2}
   rightHandAddon: {fileID: 919132149155446097, guid: 5e02864610f07d5419e36885e965a8b3, type: 3}
