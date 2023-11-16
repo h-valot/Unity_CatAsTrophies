@@ -6,6 +6,6 @@ public class PassTurn : MonoBehaviour
 {
     public void PassTurnButton()
     {
-        TurnManager.Instance.actionCounter = 3;
+        TurnManager.Instance.passTurn = true;
     }
 }

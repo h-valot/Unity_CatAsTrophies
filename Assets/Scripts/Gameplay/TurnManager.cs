@@ -1,4 +1,7 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -9,13 +12,15 @@ public class TurnManager : MonoBehaviour
     [Header("DEBUGGING")]
     public TurnState state;
     public int turnCounter;
-    public int actionCounter;
+    public bool passTurn;
+    public List<Entity> catAttackQueue; // Use to store reference of cats in for the attack phase
 
     private void Awake() => Instance = this;
     
     public void Initialize()
     {
         turnCounter = 0;
+        passTurn = false;
     }
     
     public async void HandleTurnState()
@@ -25,7 +30,11 @@ public class TurnManager : MonoBehaviour
             case TurnState.PlayerTurn:
                 
                 turnCounter++;
-                
+
+                // clear the attack queue of all cat reference
+                clearCatAttackQueue();
+                passTurn = false;
+
                 // discard the hand and fulfill it back
                 // if there is no more cats in the deck, shuffle the graveyard into the deck
                 // handle the case where no cats can be draw
@@ -34,18 +43,15 @@ public class TurnManager : MonoBehaviour
                 Registry.events.OnNewPlayerTurn?.Invoke();
                 
                 // await for the player to perform three actions:
-                // 1. place/replace cat on the battlefield to trigger their ability
-                // 2. activate the ability of a cat that is already on the battlefield
+                // 1. place/replace cat on the battlefield to put it in the attack queue
+                // 2. reactivate a cat that was already on the battlefield to put it on the attack queue
                 await HandlePlayerActions();
-
-
                 
                 // discard the player's hand
                 HandManager.Instance.DiscardHand();
 
-                // cats use their auto attacks
-                await HandleCatsAutoAttacks();
-                //Registry.events.OnCatsUseAutoAttack?.Invoke(); //Old method using event (cool) but trigger every cat at the same time (not cool)
+                // cats use their attacks
+                await HandleCatsAttacks();
                 
                 // give the turn to the enemies
                 state = TurnState.EnemyTurn;
@@ -58,9 +64,8 @@ public class TurnManager : MonoBehaviour
                 // new enemy turn
                 Registry.events.OnNewEnemyTurn?.Invoke();
                 
-                // enemies uses their auto attacks
-                await HandleEnemiesAutoAttacks();
-                //Registry.events.OnEnemiesUseAutoAttack?.Invoke(); //Old method using event (cool) but trigger every enemy at the same time (not cool)
+                // enemies uses their attacks
+                await HandleEnemiesAttacks();
 
                 // re-launched a new turn
                 state = TurnState.PlayerTurn;
@@ -84,8 +89,7 @@ public class TurnManager : MonoBehaviour
 
     private async Task HandlePlayerActions()
     {
-        actionCounter = 0;
-        while (actionCounter < 3)
+        while (catAttackQueue.Count < 3 || passTurn)
         {
             await Task.Delay(100);
         }
@@ -93,21 +97,34 @@ public class TurnManager : MonoBehaviour
     }
 
     //For each battle pawn associated with a cat (the white circle on the battlefield), get the entityId and trigger the UseAutoAttack function
-    private async Task HandleCatsAutoAttacks()
+    private async Task HandleCatsAttacks()
     {
-        foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
+        foreach (var Entity in catAttackQueue)
         {
-            Misc.GetEntityById(battlePawn.entityIdLinked).UseAutoAttack();
+            Entity.UseAutoAttack();
             await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
         }
     }
-    private async Task HandleEnemiesAutoAttacks()
+    private async Task HandleEnemiesAttacks()
     {
         foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
         {
             Misc.GetEntityById(battlePawn.entityIdLinked).UseAutoAttack();
             await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
         }
+    }
+
+    //Triggered by cat.cs when cat are placed on battlefield or when reactivated
+    public int addCatAttackQueue (Entity _CatReference)
+    {
+        catAttackQueue.Add(_CatReference);
+        return (catAttackQueue.Count);
+    }
+
+    //Triggered at the start of the player turn
+    public void clearCatAttackQueue()
+    {
+        catAttackQueue.Clear();
     }
 }
 
