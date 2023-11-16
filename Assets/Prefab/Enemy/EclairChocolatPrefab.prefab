@@ -91,7 +91,7 @@ MonoBehaviour:
   effects: []
   battleRotation: {x: 0, y: -90, z: 0}
   baseRotation: {x: 0, y: 0, z: 0}
-  battleScale: 1.25
+  battleScale: 1
   enemyType: 0
 --- !u!1 &8447845708646851671
 GameObject:
