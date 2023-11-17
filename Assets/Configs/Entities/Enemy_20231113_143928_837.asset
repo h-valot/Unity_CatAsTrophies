@@ -23,7 +23,7 @@ MonoBehaviour:
   - animation: 2
     instructions:
     - type: 27
-      value: 7
+      value: 5
       target: 0
       us: 0
     - type: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   - animation: 2
     instructions:
     - type: 27
-      value: 7
+      value: 5
       target: 0
       us: 0
     - type: 11

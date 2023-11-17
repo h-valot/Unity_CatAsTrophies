@@ -23,15 +23,15 @@ MonoBehaviour:
   - animation: 1
     instructions:
     - type: 0
-      value: 10
+      value: 100
       target: 3
       us: 0
     - type: 0
-      value: 10
+      value: 100
       target: 0
       us: 0
-  basePrefab: {fileID: 0}
-  baseMaterial: {fileID: 0}
-  rightHandAddon: {fileID: 0}
-  leftHandAddon: {fileID: 0}
-  headAddon: {fileID: 0}
+  basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
+  baseMaterial: {fileID: 2100000, guid: ab3efd3125da6c140afd6df3c6f76b61, type: 2}
+  rightHandAddon: {fileID: 919132149155446097, guid: b2e122dea678ff940b3e2786a279f23a, type: 3}
+  leftHandAddon: {fileID: 919132149155446097, guid: b2e122dea678ff940b3e2786a279f23a, type: 3}
+  headAddon: {fileID: 919132149155446097, guid: b2e122dea678ff940b3e2786a279f23a, type: 3}

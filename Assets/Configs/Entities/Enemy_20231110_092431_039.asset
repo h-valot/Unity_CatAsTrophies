@@ -32,7 +32,7 @@ MonoBehaviour:
       value: 1
       target: 8
       us: 0
-  basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
+  basePrefab: {fileID: 5087666672669579333, guid: 9867af5c47691e34588d7b87ae1b6ede, type: 3}
   baseMaterial: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}

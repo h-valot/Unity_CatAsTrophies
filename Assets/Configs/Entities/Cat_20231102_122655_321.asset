@@ -15,7 +15,7 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_122655_321
   entityName: Wizard
-  health: 10
+  health: 7
   ability:
     animation: 0
     instructions: []

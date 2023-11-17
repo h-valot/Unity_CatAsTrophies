@@ -15,7 +15,7 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_112940_322
   entityName: Ranger
-  health: 10
+  health: 6
   ability:
     animation: 0
     instructions: []

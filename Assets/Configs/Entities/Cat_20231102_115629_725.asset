@@ -15,7 +15,7 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_115629_725
   entityName: Warrior
-  health: 10
+  health: 8
   ability:
     animation: 0
     instructions: []
