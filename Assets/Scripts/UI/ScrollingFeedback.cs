@@ -26,17 +26,21 @@ public class ScollingFeedback : MonoBehaviour
 
     private void UpdateEntityRef()
     {
-        if (battlePawn.entityIdLinked != "")
+        if (battlePawn.entityIdLinked == "")
+        {
+            entityRef.OnStatusRecieved -= CreateScrollingFeedbackElement;
+            entityRef = null;
+        }
+        else if(entityRef == null)
         {
             entityRef = Misc.GetEntityById(battlePawn.entityIdLinked);
-            
             entityRef.OnStatusRecieved += CreateScrollingFeedbackElement;
         }
         else
         {
             entityRef.OnStatusRecieved -= CreateScrollingFeedbackElement;
-
-            entityRef = null;
+            entityRef = Misc.GetEntityById(battlePawn.entityIdLinked);
+            entityRef.OnStatusRecieved += CreateScrollingFeedbackElement;
         }
     }
 
