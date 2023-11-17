@@ -20,5 +20,13 @@ public class GameSettings : ScriptableObject
     public int debuffArmorAmout;
     public int buffAttackAmout;
     public int debuffAttackAmout;
-    
+
+    [Header("SCROLLING TEXT EFFECT")]
+    public float scrollingFeedbackLifetime;
+    public float defaultFontSize;
+    public float effectFontSize;
+    public Color colorTextDamage;
+    public Color colorTextHeal;
+    public Color colorTextArmor;
+    public Color colorTextEffect;
 }

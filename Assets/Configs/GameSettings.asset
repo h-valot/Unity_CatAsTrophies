@@ -23,3 +23,10 @@ MonoBehaviour:
   debuffArmorAmout: 1
   buffAttackAmout: 1
   debuffAttackAmout: 1
+  scrollingFeedbackLifetime: 2
+  defaultFontSize: 0.5
+  effectFontSize: 0.2
+  colorTextDamage: {r: 0.5754717, g: 0, b: 0, a: 1}
+  colorTextHeal: {r: 0.4483544, g: 0.8301887, b: 0.12922749, a: 1}
+  colorTextArmor: {r: 0, g: 0.6759999, b: 1, a: 1}
+  colorTextEffect: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
