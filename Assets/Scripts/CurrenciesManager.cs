@@ -5,6 +5,7 @@ using TMPro;
 
 public class CurrenciesManager : MonoBehaviour
 {
+    public static CurrenciesManager instance;
     public int Tuna = 0;
     public int Treats = 0;
     public TMP_Text TunaText;
