@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EntitiesConfig", menuName = "Config/Entities", order = 1)]
+[CreateAssetMenu(fileName = "EntitiesConfig", menuName = "Config/Entity/Entities", order = 2)]
 public class EntitiesConfig : ScriptableObject
 {
     [Header("TEAMS")]

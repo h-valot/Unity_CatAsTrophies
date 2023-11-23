@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd33a257ea5a3d342a714575b67328e8, type: 3}
+  m_Name: MapConfig
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 11400000, guid: 5dde607968a105743937b9ecefa289c1, type: 2}
+  - {fileID: 11400000, guid: 5291942cdfc122241b09fc20a1322aff, type: 2}
+  - {fileID: 11400000, guid: 70a2766df45fb3e41b6802fcc2473bce, type: 2}
+  - {fileID: 11400000, guid: f984229971c7a6b4981755de4ea31661, type: 2}
+  - {fileID: 11400000, guid: b837381690eafe94682929a29d1cee6f, type: 2}
+  - {fileID: 11400000, guid: 9b0e29b60dd4466488995ebca50dbe33, type: 2}
+  - {fileID: 11400000, guid: ecae41ce77310b740b1865a5a7e3499b, type: 2}
+  startingNodeAmount:
+    min: 3
+    max: 4
+  preBossNodeAmount:
+    min: 4
+    max: 5
+  mapLayers:
+  - nodeType: 2
+    randomizeNodes: 0
+  - nodeType: 2
+    randomizeNodes: 0.388
+  - nodeType: 2
+    randomizeNodes: 0.684
+  - nodeType: 2
+    randomizeNodes: 0.684
+  - nodeType: 7
+    randomizeNodes: 0
+  - nodeType: 0
+    randomizeNodes: 0
