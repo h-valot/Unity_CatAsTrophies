@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d8bf9f601adc3478d30276cd5a2f5d, type: 3}
-  m_Name: Enemy_20231113_114527_134
+  m_Name: Enemy_20231123_090024_669
   m_EditorClassIdentifier: 
   isCat: 0
-  id: Enemy_20231113_114527_134
-  entityName: Elite Purple
-  health: 28
+  id: Enemy_20231123_090024_669
+  entityName: Elite Green
+  health: 30
   ability:
     animation: 0
     instructions: []
@@ -23,32 +23,22 @@ MonoBehaviour:
   - animation: 1
     instructions:
     - type: 0
-      value: 2
-      target: 3
-      us: 0
-    - type: 13
-      value: 2
-      target: 0
-      us: 1
-  - animation: 2
-    instructions:
-    - type: 27
-      value: 2
-      target: 0
+      value: 1
+      target: 1
       us: 0
     - type: 16
       value: 2
       target: 0
       us: 0
-  - animation: 1
+  - animation: 2
     instructions:
-    - type: 0
-      value: 2
-      target: 2
-      us: 0
     - type: 11
       value: 1
-      target: 4
+      target: 2
+      us: 0
+    - type: 27
+      value: 3
+      target: 0
       us: 0
   basePrefab: {fileID: 5087666672669579333, guid: ca51a6e961891774b8c880dcd1d812f5, type: 3}
   baseMaterial: {fileID: 0}

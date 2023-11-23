@@ -24,11 +24,11 @@ MonoBehaviour:
     instructions:
     - type: 0
       value: 1
-      target: 1
+      target: 0
       us: 1
     - type: 16
       value: 1
-      target: 1
+      target: 3
       us: 1
   - animation: 2
     instructions:

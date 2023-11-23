@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCat: 0
   id: Enemy_20231113_143928_837
-  entityName: Elite pink
+  entityName: Elite Pink
   health: 10
   ability:
     animation: 0
@@ -23,22 +23,28 @@ MonoBehaviour:
   - animation: 2
     instructions:
     - type: 27
-      value: 5
+      value: 7
+      target: 0
+      us: 1
+    - type: 0
+      value: 3
+      target: 2
+      us: 0
+  - animation: 1
+    instructions:
+    - type: 27
+      value: 7
       target: 0
       us: 0
-    - type: 0
+    - type: 1
       value: 2
-      target: 3
+      target: 5
       us: 0
   - animation: 2
     instructions:
-    - type: 27
-      value: 5
-      target: 0
-      us: 0
     - type: 11
       value: 1
-      target: 1
+      target: 5
       us: 0
   basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
   baseMaterial: {fileID: 0}
