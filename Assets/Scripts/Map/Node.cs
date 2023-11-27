@@ -9,7 +9,7 @@ public class Node
     public NodeType nodeType;
     public List<Point> incomingNodes = new List<Point>();
     public List<Point> outgoingNodes = new List<Point>();
-    public Vector2 position;
+    public Vector2 pos;
     public NodeConfig nodeConfig;
 
     public Node(NodeType nodeType, NodeConfig nodeConfig, Point point)

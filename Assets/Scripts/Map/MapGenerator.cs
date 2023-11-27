@@ -38,9 +38,11 @@ public static class MapGenerator
 
         // select all nodes with connections
         var nodesList = nodes
-            .SelectMany(nodes => nodes)
+            .SelectMany(nodesRow => nodesRow)
             .Where(node => node.incomingNodes.Count > 0 || node.outgoingNodes.Count > 0)
             .ToList();
+        
+        Debug.Log($"MAP GENERATOR: map successfully generated with {nodesList.Count} nodes");
         
         return new Map(MapGenerator.mapConfig.name, nodesList);
     }
@@ -69,8 +71,6 @@ public static class MapGenerator
                 
                 // create and store the node in the corresponding layer
                 nodes[layerIndex].Add(new Node(nodeType, nodeConfig, new Point(layerIndex, nodeIndex)));
-                
-                Debug.Log($"MAP GENERATOR: layer {layerIndex}, node {nodeIndex} created.");
             }
         }
     }
@@ -179,7 +179,7 @@ public static class MapGenerator
     /// </summary>
     private static void RandomizeNodesPosition()
     {
-        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count; layerIndex++)
+        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count - 1; layerIndex++)
         {
             // get the distance from the previous layer and to the next one
             float layerOffset = layerIndex * 2;
@@ -187,14 +187,14 @@ public static class MapGenerator
             float distanceToNextLayer = layerOffset + 2;
 
             // foreach node in this layer, randomize their position based on x (position among other nodes in layer) and y (layer)
-            for (int nodeIndex = 0; nodeIndex < nodes[layerIndex].Count; nodeIndex++)
+            for (int nodeIndex = 0; nodeIndex < nodes[layerIndex].Count - 1; nodeIndex++)
             {
                 float xRnd = Random.Range(-.5f, .5f);
                 float yRnd = Random.Range(-.5f, .5f);
 
                 Node node = nodes[layerIndex][nodeIndex];
-                node.position.x = xRnd + layerOffset;
-                node.position.y = yRnd + paths[layerIndex][nodeIndex].row * 2;
+                node.pos.x = xRnd + layerOffset;
+                node.pos.y = yRnd + node.point.row * 2;
             }
         }
     }
@@ -206,7 +206,7 @@ public static class MapGenerator
     {
         foreach (List<Point> path in paths)
         {
-            for (int pointIndex = 0; pointIndex < path.Count; pointIndex++)
+            for (int pointIndex = 0; pointIndex < path.Count - 1; pointIndex++)
             {
                 // get the corresponding node of the point n and n+1
                 Node node = GetNode(path[pointIndex]);
