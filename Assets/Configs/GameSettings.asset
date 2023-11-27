@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingScene: GameBattle
   abilityAnimationDuration: 0.75
+  turnDuration: 1
   holdingTimeToTriggerAbility: 0.75
   dotDamageAmount: 1
   hotHealAmount: 1

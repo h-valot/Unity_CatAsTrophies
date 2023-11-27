@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Entity : MonoBehaviour
 {
@@ -28,14 +30,34 @@ public class Entity : MonoBehaviour
     public Action OnStatsUpdate;
     public Action OnBattlefieldEntered;
     public Action<string, Color, bool> OnStatusRecieved; //text to display, color of the text, is an effect or not (change font size)
-    
+
+    private int selectedAutoAttack;
+
+    public bool isInFrontOfBackgroundFade = false; //used by TurnManager.cs
+
     public void Initialize()
     {
         id = Misc.GetRandomId();
     }
 
     /// <summary>
-    /// Use a random auto attacks ability amoung the list of auto attacks abilities.
+    /// Select an auto attacks ability amoung the list of auto attacks abilities.
+    /// </summary>
+    public void SelectAutoAttack()
+    {
+        selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count - 1);
+    }
+
+    /// <summary>
+    /// return all the target ids of every instruction of the selected ability.
+    /// </summary>
+    public List<string> GetAutoAttackTarget()
+    {
+        return autoAttacks[selectedAutoAttack].GetInvolvedTargetId(this);
+    }
+
+    /// <summary>
+    /// Use the auto attacks ability previously selected.
     /// Cannot be used if the entity is stunned or slep
     /// </summary>
     public virtual void UseAutoAttack()
@@ -48,13 +70,16 @@ public class Entity : MonoBehaviour
         if (autoAttacks.Count == 0) return;
         
         // use a random ability
-        autoAttacks[UnityEngine.Random.Range(0, autoAttacks.Count - 1)].Use(this);
+        autoAttacks[selectedAutoAttack].Use(this);
     }
     
     public void UpdateHealth(int _value)
     {
         //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
         OnStatusRecieved?.Invoke(_value.ToString().TrimStart('-'), Registry.gameSettings.colorTextDamage, false);
+
+        animator.SetTrigger("IsTakingDamage");
+        TimerToResetToIdleFighting(Registry.gameSettings.abilityAnimationDuration);
 
         // apply resistance if
         // - has effect
@@ -280,6 +305,12 @@ public class Entity : MonoBehaviour
     public virtual void UpdateBattlePosition(BattlePosition _battlePosition)
     {
         battlePosition = _battlePosition;
+    }
+
+    private async void TimerToResetToIdleFighting(float _timerToWait)
+    {
+        await Task.Delay((int)(_timerToWait * 1000));
+        animator.SetTrigger("IsFighting");
     }
 }
 

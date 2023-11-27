@@ -7,6 +7,7 @@ public class GameSettings : ScriptableObject
 
     [Header("ANIMATIONS")] 
     public float abilityAnimationDuration;
+    public float turnDuration;
 
     [Header("GAMEPLAY")] 
     public float holdingTimeToTriggerAbility;

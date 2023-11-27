@@ -8,7 +8,10 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
-    
+    [Header("SETUP")]
+    public Vector3 OffsetBattlePosition;
+    public MeshRenderer backgroundFadeRenderer;
+
     [Header("DEBUGGING")]
     public TurnState state;
     public int turnCounter;
@@ -99,19 +102,109 @@ public class TurnManager : MonoBehaviour
     //For each battle pawn associated with a cat (the white circle on the battlefield), get the entityId and trigger the UseAutoAttack function
     private async Task HandleCatsAttacks()
     {
-        foreach (var Entity in catAttackQueue)
+        //display the backgroud fade
+        backgroundFadeRenderer.enabled = true;
+
+        foreach (Entity _Entity in catAttackQueue)
         {
-            Entity.UseAutoAttack();
-            await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
+            //offset the cat that will attack to be in front of the background fade
+            _Entity.transform.position += OffsetBattlePosition;
+            _Entity.isInFrontOfBackgroundFade = true;
+            
+            //select the autoattack that will be used by the entity
+            _Entity.SelectAutoAttack();
+            
+            //Get every target ids of the selected ability and move them in front of the background fade
+            List<string> involvedTargetIds = new List<string>();
+            List<Entity> involvedTarget = new List<Entity>();
+            involvedTargetIds = _Entity.GetAutoAttackTarget();
+            foreach (String _targetId in involvedTargetIds)
+            {
+                involvedTarget.Add(Misc.GetEntityById(_targetId));
+            }
+            foreach (Entity _target in involvedTarget)
+            {
+                if (!_target.isInFrontOfBackgroundFade)
+                {
+                    _target.transform.position += OffsetBattlePosition;
+                    _target.isInFrontOfBackgroundFade = true;
+                }
+            }
+
+            //use the selected ability
+            _Entity.UseAutoAttack();
+            //wait for the end of ability animation
+            await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+            
+            //place the entity back behind the background fade
+            _Entity.transform.position -= OffsetBattlePosition;
+            _Entity.isInFrontOfBackgroundFade = false;
+            foreach (Entity _target in involvedTarget)
+            {
+                if (_target.isInFrontOfBackgroundFade)
+                {
+                    _target.transform.position -= OffsetBattlePosition;
+                    _target.isInFrontOfBackgroundFade = false;
+                }
+            }
         }
+
+        //disable background fade
+        backgroundFadeRenderer.enabled = false;
     }
     private async Task HandleEnemiesAttacks()
     {
+        //display the backgroud fade
+        backgroundFadeRenderer.enabled = true;
+
         foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
         {
-            Misc.GetEntityById(battlePawn.entityIdLinked).UseAutoAttack();
-            await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
+            Entity _Entity = Misc.GetEntityById(battlePawn.entityIdLinked);
+            //offset the cat that will attack to be in front of the background fade
+            _Entity.transform.position += OffsetBattlePosition;
+            _Entity.isInFrontOfBackgroundFade = true;
+
+            //select the autoattack that will be used by the entity
+            _Entity.SelectAutoAttack();
+
+            //Get every target ids of the selected ability and move them in front of the background fade
+            List<string> involvedTargetIds = new List<string>();
+            List<Entity> involvedTarget = new List<Entity>();
+            involvedTargetIds = _Entity.GetAutoAttackTarget();
+            foreach (String _targetId in involvedTargetIds)
+            {
+                involvedTarget.Add(Misc.GetEntityById(_targetId));
+            }
+            foreach (Entity _target in involvedTarget)
+            {
+                if (!_target.isInFrontOfBackgroundFade)
+                {
+                    _target.transform.position += OffsetBattlePosition;
+                    _target.isInFrontOfBackgroundFade = true;
+                }
+            }
+
+            //use the selected ability
+            _Entity.UseAutoAttack();
+            //wait for the end of ability animation
+            await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+
+            //place the entity back behind the background fade
+            _Entity.transform.position -= OffsetBattlePosition;
+            _Entity.isInFrontOfBackgroundFade = false;
+            foreach (Entity _target in involvedTarget)
+            {
+                if (_target.isInFrontOfBackgroundFade)
+                {
+                    _target.transform.position -= OffsetBattlePosition;
+                    _target.isInFrontOfBackgroundFade = false;
+                }
+
+            }
         }
+
+        //disable background fade
+        backgroundFadeRenderer.enabled = false;
     }
 
     //Triggered by cat.cs when cat are placed on battlefield or when reactivated

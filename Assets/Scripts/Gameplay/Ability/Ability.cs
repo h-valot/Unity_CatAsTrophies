@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,6 +31,26 @@ public class Ability
                 ApplyEffect(instruction, targetId);
             }
         }
+    }
+
+    /// <summary>
+    /// Return the target ids of every instruction of the ability
+    /// </summary>
+    public List<string> GetInvolvedTargetId (Entity _source)
+    {
+        source = _source;
+
+        List<string> involvedTargetIds = new List<string>();
+
+        foreach (var instruction in instructions)
+        {
+            foreach (string targetId in GetTargets(instruction))
+            {
+                involvedTargetIds.Add(targetId);
+            }
+        }
+
+        return involvedTargetIds;
     }
     
     private List<string> GetTargets(Instruction _instruction)
@@ -509,7 +530,7 @@ public class Ability
         }
     }
 
-    private async Task Timer(float _timerToWait)
+    private async void Timer(float _timerToWait)
     {
         await Task.Delay((int)(_timerToWait * 1000));
         
