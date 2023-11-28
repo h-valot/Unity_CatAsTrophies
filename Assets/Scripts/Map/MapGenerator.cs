@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using List;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -179,22 +178,26 @@ public static class MapGenerator
     /// </summary>
     private static void RandomizeNodesPosition()
     {
-        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count - 1; layerIndex++)
+        float layerOffset = 0;
+        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count; layerIndex++)
         {
             // get the distance from the previous layer and to the next one
-            float layerOffset = layerIndex * 2;
-            float distanceFromPreviousLayer = layerOffset - 2;
-            float distanceToNextLayer = layerOffset + 2;
+            float layerDistance = mapConfig.layerDistance.GetValue();
+            
+            if (layerIndex > 0) layerOffset += layerDistance;
+            float distanceFromPreviousLayer = layerOffset - layerDistance;
+            float distanceToNextLayer = layerOffset + layerDistance;
 
             // foreach node in this layer, randomize their position based on x (position among other nodes in layer) and y (layer)
-            for (int nodeIndex = 0; nodeIndex < nodes[layerIndex].Count - 1; nodeIndex++)
+            for (int nodeIndex = 0; nodeIndex < nodes[layerIndex].Count; nodeIndex++)
             {
                 float xRnd = Random.Range(-.5f, .5f);
                 float yRnd = Random.Range(-.5f, .5f);
 
                 Node node = nodes[layerIndex][nodeIndex];
                 node.pos.x = xRnd + layerOffset;
-                node.pos.y = yRnd + node.point.row * 2;
+                node.pos.y = yRnd * mapConfig.nodesDistance * nodeIndex + 1;
+                if (layerIndex == mapConfig.mapLayers.Count - 1) node.pos.y = 0;
             }
         }
     }

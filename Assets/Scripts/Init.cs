@@ -6,6 +6,7 @@ public class Init : MonoBehaviour
     public EntitiesConfig entitiesConfig;
     public GameSettings gameSettings;
     public PlayerConfig playerConfig;
+    public MapConfig mapConfig;
     public Events events;
 
     private void Start()
@@ -15,6 +16,7 @@ public class Init : MonoBehaviour
         Registry.entitiesConfig = entitiesConfig;
         Registry.gameSettings = gameSettings;
         Registry.playerConfig = playerConfig;
+        Registry.mapConfig = mapConfig;
         Registry.events = events;
 
         Registry.isInitialized = true;

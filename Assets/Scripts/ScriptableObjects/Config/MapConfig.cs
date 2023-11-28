@@ -12,12 +12,18 @@ public class MapConfig : ScriptableObject
     
     [Tooltip("Minimum and maximum number of node that can spawn before the boss")]
     public IntMinMax preBossNodeAmount;
+
+    [Tooltip("Minimum and maximum distance between layers")]
+    public FloatMinMax layerDistance;
+    
+    [Tooltip("Distance between nodes on the same layer")]
+    public float nodesDistance;
+    
+    [Header("LAYERS")]
+    public List<MapLayer> mapLayers = new List<MapLayer>();
     
     /// <summary>
     /// Return the max width size between max startingNodeAmount and max endingPreBossNodeAmount.
     /// </summary>
     public int GetGridMaxWidth() => Mathf.Max(startingNodeAmount.max, preBossNodeAmount.max);
-
-    [Header("LAYERS")]
-    public List<MapLayer> mapLayers = new List<MapLayer>();
 }

@@ -49,6 +49,11 @@ public class Node
     /// Returns true if the node no incoming nodes neither outgoing nodes 
     /// </summary>
     public bool HasNoConnections() => incomingNodes.Count == 0 && outgoingNodes.Count == 0;
+
+    public Sprite GetSprite()
+    {
+        return nodeConfig.sprite;
+    }
 }
 
 public enum NodeType

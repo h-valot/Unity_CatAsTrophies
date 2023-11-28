@@ -4,9 +4,23 @@ using UnityEngine.UI;
 public class NodeUI : MonoBehaviour
 {
     public Image image;
+    public NodeStates state;
+    public Node node;
 
-    public void Initialize(Sprite sprite)
+    public void Initialize(Node node)
     {
-        image.sprite = sprite;
+        this.node = node;
+        image.sprite = node.GetSprite();
     }
+    public void SetState(NodeStates state)
+    {
+        this.state = state;
+    }
+}
+
+public enum NodeStates
+{
+    LOCKED = 0,
+    VISITED,
+    ATTAIGNABLE
 }
