@@ -44,7 +44,7 @@ public static class MapGenerator
         
         Debug.Log($"MAP GENERATOR: map successfully generated with {nodesList.Count} nodes");
         
-        return new Map(MapGenerator.mapConfig.name, nodesList);
+        return new Map(MapGenerator.mapConfig, nodesList);
     }
     
     /// <summary>

@@ -246,6 +246,8 @@ MonoBehaviour:
   map:
     nodes: []
     configName: 
+  nodePrefab: {fileID: 4138254791057186782, guid: cb335be300c2c564590eba74e5009e0f, type: 3}
+  contentParent: {fileID: 4692498215031530668}
 --- !u!1 &4440593759050748735
 GameObject:
   m_ObjectHideFlags: 0

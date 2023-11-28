@@ -5,12 +5,12 @@ using System.Linq;
 public class Map
 {
     public List<Node> nodes;
-    public string configName;
+    public MapConfig mapConfig;
 
-    public Map(string configName, List<Node> nodes)
+    public Map(MapConfig mapConfig, List<Node> nodes)
     {
         this.nodes = nodes;
-        this.configName = configName;
+        this.mapConfig = mapConfig;
     }
 
     /// <summary>
