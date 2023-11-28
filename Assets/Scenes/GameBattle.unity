@@ -273,9 +273,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.0244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3787883428686790821, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_Name
       value: MiddlePawnPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2853,9 +2869,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.0244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3787883428686790821, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_Name
       value: BackPawnPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2926,9 +2958,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.0244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3787883428686790821, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_Name
       value: FrontPawnPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6062,9 +6110,25 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.0244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3787883428686790821, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_Name
       value: FrontPawnPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8967,9 +9031,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.0244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3787883428686790821, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_Name
       value: BackPawnPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9076,9 +9156,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.0244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542762823056659775, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3787883428686790821, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
       propertyPath: m_Name
       value: MiddlePawnPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891044239212405871, guid: 40f4df99b1713094bae1768cdb899bd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

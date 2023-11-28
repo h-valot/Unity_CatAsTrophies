@@ -42,9 +42,11 @@ public class TurnManager : MonoBehaviour
                 // if there is no more cats in the deck, shuffle the graveyard into the deck
                 // handle the case where no cats can be draw
                 FulfillHand(5);
-                
+
+                // new car turn and timer to allow time for animations
                 Registry.events.OnNewPlayerTurn?.Invoke();
-                
+                await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+
                 // await for the player to perform three actions:
                 // 1. place/replace cat on the battlefield to put it in the attack queue
                 // 2. reactivate a cat that was already on the battlefield to put it on the attack queue
@@ -64,9 +66,10 @@ public class TurnManager : MonoBehaviour
             
             case TurnState.EnemyTurn:
                 
-                // new enemy turn
+                // new enemy turn and timer to allow time for animations
                 Registry.events.OnNewEnemyTurn?.Invoke();
-                
+                await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+
                 // enemies uses their attacks
                 await HandleEnemiesAttacks();
 
@@ -152,6 +155,7 @@ public class TurnManager : MonoBehaviour
         //disable background fade
         backgroundFadeRenderer.enabled = false;
     }
+
     private async Task HandleEnemiesAttacks()
     {
         //display the backgroud fade
