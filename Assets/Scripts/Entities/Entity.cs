@@ -47,7 +47,11 @@ public class Entity : MonoBehaviour
     /// </summary>
     public void SelectAutoAttack()
     {
-        selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count - 1);
+        // exit if entity is stunned or slep
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        {
+            selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count - 1);
+        } 
     }
 
     /// <summary>
@@ -55,7 +59,15 @@ public class Entity : MonoBehaviour
     /// </summary>
     public List<string> GetAutoAttackTarget()
     {
-        return autoAttacks[selectedAutoAttack].GetInvolvedTargetId(this);
+        // exit if entity is stunned or slep
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        {
+            return autoAttacks[selectedAutoAttack].GetInvolvedTargetId(this);
+        }
+        else
+        {
+            return new List<string>();
+        }
     }
 
     /// <summary>

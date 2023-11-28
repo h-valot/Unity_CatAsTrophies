@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   startingScene: GameBattle
+  delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
-  turnDuration: 1
+  delayAfterAnimation: 0.5
   holdingTimeToTriggerAbility: 0.75
   dotDamageAmount: 1
   hotHealAmount: 1

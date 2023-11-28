@@ -5,9 +5,10 @@ public class GameSettings : ScriptableObject
 {
     public string startingScene;
 
-    [Header("ANIMATIONS")] 
+    [Header("ANIMATIONS")]
+    public float delayBeforeAnimation;
     public float abilityAnimationDuration;
-    public float turnDuration;
+    public float delayAfterAnimation;
 
     [Header("GAMEPLAY")] 
     public float holdingTimeToTriggerAbility;

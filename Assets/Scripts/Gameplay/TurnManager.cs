@@ -46,7 +46,7 @@ public class TurnManager : MonoBehaviour
 
                 // new car turn and timer to allow time for animations
                 Registry.events.OnNewPlayerTurn?.Invoke();
-                await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+                await Task.Delay((int)Math.Round((Registry.gameSettings.delayBeforeAnimation + Registry.gameSettings.abilityAnimationDuration + Registry.gameSettings.delayAfterAnimation) * 1000));
 
                 // await for the player to perform three actions:
                 // 1. place/replace cat on the battlefield to put it in the attack queue
@@ -69,12 +69,12 @@ public class TurnManager : MonoBehaviour
                 
                 // new enemy turn and timer to allow time for animations
                 Registry.events.OnNewEnemyTurn?.Invoke();
-                await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+                await Task.Delay((int)Math.Round((Registry.gameSettings.delayBeforeAnimation + Registry.gameSettings.abilityAnimationDuration + Registry.gameSettings.delayAfterAnimation) * 1000));
 
                 // enemies uses their attacks
                 await HandleEnemiesAttacks();
 
-                // re-launched a new turn
+                // start a new turn
                 state = TurnState.PlayerTurn;
                 HandleTurnState();
                 
@@ -141,10 +141,13 @@ public class TurnManager : MonoBehaviour
                 }
             }
 
+            //little delay to better understand the fight
+            await Task.Delay((int)Math.Round(Registry.gameSettings.delayBeforeAnimation * 1000));
+
             //use the selected ability
             _Entity.UseAutoAttack();
-            //wait for the end of ability animation
-            await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+            //wait for the end of ability animation + a delay
+            await Task.Delay((int)Math.Round((Registry.gameSettings.abilityAnimationDuration + Registry.gameSettings.delayAfterAnimation) * 1000));
             
             //place the entity back behind the background fade
             _Entity.transform.position -= OffsetBattlePosition;
@@ -202,10 +205,13 @@ public class TurnManager : MonoBehaviour
                 }
             }
 
+            //little delay to better understand the fight
+            await Task.Delay((int)Math.Round(Registry.gameSettings.delayBeforeAnimation * 1000));
+
             //use the selected ability
             _Entity.UseAutoAttack();
-            //wait for the end of ability animation
-            await Task.Delay((int)Math.Round(Registry.gameSettings.turnDuration * 1000));
+            //wait for the end of ability animation + a delay
+            await Task.Delay((int)Math.Round((Registry.gameSettings.abilityAnimationDuration + Registry.gameSettings.delayAfterAnimation) * 1000));
 
             //place the entity back behind the background fade
             _Entity.transform.position -= OffsetBattlePosition;
