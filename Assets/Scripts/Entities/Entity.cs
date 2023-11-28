@@ -32,12 +32,14 @@ public class Entity : MonoBehaviour
     public Action<string, Color, bool> OnStatusRecieved; //text to display, color of the text, is an effect or not (change font size)
 
     private int selectedAutoAttack;
+    protected bool stopAsync;
 
     public bool isInFrontOfBackgroundFade = false; //used by TurnManager.cs
 
     public void Initialize()
     {
         id = Misc.GetRandomId();
+        stopAsync = false;
     }
 
     /// <summary>
@@ -210,6 +212,7 @@ public class Entity : MonoBehaviour
     
     public virtual void HandleDeath()
     {
+        stopAsync = true;
         // do nothing in the parent
     }
     
@@ -310,7 +313,10 @@ public class Entity : MonoBehaviour
     private async void TimerToResetToIdleFighting(float _timerToWait)
     {
         await Task.Delay((int)(_timerToWait * 1000));
-        animator.SetTrigger("IsFighting");
+        if (!stopAsync)
+        {
+            animator.SetTrigger("IsFighting");
+        }
     }
 }
 

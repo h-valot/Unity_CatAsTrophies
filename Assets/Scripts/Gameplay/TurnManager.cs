@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Internal.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,6 +111,12 @@ public class TurnManager : MonoBehaviour
 
         foreach (Entity _Entity in catAttackQueue)
         {
+            //skip this cat if it no longer exist
+            if (_Entity == null)
+            {
+                continue;
+            }
+
             //offset the cat that will attack to be in front of the background fade
             _Entity.transform.position += OffsetBattlePosition;
             _Entity.isInFrontOfBackgroundFade = true;
@@ -144,7 +151,7 @@ public class TurnManager : MonoBehaviour
             _Entity.isInFrontOfBackgroundFade = false;
             foreach (Entity _target in involvedTarget)
             {
-                if (_target.isInFrontOfBackgroundFade)
+                if (_target.isInFrontOfBackgroundFade && _target != null)
                 {
                     _target.transform.position -= OffsetBattlePosition;
                     _target.isInFrontOfBackgroundFade = false;
@@ -164,7 +171,14 @@ public class TurnManager : MonoBehaviour
         foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
         {
             Entity _Entity = Misc.GetEntityById(battlePawn.entityIdLinked);
-            //offset the cat that will attack to be in front of the background fade
+
+            //skip this battlepawn if there is no entity on it
+            if (_Entity == null)
+            {
+                continue; 
+            }
+
+            //offset the enemy that will attack to be in front of the background fade
             _Entity.transform.position += OffsetBattlePosition;
             _Entity.isInFrontOfBackgroundFade = true;
 

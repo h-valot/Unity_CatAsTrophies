@@ -124,6 +124,7 @@ public class Cat : Entity
         isAbilityUsed = true;
         state = CatState.OnBattle;
         OnBattlefieldEntered?.Invoke();
+        stopAsync = false;
     }
     
     public override void UpdateBattlePosition(BattlePosition _battlePosition)
@@ -161,7 +162,7 @@ public class Cat : Entity
     }
     
     /// <summary>
-    /// Withdraw a cat from the battlefield to place it into the graveyard
+    /// Withdraw a cat from the battlefield to place it into the discard pile
     /// </summary>
     public void Withdraw()
     {
@@ -175,7 +176,9 @@ public class Cat : Entity
         graphicsParent.SetActive(false);
         if (rightHandAddonRef) rightHandAddonRef.SetActive(false);
         if (leftHandAddonRef) leftHandAddonRef.SetActive(false);
-        
+
+        stopAsync = true;
+
         DiscardManager.Instance.AddCat(id);
         state = CatState.Discarded;
     }
@@ -196,6 +199,8 @@ public class Cat : Entity
         
         state = CatState.InGraveyard;
         GraveyardManager.Instance.AddCat(id);
+
+        base.HandleDeath();
     }
 }
 

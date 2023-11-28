@@ -55,7 +55,9 @@ public class Enemy : Entity
     {
         // handle graphics tweaking
         BattlefieldManager.Instance.RemoveFromBattlePawn(id);
-        
+
+        base.HandleDeath();
+
         // destroy the enemy
         Destroy(gameObject);
     }
