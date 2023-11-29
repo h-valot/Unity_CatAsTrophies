@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class MapView : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class MapView : MonoBehaviour
     public GameObject uiLinePrefab;
     public int linePointsCount = 10;
     public float offsetFromNodes = 0.5f;
+    public Color lineLockedColor;
+    public Color lineVisitedColor;
     
     [Header("Background settings")]
     public Sprite background;
@@ -30,6 +33,7 @@ public class MapView : MonoBehaviour
     
     private Map map;
     private List<NodeUI> nodesUI = new List<NodeUI>();
+    private readonly List<LineConnection> _lineConnections = new List<LineConnection>();
     
     public void ShowMap(Map currentMap)
     {
@@ -48,9 +52,7 @@ public class MapView : MonoBehaviour
         DrawLines();
         ResetNodesRotation();
         SetAttainableNodes();
-
-        //SetLineColors();
-
+        SetLineColors();
         CreateMapBackground();
     }
 
@@ -116,28 +118,28 @@ public class MapView : MonoBehaviour
     private void AddLineConnection(NodeUI from, NodeUI to)
     {
         if (uiLinePrefab == null) return;
-        
-        GameObject lineRenderer = Instantiate(uiLinePrefab, contentParent.transform);
+            
+        UILineRenderer lineRenderer = Instantiate(uiLinePrefab, contentParent.transform).GetComponent<UILineRenderer>();
         lineRenderer.transform.SetAsFirstSibling();
         RectTransform fromRectTransform = from.transform as RectTransform;
         RectTransform toRectTransform = to.transform as RectTransform;
         Vector2 fromPoint = fromRectTransform.anchoredPosition + (toRectTransform.anchoredPosition - fromRectTransform.anchoredPosition).normalized * offsetFromNodes;
         Vector2 toPoint = toRectTransform.anchoredPosition + (fromRectTransform.anchoredPosition - toRectTransform.anchoredPosition).normalized * offsetFromNodes;
 
-        // drawing lines in local space:
+        // drawing lines in local space
         lineRenderer.transform.position = from.transform.position + (Vector3) (toRectTransform.anchoredPosition - fromRectTransform.anchoredPosition).normalized * offsetFromNodes;
 
         // line renderer with 2 points only does not handle transparency properly:
-        var list = new List<Vector2>();
-        for (int i = 0; i < linePointsCount; i++)
+        List<Vector2> list = new List<Vector2>(); 
+        for (var i = 0; i < linePointsCount; i++)
         {
-            list.Add(Vector3.Lerp(
-                Vector3.zero, 
-                toPoint - fromPoint + 2 * (fromRectTransform.anchoredPosition - toRectTransform.anchoredPosition).normalized * offsetFromNodes,
-                (float) i / (linePointsCount - 1)));
+            list.Add(Vector3.Lerp(Vector3.zero, toPoint - fromPoint + 2 * (fromRectTransform.anchoredPosition - toRectTransform.anchoredPosition).normalized * offsetFromNodes, (float) i / (linePointsCount - 1)));
         }
         
         Debug.Log($"MAP VIEW: from {fromPoint} to {toPoint} last point {list[^1]}");
+        
+        lineRenderer.Points = list.ToArray();
+        _lineConnections.Add(new LineConnection(lineRenderer, from, to));
     }
 
     private void ResetNodesRotation()
@@ -183,6 +185,40 @@ public class MapView : MonoBehaviour
                 if (nodeUI != null)
                     nodeUI.SetState(NodeStates.ATTAIGNABLE);
             }
+        }
+    }
+    
+    private void SetLineColors()
+    {
+        // set all lines to grayed out first:
+        foreach (var connection in _lineConnections)
+            connection.SetColor(lineLockedColor);
+
+        // set all lines that are a part of the path to visited color:
+        // if we have not started moving on the map yet, leave everything as is:
+        if (map.playerPath.Count == 0)
+            return;
+
+        // in any case, we mark outgoing connections from the final node with visible/attainable color:
+        Point currentPoint = map.playerPath[^1];
+        Node currentNode = map.GetNode(currentPoint);
+
+        foreach (var point in currentNode.outgoingNodes)
+        {
+            var lineConnection = _lineConnections.FirstOrDefault(connection => connection.from.node == currentNode &&
+                                                                         connection.to.node.point.Equals(point));
+            lineConnection?.SetColor(lineVisitedColor);
+        }
+
+        if (map.playerPath.Count <= 1) return;
+
+        for (var i = 0; i < map.playerPath.Count - 1; i++)
+        {
+            Point current = map.playerPath[i];
+            Point next = map.playerPath[i + 1];
+            var lineConnection = _lineConnections.FirstOrDefault(connection => connection.from.node.point.Equals(current) &&
+                                                                         connection.to.node.point.Equals(next));
+            lineConnection?.SetColor(lineVisitedColor);
         }
     }
     
