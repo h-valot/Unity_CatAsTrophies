@@ -8,7 +8,4 @@ public class MapLayer
     
     [Tooltip("Chance to get a random node that is different from the default node on this layer")]
     [Range(0f, 1f)] public float randomizeNodes;
-
-    [Tooltip("Minimum and maximum distance with the previous layer")]
-    public FloatMinMax distanceFromPreviousLayer;
 }

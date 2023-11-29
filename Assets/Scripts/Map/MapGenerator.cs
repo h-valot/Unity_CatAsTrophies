@@ -3,7 +3,6 @@ using System.Linq;
 using List;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using Vector2 = System.Numerics.Vector2;
 
 public static class MapGenerator
 {
@@ -185,16 +184,29 @@ public static class MapGenerator
             // get the distance from the previous layer and to the next one
             float layerDistance = mapConfig.layerDistance.GetValue();
             if (layerIndex > 0) layerOffset += layerDistance;
-            List<UnityEngine.Vector2> pointsPos = PoissonDiscSampling.GeneratePoints(nodes[layerIndex].Count, mapConfig.nodesDistance, mapConfig.rejectionSamples);
+            List<UnityEngine.Vector2> positions = PoissonDiscSampling.GeneratePoints(nodes[layerIndex].Count, mapConfig.nodesDistance, mapConfig.rejectionSamples);
 
+            // get the lowest and the highest position on y axis
+            float positionLowestY = 9999;
+            float positionHighestY = -9999;
+            for (var index = 0; index < positions.Count; index++)
+            {
+                if (positions[index].y < positionLowestY) positionLowestY = positions[index].y;
+                if (positions[index].y > positionHighestY) positionHighestY = positions[index].y;
+            }
+            
+            // get distance from lowest to highest position
+            float distanceLowHighY = Mathf.Abs(positionLowestY - positionHighestY);
+            
             // foreach node in this layer, randomize their position based on x (position among other nodes in layer) and y (layer)
             for (int nodeIndex = 0; nodeIndex < nodes[layerIndex].Count; nodeIndex++)
             {
-                Node node = nodes[layerIndex][nodeIndex];
-                node.pos.x = pointsPos[nodeIndex].x + layerOffset;
-                node.pos.y =  pointsPos[nodeIndex].y;
+                // update node position based on offsets
+                nodes[layerIndex][nodeIndex].pos.x = positions[nodeIndex].x + layerOffset;
+                nodes[layerIndex][nodeIndex].pos.y = positions[nodeIndex].y - distanceLowHighY / 2;
                 
-                if (layerIndex == mapConfig.mapLayers.Count - 1) node.pos.y = 0;
+                // center the boss node
+                if (layerIndex == mapConfig.mapLayers.Count - 1) nodes[layerIndex][nodeIndex].pos.y = 0;
             }
         }
     }
