@@ -3,6 +3,7 @@ using System.Linq;
 using List;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector2 = System.Numerics.Vector2;
 
 public static class MapGenerator
 {
@@ -183,20 +184,16 @@ public static class MapGenerator
         {
             // get the distance from the previous layer and to the next one
             float layerDistance = mapConfig.layerDistance.GetValue();
-            
             if (layerIndex > 0) layerOffset += layerDistance;
-            float distanceFromPreviousLayer = layerOffset - layerDistance;
-            float distanceToNextLayer = layerOffset + layerDistance;
+            List<UnityEngine.Vector2> pointsPos = PoissonDiscSampling.GeneratePoints(nodes[layerIndex].Count, mapConfig.nodesDistance, mapConfig.rejectionSamples);
 
             // foreach node in this layer, randomize their position based on x (position among other nodes in layer) and y (layer)
             for (int nodeIndex = 0; nodeIndex < nodes[layerIndex].Count; nodeIndex++)
             {
-                float xRnd = Random.Range(-.5f, .5f);
-                float yRnd = Random.Range(-.5f, .5f);
-
                 Node node = nodes[layerIndex][nodeIndex];
-                node.pos.x = xRnd + layerOffset;
-                node.pos.y = yRnd * mapConfig.nodesDistance * nodeIndex + 1;
+                node.pos.x = pointsPos[nodeIndex].x + layerOffset;
+                node.pos.y =  pointsPos[nodeIndex].y;
+                
                 if (layerIndex == mapConfig.mapLayers.Count - 1) node.pos.y = 0;
             }
         }

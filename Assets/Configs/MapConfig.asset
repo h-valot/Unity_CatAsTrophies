@@ -28,9 +28,10 @@ MonoBehaviour:
     min: 4
     max: 5
   layerDistance:
-    min: 2
-    max: 3
+    min: 3
+    max: 4
   nodesDistance: 2
+  rejectionSamples: 50
   mapLayers:
   - nodeType: 2
     randomizeNodes: 0

@@ -13,11 +13,15 @@ public class MapConfig : ScriptableObject
     [Tooltip("Minimum and maximum number of node that can spawn before the boss")]
     public IntMinMax preBossNodeAmount;
 
+    [Header("NODES DISPLAY")]
     [Tooltip("Minimum and maximum distance between layers")]
     public FloatMinMax layerDistance;
     
-    [Tooltip("Distance between nodes on the same layer")]
-    public float nodesDistance;
+    [Tooltip("Minimum distance between two node")]
+    public float nodesDistance = 1;
+    
+    [Tooltip("Number of poisson disc sampling point positioning tries. High value = low performance but cleaner distance between points")]
+    public int rejectionSamples = 50;
     
     [Header("LAYERS")]
     public List<MapLayer> mapLayers = new List<MapLayer>();
