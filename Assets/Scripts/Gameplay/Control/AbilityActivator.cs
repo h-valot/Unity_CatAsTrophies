@@ -25,8 +25,7 @@ public class AbilityActivator : MonoBehaviour
     {
         await Task.Delay((int)(_timerToWait * 1000));
         
-        if (isTouching &&
-            TurnManager.Instance.catAttackQueue.Count < 3)
+        if (isTouching && TurnManager.Instance.catAttackQueue.Count < 3 && CanTriggerAbility())
         {
             catUsed.AddCatAttackQueue();
         }
@@ -37,6 +36,8 @@ public class AbilityActivator : MonoBehaviour
     /// </summary>
     private bool CanTriggerAbility()
     {
+        Debug.Log(catUsed.state == CatState.OnBattle &&
+               catUsed.isAbilityUsed == false);
         return catUsed.state == CatState.OnBattle &&
                catUsed.isAbilityUsed == false;
     }

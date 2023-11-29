@@ -92,7 +92,11 @@ public class Entity : MonoBehaviour
         //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
         OnStatusRecieved?.Invoke(_value.ToString().TrimStart('-'), Registry.gameSettings.colorTextDamage, false);
 
-        animator.SetTrigger("IsTakingDamage");
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        {
+            animator.SetTrigger("IsTakingDamage");
+        }
+
         TimerToResetToIdleFighting(Registry.gameSettings.abilityAnimationDuration);
 
         // apply resistance if
@@ -153,6 +157,12 @@ public class Entity : MonoBehaviour
         // else, create a new effect
         effects.Add(new Effect(_effectType, _turnDuration, id));
 
+        if (HasEffect(EffectType.Stun) || HasEffect(EffectType.Sleep))
+        {
+            Debug.Log($"{this}: Set bool is Sleeping to true.");
+            animator.SetBool("IsSleeping", true);
+        }
+
         //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
@@ -160,7 +170,7 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Trigger all effects
     /// </summary>
-    protected void TriggerAllEffects()
+    protected virtual void TriggerAllEffects()
     {
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
@@ -178,6 +188,13 @@ public class Entity : MonoBehaviour
         foreach (var effect in effectsToRemove)
         {
             effects.Remove(effect);
+        }
+
+
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        {
+            Debug.Log($"{this}: Set bool is Sleeping to false.");
+            animator.SetBool("IsSleeping", false);
         }
 
         //trigger update display function in EntityUIDisplay.cs
@@ -327,6 +344,7 @@ public class Entity : MonoBehaviour
         await Task.Delay((int)(_timerToWait * 1000));
         if (!stopAsync)
         {
+            Debug.Log($"{this}: Set Trigger is Fighting.");
             animator.SetTrigger("IsFighting");
         }
     }

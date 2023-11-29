@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Cat : Entity
@@ -118,6 +119,7 @@ public class Cat : Entity
         blobShadowRenderer.enabled = true;
 
         // trigger animations
+        Debug.Log($"{this}: Set Trigger is Fighting.");
         animator.SetTrigger("IsFighting");
 
         int AttackingOrder = TurnManager.Instance.addCatAttackQueue(this); //Add the cat to the attack queue in the turn manager and return it's order of attack
@@ -126,7 +128,38 @@ public class Cat : Entity
         OnBattlefieldEntered?.Invoke();
         stopAsync = false;
     }
-    
+
+    protected override void TriggerAllEffects()
+    {
+        List<Effect> effectsToRemove = new List<Effect>();
+        foreach (var effect in effects)
+        {
+            effect.Trigger();
+
+            // if the effect expire, add it to a list of all effects to remove
+            if (effect.turnDuration <= 0)
+            {
+                effectsToRemove.Add(effect);
+            }
+        }
+
+        // removes all expired effects
+        foreach (var effect in effectsToRemove)
+        {
+            effects.Remove(effect);
+        }
+
+
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.InHand)
+        {
+            Debug.Log($"{this}: Set Trigger is Fighting.");
+            animator.SetTrigger("IsFighting");
+        }
+
+        //trigger update display function in EntityUIDisplay.cs
+        OnStatsUpdate?.Invoke();
+    }
+
     public override void UpdateBattlePosition(BattlePosition _battlePosition)
     {
         base.UpdateBattlePosition(_battlePosition);
