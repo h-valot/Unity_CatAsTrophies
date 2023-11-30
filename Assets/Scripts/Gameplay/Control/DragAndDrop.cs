@@ -1,14 +1,28 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
     public Cat catDragged;
-    
+
+    private Vector3 dragStartPosition; //use to determine if the player click or start draging using the DISTANCE
+    private float dragTimerStart; //use to determine if the player click or start draging using the TIME
+    private bool allowDraging; //use to prevent instant draging when player only want to click
+
+    private void Awake()
+    {
+        this.enabled = false; //disable Update at start
+    }
+
     private void OnMouseDown()
     {
         //exceptions
         if (!CanDrag()) return;
-        
+
+        this.enabled = true; // enable Update
+        dragTimerStart = 0;
+        dragStartPosition = Input.mousePosition; // register pointer position
+
         HandManager.Instance.RemoveFromHand(catDragged.id);
         HandManager.Instance.HideHand();
     }
@@ -18,16 +32,33 @@ public class DragAndDrop : MonoBehaviour
         //exceptions
         if (!CanDrag()) return;
         
-        catDragged.transform.position = InputHandler.Instance.touchPos;
+        if (allowDraging)
+        {
+            catDragged.transform.position = InputHandler.Instance.touchPos;
+        }
     }
  
     private void OnMouseUp()
     {
         //exceptions
         if (!CanDrag()) return;
-        
+
+        this.enabled = false;
+        allowDraging = false;
+
         VerifyDistances();
         HandManager.Instance.ShowHand();
+    }
+
+    private void Update()
+    {
+        dragTimerStart += Time.deltaTime;
+        //check if the drag is large enough or long enough to determine if it is a drag or just a click
+        if ((Input.mousePosition - dragStartPosition).magnitude > Registry.gameSettings.dragingMinimumAmount || dragTimerStart > Registry.gameSettings.holdingTimeMaxSingleClick)
+        {
+            allowDraging = true;
+            this.enabled = false;
+        }
     }
 
     /// <summary>
@@ -72,5 +103,10 @@ public class DragAndDrop : MonoBehaviour
             catDragged.PutInHand();
             HandManager.Instance.AddToHand(catDragged.id);
         }
+    }
+
+    private async void SingleClickChecker()
+    {
+        await Task.Delay((int)(Registry.gameSettings.holdingTimeMaxSingleClick * 1000));
     }
 }

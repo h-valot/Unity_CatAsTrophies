@@ -16,7 +16,9 @@ MonoBehaviour:
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5
+  holdingTimeMaxSingleClick: 0.3
   holdingTimeToTriggerAbility: 0.75
+  dragingMinimumAmount: 100
   dotDamageAmount: 1
   hotHealAmount: 1
   damageResistanceModifier: 0.5

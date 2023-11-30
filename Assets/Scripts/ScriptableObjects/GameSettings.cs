@@ -10,8 +10,10 @@ public class GameSettings : ScriptableObject
     public float abilityAnimationDuration;
     public float delayAfterAnimation;
 
-    [Header("GAMEPLAY")] 
+    [Header("GAMEPLAY")]
+    public float holdingTimeMaxSingleClick;
     public float holdingTimeToTriggerAbility;
+    public float dragingMinimumAmount;
 
     [Header("EFFECTS")]
     public int dotDamageAmount;
