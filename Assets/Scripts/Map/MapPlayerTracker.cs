@@ -26,8 +26,6 @@ public class MapPlayerTracker : MonoBehaviour
 
         await nodeUI.ShowSelectionAnimation();
         
-        Debug.Log($"MAP PLAYER TRACKER: {nodeUI.node.nodeType.ToString()} scene entered");
-        
         switch (nodeUI.node.nodeType)
         {
             case NodeType.BOSS_BATTLE:
