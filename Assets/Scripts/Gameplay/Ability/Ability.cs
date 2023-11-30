@@ -533,8 +533,11 @@ public class Ability
     private async void Timer(float _timerToWait)
     {
         await Task.Delay((int)(_timerToWait * 1000));
-        Debug.Log($"{source}: Set Trigger is Fighting.");
         source.animator.SetTrigger("IsFighting");
+        if (source.HasEffect(EffectType.Stun) || source.HasEffect(EffectType.Sleep))
+        {
+            source.animator.SetBool("IsSleeping", true);
+        }
     }
 }
 

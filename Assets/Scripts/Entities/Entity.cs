@@ -157,12 +157,6 @@ public class Entity : MonoBehaviour
         // else, create a new effect
         effects.Add(new Effect(_effectType, _turnDuration, id));
 
-        if (HasEffect(EffectType.Stun) || HasEffect(EffectType.Sleep))
-        {
-            Debug.Log($"{this}: Set bool is Sleeping to true.");
-            animator.SetBool("IsSleeping", true);
-        }
-
         //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
@@ -344,7 +338,6 @@ public class Entity : MonoBehaviour
         await Task.Delay((int)(_timerToWait * 1000));
         if (!stopAsync)
         {
-            Debug.Log($"{this}: Set Trigger is Fighting.");
             animator.SetTrigger("IsFighting");
         }
     }

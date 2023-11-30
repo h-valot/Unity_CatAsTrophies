@@ -119,7 +119,6 @@ public class Cat : Entity
         blobShadowRenderer.enabled = true;
 
         // trigger animations
-        Debug.Log($"{this}: Set Trigger is Fighting.");
         animator.SetTrigger("IsFighting");
 
         int AttackingOrder = TurnManager.Instance.addCatAttackQueue(this); //Add the cat to the attack queue in the turn manager and return it's order of attack
@@ -152,7 +151,6 @@ public class Cat : Entity
 
         if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.InHand)
         {
-            Debug.Log($"{this}: Set Trigger is Fighting.");
             animator.SetTrigger("IsFighting");
         }
 
