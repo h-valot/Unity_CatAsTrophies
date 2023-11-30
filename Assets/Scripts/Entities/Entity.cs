@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     
     public Action OnStatsUpdate;
     public Action OnBattlefieldEntered;
+    public Action<string, Color, bool> OnStatusRecieved; //text to display, color of the text, is an effect or not (change font size)
     
     public void Initialize()
     {
@@ -52,10 +53,12 @@ public class Entity : MonoBehaviour
     
     public void UpdateHealth(int _value)
     {
+        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        OnStatusRecieved?.Invoke(_value.ToString().TrimStart('-'), Registry.gameSettings.colorTextDamage, false);
+
         // apply resistance if
         // - has effect
-        // - value update if inferior to 0 (we don't want to resistance the healing)
-        if(HasEffect(EffectType.Resistance))
+        if (HasEffect(EffectType.Resistance))
         {
             // multiply the damage value by the resistance modifier
             _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
@@ -64,12 +67,12 @@ public class Entity : MonoBehaviour
         _value += armor;
         if (_value > 0)
         {
-            ArmorLoss(_value);
+            DecreaseArmorTo(_value);
             _value = 0;
         }
         else
         {
-            ArmorLoss(0);
+            DecreaseArmorTo(0);
         }
         health += _value;
 
@@ -84,6 +87,7 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
         
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -93,6 +97,9 @@ public class Entity : MonoBehaviour
     /// <param name="_turnDuration">Number of turn this effect will last</param>
     public void ApplyEffect(EffectType _effectType, int _turnDuration)
     {
+        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        OnStatusRecieved?.Invoke(_effectType.ToString(), Registry.gameSettings.colorTextEffect, true);
+
         // increment the effect if already exists
         foreach (Effect effect in effects)
         {
@@ -106,7 +113,8 @@ public class Entity : MonoBehaviour
         
         // else, create a new effect
         effects.Add(new Effect(_effectType, _turnDuration, id));
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
     
@@ -131,8 +139,9 @@ public class Entity : MonoBehaviour
         foreach (var effect in effectsToRemove)
         {
             effects.Remove(effect);
-        }        
-        
+        }
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
     
@@ -152,7 +161,8 @@ public class Entity : MonoBehaviour
         {
             effects.Remove(effect);
         }
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -178,7 +188,7 @@ public class Entity : MonoBehaviour
         // do nothing in the parent
     }
     
-    public void UpdateArmor(int _value)
+    public void IncreaseArmor(int _value)
     {
         int temporaryArmor = _value;
         if (HasEffect(EffectType.BuffArmor))
@@ -189,17 +199,27 @@ public class Entity : MonoBehaviour
         {
             temporaryArmor = temporaryArmor - Registry.gameSettings.debuffArmorAmout;
         }
-        armor = temporaryArmor;
-        Debug.Log("Armor is now set to " + temporaryArmor);
-        
+
+        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        OnStatusRecieved?.Invoke(_value.ToString(), Registry.gameSettings.colorTextArmor, false);
+
+        armor += temporaryArmor;
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
-    public void ArmorLoss(int _value)
+    // function used at the start of every entity's turn 
+    public void ResetArmor()
+    {
+        armor = 0;
+    }
+
+    public void DecreaseArmorTo(int _value)
     {
         armor = _value;
-        Debug.Log("Armor after the hit is " + armor);
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -210,23 +230,31 @@ public class Entity : MonoBehaviour
         {
             temporaryHeal = temporaryHeal - Registry.gameSettings.antiHealAmout;
         }
+
+        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        OnStatusRecieved?.Invoke(_value.ToString(), Registry.gameSettings.colorTextHeal, false);
+
         health = health + temporaryHeal;
 
         if (health > maxHealth)
         {
             health = maxHealth;
         }
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
-    public void UpdateHealthNoArmor(int _value)
+    public void UpdateHealthPassArmor(int _value)
     {
         if (HasEffect(EffectType.Resistance))
         {
             // multiply the damage value by the resistance modifier
             _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
         }
+
+        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        OnStatusRecieved?.Invoke(_value.ToString().TrimStart('-'), Registry.gameSettings.colorTextDamage, false);
 
         health += _value;
 
@@ -240,7 +268,8 @@ public class Entity : MonoBehaviour
         {
             health = maxHealth;
         }
-        
+
+        //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 

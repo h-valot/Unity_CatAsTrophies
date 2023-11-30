@@ -26,9 +26,9 @@ public class AbilityActivator : MonoBehaviour
         await Task.Delay((int)(_timerToWait * 1000));
         
         if (isTouching &&
-            TurnManager.Instance.actionCounter < 3)
+            TurnManager.Instance.catAttackQueue.Count < 3)
         {
-            catUsed.UseAbility();
+            catUsed.AddCatAttackQueue();
         }
     }
 
