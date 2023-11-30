@@ -41,7 +41,7 @@ public static class MapGenerator
             .Where(node => node.incomingNodes.Count > 0 || node.outgoingNodes.Count > 0)
             .ToList();
         
-        Debug.Log($"MAP GENERATOR: map successfully generated with {nodesList.Count} nodes");
+        // Debug.Log($"MAP GENERATOR: map successfully generated with {nodesList.Count} nodes");
         
         return new Map(MapGenerator.mapConfig, nodesList);
     }
@@ -92,10 +92,6 @@ public static class MapGenerator
         // find starting point candidates
         candidates.Shuffle();
         var startingCandidates = candidates.Take(startingNodeAmount).ToList();
-        foreach (Point point in startingCandidates)
-        {
-            point.col = 0;
-        }
         
         // find pre boss point candidates
         candidates.Shuffle();
@@ -117,7 +113,7 @@ public static class MapGenerator
 
             // 2. GeneratePath();
             List<Point> path = GeneratePath(startingPoint, preBossPoint);
-
+            
             // 3. add the boss point to the path
             path.Add(bossPoint);
             
@@ -146,14 +142,14 @@ public static class MapGenerator
     private static List<Point> GeneratePath(Point fromPoint, Point toPoint)
     {
         // add the starting node to the path
-        List<Point> path = new List<Point> { fromPoint };
+        List<Point> path = new List<Point>();
         List<Point> candidates = new List<Point>();
         int rowIndex = fromPoint.row;
 
-        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count - 1; layerIndex++)
+        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count - 2; layerIndex++)
         {
             // from the left to the right, check the up, forward and down next points
-            for (int forwardRowIndex = rowIndex - 1; forwardRowIndex < rowIndex + 1; forwardRowIndex++)
+            for (int forwardRowIndex = rowIndex - 1; forwardRowIndex < rowIndex + 2; forwardRowIndex++)
             {
                 if (forwardRowIndex >= 0 && forwardRowIndex < mapConfig.GetGridMaxWidth())
                 {

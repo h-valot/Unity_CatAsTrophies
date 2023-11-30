@@ -32,34 +32,19 @@ MonoBehaviour:
     max: 4
   nodesDistance: 2
   rejectionSamples: 50
+  nodeLockedColor: {r: 0, g: 0, b: 0, a: 1}
+  nodeAttaignableColor: {r: 1, g: 1, b: 1, a: 1}
+  nodeVisitedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mapLayers:
   - nodeType: 2
     randomizeNodes: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
   - nodeType: 2
     randomizeNodes: 0.388
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
   - nodeType: 2
     randomizeNodes: 0.684
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
   - nodeType: 2
     randomizeNodes: 0.684
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
   - nodeType: 7
     randomizeNodes: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
   - nodeType: 0
     randomizeNodes: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3

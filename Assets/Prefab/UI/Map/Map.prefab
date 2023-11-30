@@ -250,10 +250,10 @@ MonoBehaviour:
   unitsToPixelsMultiplier: 60
   verticalOffset: 0
   padding: 400
-  uiLinePrefab: {fileID: 3541288841668399236, guid: 84cad51977aa53b4395198d8d7aabc22, type: 3}
-  linePointsCount: 10
-  offsetFromNodes: 0.5
-  lineLockedColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  uiLinePrefab: {fileID: 4703687479716264307, guid: 84cad51977aa53b4395198d8d7aabc22, type: 3}
+  linePointsCount: 2
+  offsetFromNodes: 2
+  lineLockedColor: {r: 0, g: 0, b: 0, a: 1}
   lineVisitedColor: {r: 1, g: 1, b: 1, a: 1}
   background: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   backgroundColor:
@@ -292,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.00061035156, y: 0}
+  m_AnchoredPosition: {x: 0.00024414062, y: 0}
   m_SizeDelta: {x: 2340, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4875476965812271816

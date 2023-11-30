@@ -20,11 +20,10 @@ public class MapView : MonoBehaviour
     public float padding = 400f;
     
     [Header("Lines settings")]
-    public GameObject uiLinePrefab;
+    public UILineRenderer uiLinePrefab;
     public int linePointsCount = 10;
     public float offsetFromNodes = 0.5f;
-    public Color lineLockedColor;
-    public Color lineVisitedColor;
+    public Color lineLockedColor, lineVisitedColor;
     
     [Header("Background settings")]
     public Sprite background;
@@ -118,8 +117,8 @@ public class MapView : MonoBehaviour
     private void AddLineConnection(NodeUI from, NodeUI to)
     {
         if (uiLinePrefab == null) return;
-            
-        UILineRenderer lineRenderer = Instantiate(uiLinePrefab, contentParent.transform).GetComponent<UILineRenderer>();
+
+        UILineRenderer lineRenderer = Instantiate(uiLinePrefab, contentParent.transform);
         lineRenderer.transform.SetAsFirstSibling();
         RectTransform fromRectTransform = from.transform as RectTransform;
         RectTransform toRectTransform = to.transform as RectTransform;
@@ -205,8 +204,7 @@ public class MapView : MonoBehaviour
 
         foreach (var point in currentNode.outgoingNodes)
         {
-            var lineConnection = _lineConnections.FirstOrDefault(connection => connection.from.node == currentNode &&
-                                                                         connection.to.node.point.Equals(point));
+            var lineConnection = _lineConnections.FirstOrDefault(connection => connection.from.node == currentNode && connection.to.node.point.Equals(point));
             lineConnection?.SetColor(lineVisitedColor);
         }
 
@@ -216,8 +214,7 @@ public class MapView : MonoBehaviour
         {
             Point current = map.playerPath[i];
             Point next = map.playerPath[i + 1];
-            var lineConnection = _lineConnections.FirstOrDefault(connection => connection.from.node.point.Equals(current) &&
-                                                                         connection.to.node.point.Equals(next));
+            var lineConnection = _lineConnections.FirstOrDefault(connection => connection.from.node.point.Equals(current) && connection.to.node.point.Equals(next));
             lineConnection?.SetColor(lineVisitedColor);
         }
     }

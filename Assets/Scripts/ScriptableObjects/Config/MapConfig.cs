@@ -23,6 +23,9 @@ public class MapConfig : ScriptableObject
     [Tooltip("Number of poisson disc sampling point positioning tries. High value = low performance but cleaner distance between points")]
     public int rejectionSamples = 50;
     
+    [Tooltip("Node map colors")]
+    public Color nodeLockedColor, nodeAttaignableColor, nodeVisitedColor;
+    
     [Header("LAYERS")]
     public List<MapLayer> mapLayers = new List<MapLayer>();
     
