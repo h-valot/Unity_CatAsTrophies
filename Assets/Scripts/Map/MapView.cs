@@ -7,7 +7,6 @@ using UnityEngine.UI.Extensions;
 public class MapView : MonoBehaviour
 {
     [Header("REFERENCES")]
-    public MapConfig mapConfig;
     public GameObject nodePrefab;
     public Transform contentParent;
     public ScrollRect scrollRect;
@@ -37,7 +36,7 @@ public class MapView : MonoBehaviour
     public void ShowMap(Map currentMap)
     {
         // exit if map config is null
-        if (mapConfig == null)
+        if (Registry.mapConfig == null)
         {
             Debug.LogError("MAP VIEW: map config is null");
             return;
@@ -135,7 +134,7 @@ public class MapView : MonoBehaviour
             list.Add(Vector3.Lerp(Vector3.zero, toPoint - fromPoint + 2 * (fromRectTransform.anchoredPosition - toRectTransform.anchoredPosition).normalized * offsetFromNodes, (float) i / (linePointsCount - 1)));
         }
         
-        Debug.Log($"MAP VIEW: from {fromPoint} to {toPoint} last point {list[^1]}");
+        // Debug.Log($"MAP VIEW: from {fromPoint} to {toPoint} last point {list[^1]}");
         
         lineRenderer.Points = list.ToArray();
         _lineConnections.Add(new LineConnection(lineRenderer, from, to));
@@ -149,7 +148,7 @@ public class MapView : MonoBehaviour
         }
     }
     
-    private void SetAttainableNodes()
+    public void SetAttainableNodes()
     {
         // first set all the nodes as unattainable/locked:
         foreach (NodeUI nodeUI in nodesUI)
@@ -187,7 +186,7 @@ public class MapView : MonoBehaviour
         }
     }
     
-    private void SetLineColors()
+    public void SetLineColors()
     {
         // set all lines to grayed out first:
         foreach (var connection in _lineConnections)

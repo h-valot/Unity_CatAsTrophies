@@ -58,12 +58,12 @@ public class Node
 
 public enum NodeType
 {
-    BossBattle = 0,
-    EliteBattle,
-    SimpleBattle,
-    Shop,
-    Merge,
-    Graveyard,
-    Event,
-    Campfire
+    BOSS_BATTLE = 0,
+    ELITE_BATTLE,
+    SIMPLE_BATTLE,
+    SHOP,
+    MERGE,
+    GRAVEYARD,
+    EVENT,
+    CAMPFIRE
 }

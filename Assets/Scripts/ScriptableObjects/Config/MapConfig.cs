@@ -22,6 +22,9 @@ public class MapConfig : ScriptableObject
     
     [Tooltip("Number of poisson disc sampling point positioning tries. High value = low performance but cleaner distance between points")]
     public int rejectionSamples = 50;
+
+    [Tooltip("Scale modifier of the node sprite")]
+    [Range(0.1f , 5f)] public float nodeScaleModifier = 1f;
     
     [Tooltip("Node map colors")]
     public Color nodeLockedColor, nodeAttaignableColor, nodeVisitedColor;

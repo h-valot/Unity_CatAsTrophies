@@ -1,17 +1,26 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
+using System.Threading.Tasks;
 using UnityEngine.UI;
 
 public class NodeUI : MonoBehaviour
 {
-    public Image image;
+    [Header("REFERENCES")]
+    public Image nodeImage;
+    public Image animationCircleImage;
+    public float animationCircleDuration = 0.3f;
+    public float durationBeforeLoadingScene = 0.5f;
+    
+    [Header("DEBUGGING")]
     public NodeStates state;
     public Node node;
 
     public void Initialize(Node node)
     {
         this.node = node;
-        image.sprite = node.GetSprite();
+        nodeImage.sprite = node.GetSprite();
+        nodeImage.transform.localScale *= Registry.mapConfig.nodeScaleModifier;
     }
     
     public void SetState(NodeStates state)
@@ -25,13 +34,13 @@ public class NodeUI : MonoBehaviour
         switch (state)
         {
             case NodeStates.LOCKED:
-                image.color = Registry.mapConfig.nodeLockedColor;
+                nodeImage.color = Registry.mapConfig.nodeLockedColor;
                 break;
             case NodeStates.VISITED:
-                image.color = Registry.mapConfig.nodeVisitedColor;
+                nodeImage.color = Registry.mapConfig.nodeVisitedColor;
                 break;
             case NodeStates.ATTAIGNABLE:
-                image.color = Registry.mapConfig.nodeAttaignableColor;
+                nodeImage.color = Registry.mapConfig.nodeAttaignableColor;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
@@ -41,32 +50,20 @@ public class NodeUI : MonoBehaviour
     public void PressNodeUI()
     {
         // exit, if the node state isn't attaignable
-        if (state == NodeStates.LOCKED || state == NodeStates.VISITED) return;
-        
-        Debug.Log("NODE UI: button pressed");
-        
-        switch (node.nodeType)
-        {
-            case NodeType.BossBattle:
-                break;
-            case NodeType.EliteBattle:
-                break;
-            case NodeType.SimpleBattle:
-                // load battle scene with a random composition of enemy
-                break;
-            case NodeType.Shop:
-                break;
-            case NodeType.Merge:
-                break;
-            case NodeType.Graveyard:
-                break;
-            case NodeType.Event:
-                break;
-            case NodeType.Campfire:
-                break;
-        }
+        if (state is NodeStates.LOCKED or NodeStates.VISITED) return;
         
         SetState(NodeStates.VISITED);
+        MapPlayerTracker.Instance.EnterNode(this);
+    }
+    
+    public async Task ShowSelectionAnimation()
+    {
+        // exit, if the circle image is null
+        if (animationCircleImage == null) return;
+        
+        animationCircleImage.fillAmount = 0f;
+        DOTween.To(() => animationCircleImage.fillAmount, x => animationCircleImage.fillAmount = x, 1f, animationCircleDuration);
+        await Task.Delay((int)(1000 * durationBeforeLoadingScene));
     }
 }
 

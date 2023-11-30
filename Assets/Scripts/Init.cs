@@ -1,3 +1,4 @@
+using Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,9 @@ public class Init : MonoBehaviour
         Registry.mapConfig = mapConfig;
         Registry.events = events;
 
+        DataManager.Reset();
+        DataManager.Load();
+        
         Registry.isInitialized = true;
         asyncLoad.allowSceneActivation = true;
     }

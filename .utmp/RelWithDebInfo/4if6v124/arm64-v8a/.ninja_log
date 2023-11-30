@@ -1,7 +1,5 @@
 # ninja log v5
-589	852	7185414393239178	D:/data/work/bachelor_2_game_programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4if6v124/obj/arm64-v8a/libswappywrapper.so	aef52e829553398c
-0	588	7185414391771605	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e82dbf76d1e6230d
-2	612	7188941182754295	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e82dbf76d1e6230d
-613	1835	7188941193642387	D:/data/work/bachelor_2_game_programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4if6v124/obj/arm64-v8a/libswappywrapper.so	aef52e829553398c
 1	693	7195191193177597	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e82dbf76d1e6230d
 694	2052	7195191203950928	D:/data/work/bachelor_2_game_programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4if6v124/obj/arm64-v8a/libswappywrapper.so	aef52e829553398c
+0	497	7230709055332580	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e82dbf76d1e6230d
+497	1518	7230709064812783	D:/data/work/bachelor_2_game_programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4if6v124/obj/arm64-v8a/libswappywrapper.so	aef52e829553398c

@@ -11,7 +11,7 @@ public static class MapGenerator
     private static List<List<Point>> paths = new List<List<Point>>();
     
     private static readonly List<NodeType> randomNodes = new List<NodeType> 
-        { NodeType.Event, NodeType.Shop, NodeType.Merge, NodeType.SimpleBattle, NodeType.Campfire };
+        { NodeType.EVENT, NodeType.SHOP, NodeType.MERGE, NodeType.SIMPLE_BATTLE, NodeType.CAMPFIRE };
     
     /// <summary>
     /// Returns a map based on a map config.
@@ -43,7 +43,7 @@ public static class MapGenerator
         
         // Debug.Log($"MAP GENERATOR: map successfully generated with {nodesList.Count} nodes");
         
-        return new Map(MapGenerator.mapConfig, nodesList);
+        return new Map(nodesList);
     }
     
     /// <summary>
@@ -180,7 +180,7 @@ public static class MapGenerator
             // get the distance from the previous layer and to the next one
             float layerDistance = mapConfig.layerDistance.GetValue();
             if (layerIndex > 0) layerOffset += layerDistance;
-            List<UnityEngine.Vector2> positions = PoissonDiscSampling.GeneratePoints(nodes[layerIndex].Count, mapConfig.nodesDistance, mapConfig.rejectionSamples);
+            List<Vector2> positions = PoissonDiscSampling.GeneratePoints(nodes[layerIndex].Count, mapConfig.nodesDistance, mapConfig.rejectionSamples);
 
             // get the lowest and the highest position on y axis
             float positionLowestY = 9999;
