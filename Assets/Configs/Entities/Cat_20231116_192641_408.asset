@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d8bf9f601adc3478d30276cd5a2f5d, type: 3}
+  m_Name: Cat_20231116_192641_408
+  m_EditorClassIdentifier: 
+  isCat: 1
+  id: Cat_20231116_192641_408
+  entityName: Bouclier mou
+  health: 0
+  ability:
+    animation: 0
+    instructions: []
+  autoAttack:
+  - animation: 2
+    instructions:
+    - type: 27
+      value: 5
+      target: 0
+      us: 0
+  basePrefab: {fileID: 0}
+  baseMaterial: {fileID: 0}
+  rightHandAddon: {fileID: 0}
+  leftHandAddon: {fileID: 0}
+  headAddon: {fileID: 0}

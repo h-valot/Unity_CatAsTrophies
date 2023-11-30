@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5fe912247c4cab14a8270711cd9bcff0, type: 2}
   - {fileID: 11400000, guid: b540be31440297049a3289ba82df386e, type: 2}
   - {fileID: 11400000, guid: 42fbb0a7e0479be488438047c57d1b8c, type: 2}
-  deckEntitiesCount: 02000000020000000200000002000000
+  - {fileID: 11400000, guid: e68b250be79b05f4b89ae07ad33bd7ad, type: 2}
+  deckEntitiesCount: 0200000002000000020000000200000001000000
   collection: []
-  deckLenght: 8
+  deckLenght: 9

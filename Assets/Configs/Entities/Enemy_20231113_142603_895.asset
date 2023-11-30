@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d8bf9f601adc3478d30276cd5a2f5d, type: 3}
+  m_Name: Enemy_20231113_142603_895
+  m_EditorClassIdentifier: 
+  isCat: 0
+  id: Enemy_20231113_142603_895
+  entityName: Elite Blue
+  health: 18
+  ability:
+    animation: 0
+    instructions: []
+  autoAttack:
+  - animation: 1
+    instructions:
+    - type: 0
+      value: 2
+      target: 2
+      us: 0
+  - animation: 1
+    instructions:
+    - type: 1
+      value: 1
+      target: 1
+      us: 0
+  - animation: 2
+    instructions:
+    - type: 11
+      value: 1
+      target: 5
+      us: 0
+  basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
+  baseMaterial: {fileID: 0}
+  rightHandAddon: {fileID: 0}
+  leftHandAddon: {fileID: 0}
+  headAddon: {fileID: 0}
