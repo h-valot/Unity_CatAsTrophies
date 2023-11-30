@@ -30,7 +30,7 @@ MonoBehaviour:
     instructions:
     - type: 27
       value: 2
-      target: 5
+      target: 2
       us: 1
   basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
   baseMaterial: {fileID: 0}

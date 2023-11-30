@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
-[CreateAssetMenu(fileName = "Entity", menuName = "Config/Entity", order = 1)]
+[CreateAssetMenu(fileName = "EntityConfig", menuName = "Config/Entity/Entity", order = 1)]
 public class EntityConfig : ScriptableObject
 {
     [HideInInspector] public bool isCat;

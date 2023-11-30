@@ -23,7 +23,7 @@ public class GameBattleManager : MonoBehaviour
         HandManager.Instance.Initialize();
         BattlefieldManager.Instance.Initialize();
         DiscardManager.Instance.Initialize();
-        MenuManager.Instance.Initialize();
+        Registry.events.OnSceneLoaded?.Invoke();
 
         // instantiate player's deck of cats
         DeckManager.Instance.LoadPlayerDeck();

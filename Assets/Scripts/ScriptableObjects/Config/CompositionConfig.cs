@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CompositionConfig", menuName = "Config/Composition", order = 1)]
+[CreateAssetMenu(fileName = "CompositionConfig", menuName = "Config/Entity/Composition", order = 3)]
 public class CompositionConfig : ScriptableObject
 {
     public string id;

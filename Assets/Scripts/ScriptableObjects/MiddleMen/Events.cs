@@ -9,4 +9,7 @@ public class Events : ScriptableObject
 
     public Action OnCatsUseAutoAttack;
     public Action OnEnemiesUseAutoAttack;
+
+    // Scene management
+    public Action OnSceneLoaded;
 }
