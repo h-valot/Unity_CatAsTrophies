@@ -40,10 +40,12 @@ public class MapPlayerTracker : MonoBehaviour
             case NodeType.MERGE:
                 break;
             case NodeType.GRAVEYARD:
+                SceneManager.LoadScene("GameGraveyard");
                 break;
             case NodeType.EVENT:
                 break;
             case NodeType.CAMPFIRE:
+                SceneManager.LoadScene("GameBonfire");
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

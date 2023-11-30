@@ -6,20 +6,32 @@ public class MapManager : MonoBehaviour
 {
     [Header("REFERENCE")]
     public MapView mapView;
+    public GameObject mapCanvasParent;
     
     [Header("DEBUGGING")]
     public Map currentMap;
     
-    private void OnEnable()
+    // private void OnEnable()
+    // {
+    //     if (Registry.events == null) return;
+    //     Registry.events.OnSceneLoaded += Initialize;
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     if (Registry.events == null) return;
+    //     Registry.events.OnSceneLoaded -= Initialize;
+    // }
+
+    public void DisplayCanvas()
     {
-        if (Registry.events == null) return;
-        Registry.events.OnSceneLoaded += Initialize;
+        mapCanvasParent.SetActive(true);
+        Initialize();
     }
 
-    private void OnDisable()
+    public void HideCanvas()
     {
-        if (Registry.events == null) return;
-        Registry.events.OnSceneLoaded -= Initialize;
+        mapCanvasParent.SetActive(false);
     }
 
     /// <summary>

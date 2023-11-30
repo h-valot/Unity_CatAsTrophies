@@ -40,11 +40,11 @@ MonoBehaviour:
   - nodeType: 2
     randomizeNodes: 0
   - nodeType: 2
-    randomizeNodes: 0.388
+    randomizeNodes: 0.503
   - nodeType: 2
-    randomizeNodes: 0.684
+    randomizeNodes: 0.557
   - nodeType: 2
-    randomizeNodes: 0.684
+    randomizeNodes: 0.546
   - nodeType: 7
     randomizeNodes: 0
   - nodeType: 0

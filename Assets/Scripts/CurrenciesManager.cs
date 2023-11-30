@@ -1,39 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class CurrenciesManager : MonoBehaviour
 {
     public static CurrenciesManager instance;
-    public int Tuna = 0;
-    public int Treats = 0;
-    public TMP_Text TunaText;
-    public TMP_Text TreatsText;
+    
+    public int Tuna, Treats;
+    public TextMeshProUGUI TunaTM, TreatsTM;
 
     public void Addtuna(int value)
     {
         Tuna += value;
+        UpdateDisplay();
     }
 
     public void SpentTuna(int value)
     {
         Tuna -= value;
+        UpdateDisplay();
     }
 
     public void AddTreats(int value)
     {
         Treats += value;
+        UpdateDisplay();
     }
 
     public void SpentTreats(int value)
     {
         Treats -= value;
+        UpdateDisplay();
     }
 
-    public void Update()
+    private void UpdateDisplay()
     {
-        TunaText.text = "Tuna : " + Tuna.ToString();
-        TreatsText.text = "Treats : " + Treats.ToString();
+        TunaTM.text = $"Tuna: {Tuna}";
+        TreatsTM.text = $"Treats: {Treats}";
     }
 }
