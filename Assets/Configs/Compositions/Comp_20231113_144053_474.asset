@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Comp_20231113_144053_474
   isPlayerDeck: 0
+  tier: 1
   compositionName: Elite Pink
   entities:
   - {fileID: 0}

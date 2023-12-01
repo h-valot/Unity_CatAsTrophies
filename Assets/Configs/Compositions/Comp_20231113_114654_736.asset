@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Comp_20231113_114654_736
   isPlayerDeck: 0
+  tier: 1
   compositionName: Elite P
   entities:
   - {fileID: 11400000, guid: 358f7a6e468b8874b848ca55bdf2c8eb, type: 2}

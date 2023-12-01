@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Comp_20231123_090145_925
   isPlayerDeck: 0
+  tier: 1
   compositionName: Elite G
   entities:
   - {fileID: 0}
