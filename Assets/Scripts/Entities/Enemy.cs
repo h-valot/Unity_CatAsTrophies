@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -14,6 +13,7 @@ public class Enemy : Entity
         // GAME STATS
         maxHealth = Registry.entitiesConfig.enemies[enemyType].health;
         health = maxHealth;
+        armor = Registry.entitiesConfig.enemies[enemyType].armorAtStart;
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
         
         // update game stat on ui display
