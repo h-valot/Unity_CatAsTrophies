@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
     public GameObject graphicsParent;
     public Animator animator;
     public SkinnedMeshRenderer skinnedMeshRenderer;
+    public GameObject blobShadow;
     public SpriteRenderer blobShadowRenderer;
 
     [Header("GAMEPLAY")] 
@@ -24,7 +25,8 @@ public class Entity : MonoBehaviour
 
     [Header("GRAPHICS TWEAKING")] 
     public Vector3 battleRotation;
-    public Vector3 baseRotation;
+    public Vector3 handRotation;
+    public Vector3 dragRotation;
     public float battleScale;
     
     public Action OnStatsUpdate;

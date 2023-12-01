@@ -16,6 +16,8 @@ MonoBehaviour:
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5
+  verticalOffsetDuringDrag: -1.45
+  verticalOffsetBlobShadow: -0.151
   holdingTimeMaxSingleClick: 0.3
   holdingTimeToTriggerAbility: 0.75
   dragingMinimumAmount: 100

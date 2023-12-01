@@ -9,6 +9,8 @@ public class GameSettings : ScriptableObject
     public float delayBeforeAnimation;
     public float abilityAnimationDuration;
     public float delayAfterAnimation;
+    public float verticalOffsetDuringDrag;
+    public float verticalOffsetBlobShadow;
 
     [Header("GAMEPLAY")]
     public float holdingTimeMaxSingleClick;

@@ -49,6 +49,7 @@ MonoBehaviour:
   graphicsParent: {fileID: 5399714602900072910}
   animator: {fileID: 319391137215211856}
   skinnedMeshRenderer: {fileID: 3576935699718850821}
+  blobShadow: {fileID: 4261059433009553284}
   blobShadowRenderer: {fileID: 4209896405001016847}
   battlePosition: 0
   health: 0
@@ -57,8 +58,10 @@ MonoBehaviour:
   autoAttacks: []
   effects: []
   battleRotation: {x: 0, y: 100, z: 0}
-  baseRotation: {x: -20, y: 180, z: 0}
+  handRotation: {x: -20, y: 180, z: 0}
+  dragRotation: {x: 0, y: 180, z: 0}
   battleScale: 1.5
+  isInFrontOfBackgroundFade: 0
   boneHead: {fileID: 2288940876047503702}
   boneHand_R: {fileID: 7414425664818722317}
   boneHand_L: {fileID: 3937091611081182108}
