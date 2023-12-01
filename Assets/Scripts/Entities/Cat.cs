@@ -19,11 +19,11 @@ public class Cat : Entity
     private GameObject rightHandAddonRef;
     private GameObject leftHandAddonRef;
 
-    public void Initialize(int _typeIndex)
+    public void Initialize(int typeIndex)
     {
         base.Initialize();
         state = CatState.InDeck;
-        catType = _typeIndex;
+        catType = typeIndex;
         
         // setup entity stats
         maxHealth = Registry.entitiesConfig.cats[catType].health;
@@ -112,6 +112,11 @@ public class Cat : Entity
     /// </summary>
     public void PlaceOnBattlefield()
     {
+        // add armor on placed
+        armor = Registry.entitiesConfig.cats[catType].armorAtStart;
+        // update entity stats on the ui displayer
+        OnStatsUpdate?.Invoke();
+        
         // handle graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;
         if (rightHandAddonRef) rightHandAddonRef.SetActive(true);

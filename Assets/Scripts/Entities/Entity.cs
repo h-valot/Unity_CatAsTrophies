@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
     public BattlePosition battlePosition;
     public float health;
     public float maxHealth;
-    public int armor = 0;
+    public int armor;
     public List<Ability> autoAttacks = new List<Ability>();
     public List<Effect> effects = new List<Effect>();
 

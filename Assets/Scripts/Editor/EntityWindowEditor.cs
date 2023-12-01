@@ -15,6 +15,7 @@ public class EntityIntegration : EditorWindow
 
     private string _entityName;
     private float _health;
+    private int _armorAtStart;
     private Ability _ability;
     private List<Ability> _autoAttacks = new List<Ability>();
     private GameObject _basePrefab, _rightHandAddon, _leftHandAddon, _headAddon;
@@ -166,6 +167,7 @@ public class EntityIntegration : EditorWindow
         GUILayout.Label("INFORMATION", EditorStyles.boldLabel);
         _entityName = EditorGUILayout.TextField("Name", _entityName);
         _health = EditorGUILayout.FloatField("Health", _health);
+        _armorAtStart = EditorGUILayout.IntField("Armor at start", _armorAtStart);
     
         
         // ABILITY
@@ -217,6 +219,7 @@ public class EntityIntegration : EditorWindow
         // INFORMATIONS
         _entityName = _currentEntity.entityName;
         _health = _currentEntity.health;
+        _armorAtStart = _currentEntity.armorAtStart;
 
         // ABILITY
         _ability = _currentEntity.ability;
@@ -345,6 +348,7 @@ public class EntityIntegration : EditorWindow
         // update data into current entity
         _currentEntity.entityName = _entityName;
         _currentEntity.health = _health;
+        _currentEntity.armorAtStart = _armorAtStart;
         _currentEntity.ability = _ability;
         _currentEntity.autoAttack = _autoAttacks;
         _currentEntity.basePrefab = _basePrefab;
