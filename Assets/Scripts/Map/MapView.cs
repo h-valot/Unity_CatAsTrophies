@@ -45,6 +45,7 @@ public class MapView : MonoBehaviour
         this.map = currentMap;
         
         ClearMap();
+        
         CreateMapParent();
         CreateNodes(map.nodes);
         DrawLines();
@@ -57,13 +58,12 @@ public class MapView : MonoBehaviour
     private void ClearMap()
     {
         scrollRect.gameObject.SetActive(false);
-
-        foreach (var node in nodesUI)
-        {
-            Destroy(node.gameObject);
-        }
-        
         nodesUI.Clear();
+
+        while (contentParent.childCount > 0) 
+        {
+            DestroyImmediate(contentParent.GetChild(0).gameObject);
+        }
     }
     
     private void CreateNodes(List<Node> nodes)
