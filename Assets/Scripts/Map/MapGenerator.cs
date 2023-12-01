@@ -11,7 +11,7 @@ public static class MapGenerator
     private static List<List<Point>> paths = new List<List<Point>>();
     
     private static readonly List<NodeType> randomNodes = new List<NodeType> 
-        { NodeType.EVENT, NodeType.SHOP, NodeType.MERGE, NodeType.SIMPLE_BATTLE, NodeType.CAMPFIRE };
+        { NodeType.GRAVEYARD, NodeType.SIMPLE_BATTLE, NodeType.CAMPFIRE };
     
     /// <summary>
     /// Returns a map based on a map config.
