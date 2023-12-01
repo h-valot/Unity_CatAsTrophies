@@ -40,7 +40,7 @@ namespace Data
         /// </summary>
         public static void Reset()
         {
-            data = new PersistantData();
+            data ??= new PersistantData();
         }
         
         /// <summary>

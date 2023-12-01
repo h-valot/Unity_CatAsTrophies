@@ -6,19 +6,19 @@ using UnityEngine;
 public class PlayerDeckWindowEditor : EditorWindow
 {
     #region INITIALIZATION
-    private PlayerConfig playerConfig;
+    private PlayerConfig _playerConfig;
 
-    private List<EntityConfig> catsConfig = new List<EntityConfig>();
-    private List<int> catsCount = new List<int>();
-    private List<String> catsName = new List<string>();
-    private List<int> catsIndex = new List<int>();  
+    private List<EntityConfig> _catsConfig = new List<EntityConfig>();
+    private List<int> _catsCount = new List<int>();
+    private List<String> _catsName = new List<string>();
+    private List<int> _catsIndex = new List<int>();  
     
     // window editor component
-    private Vector2 informationsScroll;
-    private EntitiesConfig entitiesConfig;
+    private Vector2 _informationsScroll;
+    private EntitiesConfig _entitiesConfig;
     #endregion
     
-    [MenuItem("Tool/Player deck")]
+    [MenuItem("Integration Tools/Player deck")]
     static void InitializeWindow()
     {
         PlayerDeckWindowEditor window = GetWindow<PlayerDeckWindowEditor>();
@@ -31,10 +31,10 @@ public class PlayerDeckWindowEditor : EditorWindow
     private void OnEnable()
     {
         // initialize lists
-        catsIndex.Clear();
+        _catsIndex.Clear();
         for (int i = 0; i < 3; i++)
         {
-            catsIndex.Add(0);
+            _catsIndex.Add(0);
         }
 
         // load data
@@ -48,7 +48,7 @@ public class PlayerDeckWindowEditor : EditorWindow
     {
         EditorGUILayout.BeginHorizontal();
         {
-            informationsScroll = EditorGUILayout.BeginScrollView(informationsScroll);
+            _informationsScroll = EditorGUILayout.BeginScrollView(_informationsScroll);
             {
                 DisplayInformations();
             }
@@ -75,19 +75,19 @@ public class PlayerDeckWindowEditor : EditorWindow
 
     private void UpdateInformations()
     {
-        catsIndex.Clear();
-        catsName.Clear();
+        _catsIndex.Clear();
+        _catsName.Clear();
         
-        foreach (var cat in playerConfig.deckEntities)
+        foreach (var cat in _playerConfig.deckEntities)
         {
-            catsIndex.Add(entitiesConfig.cats.IndexOf(cat));
+            _catsIndex.Add(_entitiesConfig.cats.IndexOf(cat));
         }
     }
     
     private int GetTotalNumberOfCats()
     {
         int output = 0;
-        foreach (int catCount in catsCount)
+        foreach (int catCount in _catsCount)
         {
             output += catCount;
         }
@@ -97,7 +97,7 @@ public class PlayerDeckWindowEditor : EditorWindow
     private void DisplayCatsChoser()
     {
         // exit if 
-        if (entitiesConfig.cats.Count <= 0)
+        if (_entitiesConfig.cats.Count <= 0)
         {
             Debug.LogError("PLAYER DECK WINDOW EDITOR: there is no cats in entities config", this);
             return;
@@ -106,10 +106,10 @@ public class PlayerDeckWindowEditor : EditorWindow
         GUILayout.BeginVertical("HelpBox");
         {
             // get all cats name in a list of string
-            foreach (EntityConfig cat in entitiesConfig.cats)
+            foreach (EntityConfig cat in _entitiesConfig.cats)
             {
-                catsName.Add(cat.entityName);
-                catsIndex.Add(0);
+                _catsName.Add(cat.entityName);
+                _catsIndex.Add(0);
             }
             
             // HEADER
@@ -118,16 +118,16 @@ public class PlayerDeckWindowEditor : EditorWindow
                 GUILayout.Label("Cats");
                 if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                 {
-                    catsConfig.Add(entitiesConfig.cats[0]);
-                    catsCount.Add(1);
+                    _catsConfig.Add(_entitiesConfig.cats[0]);
+                    _catsCount.Add(1);
                 }
             }
             GUILayout.EndHorizontal();
 
             // LIST
-            if (catsConfig != null)
+            if (_catsConfig != null)
             {
-                for (int index = 0; index < catsConfig.Count; index++)
+                for (int index = 0; index < _catsConfig.Count; index++)
                 {
                     DisplayCatPlacement(index);
                 }
@@ -136,22 +136,22 @@ public class PlayerDeckWindowEditor : EditorWindow
         GUILayout.EndVertical();
     }
 
-    private void DisplayCatPlacement(int _index)
+    private void DisplayCatPlacement(int index)
     {
         GUILayout.BeginHorizontal("HelpBox");
         {
-            catsIndex[_index] = EditorGUILayout.Popup("", catsIndex[_index], catsName.ToArray());
-            catsConfig[_index] = entitiesConfig.cats[catsIndex[_index]];
+            _catsIndex[index] = EditorGUILayout.Popup("", _catsIndex[index], _catsName.ToArray());
+            _catsConfig[index] = _entitiesConfig.cats[_catsIndex[index]];
                         
-            catsCount[_index] = EditorGUILayout.IntField("Count", catsCount[_index]);
+            _catsCount[index] = EditorGUILayout.IntField("Count", _catsCount[index]);
                         
             GUI.backgroundColor = Color.red;
             if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))
             {
                 if (EditorUtility.DisplayDialog("Delete entity", "Do you really want to permanently delete this entity?", "Yes", "No"))
                 {
-                    catsConfig.Remove(catsConfig[_index]);
-                    catsCount.Remove(catsCount[_index]);
+                    _catsConfig.Remove(_catsConfig[index]);
+                    _catsCount.Remove(_catsCount[index]);
                     return;
                 }
             }
@@ -163,11 +163,11 @@ public class PlayerDeckWindowEditor : EditorWindow
     private void SaveDataToAsset()
     {
         // save data into a temp game asset
-        playerConfig.deckEntities = catsConfig;
-        playerConfig.deckEntitiesCount = catsCount;
+        _playerConfig.deckEntities = _catsConfig;
+        _playerConfig.deckEntitiesCount = _catsCount;
         
         // save changes
-        EditorUtility.SetDirty(playerConfig);
+        EditorUtility.SetDirty(_playerConfig);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         
@@ -177,17 +177,17 @@ public class PlayerDeckWindowEditor : EditorWindow
 
     private void LoadDataFromAsset()
     {
-        entitiesConfig = EditorMisc.FindEntitiesConfig();
-        playerConfig = EditorMisc.FindPlayerConfig();
-        catsConfig = playerConfig.deckEntities;
-        catsCount = playerConfig.deckEntitiesCount;
+        _entitiesConfig = EditorMisc.FindEntitiesConfig();
+        _playerConfig = EditorMisc.FindPlayerConfig();
+        _catsConfig = _playerConfig.deckEntities;
+        _catsCount = _playerConfig.deckEntitiesCount;
     }
     
     private void UpdateEntitiesConfig()
     {
-        playerConfig.deckEntities = catsConfig;
-        playerConfig.deckEntitiesCount = catsCount;
-        playerConfig.deckLenght = GetTotalNumberOfCats();
-        EditorUtility.SetDirty(playerConfig);
+        _playerConfig.deckEntities = _catsConfig;
+        _playerConfig.deckEntitiesCount = _catsCount;
+        _playerConfig.deckLenght = GetTotalNumberOfCats();
+        EditorUtility.SetDirty(_playerConfig);
     }
 }

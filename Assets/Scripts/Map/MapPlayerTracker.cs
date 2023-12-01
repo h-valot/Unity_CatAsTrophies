@@ -9,15 +9,15 @@ public class MapPlayerTracker : MonoBehaviour
     public MapManager mapManager;
     public MapView mapView;
 
-    private bool isLocked;
+    private bool _isLocked;
     
     private void Awake() => Instance = this;
     
     public async void EnterNode(NodeUI nodeUI)
     {
-        if (isLocked) return;
+        if (_isLocked) return;
 
-        isLocked = true;
+        _isLocked = true;
         mapManager.currentMap.playerPath.Add(nodeUI.node.point);
         mapManager.SaveMap();
         
@@ -50,5 +50,7 @@ public class MapPlayerTracker : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+        
+        _isLocked = false;
     }
 }
