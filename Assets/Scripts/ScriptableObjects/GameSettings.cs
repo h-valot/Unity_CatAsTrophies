@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameSettings : ScriptableObject
 {
     public string startingScene;
+    public bool gameBattleDebugMode;
 
     [Header("ANIMATIONS")]
     public float delayBeforeAnimation;

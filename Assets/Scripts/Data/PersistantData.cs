@@ -10,9 +10,13 @@ namespace Data
             
             // sync data
             map = data.map;
+            compoToLoad = data.compoToLoad;
         }
         
         // current loaded and displayed map
         public Map map;
+
+        // level loading data
+        public CompositionConfig compoToLoad;
     }
 }

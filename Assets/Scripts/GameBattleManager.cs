@@ -1,3 +1,4 @@
+using Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,7 +22,7 @@ public class GameBattleManager : MonoBehaviour
         EnemyGenerator.Instance.Initialize();
         TurnManager.Instance.Initialize();
         HandManager.Instance.Initialize();
-        BattlefieldManager.Instance.Initialize();
+        BattlefieldManager.Instance.Initialize(); 
         DiscardManager.Instance.Initialize();
         Registry.events.OnSceneLoaded?.Invoke();
 
@@ -29,8 +30,17 @@ public class GameBattleManager : MonoBehaviour
         DeckManager.Instance.LoadPlayerDeck();
         DeckManager.Instance.ShuffleDeck();
         
-        // debugging
-        DebugCompManager.Instance.InstantiateAllButtons();
+        if (Registry.gameSettings.gameBattleDebugMode)
+        {
+            // debugging
+            DebugCompManager.Instance.InstantiateAllButtons();
+            DebugCompManager.Instance.ShowDebugButtons();
+        }
+        else
+        {
+            DebugCompManager.Instance.HideDebugButtons();
+            EnemyGenerator.Instance.GenerateComposition(DataManager.data.compoToLoad);
+        }
         
         // start the game loop
         TurnManager.Instance.HandleTurnState();
