@@ -16,6 +16,7 @@ MonoBehaviour:
   id: Cat_20231102_112940_322
   entityName: Ranger
   health: 6
+  armorAtStart: 0
   ability:
     animation: 0
     instructions: []
@@ -27,7 +28,8 @@ MonoBehaviour:
       target: 2
       us: 0
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
-  baseMaterial: {fileID: 2100000, guid: 5cb2cc996cbb1924eb5a2f7980b36945, type: 2}
+  catSkinTexture: {fileID: 2800000, guid: 64528ff4484fec942932fb6a4dc3d734, type: 3}
+  catEyesTexture: {fileID: 2800000, guid: 461cbe6958f9c3a44b3767171f1d077d, type: 3}
   rightHandAddon: {fileID: 919132149155446097, guid: ab7222940a5440640975341ada9eeaca, type: 3}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 919132149155446097, guid: 8fee9ea669b768945b05af6c2100631c, type: 3}

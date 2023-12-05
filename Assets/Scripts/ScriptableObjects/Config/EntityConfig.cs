@@ -19,7 +19,8 @@ public class EntityConfig : ScriptableObject
 
     [Header("GRAPHICS")]
     public GameObject basePrefab;
-    public Material baseMaterial;
+    public Texture catSkinTexture;
+    public Texture catEyesTexture;
     public GameObject rightHandAddon;
     public GameObject leftHandAddon;
     public GameObject headAddon;
