@@ -14,7 +14,6 @@ public class ClickActivator : MonoBehaviour
         timeStartClick = Time.time;
         isTouching = true;
         Timer(Registry.gameSettings.holdingTimeToTriggerAbility, timeStartClick);
-        
     }
 
     private void OnMouseUp()
@@ -22,10 +21,6 @@ public class ClickActivator : MonoBehaviour
         isTouching = false;
 
         //the difference between a click and a drag is made inside DragAndDrop.cs
-        if ((Time.time - timeStartClick) < Registry.gameSettings.holdingTimeMaxSingleClick && catUsed.state == CatState.InHand)
-        {
-            Debug.Log($"Single click on cat that trigger explication layout.");
-        }
     }
 
     private async void Timer(float _timerToWait, float _timeStartClick)

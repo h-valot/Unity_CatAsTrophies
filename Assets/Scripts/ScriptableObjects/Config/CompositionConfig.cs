@@ -7,6 +7,7 @@ public class CompositionConfig : ScriptableObject
     public string id;
     public bool isPlayerDeck;
 
+    public CompositionTier tier;
     public string compositionName;
     public List<EntityConfig> entities = new List<EntityConfig>();
 
@@ -17,4 +18,11 @@ public class CompositionConfig : ScriptableObject
             entities.Add(new EntityConfig());
         }
     }
+}
+
+public enum CompositionTier
+{
+    SIMPLE = 0,
+    ELITE,
+    BOSS
 }

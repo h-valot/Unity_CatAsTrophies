@@ -1,34 +1,34 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class EntityIntegration : EditorWindow
 {
     #region INITIALIZATION
     // lists of entities
-    private List<EntityConfig> enemies = new List<EntityConfig>();
-    private List<EntityConfig> cats = new List<EntityConfig>();
+    private List<EntityConfig> _enemies = new List<EntityConfig>();
+    private List<EntityConfig> _cats = new List<EntityConfig>();
 
     // entities attributes
-    private EntityConfig currentEntity;
+    private EntityConfig _currentEntity;
 
-    private string entityName;
-    private float health;
-    private Ability ability;
-    private List<Ability> autoAttacks = new List<Ability>();
-    private GameObject basePrefab, rightHandAddon, leftHandAddon, headAddon;
-    private Material baseMaterial;
+    private string _entityName;
+    private float _health;
+    private int _armorAtStart;
+    private Ability _ability;
+    private List<Ability> _autoAttacks = new List<Ability>();
+    private GameObject _basePrefab, _rightHandAddon, _leftHandAddon, _headAddon;
+    private Material _baseMaterial;
     
     // window editor component
-    private int id;
-    private Vector2 sideBarScroll, informationsScroll;
-    private bool canDisplayDetails = true;
-    private EntitiesConfig entitiesConfig;
+    private int _id;
+    private Vector2 _sideBarScroll, _informationsScroll;
+    private bool _canDisplayDetails = true;
+    private EntitiesConfig _entitiesConfig;
     #endregion
     
-    [MenuItem("Tool/Entity")]
+    [MenuItem("Integration Tools/Entity")]
     static void InitializeWindow()
     {
         EntityIntegration window = GetWindow<EntityIntegration>();
@@ -40,23 +40,23 @@ public class EntityIntegration : EditorWindow
     
     private void OnEnable()
     {
-        cats.Clear();
-        enemies.Clear();
+        _cats.Clear();
+        _enemies.Clear();
         
         // load the data from the entities config
         LoadDataFromAsset();
         
-        if (cats.Count > 0)
+        if (_cats.Count > 0)
         {
-            UpdateInformations(cats[0]);
+            UpdateInformations(_cats[0]);
         }
-        else if (enemies.Count > 0)
+        else if (_enemies.Count > 0)
         {
-            UpdateInformations(enemies[0]);
+            UpdateInformations(_enemies[0]);
         }
         else
         {
-            canDisplayDetails = false;
+            _canDisplayDetails = false;
         }
     }
 
@@ -68,7 +68,7 @@ public class EntityIntegration : EditorWindow
             {
                 GUILayout.BeginVertical("HelpBox");
                 {
-                    sideBarScroll = EditorGUILayout.BeginScrollView(sideBarScroll);
+                    _sideBarScroll = EditorGUILayout.BeginScrollView(_sideBarScroll);
                     {
                         DisplaySideBar();
                     }
@@ -80,9 +80,9 @@ public class EntityIntegration : EditorWindow
             
             EditorGUILayout.BeginVertical();
             {
-                if (canDisplayDetails)
+                if (_canDisplayDetails)
                 {
-                    informationsScroll = EditorGUILayout.BeginScrollView(informationsScroll);
+                    _informationsScroll = EditorGUILayout.BeginScrollView(_informationsScroll);
                     {
                         DisplayInformations();
                     }
@@ -108,9 +108,9 @@ public class EntityIntegration : EditorWindow
                 var date = DateTime.Now;
                 newInstance.id = "Cat_" + date.ToString("yyyyMMdd_HHmmss_fff");
                 
-                cats.Add(newInstance);
+                _cats.Add(newInstance);
                 UpdateInformations(newInstance);
-                canDisplayDetails = true;
+                _canDisplayDetails = true;
             }
         }
         GUILayout.EndHorizontal();
@@ -118,7 +118,7 @@ public class EntityIntegration : EditorWindow
         GUILayout.Space(5);
     
         // LIST OF CATS
-        foreach (EntityConfig cat in cats)
+        foreach (EntityConfig cat in _cats)
         {
             string buttonName = cat.entityName == "" ? "New cat" : cat.entityName;
             if (GUILayout.Button($"{buttonName}", GUILayout.ExpandWidth(true), GUILayout.Height(20)))
@@ -140,9 +140,9 @@ public class EntityIntegration : EditorWindow
                 var date = DateTime.Now;
                 newInstance.id = "Enemy_" + date.ToString("yyyyMMdd_HHmmss_fff");
                 
-                enemies.Add(newInstance);
+                _enemies.Add(newInstance);
                 UpdateInformations(newInstance);
-                canDisplayDetails = true;
+                _canDisplayDetails = true;
             }
         }
         GUILayout.EndHorizontal();
@@ -150,7 +150,7 @@ public class EntityIntegration : EditorWindow
         GUILayout.Space(5);
         
         // LIST OF ENEMIES
-        foreach (EntityConfig enemy in enemies)
+        foreach (EntityConfig enemy in _enemies)
         {
             string buttonName = enemy.entityName == "" ? "New enemy" : enemy.entityName;
             if (GUILayout.Button($"{buttonName}", GUILayout.ExpandWidth(true), GUILayout.Height(20)))
@@ -165,30 +165,31 @@ public class EntityIntegration : EditorWindow
     {
         // INFORMATIONS
         GUILayout.Label("INFORMATION", EditorStyles.boldLabel);
-        entityName = EditorGUILayout.TextField("Name", entityName);
-        health = EditorGUILayout.FloatField("Health", health);
+        _entityName = EditorGUILayout.TextField("Name", _entityName);
+        _health = EditorGUILayout.FloatField("Health", _health);
+        _armorAtStart = EditorGUILayout.IntField("Armor at start", _armorAtStart);
     
         
         // ABILITY
         GUILayout.Space(10);
         GUILayout.Label("ABILITY", EditorStyles.boldLabel);
-        DisplayInstructionList(ability);
+        DisplayInstructionList(_ability);
         
 
         // AUTO ATTACK
         GUILayout.Space(10);
         GUILayout.Label("AUTO ATTACK", EditorStyles.boldLabel);
-        DisplayAbilityList(autoAttacks);
+        DisplayAbilityList(_autoAttacks);
         
 
         // GRAPHICS
         GUILayout.Space(10);
         GUILayout.Label("GRAPHICS", EditorStyles.boldLabel);
-        basePrefab = (GameObject)EditorGUILayout.ObjectField("Base mesh prefab", basePrefab, typeof(GameObject), true);
-        baseMaterial = (Material)EditorGUILayout.ObjectField("Cat skin", baseMaterial, typeof(Material), true);
-        rightHandAddon = (GameObject)EditorGUILayout.ObjectField("Right hand addon", rightHandAddon, typeof(GameObject), true);
-        leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", leftHandAddon, typeof(GameObject), true);
-        headAddon = (GameObject)EditorGUILayout.ObjectField("Head addon", headAddon, typeof(GameObject), true);
+        _basePrefab = (GameObject)EditorGUILayout.ObjectField("Base mesh prefab", _basePrefab, typeof(GameObject), true);
+        _baseMaterial = (Material)EditorGUILayout.ObjectField("Cat skin", _baseMaterial, typeof(Material), true);
+        _rightHandAddon = (GameObject)EditorGUILayout.ObjectField("Right hand addon", _rightHandAddon, typeof(GameObject), true);
+        _leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", _leftHandAddon, typeof(GameObject), true);
+        _headAddon = (GameObject)EditorGUILayout.ObjectField("Head addon", _headAddon, typeof(GameObject), true);
 
         
         // DATA MANAGEMENT
@@ -211,27 +212,28 @@ public class EntityIntegration : EditorWindow
         GUI.backgroundColor = Color.white;
     }
 
-    private void UpdateInformations(EntityConfig _entityConfig)
+    private void UpdateInformations(EntityConfig entityConfig)
     {
-        currentEntity = _entityConfig;
+        _currentEntity = entityConfig;
         
         // INFORMATIONS
-        entityName = currentEntity.entityName;
-        health = currentEntity.health;
+        _entityName = _currentEntity.entityName;
+        _health = _currentEntity.health;
+        _armorAtStart = _currentEntity.armorAtStart;
 
         // ABILITY
-        ability = currentEntity.ability;
-        autoAttacks = currentEntity.autoAttack;
+        _ability = _currentEntity.ability;
+        _autoAttacks = _currentEntity.autoAttack;
 
         // GRAPHICS
-        basePrefab = currentEntity.basePrefab;
-        baseMaterial = currentEntity.baseMaterial;
-        rightHandAddon = currentEntity.rightHandAddon;
-        leftHandAddon = currentEntity.leftHandAddon;
-        headAddon = currentEntity.headAddon;
+        _basePrefab = _currentEntity.basePrefab;
+        _baseMaterial = _currentEntity.baseMaterial;
+        _rightHandAddon = _currentEntity.rightHandAddon;
+        _leftHandAddon = _currentEntity.leftHandAddon;
+        _headAddon = _currentEntity.headAddon;
     }
 
-    private void DisplayAbilityList(List<Ability> _autoAttack)
+    private void DisplayAbilityList(List<Ability> autoAttack)
     {
         GUILayout.BeginVertical("HelpBox");
         {
@@ -243,13 +245,13 @@ public class EntityIntegration : EditorWindow
                 {
                     var newAutoAttackAbility = new Ability();
                     newAutoAttackAbility.instructions.Add(new Instruction());
-                    _autoAttack.Add(newAutoAttackAbility);
+                    autoAttack.Add(newAutoAttackAbility);
                 }
             }
             GUILayout.EndHorizontal();
 
             // LIST
-            foreach (Ability autoAttackAbility in _autoAttack)
+            foreach (Ability autoAttackAbility in autoAttack)
             {
                 GUILayout.BeginHorizontal();
                 {
@@ -265,7 +267,7 @@ public class EntityIntegration : EditorWindow
                         {
                             if (EditorUtility.DisplayDialog("Delete Ability", "Do you really want to permanently delete this Ability?", "Yes", "No"))
                             {
-                                _autoAttack.Remove(autoAttackAbility);
+                                autoAttack.Remove(autoAttackAbility);
                                 return;
                             }
                         }
@@ -279,11 +281,11 @@ public class EntityIntegration : EditorWindow
         GUILayout.EndVertical();
     }
 
-    private void DisplayInstructionList(Ability _ability)
+    private void DisplayInstructionList(Ability ability)
     {
         GUILayout.BeginVertical("HelpBox");
         {
-            _ability.animation = (AbilityAnimation)EditorGUILayout.EnumPopup("Animation type", _ability.animation);
+            ability.animation = (AbilityAnimation)EditorGUILayout.EnumPopup("Animation type", ability.animation);
             
             // HEADER
             GUILayout.BeginHorizontal();
@@ -292,15 +294,15 @@ public class EntityIntegration : EditorWindow
                 if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                 {
                     var newInstruction = new Instruction();
-                    _ability.instructions.Add(newInstruction);
+                    ability.instructions.Add(newInstruction);
                 }
             }
             GUILayout.EndHorizontal();
 
             // LIST
-            if (_ability != null)
+            if (ability != null)
             {
-                foreach (Instruction instruction in _ability.instructions)
+                foreach (Instruction instruction in ability.instructions)
                 {
                     GUILayout.BeginHorizontal("HelpBox");
                     {
@@ -323,7 +325,7 @@ public class EntityIntegration : EditorWindow
                             {
                                 if (EditorUtility.DisplayDialog("Delete Instruction", "Do you really want to permanently delete this instruction?", "Yes", "No"))
                                 {
-                                    _ability.instructions.Remove(instruction);
+                                    ability.instructions.Remove(instruction);
                                     return;
                                 }
                             }
@@ -341,30 +343,31 @@ public class EntityIntegration : EditorWindow
     private void SaveDataToAsset()
     {
         // exceptions
-        if (entityName == "") return;
+        if (_entityName == "") return;
             
         // update data into current entity
-        currentEntity.entityName = entityName;
-        currentEntity.health = health;
-        currentEntity.ability = ability;
-        currentEntity.autoAttack = autoAttacks;
-        currentEntity.basePrefab = basePrefab;
-        currentEntity.baseMaterial = baseMaterial; 
-        currentEntity.rightHandAddon = rightHandAddon;
-        currentEntity.leftHandAddon = leftHandAddon;
-        currentEntity.headAddon = headAddon;
+        _currentEntity.entityName = _entityName;
+        _currentEntity.health = _health;
+        _currentEntity.armorAtStart = _armorAtStart;
+        _currentEntity.ability = _ability;
+        _currentEntity.autoAttack = _autoAttacks;
+        _currentEntity.basePrefab = _basePrefab;
+        _currentEntity.baseMaterial = _baseMaterial; 
+        _currentEntity.rightHandAddon = _rightHandAddon;
+        _currentEntity.leftHandAddon = _leftHandAddon;
+        _currentEntity.headAddon = _headAddon;
 
         // get the path
-        string path = $"Assets/Configs/Entities/{currentEntity.id}.asset";
+        string path = $"Assets/Configs/Entities/{_currentEntity.id}.asset";
 
         // if the asset does not already exists then create a new one 
         if (!AssetDatabase.LoadAssetAtPath<EntityConfig>(path))
         {
-            AssetDatabase.CreateAsset(currentEntity, path);
+            AssetDatabase.CreateAsset(_currentEntity, path);
         }
         
         // save changes on the entityConfig
-        EditorUtility.SetDirty(currentEntity);
+        EditorUtility.SetDirty(_currentEntity);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         
@@ -375,17 +378,17 @@ public class EntityIntegration : EditorWindow
     private void DeleteData()
     {
         // remove from lists depending on the entity
-        if (currentEntity.isCat)
+        if (_currentEntity.isCat)
         {
-            cats.Remove(currentEntity);
+            _cats.Remove(_currentEntity);
         }
         else
         {
-            enemies.Remove(currentEntity);
+            _enemies.Remove(_currentEntity);
         }
 
         // deleting the asset
-        AssetDatabase.DeleteAsset($"Assets/Configs/Entities/{currentEntity.id}.asset");
+        AssetDatabase.DeleteAsset($"Assets/Configs/Entities/{_currentEntity.id}.asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         
@@ -396,7 +399,7 @@ public class EntityIntegration : EditorWindow
     private void LoadDataFromAsset()
     {
         // load entities config
-        entitiesConfig = EditorMisc.FindEntitiesConfig();
+        _entitiesConfig = EditorMisc.FindEntitiesConfig();
         
         // get all files with type "EntityConfig" in the project
         string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(EntityConfig));
@@ -409,20 +412,20 @@ public class EntityIntegration : EditorWindow
 
             if (entityConfig.isCat)
             {
-                cats.Add(entityConfig);
+                _cats.Add(entityConfig);
             }
             else
             {
-                enemies.Add(entityConfig);
+                _enemies.Add(entityConfig);
             }
         }
     }
 
     private void UpdateEntitiesConfig()
     {
-        entitiesConfig = EditorMisc.FindEntitiesConfig();
-        entitiesConfig.cats = cats;
-        entitiesConfig.enemies = enemies;
-        EditorUtility.SetDirty(entitiesConfig);
+        _entitiesConfig = EditorMisc.FindEntitiesConfig();
+        _entitiesConfig.cats = _cats;
+        _entitiesConfig.enemies = _enemies;
+        EditorUtility.SetDirty(_entitiesConfig);
     }
 }

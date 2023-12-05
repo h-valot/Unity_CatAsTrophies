@@ -20,27 +20,22 @@ namespace Data
         }
 
         /// <summary>
-        /// Load persistant data from json 
+        /// Load persistant data from json, if file exists
+        /// Otherwise, create a new data
         /// </summary>
         public static void Load()
         {
-            if (!data.isSaved)
-            {
-                Debug.LogWarning("DATA MANAGER: data isn't saved. data loading avorted");
-                return;
-            }
-            
             SetPath();
-            string json = File.ReadAllText(_persistantPath);
-            data = JsonUtility.FromJson<PersistantData>(json);
-        }
-        
-        /// <summary>
-        /// Initialize data as persistant data
-        /// </summary>
-        public static void Reset()
-        {
-            data = new PersistantData();
+
+            if (File.Exists(_persistantPath))
+            {
+                string json = File.ReadAllText(_persistantPath);
+                data = new PersistantData(JsonUtility.FromJson<PersistantData>(json));
+            }
+            else
+            {
+                data ??= new PersistantData(null);
+            }
         }
         
         /// <summary>

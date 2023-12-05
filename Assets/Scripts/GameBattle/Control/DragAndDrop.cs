@@ -34,7 +34,7 @@ public class DragAndDrop : MonoBehaviour
         
         if (allowDraging)
         {
-            catDragged.transform.position = InputHandler.Instance.touchPos;
+            catDragged.transform.position = new Vector3 (InputHandler.Instance.touchPos.x, InputHandler.Instance.touchPos.y + Registry.gameSettings.verticalOffsetDuringDrag, InputHandler.Instance.touchPos.z);
         }
     }
  
@@ -44,8 +44,14 @@ public class DragAndDrop : MonoBehaviour
         if (!CanDrag()) return;
 
         this.enabled = false;
-        allowDraging = false;
 
+        if (!allowDraging)
+        {
+            Debug.Log($"Single click on cat that trigger explication layout.");
+        }
+
+        allowDraging = false;
+        DragAndDropPlane.Instance.meshCollider.enabled = false;
         VerifyDistances();
         HandManager.Instance.ShowHand();
     }
@@ -57,6 +63,8 @@ public class DragAndDrop : MonoBehaviour
         if ((Input.mousePosition - dragStartPosition).magnitude > Registry.gameSettings.dragingMinimumAmount || dragTimerStart > Registry.gameSettings.holdingTimeMaxSingleClick)
         {
             allowDraging = true;
+            catDragged.OnDrag();
+            DragAndDropPlane.Instance.meshCollider.enabled = true;
             this.enabled = false;
         }
     }

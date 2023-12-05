@@ -12,19 +12,21 @@ public class Entity : MonoBehaviour
     public GameObject graphicsParent;
     public Animator animator;
     public SkinnedMeshRenderer skinnedMeshRenderer;
+    public GameObject blobShadow;
     public SpriteRenderer blobShadowRenderer;
 
     [Header("GAMEPLAY")] 
     public BattlePosition battlePosition;
     public float health;
     public float maxHealth;
-    public int armor = 0;
+    public int armor;
     public List<Ability> autoAttacks = new List<Ability>();
     public List<Effect> effects = new List<Effect>();
 
     [Header("GRAPHICS TWEAKING")] 
     public Vector3 battleRotation;
-    public Vector3 baseRotation;
+    public Vector3 handRotation;
+    public Vector3 dragRotation;
     public float battleScale;
     
     public Action OnStatsUpdate;

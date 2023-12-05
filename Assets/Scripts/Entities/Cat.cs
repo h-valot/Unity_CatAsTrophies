@@ -18,12 +18,13 @@ public class Cat : Entity
     private GameObject headAddonRef;
     private GameObject rightHandAddonRef;
     private GameObject leftHandAddonRef;
+    private float blobShadowPositionY;
 
-    public void Initialize(int _typeIndex)
+    public void Initialize(int typeIndex)
     {
         base.Initialize();
         state = CatState.InDeck;
-        catType = _typeIndex;
+        catType = typeIndex;
         
         // setup entity stats
         maxHealth = Registry.entitiesConfig.cats[catType].health;
@@ -46,6 +47,8 @@ public class Cat : Entity
         headAddonRef.SetActive(true);
         rightHandAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].rightHandAddon, boneHand_R.transform);
         leftHandAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].leftHandAddon, boneHand_L.transform);
+        blobShadowPositionY = blobShadow.transform.localPosition.y;
+        blobShadowRenderer.enabled = false;
     }
 
     /// <summary>
@@ -95,28 +98,48 @@ public class Cat : Entity
         transform.position = HandManager.Instance.GetAvailablePosition();
         
         // handle graphics tweaking
-        graphicsParent.transform.eulerAngles = baseRotation;
+        graphicsParent.transform.eulerAngles = handRotation;
         graphicsParent.SetActive(true);
         gameObject.SetActive(true);
-        blobShadowRenderer.enabled = false;
+        blobShadowRenderer.enabled = false; 
+        blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY, blobShadow.transform.localPosition.z);
 
         // trigger animations
         animator.SetTrigger("IsInHand");
+        animator.SetBool("IsFalling", false);
 
         state = CatState.InHand;
         return id;
     }
-    
+
+    /// <summary>
+    /// Update cat's rotation, scale, state and use this ability
+    /// </summary>
+    public void OnDrag()
+    {
+        graphicsParent.transform.eulerAngles = dragRotation;
+        animator.SetBool("IsFalling", true);
+
+        blobShadowRenderer.enabled = true;
+        blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY + Registry.gameSettings.verticalOffsetBlobShadow, blobShadow.transform.localPosition.z);
+    }
+
     /// <summary>
     /// Update cat's rotation, scale, state and use this ability
     /// </summary>
     public void PlaceOnBattlefield()
     {
+        // add armor on placed
+        armor = Registry.entitiesConfig.cats[catType].armorAtStart;
+        // update entity stats on the ui displayer
+        OnStatsUpdate?.Invoke();
+        
         // handle graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;
         if (rightHandAddonRef) rightHandAddonRef.SetActive(true);
         if (leftHandAddonRef) leftHandAddonRef.SetActive(true);
         blobShadowRenderer.enabled = true;
+        blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY, blobShadow.transform.localPosition.z);
 
         // trigger animations
         animator.SetTrigger("IsFighting");

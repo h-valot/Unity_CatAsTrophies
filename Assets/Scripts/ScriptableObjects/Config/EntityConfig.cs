@@ -11,6 +11,7 @@ public class EntityConfig : ScriptableObject
     [Header("STATS")]
     public string entityName;
     public float health;
+    public int armorAtStart;
     
     [Header("ABILITY")]
     public Ability ability = new Ability();

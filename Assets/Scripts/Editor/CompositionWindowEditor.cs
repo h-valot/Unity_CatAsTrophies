@@ -7,23 +7,24 @@ public class CompositionWindowEditor : EditorWindow
 {
     #region INITIALIZATION
     // lists
-    private List<EntityConfig> enemies = new List<EntityConfig>();
-    private List<CompositionConfig> compositions = new List<CompositionConfig>();
+    private List<EntityConfig> _enemies = new List<EntityConfig>();
+    private List<CompositionConfig> _compositions = new List<CompositionConfig>();
 
-    private CompositionConfig currentComposition;
-    private string compositionName;
-    private List<String> enemiesName = new List<string>();
-    private List<int> enemiesIndex = new List<int>();
+    private CompositionConfig _currentComposition;
+    private string _compositionName;
+    private CompositionTier _compositionTier;
+    private List<String> _enemiesName = new List<string>();
+    private List<int> _enemiesIndex = new List<int>();
         
     
     // window editor component
-    private int id;
-    private Vector2 sideBarScroll, informationsScroll;
-    private bool canDisplayDetails = true;
-    private EntitiesConfig entitiesConfig;
+    private int _id;
+    private Vector2 _sideBarScroll, _informationsScroll;
+    private bool _canDisplayDetails = true;
+    private EntitiesConfig _entitiesConfig;
     #endregion
     
-    [MenuItem("Tool/Compositions")]
+    [MenuItem("Integration Tools/Compositions")]
     static void InitializeWindow()
     {
         CompositionWindowEditor window = GetWindow<CompositionWindowEditor>();
@@ -36,24 +37,24 @@ public class CompositionWindowEditor : EditorWindow
     private void OnEnable()
     {
         // initialize lists
-        compositions.Clear();
-        enemiesIndex.Clear();
+        _compositions.Clear();
+        _enemiesIndex.Clear();
         for (int i = 0; i < 3; i++)
         {
-            enemiesIndex.Add(0);
+            _enemiesIndex.Add(0);
         }
         
         // load the data from the entities config
         LoadDataFromAsset();
         
         // display the first composition in the list if isn't empty
-        if (compositions.Count > 0)
+        if (_compositions.Count > 0)
         {
-            UpdateInformations(compositions[0]);
+            UpdateInformations(_compositions[0]);
         }
         else
         {
-            canDisplayDetails = false;
+            _canDisplayDetails = false;
         }
     }
     
@@ -63,7 +64,7 @@ public class CompositionWindowEditor : EditorWindow
         {
             EditorGUILayout.BeginVertical("HelpBox", GUILayout.Width(175), GUILayout.ExpandHeight(true));
             {
-                sideBarScroll = EditorGUILayout.BeginScrollView(sideBarScroll);
+                _sideBarScroll = EditorGUILayout.BeginScrollView(_sideBarScroll);
                 {
                     DisplaySideBar();
                 }
@@ -73,9 +74,9 @@ public class CompositionWindowEditor : EditorWindow
             
             EditorGUILayout.BeginVertical();
             {
-                if (canDisplayDetails)
+                if (_canDisplayDetails)
                 {
-                    informationsScroll = EditorGUILayout.BeginScrollView(informationsScroll);
+                    _informationsScroll = EditorGUILayout.BeginScrollView(_informationsScroll);
                     {
                         DisplayInformations();
                     }
@@ -100,9 +101,9 @@ public class CompositionWindowEditor : EditorWindow
                 var date = DateTime.Now;
                 newInstance.id = "Comp_" + date.ToString("yyyyMMdd_HHmmss_fff");
         
-                compositions.Add(newInstance);
+                _compositions.Add(newInstance);
                 UpdateInformations(newInstance);
-                canDisplayDetails = true;
+                _canDisplayDetails = true;
             }
         }
         GUILayout.EndHorizontal();
@@ -110,7 +111,7 @@ public class CompositionWindowEditor : EditorWindow
         GUILayout.Space(5);
 
         // LIST OF CATS
-        foreach (CompositionConfig composition in compositions)
+        foreach (CompositionConfig composition in _compositions)
         {
             string buttonName = composition.compositionName == "" ? "New composition" : composition.compositionName;
             if (GUILayout.Button($"{buttonName}", GUILayout.ExpandWidth(true), GUILayout.Height(20)))
@@ -124,7 +125,8 @@ public class CompositionWindowEditor : EditorWindow
     {
         // INFORMATIONS
         GUILayout.Label("INFORMATION", EditorStyles.boldLabel);
-        compositionName = EditorGUILayout.TextField("Name", compositionName);
+        _compositionName = EditorGUILayout.TextField("Name", _compositionName);
+        _compositionTier = (CompositionTier)EditorGUILayout.EnumPopup("Tier", _compositionTier);
         
         
         // COMPOSITIONS
@@ -153,31 +155,32 @@ public class CompositionWindowEditor : EditorWindow
         GUI.backgroundColor = Color.white;
     }
     
-    private void UpdateInformations(CompositionConfig _compositionConfig)
+    private void UpdateInformations(CompositionConfig compositionConfig)
     {
-        currentComposition = _compositionConfig;
+        _currentComposition = compositionConfig;
         
         // BASE INFORMATIONS
-        compositionName = currentComposition.compositionName;
-        enemies = currentComposition.entities;
+        _enemies = _currentComposition.entities;
+        _compositionName = _currentComposition.compositionName;
+        _compositionTier = _currentComposition.tier;
 
         // INDEX TRANSPOSITIONS
         for (int i = 0; i < 3; i++)
         {
-            enemiesIndex[i] = entitiesConfig.enemies.IndexOf(currentComposition.entities[i]) + 1; 
+            _enemiesIndex[i] = _entitiesConfig.enemies.IndexOf(_currentComposition.entities[i]) + 1; 
         }
         
-        canDisplayDetails = true;
+        _canDisplayDetails = true;
     }
 
     private void DisplayEnemiesChoser()
     {
         GUILayout.BeginVertical("HelpBox");
         {
-            enemiesName.Add("None");
-            foreach (EntityConfig enemy in entitiesConfig.enemies)
+            _enemiesName.Add("None");
+            foreach (EntityConfig enemy in _entitiesConfig.enemies)
             {
-                enemiesName.Add(enemy.entityName);
+                _enemiesName.Add(enemy.entityName);
             }
 
             DisplayEnemyPlacement("Front", 0);
@@ -187,26 +190,26 @@ public class CompositionWindowEditor : EditorWindow
         GUILayout.EndVertical();
     }
 
-    private void DisplayEnemyPlacement(string _label, int _index)
+    private void DisplayEnemyPlacement(string label, int index)
     {
         GUILayout.BeginHorizontal();
         {
-            enemiesIndex[_index] = EditorGUILayout.Popup(_label, enemiesIndex[_index], enemiesName.ToArray());
+            _enemiesIndex[index] = EditorGUILayout.Popup(label, _enemiesIndex[index], _enemiesName.ToArray());
 
-            if (enemiesIndex[_index] == 0)
+            if (_enemiesIndex[index] == 0)
             {
-                enemies[_index] = null;
+                _enemies[index] = null;
             }
             else
             {
-                enemies[_index] = entitiesConfig.enemies[enemiesIndex[_index] - 1];
+                _enemies[index] = _entitiesConfig.enemies[_enemiesIndex[index] - 1];
             }
             
             GUI.backgroundColor = Color.red;
             if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))
             {
-                enemiesIndex[_index] = 0;
-                enemies[_index] = null;
+                _enemiesIndex[index] = 0;
+                _enemies[index] = null;
             }
             GUI.backgroundColor = Color.white;
         }
@@ -216,23 +219,24 @@ public class CompositionWindowEditor : EditorWindow
     private void SaveDataToAsset()
     {
         // exceptions
-        if (compositionName == "") return;
+        if (_compositionName == "") return;
             
         // update data into current entity
-        currentComposition.entities = enemies;
-        currentComposition.compositionName = compositionName;
+        _currentComposition.entities = _enemies;
+        _currentComposition.compositionName = _compositionName;
+        _currentComposition.tier = _compositionTier;
 
         // get the path
-        string path = $"Assets/Configs/Compositions/{currentComposition.id}.asset";
+        string path = $"Assets/Configs/Compositions/{_currentComposition.id}.asset";
 
         // if the asset does not already exists then create a new one 
         if (!AssetDatabase.LoadAssetAtPath<CompositionConfig>(path))
         {
-            AssetDatabase.CreateAsset(currentComposition, path);
+            AssetDatabase.CreateAsset(_currentComposition, path);
         }
         
         // save changes
-        EditorUtility.SetDirty(currentComposition);
+        EditorUtility.SetDirty(_currentComposition);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         
@@ -243,10 +247,10 @@ public class CompositionWindowEditor : EditorWindow
     private void DeleteAssetData()
     {
         // remove from lists
-        compositions.Remove(currentComposition);
+        _compositions.Remove(_currentComposition);
 
         // deleting the asset
-        AssetDatabase.DeleteAsset($"Assets/Configs/Compositions/{currentComposition.id}.asset");
+        AssetDatabase.DeleteAsset($"Assets/Configs/Compositions/{_currentComposition.id}.asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         
@@ -257,7 +261,7 @@ public class CompositionWindowEditor : EditorWindow
     private void LoadDataFromAsset()
     {
         // load entities config
-        entitiesConfig = EditorMisc.FindEntitiesConfig();
+        _entitiesConfig = EditorMisc.FindEntitiesConfig();
         
         // get all files with type "CompositionConfig" in the project
         string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(CompositionConfig));
@@ -269,15 +273,15 @@ public class CompositionWindowEditor : EditorWindow
             CompositionConfig compositionConfig = AssetDatabase.LoadAssetAtPath<CompositionConfig>(assetPath);
             if (!compositionConfig.isPlayerDeck)
             {
-                compositions.Add(compositionConfig);
+                _compositions.Add(compositionConfig);
             }
         }
     }
 
     private void UpdateEntitiesConfig()
     {
-        entitiesConfig = EditorMisc.FindEntitiesConfig();
-        entitiesConfig.compositions = compositions;
-        EditorUtility.SetDirty(entitiesConfig);
+        _entitiesConfig = EditorMisc.FindEntitiesConfig();
+        _entitiesConfig.compositions = _compositions;
+        EditorUtility.SetDirty(_entitiesConfig);
     }
 }

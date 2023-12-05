@@ -15,7 +15,8 @@ MonoBehaviour:
   isCat: 0
   id: Enemy_20231113_143928_837
   entityName: Elite Pink
-  health: 10
+  health: 20
+  armorAtStart: 5
   ability:
     animation: 0
     instructions: []
@@ -23,7 +24,7 @@ MonoBehaviour:
   - animation: 2
     instructions:
     - type: 27
-      value: 7
+      value: 5
       target: 0
       us: 1
     - type: 0
@@ -33,7 +34,7 @@ MonoBehaviour:
   - animation: 1
     instructions:
     - type: 27
-      value: 7
+      value: 5
       target: 0
       us: 0
     - type: 1
