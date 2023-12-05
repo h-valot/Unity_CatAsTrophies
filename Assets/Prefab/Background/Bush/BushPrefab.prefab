@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56872923700912019}
   m_Layer: 0
-  m_Name: Bush
+  m_Name: BushPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8281506134578787985}
   m_Layer: 0
-  m_Name: Tree_naked
+  m_Name: Tree_nakedPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

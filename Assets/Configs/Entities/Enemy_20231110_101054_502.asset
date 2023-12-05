@@ -16,6 +16,7 @@ MonoBehaviour:
   id: Enemy_20231110_101054_502
   entityName: Purple
   health: 9
+  armorAtStart: 0
   ability:
     animation: 0
     instructions: []
@@ -33,7 +34,7 @@ MonoBehaviour:
   - animation: 2
     instructions:
     - type: 8
-      value: 1
+      value: 2
       target: 0
       us: 1
   basePrefab: {fileID: 5087666672669579333, guid: 9867af5c47691e34588d7b87ae1b6ede, type: 3}
