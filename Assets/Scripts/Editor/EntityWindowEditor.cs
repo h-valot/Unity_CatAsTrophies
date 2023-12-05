@@ -19,8 +19,9 @@ public class EntityIntegration : EditorWindow
     private Ability _ability;
     private List<Ability> _autoAttacks = new List<Ability>();
     private GameObject _basePrefab, _rightHandAddon, _leftHandAddon, _headAddon;
-    private Material _baseMaterial;
-    
+    private Texture _catSkinTexture;
+    private Texture _catEyesTexture;
+
     // window editor component
     private int _id;
     private Vector2 _sideBarScroll, _informationsScroll;
@@ -186,7 +187,8 @@ public class EntityIntegration : EditorWindow
         GUILayout.Space(10);
         GUILayout.Label("GRAPHICS", EditorStyles.boldLabel);
         _basePrefab = (GameObject)EditorGUILayout.ObjectField("Base mesh prefab", _basePrefab, typeof(GameObject), true);
-        _baseMaterial = (Material)EditorGUILayout.ObjectField("Cat skin", _baseMaterial, typeof(Material), true);
+        _catSkinTexture = (Texture)EditorGUILayout.ObjectField("Cat skin", _catSkinTexture, typeof(Texture), true);
+        _catEyesTexture = (Texture)EditorGUILayout.ObjectField("Cat eyes texture", _catEyesTexture, typeof(Texture), true);
         _rightHandAddon = (GameObject)EditorGUILayout.ObjectField("Right hand addon", _rightHandAddon, typeof(GameObject), true);
         _leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", _leftHandAddon, typeof(GameObject), true);
         _headAddon = (GameObject)EditorGUILayout.ObjectField("Head addon", _headAddon, typeof(GameObject), true);
@@ -227,7 +229,8 @@ public class EntityIntegration : EditorWindow
 
         // GRAPHICS
         _basePrefab = _currentEntity.basePrefab;
-        _baseMaterial = _currentEntity.baseMaterial;
+        _catSkinTexture = _currentEntity.catSkinTexture;
+        _catEyesTexture = _currentEntity.catEyesTexture;
         _rightHandAddon = _currentEntity.rightHandAddon;
         _leftHandAddon = _currentEntity.leftHandAddon;
         _headAddon = _currentEntity.headAddon;
@@ -352,7 +355,8 @@ public class EntityIntegration : EditorWindow
         _currentEntity.ability = _ability;
         _currentEntity.autoAttack = _autoAttacks;
         _currentEntity.basePrefab = _basePrefab;
-        _currentEntity.baseMaterial = _baseMaterial; 
+        _currentEntity.catSkinTexture = _catSkinTexture;
+        _currentEntity.catEyesTexture = _catEyesTexture;
         _currentEntity.rightHandAddon = _rightHandAddon;
         _currentEntity.leftHandAddon = _leftHandAddon;
         _currentEntity.headAddon = _headAddon;
