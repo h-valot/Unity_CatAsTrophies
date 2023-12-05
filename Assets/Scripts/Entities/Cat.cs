@@ -55,7 +55,7 @@ public class Cat : Entity
 
         // graphics instantiate addons
         headAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform);
-        headAddonRef.SetActive(true);
+        if(headAddonRef) headAddonRef.SetActive(true);
         rightHandAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].rightHandAddon, boneHand_R.transform);
         leftHandAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].leftHandAddon, boneHand_L.transform);
         blobShadowPositionY = blobShadow.transform.localPosition.y;
