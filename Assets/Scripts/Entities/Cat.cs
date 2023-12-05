@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Cat : Entity
 {
+    [Header("MESH RENDERER")]
+    public SkinnedMeshRenderer CatMeshRenderer;
+    public SkinnedMeshRenderer CatEyesMeshRenderer;
+
     [Header("BONES")] 
     public GameObject boneHead;
     public GameObject boneHand_R;
@@ -14,7 +18,10 @@ public class Cat : Entity
     public Ability ability;
     public bool isAbilityUsed;
 
-    private Material material;
+    private Material catSkinMateriel_inst;
+    private Texture catSkinTexture;
+    private Material catEyesMaterial_inst;
+    private Texture catEyesTexture;
     private GameObject headAddonRef;
     private GameObject rightHandAddonRef;
     private GameObject leftHandAddonRef;
@@ -37,11 +44,15 @@ public class Cat : Entity
 
         // graphics scale update
         graphicsParent.transform.localScale *= battleScale;
-        
+
         // graphics material update
-        material = Registry.entitiesConfig.cats[catType].baseMaterial;
-        skinnedMeshRenderer.sharedMaterial = material;
-        
+        catSkinTexture = Registry.entitiesConfig.cats[catType].catSkinTexture;
+        catSkinMateriel_inst = CatMeshRenderer.material;
+        catSkinMateriel_inst.SetTexture("_MainTex", catSkinTexture);
+        catEyesTexture = Registry.entitiesConfig.cats[catType].catEyesTexture;
+        catEyesMaterial_inst = CatEyesMeshRenderer.material;
+        catEyesMaterial_inst.SetTexture("_MainTex", catEyesTexture);
+
         // graphics instantiate addons
         headAddonRef = InstantiateAddon(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform);
         headAddonRef.SetActive(true);

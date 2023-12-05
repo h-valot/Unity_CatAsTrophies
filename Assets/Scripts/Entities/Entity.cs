@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
     public GameObject graphicsParent;
     public Animator animator;
     public SkinnedMeshRenderer skinnedMeshRenderer;
+    public SkinnedMeshRenderer catEyesRenderer;
     public GameObject blobShadow;
     public SpriteRenderer blobShadowRenderer;
 
