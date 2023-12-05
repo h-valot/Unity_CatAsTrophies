@@ -12,11 +12,12 @@ namespace Data
             
             // sync data
             map = data.map;
+            MusicVolumeValue = data.MusicVolumeValue;
         }
         
         // current loaded and displayed map
         public Map map;
 
-        public float MusicVolumeValue = 0.5f;
+        public float MusicVolumeValue;
     }
 }
