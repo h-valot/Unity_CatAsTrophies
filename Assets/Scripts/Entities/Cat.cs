@@ -265,6 +265,8 @@ public class Cat : Entity
         state = CatState.InGraveyard;
         GraveyardManager.Instance.AddCat(id);
 
+        // 
+        
         base.HandleDeath();
     }
 }

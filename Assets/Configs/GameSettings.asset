@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f35135fbf860840905a262cca2b2d5, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  startingScene: GameBattle
+  startingScene: mainmenu
+  gameBattleDebugMode: 0
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5

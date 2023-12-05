@@ -6884,6 +6884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layoutGroup: {fileID: 1730515129}
   debugButtonPrefab: {fileID: 35061965299053984, guid: ea32bcb3c148a2a48862e286160ba10d, type: 3}
+  graphicsParent: {fileID: 988101165}
 --- !u!1 &1191430969
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,11 +29,11 @@ public static class Misc
     {
         Cat output = null;
         
-        for (int i = 0; i < CatGenerator.Instance.cats.Count; i++)
+        for (int i = 0; i < CatManager.Instance.cats.Count; i++)
         {
-            if (CatGenerator.Instance.cats[i].id == _id)
+            if (CatManager.Instance.cats[i].id == _id)
             {
-                output = CatGenerator.Instance.cats[i];
+                output = CatManager.Instance.cats[i];
                 break;
             }
         }

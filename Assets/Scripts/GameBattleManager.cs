@@ -18,7 +18,7 @@ public class GameBattleManager : MonoBehaviour
         
         // initialize all managers - the order matters
         DeckManager.Instance.Initialize();
-        CatGenerator.Instance.Initialize();
+        CatManager.Instance.Initialize();
         EnemyGenerator.Instance.Initialize();
         TurnManager.Instance.Initialize();
         HandManager.Instance.Initialize();

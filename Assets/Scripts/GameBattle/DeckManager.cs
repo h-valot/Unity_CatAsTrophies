@@ -29,7 +29,7 @@ public class DeckManager : MonoBehaviour
         {
             for (int j = 0; j < Registry.playerConfig.deckEntitiesCount[i]; j++)
             {
-                CatGenerator.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(Registry.playerConfig.deckEntities[i]));
+                CatManager.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(Registry.playerConfig.deckEntities[i]));
             }
         }
     }
