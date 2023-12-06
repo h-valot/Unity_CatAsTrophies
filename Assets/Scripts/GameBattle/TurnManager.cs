@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -253,14 +254,13 @@ public class TurnManager : MonoBehaviour
     
     private async Task HandleEndBattle()
     {
+        // exit, if the debug mode is enabled
+        if (Registry.gameSettings.gameBattleDebugMode) return;
+        
         // exit, if all enemies aren't dead yet
         if (!EnemyGenerator.Instance.allEnemiesDead) return;
         
-        await endBattleUIManager.AnimateEndTitle(true);
-        
-        // display map fullscreen 
-        
-        // display battle game reward
+        await endBattleUIManager.AnimateEndBattle(true);
     }
 }
 

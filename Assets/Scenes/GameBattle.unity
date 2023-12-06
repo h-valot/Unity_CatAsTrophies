@@ -3575,9 +3575,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 826176705}
     m_Modifications:
+    - target: {fileID: 289489308320712213, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430573117709322983, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671111937783784670, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5955740117465969318, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
       propertyPath: m_Name
       value: EndBattleUIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963350160034128523, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6263225155045513120, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
       propertyPath: m_Pivot.x
@@ -3669,6 +3685,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6263225155045513120, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
   m_PrefabInstance: {fileID: 868444529}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &868444531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6366414520008084201, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
+  m_PrefabInstance: {fileID: 868444529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d24a6e86bd7b7141846737da97843a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &958274792
 GameObject:
   m_ObjectHideFlags: 0
@@ -6966,7 +6993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ac7eab468493c43bd11afb9782a6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endBattleUIManager: {fileID: 0}
+  endBattleUIManager: {fileID: 868444531}
   offsetBattlePosition: {x: 0, y: 2.2744, z: -7}
   backgroundFadeRenderer: {fileID: 122362666}
   victoryDuration: 0

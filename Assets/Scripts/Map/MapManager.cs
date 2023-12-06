@@ -10,18 +10,6 @@ public class MapManager : MonoBehaviour
     
     [Header("DEBUGGING")]
     public Map currentMap;
-    
-    // private void OnEnable()
-    // {
-    //     if (Registry.events == null) return;
-    //     Registry.events.OnSceneLoaded += Initialize;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     if (Registry.events == null) return;
-    //     Registry.events.OnSceneLoaded -= Initialize;
-    // }
 
     public void DisplayCanvas()
     {
@@ -38,7 +26,7 @@ public class MapManager : MonoBehaviour
     /// Generate a new map if the old one, doesn't exists or is completed.
     /// Otherwise, show the current map
     /// </summary>
-    public void Initialize()
+    private void Initialize()
     {
         if (DataManager.data.map != null && DataManager.data.map.IsNotEmpty())
         {

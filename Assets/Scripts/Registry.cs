@@ -6,5 +6,6 @@ public static class Registry
     public static GameSettings gameSettings;
     public static PlayerConfig playerConfig;
     public static MapConfig mapConfig;
+    public static RewardsConfig rewardsConfig;
     public static Events events;
 }

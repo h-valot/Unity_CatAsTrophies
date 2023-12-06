@@ -1,62 +1,93 @@
 using UnityEditor;
 using UnityEngine;
 
-public static class EditorMisc
+namespace Editor
 {
-    private static EntitiesConfig entitiesConfigCache;
-    private static PlayerConfig playerConfigCache;
-    
-    public static EntitiesConfig FindEntitiesConfig()
+    public static class EditorMisc
     {
-        // return the load already loaded in cache asset
-        if (entitiesConfigCache) return entitiesConfigCache;
-        
-        // else find this asset
-        // get all files with type "EntitiesConfig" in the project
-        string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(EntitiesConfig));
-        
-        if (fileGuidsArray.Length > 0)
-        {
-            // if file exists, get first EntitiesConfig and return it
-            string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
-            entitiesConfigCache = AssetDatabase.LoadAssetAtPath<EntitiesConfig>(assetPath);
-        }
-        else
-        {
-            // if file does not exist, create a new EntitiesConfig and save it into a dedicated path
-            EntitiesConfig entitiesConfig = ScriptableObject.CreateInstance<EntitiesConfig>();
-            AssetDatabase.CreateAsset(entitiesConfig, "Assets/Configs/EntitiesConfig.asset");
-            AssetDatabase.SaveAssets();
-            entitiesConfigCache = entitiesConfig;
-        }
-
-        return entitiesConfigCache;
-    }
+        private static EntitiesConfig _entitiesConfigCache;
+        private static PlayerConfig _playerConfigCache;
+        private static RewardsConfig _rewardsConfigCache;
     
-    public static PlayerConfig FindPlayerConfig()
-    {
-        // return the load already loaded in cache asset
-        if (playerConfigCache) return playerConfigCache;
-        
-        // else find this asset
-        // get all files with type "PlayerConfig" in the project
-        string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(PlayerConfig));
-        
-        if (fileGuidsArray.Length > 0)
+        public static EntitiesConfig FindEntitiesConfig()
         {
-            // if file exists, get first PlayerConfig and return it
-            string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
-            playerConfigCache = AssetDatabase.LoadAssetAtPath<PlayerConfig>(assetPath);
-        }
-        else
-        {
-            // if file does not exist, create a new PlayerConfig and save it into a dedicated path
-            PlayerConfig playerConfig = ScriptableObject.CreateInstance<PlayerConfig>();
-            AssetDatabase.CreateAsset(playerConfig, "Assets/Configs/PlayerConfig.asset");
-            AssetDatabase.SaveAssets();
-            playerConfigCache = playerConfig;
-        }
+            // return the load already loaded in cache asset
+            if (_entitiesConfigCache) return _entitiesConfigCache;
+        
+            // else find this asset
+            // get all files with type "EntitiesConfig" in the project
+            string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(EntitiesConfig));
+        
+            if (fileGuidsArray.Length > 0)
+            {
+                // if file exists, get first EntitiesConfig and return it
+                string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
+                _entitiesConfigCache = AssetDatabase.LoadAssetAtPath<EntitiesConfig>(assetPath);
+            }
+            else
+            {
+                // if file does not exist, create a new EntitiesConfig and save it into a dedicated path
+                EntitiesConfig entitiesConfig = ScriptableObject.CreateInstance<EntitiesConfig>();
+                AssetDatabase.CreateAsset(entitiesConfig, "Assets/Configs/EntitiesConfig.asset");
+                AssetDatabase.SaveAssets();
+                _entitiesConfigCache = entitiesConfig;
+            }
 
-        return playerConfigCache;
+            return _entitiesConfigCache;
+        }
+    
+        public static PlayerConfig FindPlayerConfig()
+        {
+            // return the load already loaded in cache asset
+            if (_playerConfigCache) return _playerConfigCache;
+        
+            // else find this asset
+            // get all files with type "PlayerConfig" in the project
+            string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(PlayerConfig));
+        
+            if (fileGuidsArray.Length > 0)
+            {
+                // if file exists, get first PlayerConfig and return it
+                string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
+                _playerConfigCache = AssetDatabase.LoadAssetAtPath<PlayerConfig>(assetPath);
+            }
+            else
+            {
+                // if file does not exist, create a new PlayerConfig and save it into a dedicated path
+                PlayerConfig playerConfig = ScriptableObject.CreateInstance<PlayerConfig>();
+                AssetDatabase.CreateAsset(playerConfig, "Assets/Configs/PlayerConfig.asset");
+                AssetDatabase.SaveAssets();
+                _playerConfigCache = playerConfig;
+            }
+
+            return _playerConfigCache;
+        }
+    
+        public static RewardsConfig FindRewardsConfig()
+        {
+            // return the load already loaded in cache asset
+            if (_rewardsConfigCache) return _rewardsConfigCache;
+        
+            // else find this asset
+            // get all files with type "RewardsConfig" in the project
+            string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(RewardsConfig));
+        
+            if (fileGuidsArray.Length > 0)
+            {
+                // if file exists, get first RewardsConfig and return it
+                string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
+                _rewardsConfigCache = AssetDatabase.LoadAssetAtPath<RewardsConfig>(assetPath);
+            }
+            else
+            {
+                // if file does not exist, create a new RewardsConfig and save it into a dedicated path
+                RewardsConfig rewardsConfig = ScriptableObject.CreateInstance<RewardsConfig>();
+                AssetDatabase.CreateAsset(rewardsConfig, "Assets/Configs/RewardsConfig.asset");
+                AssetDatabase.SaveAssets();
+                _rewardsConfigCache = rewardsConfig;
+            }
+
+            return _rewardsConfigCache;
+        }
     }
 }

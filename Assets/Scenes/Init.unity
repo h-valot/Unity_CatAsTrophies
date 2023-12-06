@@ -168,6 +168,7 @@ MonoBehaviour:
   gameSettings: {fileID: 11400000, guid: 5ecbe0496ee895944bb2d2b1a1bbf8b6, type: 2}
   playerConfig: {fileID: 11400000, guid: ec3c8e6c6bee9ac4ab5315ea24b3ce84, type: 2}
   mapConfig: {fileID: 11400000, guid: ecff155d1ea30e347a02067dfa8932d1, type: 2}
+  rewardsConfig: {fileID: 11400000, guid: a664f1d1f21dced428b61355dcb5ea96, type: 2}
   events: {fileID: 11400000, guid: 53a8944a4f66d06488e650440ad92b5d, type: 2}
 --- !u!1 &1515939220
 GameObject:
