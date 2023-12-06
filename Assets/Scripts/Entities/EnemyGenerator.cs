@@ -8,8 +8,8 @@ public class EnemyGenerator : MonoBehaviour
     
     [Header("DEBUGGING")]
     public List<Enemy> enemies;
-    public GameObject enemyPrefab;
     public int totalEnemyCount;
+    public bool allEnemiesDead;
 
     private void Awake() => Instance = this;
 
@@ -64,6 +64,6 @@ public class EnemyGenerator : MonoBehaviour
         // exit, if there are no enemies left
         if (enemies.Count > 0) return;
         
-        SceneManager.LoadScene("mainmenu");
+        allEnemiesDead = true;
     }
 }

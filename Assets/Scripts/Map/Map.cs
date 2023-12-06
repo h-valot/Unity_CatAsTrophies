@@ -8,7 +8,7 @@ public class Map
 {
     [Header("DEBUGGING")]
     public List<Node> nodes;
-    public List<Point> playerPath = new();
+    public List<Point> playerPath = new List<Point>();
 
     public Map(List<Node> nodes)
     {

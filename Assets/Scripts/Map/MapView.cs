@@ -9,6 +9,7 @@ public class MapView : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject nodePrefab;
     public Transform contentParent;
+    public GameObject escapeButton;
     public ScrollRect scrollRect;
 
     [Header("MAP UI SETTINGS")] 
@@ -28,9 +29,12 @@ public class MapView : MonoBehaviour
     public Sprite background;
     public Color32 backgroundColor = Color.white;
     public Vector2 backgroundPadding;
+
+    [Header("Escape settings")]
+    public bool showEscapeButton;
     
-    private Map map;
-    private List<NodeUI> nodesUI = new List<NodeUI>();
+    private Map _map;
+    private readonly List<NodeUI> _nodesUI = new List<NodeUI>();
     private readonly List<LineConnection> _lineConnections = new List<LineConnection>();
     
     public void ShowMap(Map currentMap)
@@ -42,12 +46,11 @@ public class MapView : MonoBehaviour
             return;
         }
         
-        this.map = currentMap;
+        _map = currentMap;
         
         ClearMap();
-        
         CreateMapParent();
-        CreateNodes(map.nodes);
+        CreateNodes(_map.nodes);
         DrawLines();
         ResetNodesRotation();
         SetAttainableNodes();
@@ -58,12 +61,13 @@ public class MapView : MonoBehaviour
     private void ClearMap()
     {
         scrollRect.gameObject.SetActive(false);
-        nodesUI.Clear();
+        _nodesUI.Clear();
 
         while (contentParent.childCount > 0) 
         {
             DestroyImmediate(contentParent.GetChild(0).gameObject);
         }
+        escapeButton.SetActive(showEscapeButton);
     }
     
     private void CreateNodes(List<Node> nodes)
@@ -73,13 +77,13 @@ public class MapView : MonoBehaviour
             var newNodeUI = Instantiate(nodePrefab, contentParent).GetComponent<NodeUI>();
             newNodeUI.Initialize(node);
             newNodeUI.transform.localPosition = GetNodePosition(node);
-            nodesUI.Add(newNodeUI);
+            _nodesUI.Add(newNodeUI);
         }
     }
     
     private Vector2 GetNodePosition(Node node)
     {
-        var length = padding + map.DistanceBetweenFirstAndLastLayers() * unitsToPixelsMultiplier;
+        var length = padding + _map.DistanceBetweenFirstAndLastLayers() * unitsToPixelsMultiplier;
         return new Vector2((padding - length) / 2f, -backgroundPadding.y / 2f - verticalOffset) + node.pos * unitsToPixelsMultiplier ;
     }
     
@@ -90,7 +94,7 @@ public class MapView : MonoBehaviour
         // set map length
         RectTransform rectTransform = scrollRect.content;
         Vector2 sizeDelta = rectTransform.sizeDelta;
-        sizeDelta.x = padding + map.DistanceBetweenFirstAndLastLayers() * unitsToPixelsMultiplier;
+        sizeDelta.x = padding + _map.DistanceBetweenFirstAndLastLayers() * unitsToPixelsMultiplier;
         rectTransform.sizeDelta = sizeDelta;
         
         // scroll to origin
@@ -99,7 +103,7 @@ public class MapView : MonoBehaviour
     
     private void DrawLines()
     {
-        foreach (NodeUI nodeUI in nodesUI)
+        foreach (NodeUI nodeUI in _nodesUI)
         {
             foreach (Point connection in nodeUI.node.outgoingNodes)
             {
@@ -110,7 +114,7 @@ public class MapView : MonoBehaviour
 
     private NodeUI GetNodeUI(Point p)
     {
-        return nodesUI.FirstOrDefault(nodeUI => nodeUI.node.point.Equals(p));
+        return _nodesUI.FirstOrDefault(nodeUI => nodeUI.node.point.Equals(p));
     }
     
     private void AddLineConnection(NodeUI from, NodeUI to)
@@ -142,7 +146,7 @@ public class MapView : MonoBehaviour
 
     private void ResetNodesRotation()
     {
-        foreach (NodeUI nodeUI in nodesUI)
+        foreach (NodeUI nodeUI in _nodesUI)
         {
             nodeUI.transform.rotation = Quaternion.identity;
         }
@@ -151,15 +155,15 @@ public class MapView : MonoBehaviour
     public void SetAttainableNodes()
     {
         // first set all the nodes as unattainable/locked:
-        foreach (NodeUI nodeUI in nodesUI)
+        foreach (NodeUI nodeUI in _nodesUI)
         {
             nodeUI.SetState(NodeStates.LOCKED);
         }
 
-        if (map.playerPath.Count == 0)
+        if (_map.playerPath.Count == 0)
         {
             // we have not started traveling on this map yet, set entire first layer as attainable:
-            foreach (NodeUI nodeUI in nodesUI.Where(nodeUI => nodeUI.node.point.col == 0))
+            foreach (NodeUI nodeUI in _nodesUI.Where(nodeUI => nodeUI.node.point.col == 0))
             {
                 nodeUI.SetState(NodeStates.ATTAIGNABLE);
             }
@@ -167,14 +171,14 @@ public class MapView : MonoBehaviour
         else
         {
             // we have already started moving on this map, first highlight the path as visited:
-            foreach (Point point in map.playerPath)
+            foreach (Point point in _map.playerPath)
             {
                 NodeUI nodeUI = GetNodeUI(point);
                 if (nodeUI != null) nodeUI.SetState(NodeStates.VISITED);
             }
 
-            Point currentPoint = map.playerPath[^1];
-            Node currentNode = map.GetNode(currentPoint);
+            Point currentPoint = _map.playerPath[^1];
+            Node currentNode = _map.GetNode(currentPoint);
 
             // set all the nodes that we can travel to as attainable:
             foreach (Point point in currentNode.outgoingNodes)
@@ -194,12 +198,12 @@ public class MapView : MonoBehaviour
 
         // set all lines that are a part of the path to visited color:
         // if we have not started moving on the map yet, leave everything as is:
-        if (map.playerPath.Count == 0)
+        if (_map.playerPath.Count == 0)
             return;
 
         // in any case, we mark outgoing connections from the final node with visible/attainable color:
-        Point currentPoint = map.playerPath[^1];
-        Node currentNode = map.GetNode(currentPoint);
+        Point currentPoint = _map.playerPath[^1];
+        Node currentNode = _map.GetNode(currentPoint);
 
         foreach (var point in currentNode.outgoingNodes)
         {
@@ -207,12 +211,12 @@ public class MapView : MonoBehaviour
             lineConnection?.SetColor(lineVisitedColor);
         }
 
-        if (map.playerPath.Count <= 1) return;
+        if (_map.playerPath.Count <= 1) return;
 
-        for (var i = 0; i < map.playerPath.Count - 1; i++)
+        for (var i = 0; i < _map.playerPath.Count - 1; i++)
         {
-            Point current = map.playerPath[i];
-            Point next = map.playerPath[i + 1];
+            Point current = _map.playerPath[i];
+            Point next = _map.playerPath[i + 1];
             var lineConnection = _lineConnections.FirstOrDefault(connection => connection.from.node.point.Equals(current) && connection.to.node.point.Equals(next));
             lineConnection?.SetColor(lineVisitedColor);
         }

@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePrefab: {fileID: 4138254791057186782, guid: cb335be300c2c564590eba74e5009e0f, type: 3}
   contentParent: {fileID: 4692498215031530668}
+  escapeButton: {fileID: 5710425531858119804}
   scrollRect: {fileID: 720381995197999546}
   unitsToPixelsMultiplier: 60
   verticalOffset: 0
@@ -202,6 +203,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   backgroundPadding: {x: -50, y: -50}
+  showEscapeButton: 1
 --- !u!1 &4440593759050748735
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5281781932617740274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -298,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -597,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3939249914275655489
 RectTransform:
   m_ObjectHideFlags: 0
