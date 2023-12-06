@@ -6601,7 +6601,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2501800861589722985, guid: 2df9d9cff6323e94b97fc24183eeb44a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3671933213710365501, guid: 2df9d9cff6323e94b97fc24183eeb44a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6641,6 +6641,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671933213710365501, guid: 2df9d9cff6323e94b97fc24183eeb44a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5695861954777846734, guid: 2df9d9cff6323e94b97fc24183eeb44a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6341070070818425260, guid: 2df9d9cff6323e94b97fc24183eeb44a, type: 3}
@@ -10308,7 +10312,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -10529,11 +10533,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handPoints:
-  - {fileID: 219985621}
-  - {fileID: 1003991715}
   - {fileID: 1693083625}
   - {fileID: 1969955394}
+  - {fileID: 1003991715}
   - {fileID: 1534802072}
+  - {fileID: 219985621}
   catsInHand: []
   newCatId: 
 --- !u!1 &1683151783
@@ -10991,6 +10995,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5249009247491959691, guid: fa5431f9a62bc484896bbebbad07bf28, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8331916058118955046, guid: fa5431f9a62bc484896bbebbad07bf28, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

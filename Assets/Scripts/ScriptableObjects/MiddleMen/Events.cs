@@ -10,6 +10,9 @@ public class Events : ScriptableObject
     public Action OnCatsUseAutoAttack;
     public Action OnEnemiesUseAutoAttack;
 
+    // Communication between InputHandler.cs and HandManager.cs
+    public Action OnClickNotCat;
+
     // Scene management
     public Action OnSceneLoaded;
 }

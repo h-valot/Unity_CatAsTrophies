@@ -11,6 +11,8 @@ public class InputHandler : MonoBehaviour
     [Header("DEBUGGING")]
     public Vector3 touchPos;
 
+    private bool mouseAlreadyDown = false;
+
     private void Awake() => Instance = this;
     
     private void Update()
@@ -22,6 +24,18 @@ public class InputHandler : MonoBehaviour
             {
                 touchPos = hitInfo.point;
             }
+            else
+            {
+                if (!mouseAlreadyDown)
+                {
+                    Registry.events.OnClickNotCat.Invoke();
+                    mouseAlreadyDown = true;
+                }
+            }
+        }
+        else
+        {
+            mouseAlreadyDown = false;
         }
     }
 

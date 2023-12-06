@@ -106,8 +106,8 @@ public class Cat : Entity
     public string PutInHand()
     {
         // set the cat's position at an available position in the player's hand
-        transform.position = HandManager.Instance.GetAvailablePosition();
-        
+        transform.position = HandManager.Instance.AddToHand(id);
+
         // handle graphics tweaking
         graphicsParent.transform.eulerAngles = handRotation;
         graphicsParent.SetActive(true);
@@ -124,7 +124,7 @@ public class Cat : Entity
     }
 
     /// <summary>
-    /// Update cat's rotation, scale, state and use this ability
+    /// Update cat's rotation, scale, state for drag state
     /// </summary>
     public void OnDrag()
     {
@@ -136,7 +136,7 @@ public class Cat : Entity
     }
 
     /// <summary>
-    /// Update cat's rotation, scale, state and use this ability
+    /// Update cat's rotation, scale, state for battle state
     /// </summary>
     public void PlaceOnBattlefield()
     {
