@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d5a0c7813c20d9847907190a58489b39
+guid: ad5569779d521de448f499c53f919529
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,12 +7,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Dynamite1
-    second: {fileID: 2100000, guid: 282e834677e9aec419f993aa9d65062a, type: 2}
+      name: Orbe1
+    second: {fileID: 2100000, guid: f3a5b649d20f47d449bf59743e68ebd1, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 2
-    materialSearch: 1
+    materialName: 0
+    materialSearch: 0
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

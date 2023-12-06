@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d5a0c7813c20d9847907190a58489b39
+guid: 62a671af6ae6551458d0ac34ad6079b7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,11 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Dynamite1
-    second: {fileID: 2100000, guid: 282e834677e9aec419f993aa9d65062a, type: 2}
+      name: Scroll1
+    second: {fileID: 2100000, guid: 496ace28bf39cd34eb8c2c41f2086fff, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 2
+    materialName: 0
     materialSearch: 1
     materialLocation: 1
   animations:
