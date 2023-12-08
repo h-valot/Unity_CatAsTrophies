@@ -496,9 +496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphicsParent: {fileID: 913246833242863438}
+  holdButton: {fileID: 3161039191948867228}
   rewardImage: {fileID: 3789462550812112905}
-  rewardNameTM: {fileID: 7335554339973163126}
   buyButton: {fileID: 1418773459187541645}
+  rewardNameTM: {fileID: 7335554339973163126}
 --- !u!1 &6693050684056887351
 GameObject:
   m_ObjectHideFlags: 0

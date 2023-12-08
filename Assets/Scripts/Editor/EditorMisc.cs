@@ -7,7 +7,6 @@ namespace Editor
     {
         private static EntitiesConfig _entitiesConfigCache;
         private static PlayerConfig _playerConfigCache;
-        private static RewardsConfig _rewardsConfigCache;
     
         public static EntitiesConfig FindEntitiesConfig()
         {
@@ -61,33 +60,6 @@ namespace Editor
             }
 
             return _playerConfigCache;
-        }
-    
-        public static RewardsConfig FindRewardsConfig()
-        {
-            // return the load already loaded in cache asset
-            if (_rewardsConfigCache) return _rewardsConfigCache;
-        
-            // else find this asset
-            // get all files with type "RewardsConfig" in the project
-            string[] fileGuidsArray = AssetDatabase.FindAssets("t:" + typeof(RewardsConfig));
-        
-            if (fileGuidsArray.Length > 0)
-            {
-                // if file exists, get first RewardsConfig and return it
-                string assetPath = AssetDatabase.GUIDToAssetPath(fileGuidsArray[0]);
-                _rewardsConfigCache = AssetDatabase.LoadAssetAtPath<RewardsConfig>(assetPath);
-            }
-            else
-            {
-                // if file does not exist, create a new RewardsConfig and save it into a dedicated path
-                RewardsConfig rewardsConfig = ScriptableObject.CreateInstance<RewardsConfig>();
-                AssetDatabase.CreateAsset(rewardsConfig, "Assets/Configs/RewardsConfig.asset");
-                AssetDatabase.SaveAssets();
-                _rewardsConfigCache = rewardsConfig;
-            }
-
-            return _rewardsConfigCache;
         }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   deckEntities:
-  - {fileID: 11400000, guid: e68b250be79b05f4b89ae07ad33bd7ad, type: 2}
-  deckEntitiesCount: 7d030000
+  - {fileID: 11400000, guid: 50d9eb724465c4840aebc85a7b525988, type: 2}
+  deckEntitiesCount: 0a000000
   collection: []
-  deckLenght: 893
+  deckLenght: 10

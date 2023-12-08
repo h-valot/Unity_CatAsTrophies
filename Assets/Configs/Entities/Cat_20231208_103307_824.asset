@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d8bf9f601adc3478d30276cd5a2f5d, type: 3}
-  m_Name: Cat_20231116_192437_001
+  m_Name: Cat_20231208_103307_824
   m_EditorClassIdentifier: 
   isCat: 1
-  id: Cat_20231116_192437_001
-  entityName: Gravalanch
-  health: 10
+  id: Cat_20231208_103307_824
+  entityName: DEBUG
+  health: 999
   armorAtStart: 0
   sprite: {fileID: 0}
   ability:
@@ -25,20 +25,16 @@ MonoBehaviour:
   - animation: 1
     instructions:
     - type: 0
-      value: 10
-      target: 3
-      us: 0
-    - type: 0
-      value: 10
-      target: 0
+      value: 999
+      target: 1
       us: 0
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
-  catSkinTexture: {fileID: 2800000, guid: 31b19729dffddc544bdeb04e094fec35, type: 3}
-  catEyesTexture: {fileID: 2800000, guid: e039d58075665444fb2e86cabf4d1526, type: 3}
+  catSkinTexture: {fileID: 2800000, guid: 3a455c6ea0cedcd4ea013dbcc4ef0c9e, type: 3}
+  catEyesTexture: {fileID: 2800000, guid: 95a581745db0e9e419f0c01f24d945fe, type: 3}
   rightHandAddon: {fileID: 0}
-  leftHandAddon: {fileID: 919132149155446097, guid: ab7222940a5440640975341ada9eeaca, type: 3}
-  headAddon: {fileID: 0}
-  canBeReward: 1
-  apparitionTiers: 000000000100000002000000
-  pricing: 1
-  cost: 100
+  leftHandAddon: {fileID: 0}
+  headAddon: {fileID: 919132149155446097, guid: ab7222940a5440640975341ada9eeaca, type: 3}
+  canBeReward: 0
+  apparitionTiers: 00000000
+  pricing: 0
+  cost: 0

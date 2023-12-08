@@ -18,6 +18,7 @@ public class HoldUIButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     [Space(10)]
     public UnityEvent OnClick;
 
+    private bool _isLocked;
     private bool _canRunTimer;
     private bool _holdEnough;
     private float _currentTime;
@@ -25,12 +26,18 @@ public class HoldUIButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     
     public void OnPointerDown(PointerEventData data)
     {
+        // exit, if the button is locked
+        if (_isLocked) return;
+        
         _canRunTimer = true;
         AnimateButton();
     }
     
     public void OnPointerUp(PointerEventData data)
     {
+        // exit, if the button is locked
+        if (_isLocked) return;
+        
         // lock and reset timer
         _canRunTimer = false;
         _currentTime = 0f;
@@ -47,6 +54,9 @@ public class HoldUIButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     private void Update()
     {
+        // exit, if the button is locked
+        if (_isLocked) return;
+        
         // exit, if can't run the timer
         if (!_canRunTimer) return;
 
@@ -80,4 +90,8 @@ public class HoldUIButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         holdingImage.fillAmount = 0;
         holdingImage.gameObject.SetActive(false);
     }
+
+
+    public void Lock() => _isLocked = true;
+    public void Unlock() => _isLocked = false;
 }

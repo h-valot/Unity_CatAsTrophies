@@ -8,7 +8,6 @@ public class Init : MonoBehaviour
     public GameSettings gameSettings;
     public PlayerConfig playerConfig;
     public MapConfig mapConfig;
-    public RewardsConfig rewardsConfig;
     public Events events;
 
     private void Start()
@@ -19,7 +18,6 @@ public class Init : MonoBehaviour
         Registry.gameSettings = gameSettings;
         Registry.playerConfig = playerConfig;
         Registry.mapConfig = mapConfig;
-        Registry.rewardsConfig = rewardsConfig;
         Registry.events = events;
 
         DataManager.Load();

@@ -8,22 +8,35 @@ namespace Editor
     public class EntityIntegration : EditorWindow
     {
         #region INITIALIZATION
-        // lists of entities
+        // SIDE BAR
         private readonly List<EntityConfig> _enemies = new List<EntityConfig>();
         private readonly List<EntityConfig> _cats = new List<EntityConfig>();
 
-        // entities attributes
+        // INFORMATIONS
         private EntityConfig _currentEntity;
 
+        // global infos
         private string _entityName;
         private float _health;
         private int _armorAtStart;
+        private Sprite _sprite;
+        
+        // abilities
         private Ability _ability;
         private List<Ability> _autoAttacks = new List<Ability>();
+        
+        // graphics
         private GameObject _basePrefab, _rightHandAddon, _leftHandAddon, _headAddon;
         private Texture _catSkinTexture;
         private Texture _catEyesTexture;
 
+        // rewards
+        private bool _canBeReward;
+        private string _rewardName;
+        private List<CompositionTier> _rewardApparitionTiers = new List<CompositionTier>();
+        private RewardPricing _rewardPricing;
+        private float _rewardCost;
+        
         // window editor component
         private int _id;
         private Vector2 _sideBarScroll, _informationsScroll;
@@ -108,6 +121,7 @@ namespace Editor
                 {
                     var newInstance = CreateInstance<EntityConfig>();
                     newInstance.isCat = true;
+                    newInstance.Initialize();
                     var date = DateTime.Now;
                     newInstance.id = "Cat_" + date.ToString("yyyyMMdd_HHmmss_fff");
                 
@@ -171,6 +185,7 @@ namespace Editor
             _entityName = EditorGUILayout.TextField("Name", _entityName);
             _health = EditorGUILayout.FloatField("Health", _health);
             _armorAtStart = EditorGUILayout.IntField("Armor at start", _armorAtStart);
+            _sprite = (Sprite)EditorGUILayout.ObjectField("Sprite", _sprite, typeof(Sprite), true);
     
         
             // ABILITY
@@ -195,6 +210,25 @@ namespace Editor
             _leftHandAddon = (GameObject)EditorGUILayout.ObjectField("Left hand addon", _leftHandAddon, typeof(GameObject), true);
             _headAddon = (GameObject)EditorGUILayout.ObjectField("Head addon", _headAddon, typeof(GameObject), true);
 
+
+            // REWARD
+            if (_currentEntity.isCat)
+            {
+                GUILayout.Space(10);
+                GUILayout.Label("REWARD", EditorStyles.boldLabel);
+                _canBeReward = EditorGUILayout.Toggle("Can this cat be a reward", _canBeReward);
+                if (_canBeReward)
+                {
+                    GUILayout.Label("Apparition settings");
+                    DisplayApparitionTierChoser();
+                    
+                    GUILayout.Label("Pricing settings");
+                    _rewardPricing = (RewardPricing)EditorGUILayout.EnumPopup("Pricing", _rewardPricing);
+                    if (_rewardPricing == RewardPricing.PREMIUM) _rewardCost = EditorGUILayout.FloatField("Cost", _rewardCost);
+                    else _rewardCost = 0;
+                }
+            }
+            
         
             // DATA MANAGEMENT
             // save button
@@ -224,6 +258,7 @@ namespace Editor
             _entityName = _currentEntity.entityName;
             _health = _currentEntity.health;
             _armorAtStart = _currentEntity.armorAtStart;
+            _sprite = _currentEntity.sprite;
 
             // ABILITY
             _ability = _currentEntity.ability;
@@ -236,8 +271,14 @@ namespace Editor
             _rightHandAddon = _currentEntity.rightHandAddon;
             _leftHandAddon = _currentEntity.leftHandAddon;
             _headAddon = _currentEntity.headAddon;
+            
+            // REWARD
+            _canBeReward = _currentEntity.canBeReward;
+            _rewardApparitionTiers = _currentEntity.apparitionTiers;
+            _rewardPricing = _currentEntity.pricing;
+            _rewardCost = _currentEntity.cost;
         }
-
+        
         private void DisplayAbilityList(List<Ability> autoAttack)
         {
             GUILayout.BeginVertical("HelpBox");
@@ -345,23 +386,76 @@ namespace Editor
             GUILayout.EndVertical();
         }
     
+        private void DisplayApparitionTierChoser()
+        {
+            GUILayout.BeginVertical("HelpBox");
+            {
+                // HEADER
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Label("Apparition tiers");
+                    if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                    {
+                        _rewardApparitionTiers.Add(CompositionTier.SIMPLE);
+                    }
+                }
+                GUILayout.EndHorizontal();
+
+                for (int index = 0; index < _rewardApparitionTiers.Count; index++)
+                {
+                    DisplayApparitionTier(index);
+                }
+            }
+            GUILayout.EndVertical();
+        }
+
+        private void DisplayApparitionTier(int index)
+        {
+            GUILayout.BeginHorizontal("HelpBox");
+            {
+                _rewardApparitionTiers[index] = (CompositionTier)EditorGUILayout.EnumPopup(_rewardApparitionTiers[index]);
+                        
+                GUI.backgroundColor = Color.red;
+                if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))
+                {
+                    if (EditorUtility.DisplayDialog("Delete apparition tier", "Do you really want to permanently delete this apparition tier?", "Yes", "No"))
+                    {
+                        _rewardApparitionTiers.Remove(_rewardApparitionTiers[index]);
+                    }
+                }
+                GUI.backgroundColor = Color.white;
+            }
+            GUILayout.EndHorizontal();
+        }
+
         private void SaveDataToAsset()
         {
             // exceptions
             if (_entityName == "") return;
             
-            // update data into current entity
+            // base infos
             _currentEntity.entityName = _entityName;
             _currentEntity.health = _health;
             _currentEntity.armorAtStart = _armorAtStart;
+            _currentEntity.sprite = _sprite;
+            
+            // ability
             _currentEntity.ability = _ability;
             _currentEntity.autoAttack = _autoAttacks;
+            
+            // graphics
             _currentEntity.basePrefab = _basePrefab;
             _currentEntity.catSkinTexture = _catSkinTexture;
             _currentEntity.catEyesTexture = _catEyesTexture;
             _currentEntity.rightHandAddon = _rightHandAddon;
             _currentEntity.leftHandAddon = _leftHandAddon;
             _currentEntity.headAddon = _headAddon;
+            
+            // reward
+            _currentEntity.canBeReward = _canBeReward;
+            _currentEntity.apparitionTiers = _rewardApparitionTiers;
+            _currentEntity.pricing = _rewardPricing;
+            _currentEntity.cost = _rewardCost;
 
             // get the path
             string path = $"Assets/Configs/Entities/{_currentEntity.id}.asset";

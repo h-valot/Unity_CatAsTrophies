@@ -1,24 +1,30 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class RewardUIButton : MonoBehaviour
 {
     [Header("REFERENCES")] 
     public GameObject graphicsParent;
+    public HoldUIButton holdButton;
     public Image rewardImage;
     public GameObject buyButton;
     public TextMeshProUGUI rewardNameTM;
 
-    public void UpdateDisplay(RewardConfig reward)
+    public void UpdateDisplay(int catRewardIndex)
     {
-        rewardImage.sprite = reward.sprite;
-        buyButton.SetActive(reward.pricing == RewardPricing.PAID);
-        rewardNameTM.text = reward.rewardName;
+        // lock the button, if the cat reward is premium
+        if (Registry.entitiesConfig.cats[catRewardIndex].pricing == RewardPricing.PREMIUM) holdButton.Lock();
+        
+        rewardImage.sprite = Registry.entitiesConfig.cats[catRewardIndex].sprite;
+        rewardNameTM.text = Registry.entitiesConfig.cats[catRewardIndex].entityName;
+        
+        buyButton.SetActive(Registry.entitiesConfig.cats[catRewardIndex].pricing == RewardPricing.PREMIUM);
     }
 
     public void GatherReward()
     {
-        // add reward.rewardCatId to the player's run deck
+        // add the catReward to the player's run deck
     }
 }
