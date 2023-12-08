@@ -30,11 +30,12 @@ namespace Data
             if (File.Exists(_persistantPath))
             {
                 string json = File.ReadAllText(_persistantPath);
-                data = new PersistantData(JsonUtility.FromJson<PersistantData>(json));
+                data = JsonUtility.FromJson<PersistantData>(json);
             }
             else
             {
-                data ??= new PersistantData(null);
+                data ??= new PersistantData();
+                Save();
             }
         }
         

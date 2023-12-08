@@ -2,6 +2,7 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using Data;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
@@ -25,11 +26,18 @@ public class DeckManager : MonoBehaviour
     /// </summary>
     public void LoadPlayerDeck()
     {
-        for (int i = 0; i < Registry.playerConfig.deckEntities.Count; i++)
+        
+        if (DataManager.data.collection.inGameDeck.Count == 0)
         {
-            for (int j = 0; j < Registry.playerConfig.deckEntitiesCount[i]; j++)
+            Debug.LogError("DECK MANAGER: the deck of the player is empty", this);
+            return;
+        }
+        
+        for (int i = 0; i < DataManager.data.collection.inGameDeck.Count; i++)
+        {
+            for (int j = 0; j < DataManager.data.collection.inGameDeck[i].count; j++)
             {
-                CatGenerator.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(Registry.playerConfig.deckEntities[i]));
+                CatManager.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(DataManager.data.collection.inGameDeck[i].entity));
             }
         }
     }
@@ -37,10 +45,10 @@ public class DeckManager : MonoBehaviour
     /// <summary>
     /// Add a new cat into the player's deck
     /// </summary>
-    /// <param name="_catId">ID of the cat</param>
-    public void AddCat(string _catId)
+    /// <param name="catId">ID of the cat</param>
+    public void AddCat(string catId)
     {
-        catsInDeck.Add(_catId);
+        catsInDeck.Add(catId);
     }
 
     /// <summary>
@@ -66,6 +74,6 @@ public class DeckManager : MonoBehaviour
     /// </summary>
     public void ShuffleDeck()
     {
-        catsInDeck = catsInDeck.OrderBy(_catId => Guid.NewGuid()).ToList();
+        catsInDeck = catsInDeck.OrderBy(catId => Guid.NewGuid()).ToList();
     }
 }

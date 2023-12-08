@@ -6,6 +6,7 @@ public class DebugCompManager : MonoBehaviour
 
     public Transform layoutGroup;
     public GameObject debugButtonPrefab;
+    public GameObject graphicsParent;
     
     private void Awake() => Instance = this;
     
@@ -17,4 +18,7 @@ public class DebugCompManager : MonoBehaviour
             newDebugButton.Initialize(index);
         }
     }
+
+    public void ShowDebugButtons() => graphicsParent.SetActive(true);
+    public void HideDebugButtons() => graphicsParent.SetActive(false);
 }

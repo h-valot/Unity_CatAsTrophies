@@ -10,12 +10,14 @@ public class Node
     public List<Point> incomingNodes = new List<Point>();
     public List<Point> outgoingNodes = new List<Point>();
     public Vector2 pos;
-    public NodeConfig nodeConfig;
+    [SerializeField] private int nodeSpriteIndex;
+
+    public Sprite Sprite => Registry.mapConfig.nodes[nodeSpriteIndex].sprite;
 
     public Node(NodeType nodeType, NodeConfig nodeConfig, Point point)
     {
         this.nodeType = nodeType;
-        this.nodeConfig = nodeConfig;
+        this.nodeSpriteIndex = Registry.mapConfig.nodes.IndexOf(nodeConfig);
         this.point = point;
     }
 
@@ -49,11 +51,6 @@ public class Node
     /// Returns true if the node no incoming nodes neither outgoing nodes 
     /// </summary>
     public bool HasNoConnections() => incomingNodes.Count == 0 && outgoingNodes.Count == 0;
-
-    public Sprite GetSprite()
-    {
-        return nodeConfig.sprite;
-    }
 }
 
 public enum NodeType

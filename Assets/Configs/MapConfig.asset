@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 11400000, guid: 5dde607968a105743937b9ecefa289c1, type: 2}
-  - {fileID: 11400000, guid: 5291942cdfc122241b09fc20a1322aff, type: 2}
-  - {fileID: 11400000, guid: 70a2766df45fb3e41b6802fcc2473bce, type: 2}
-  - {fileID: 11400000, guid: ecae41ce77310b740b1865a5a7e3499b, type: 2}
-  - {fileID: 11400000, guid: 5f8991665f144004288b25b4f511fcb3, type: 2}
-  - {fileID: 11400000, guid: f984229971c7a6b4981755de4ea31661, type: 2}
-  - {fileID: 11400000, guid: 9b0e29b60dd4466488995ebca50dbe33, type: 2}
   - {fileID: 11400000, guid: b837381690eafe94682929a29d1cee6f, type: 2}
+  - {fileID: 11400000, guid: 5291942cdfc122241b09fc20a1322aff, type: 2}
+  - {fileID: 11400000, guid: 9b0e29b60dd4466488995ebca50dbe33, type: 2}
+  - {fileID: 11400000, guid: f984229971c7a6b4981755de4ea31661, type: 2}
+  - {fileID: 11400000, guid: 5f8991665f144004288b25b4f511fcb3, type: 2}
+  - {fileID: 11400000, guid: ecae41ce77310b740b1865a5a7e3499b, type: 2}
+  - {fileID: 11400000, guid: 70a2766df45fb3e41b6802fcc2473bce, type: 2}
   startingNodeAmount:
     min: 3
     max: 4

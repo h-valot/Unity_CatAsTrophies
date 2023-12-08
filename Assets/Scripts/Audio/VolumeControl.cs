@@ -1,6 +1,4 @@
 using Data;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,12 +10,12 @@ public class VolumeControl : MonoBehaviour
 
     private void Start()
     {
-        float valuetochange = DataManager.data.MusicVolumeValue;
-        volumeSlider.value = valuetochange;
+        volumeSlider.value = DataManager.data.musicVolume;
     }
+    
     public void SetLevel(float sliderValue)
     {
         mixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
-        DataManager.data.MusicVolumeValue = sliderValue;
+        DataManager.data.musicVolume = sliderValue;
     }
 }

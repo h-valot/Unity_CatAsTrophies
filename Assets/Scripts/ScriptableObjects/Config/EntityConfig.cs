@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 [CreateAssetMenu(fileName = "EntityConfig", menuName = "Config/Entity/Entity", order = 1)]
 public class EntityConfig : ScriptableObject
@@ -12,8 +11,10 @@ public class EntityConfig : ScriptableObject
     public string entityName;
     public float health;
     public int armorAtStart;
-    
-    [Header("ABILITY")]
+    public Sprite sprite;
+
+    [Header("ABILITY")] 
+    public string abilityDescription;
     public Ability ability = new Ability();
     public List<Ability> autoAttack = new List<Ability>();
 
@@ -24,4 +25,21 @@ public class EntityConfig : ScriptableObject
     public GameObject rightHandAddon;
     public GameObject leftHandAddon;
     public GameObject headAddon;
+
+    [Header("REWARD")] 
+    public bool canBeReward;
+    public List<CompositionTier> apparitionTiers = new List<CompositionTier>();
+    public RewardPricing pricing;
+    public float cost;
+    
+    public void Initialize()
+    {
+        apparitionTiers.Add(CompositionTier.SIMPLE);
+    }
+}
+
+public enum RewardPricing
+{
+    FREE = 0,
+    PREMIUM
 }

@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1374756696331654632}
   - component: {fileID: 4554564597620202761}
   m_Layer: 5
-  m_Name: Button
+  m_Name: B_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 7572752116284943085}
   - component: {fileID: 1519521084072081899}
   m_Layer: 0
-  m_Name: AnimationCircle_Image
+  m_Name: IMG_AnimationCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
