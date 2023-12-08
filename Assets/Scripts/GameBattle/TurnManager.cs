@@ -94,6 +94,7 @@ public class TurnManager : MonoBehaviour
                 DiscardManager.Instance.catsDiscarded.Count > 0)
             {
                 HandManager.Instance.DrawCat(DeckManager.Instance.RemoveCat());
+                HandManager.Instance.ArrangeHand();
             }
         }
     }

@@ -583,9 +583,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1156665062130642419, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1849311294113408699, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
       propertyPath: m_Name
       value: CatItem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5c7a1d8cdccbf2746ae8afb52f10ad1c, type: 3}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438952905122203636, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: Damage Collection
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -685,9 +701,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1156665062130642419, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: '1000
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 1849311294113408699, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
       propertyPath: m_Name
       value: CatItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5c7a1d8cdccbf2746ae8afb52f10ad1c, type: 3}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438952905122203636, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: Armor Collection
       objectReference: {fileID: 0}
     - target: {fileID: 8503238004086836602, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
       propertyPath: m_SortingLayer
@@ -898,9 +932,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1156665062130642419, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1849311294113408699, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
       propertyPath: m_Name
       value: CatItem1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5c7a1d8cdccbf2746ae8afb52f10ad1c, type: 3}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438952905122203636, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: All Collection
       objectReference: {fileID: 0}
     - target: {fileID: 8503238004086836602, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
       propertyPath: m_SortingLayer
@@ -1111,9 +1161,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1156665062130642419, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1849311294113408699, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
       propertyPath: m_Name
       value: CatItem (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5c7a1d8cdccbf2746ae8afb52f10ad1c, type: 3}
+    - target: {fileID: 2504658649685576506, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438952905122203636, guid: c177413f64d3e004ca53fcfb01d24568, type: 3}
+      propertyPath: m_text
+      value: Buff Collection
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

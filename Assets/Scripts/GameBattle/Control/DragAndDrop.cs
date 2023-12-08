@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using UnityEngine;
+using System;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class DragAndDrop : MonoBehaviour
 
     private Vector3 dragStartPosition; //use to determine if the player click or start draging using the DISTANCE
     private float dragTimerStart; //use to determine if the player click or start draging using the TIME
-    private bool allowDraging; //use to prevent instant draging when player only want to click
+    private bool DragStarted; //use to prevent instant draging when player only want to click
 
     private void Awake()
     {
@@ -22,9 +23,6 @@ public class DragAndDrop : MonoBehaviour
         this.enabled = true; // enable Update
         dragTimerStart = 0;
         dragStartPosition = Input.mousePosition; // register pointer position
-
-        HandManager.Instance.RemoveFromHand(catDragged.id);
-        HandManager.Instance.HideHand();
     }
 
     private void OnMouseDrag()
@@ -32,9 +30,10 @@ public class DragAndDrop : MonoBehaviour
         //exceptions
         if (!CanDrag()) return;
         
-        if (allowDraging)
+        //Only execute if the drag is long enough in time or space
+        if (DragStarted)
         {
-            catDragged.transform.position = new Vector3 (InputHandler.Instance.touchPos.x, InputHandler.Instance.touchPos.y + Registry.gameSettings.verticalOffsetDuringDrag, InputHandler.Instance.touchPos.z);
+            catDragged.transform.position = new Vector3 (InputHandler.Instance.touchPos.x, InputHandler.Instance.touchPos.y + Registry.gameSettings.verticalOffsetDuringDrag, Math.Clamp(InputHandler.Instance.touchPos.z, -100f, 4f));
         }
     }
  
@@ -45,24 +44,30 @@ public class DragAndDrop : MonoBehaviour
 
         this.enabled = false;
 
-        if (!allowDraging)
+        if (!DragStarted)
         {
-            Debug.Log($"Single click on cat that trigger explication layout.");
+            HandManager.Instance.HighlightCat(catDragged);
+        }
+        else
+        {
+            VerifyDistances();
+            HandManager.Instance.ArrangeHand();
+            DragAndDropPlane.Instance.meshCollider.enabled = false;
         }
 
-        allowDraging = false;
-        DragAndDropPlane.Instance.meshCollider.enabled = false;
-        VerifyDistances();
-        HandManager.Instance.ShowHand();
+        DragStarted = false;
     }
 
+    //check if the drag is large enough or long enough to determine if it is a drag or just a click
     private void Update()
     {
         dragTimerStart += Time.deltaTime;
-        //check if the drag is large enough or long enough to determine if it is a drag or just a click
+        
         if ((Input.mousePosition - dragStartPosition).magnitude > Registry.gameSettings.dragingMinimumAmount || dragTimerStart > Registry.gameSettings.holdingTimeMaxSingleClick)
         {
-            allowDraging = true;
+            DragStarted = true;
+            HandManager.Instance.RemoveFromHand(catDragged.id);
+            HandManager.Instance.HideHand();
             catDragged.OnDrag();
             DragAndDropPlane.Instance.meshCollider.enabled = true;
             this.enabled = false;
@@ -109,7 +114,6 @@ public class DragAndDrop : MonoBehaviour
         else
         {
             catDragged.PutInHand();
-            HandManager.Instance.AddToHand(catDragged.id);
         }
     }
 
