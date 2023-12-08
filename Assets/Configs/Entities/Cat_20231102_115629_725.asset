@@ -17,7 +17,8 @@ MonoBehaviour:
   entityName: Warrior
   health: 8
   armorAtStart: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 13886d4e09153aa41ac80e9564998e3a, type: 3}
+  abilityDescription: 
   ability:
     animation: 0
     instructions: []
@@ -35,7 +36,6 @@ MonoBehaviour:
   leftHandAddon: {fileID: 919132149155446097, guid: 395d88c91e3854a4794d178a4e2465e9, type: 3}
   headAddon: {fileID: 919132149155446097, guid: b2e122dea678ff940b3e2786a279f23a, type: 3}
   canBeReward: 1
-  rewardName: 
   apparitionTiers: 0000000001000000
   pricing: 0
   cost: 0

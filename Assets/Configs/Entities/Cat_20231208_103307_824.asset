@@ -17,7 +17,8 @@ MonoBehaviour:
   entityName: DEBUG
   health: 999
   armorAtStart: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 13886d4e09153aa41ac80e9564998e3a, type: 3}
+  abilityDescription: 
   ability:
     animation: 0
     instructions: []
