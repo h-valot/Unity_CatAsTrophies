@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class HandManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class HandManager : MonoBehaviour
     [Header("DEBUGGING")]
     public string[] catsInHand;
     public string newCatId;
+    public Vector3[] handPointsDefaultPosition;
 
     private void Awake() => Instance = this;
     
@@ -19,7 +21,13 @@ public class HandManager : MonoBehaviour
     {
         // hand limit is 5
         Instance.catsInHand = new string[] {null, null, null, null, null};
-        ShowHand();
+        //Save the position of hand point to reset hand later
+        Instance.handPointsDefaultPosition = new Vector3[5];
+        for (int i = 0; i < handPointsDefaultPosition.Length; i++)
+        {
+            handPointsDefaultPosition[i] = handPoints[i].position;
+        }
+
         Registry.events.OnClickNotCat += ArrangeHand; //Called from InputHandler.cs
     }
     
@@ -91,8 +99,6 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void ArrangeHand()
     {
-        Debug.Log("Arrange hand");
-
         List<string> newCatsInHand = new List<string>();
 
         // Get remaining cats in hand
@@ -104,11 +110,32 @@ public class HandManager : MonoBehaviour
             }
         }
         // Remove every cats of hand
-        //for (int i = 0; i < catsInHand.Length; i++)
-        //{
-        //    catsInHand[i] = null;
-        //}
-        
+        for (int i = 0; i < catsInHand.Length; i++)
+        {
+            catsInHand[i] = null;
+        }
+
+        // check the number of remaining cat in hand to center the hand properly
+        if (newCatsInHand.Count % 2 == 0) //number of cats in hand is even
+        {
+            for (int i = 0; i < handPoints.Length; i++)
+            {
+                handPoints[i].position = new Vector3(handPointsDefaultPosition[i].x - 0.5f, handPointsDefaultPosition[i].y, handPointsDefaultPosition[i].z);
+            }
+        }
+        else //number of cats in hand is odd
+        {
+            for (int i = 0; i < handPointsDefaultPosition.Length; i++)
+            {
+                handPoints[i].position = new Vector3(handPointsDefaultPosition[i].x, handPointsDefaultPosition[i].y, handPointsDefaultPosition[i].z);
+            }
+        }
+
+        // Add remaining cats in hand
+        foreach (string catId in newCatsInHand)
+        {
+            Misc.GetCatById(catId).PutInHand();
+        }
     }
 
     /// <summary>
@@ -116,7 +143,7 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void HighlightCat(Cat highlightedCat)
     {
-        Debug.Log("HighLightCat hand");
+        Debug.Log($"HighLightCat : {highlightedCat}");
     }
 
     /// <summary>

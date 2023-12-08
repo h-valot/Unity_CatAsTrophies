@@ -7,11 +7,12 @@ public class InputHandler : MonoBehaviour
     [Header("REFERENCES")]
     [SerializeField] public Camera cam;
     [SerializeField] private LayerMask mask;
-    
+
     [Header("DEBUGGING")]
     public Vector3 touchPos;
 
-    private bool mouseAlreadyDown = false;
+    private bool clickAlreadyCat = false;
+    private bool clickAlreadyNotCat = false;
 
     private void Awake() => Instance = this;
     
@@ -20,22 +21,33 @@ public class InputHandler : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             var ray = cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out var hitInfo, 99, ~mask))
+
+            // Raycast that only return cats, used to know if you clicked on a cat or not, will be used in HandManager.cs
+            if (Physics.Raycast(ray, out var hitInfoCat, 99, mask))
             {
-                touchPos = hitInfo.point;
+                if (!clickAlreadyCat)
+                {
+                    clickAlreadyCat = true;
+                }
             }
             else
             {
-                if (!mouseAlreadyDown)
+                if (!clickAlreadyNotCat)
                 {
-                    Registry.events.OnClickNotCat.Invoke();
-                    mouseAlreadyDown = true;
+                    clickAlreadyNotCat = true;
                 }
+            }
+
+            // Raycast that exclude cats, used to drag the cat on the drag plane in DragAndDrop.cs
+            if (Physics.Raycast(ray, out var hitInfoNotCat, 99, ~mask))
+            {
+                touchPos = hitInfoNotCat.point;
             }
         }
         else
         {
-            mouseAlreadyDown = false;
+            clickAlreadyCat = false;
+            clickAlreadyNotCat = false;
         }
     }
 
