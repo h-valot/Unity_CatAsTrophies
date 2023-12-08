@@ -10,14 +10,14 @@ public class Node
     public List<Point> incomingNodes = new List<Point>();
     public List<Point> outgoingNodes = new List<Point>();
     public Vector2 pos;
-    [SerializeField] private int nodeSpriteIndex;
+    public int spriteIndex;
+    
+    public Sprite sprite => Registry.mapConfig.sprites[spriteIndex];
 
-    public Sprite Sprite => Registry.mapConfig.nodes[nodeSpriteIndex].sprite;
-
-    public Node(NodeType nodeType, NodeConfig nodeConfig, Point point)
+    public Node(NodeType nodeType, int spriteIndex, Point point)
     {
         this.nodeType = nodeType;
-        this.nodeSpriteIndex = Registry.mapConfig.nodes.IndexOf(nodeConfig);
+        this.spriteIndex = spriteIndex;
         this.point = point;
     }
 

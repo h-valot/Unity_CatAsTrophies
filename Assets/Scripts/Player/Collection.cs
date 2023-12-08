@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Data;
+using List;
 
 namespace Player
 {
@@ -61,10 +63,7 @@ namespace Player
         /// </summary>
         public void SwitchToInGameDeck()
         {
-            inGameDeck.Clear();
-            inGameDeck = Registry.gameSettings.playerDeckDebugMode 
-                ? Registry.playerConfig.deck 
-                : deck;
+            inGameDeck.FillWith(Registry.gameSettings.playerDeckDebugMode ? Registry.playerConfig.deck : deck);
         }
 
         /// <summary>

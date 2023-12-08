@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using Data;
+using Player;
 
 public class MapManager : MonoBehaviour
 {
@@ -57,7 +58,9 @@ public class MapManager : MonoBehaviour
     /// </summary>
     public void GenerateNewMap()
     {
-        if (DataManager.data.collection != null) DataManager.data.collection.SwitchToInGameDeck();
+        DataManager.data.collection ??= new Collection();
+        DataManager.data.collection.SwitchToInGameDeck();
+        
         currentMap = MapGenerator.GetMap(Registry.mapConfig);
         mapView.ShowMap(currentMap);
     }

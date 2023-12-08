@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCat: 1
   id: Cat_20231116_192437_001
-  entityName: Gravalanch
+  entityName: Kamillekaz
   health: 10
   armorAtStart: 0
-  sprite: {fileID: 21300000, guid: 13886d4e09153aa41ac80e9564998e3a, type: 3}
+  sprite: {fileID: 21300000, guid: e6f2425e3344d0c45994d483ea981dff, type: 3}
   abilityDescription: 
   ability:
     animation: 0

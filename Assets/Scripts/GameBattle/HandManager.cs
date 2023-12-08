@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class HandManager : MonoBehaviour

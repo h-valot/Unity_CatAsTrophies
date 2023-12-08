@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Player;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
@@ -26,18 +27,17 @@ public class DeckManager : MonoBehaviour
     /// </summary>
     public void LoadPlayerDeck()
     {
-        
         if (DataManager.data.collection.inGameDeck.Count == 0)
         {
             Debug.LogError("DECK MANAGER: the deck of the player is empty", this);
             return;
         }
         
-        for (int i = 0; i < DataManager.data.collection.inGameDeck.Count; i++)
+        foreach (Item item in DataManager.data.collection.inGameDeck)
         {
-            for (int j = 0; j < DataManager.data.collection.inGameDeck[i].count; j++)
+            for (int j = 0; j < item.count; j++)
             {
-                CatManager.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(DataManager.data.collection.inGameDeck[i].entity));
+                CatManager.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(item.entity));
             }
         }
     }

@@ -65,11 +65,8 @@ public static class MapGenerator
                 // get a random node type if the random float is less than the randomize node value in the layer
                 NodeType nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode() : layer.nodeType;
                 
-                // get the node config corresponding to the node type
-                NodeConfig nodeConfig = mapConfig.nodes.FirstOrDefault(nodeConfig => nodeConfig.nodeType == nodeType);
-                
                 // create and store the node in the corresponding layer
-                nodes[layerIndex].Add(new Node(nodeType, nodeConfig, new Point(layerIndex, nodeIndex)));
+                nodes[layerIndex].Add(new Node(nodeType, (int)nodeType, new Point(layerIndex, nodeIndex)));
             }
         }
     }
