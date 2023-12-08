@@ -143,8 +143,6 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void HighlightCat(Cat highlightedCat)
     {
-        Debug.Log($"HighLightCat : {highlightedCat}");
-
         //Create a list of all cat that are non highlighted
         int indexStackedHandPointPosition = 0;
         for (int i = 0;i < catsInHand.Length;i++)
@@ -161,6 +159,8 @@ public class HandManager : MonoBehaviour
                 Misc.GetCatById(catsInHand[i]).transform.position = handPoints[i].position;
             }
         }
+
+        Debug.Log($"Code to display the cat info panel here");
     }
 
     /// <summary>
