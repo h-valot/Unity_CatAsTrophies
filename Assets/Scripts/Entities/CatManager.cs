@@ -8,6 +8,9 @@ public class CatManager : MonoBehaviour
     [Header("DEBUGGING")]
     public List<Cat> cats;
     public int totalCatCount;
+    public int deadCatAmount;
+
+    public bool allCatsDead => deadCatAmount == totalCatCount;
     
     private Cat _spawnedCat;
     private GameObject _newCatGO;

@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class RewardUIButton : MonoBehaviour
@@ -22,7 +21,7 @@ public class RewardUIButton : MonoBehaviour
         
         buyButton.SetActive(Registry.entitiesConfig.cats[catRewardIndex].pricing == RewardPricing.PREMIUM);
     }
-
+    
     public void GatherReward()
     {
         // add the catReward to the player's run deck

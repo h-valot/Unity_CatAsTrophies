@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9032725563085496815}
   - component: {fileID: 253022445413061595}
   m_Layer: 0
-  m_Name: Map
+  m_Name: MapManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -642,7 +642,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &8428975428604415175
 MonoBehaviour:

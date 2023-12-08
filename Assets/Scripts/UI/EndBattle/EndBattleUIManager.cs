@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Data;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -6,14 +7,14 @@ using UnityEngine.UI;
 
 public class EndBattleUIManager : MonoBehaviour
 {
+    [Header("EXTERNAL REFERENCES")]
+    public MapManager mapManager;
+    
     [Header("END TITLE")] 
     public GameObject endTitleParent;
     public TextMeshProUGUI endTitleTM;
     public Image endTitleLoadingImage;
     public float endTitleDuration;
-
-    [Header("MAP")]
-    public MapManager mapManager;
 
     [Header("REWARD")] 
     public RewardUIManager rewardUIManager;
@@ -21,19 +22,18 @@ public class EndBattleUIManager : MonoBehaviour
     /// <summary>
     /// Shows end battle screen
     /// </summary>
-    /// <param name="doWin">TRUE display "victory" - FALSE display "defeat"</param>
-    public async Task AnimateEndBattle(bool doWin)
+    public async Task AnimateEndBattle()
     {
-        await AnimateEndTitle(doWin);
+        await AnimateEndTitle();
         await AnimateEndMap();
-        await AnimateEndReward();
+        if (DataManager.data.endBattleStatus == EndBattleStatus.VICTORY) await AnimateEndReward();
     }
     
-    private async Task AnimateEndTitle(bool doWin)
+    private async Task AnimateEndTitle()
     {
         endTitleParent.SetActive(true);
 
-        endTitleTM.text = doWin ? "VICTORY" : "DEFEAT";
+        endTitleTM.text = $"{DataManager.data.endBattleStatus}";
 
         endTitleLoadingImage.DOFillAmount(1, endTitleDuration);
         await Task.Delay(Mathf.RoundToInt(1000 * endTitleDuration));

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Data;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -257,10 +258,10 @@ public class TurnManager : MonoBehaviour
         // exit, if the debug mode is enabled
         if (Registry.gameSettings.gameBattleDebugMode) return;
         
-        // exit, if all enemies aren't dead yet
-        if (!EnemyGenerator.Instance.allEnemiesDead) return;
+        if (EnemyGenerator.Instance.allEnemiesDead) DataManager.data.endBattleStatus = EndBattleStatus.VICTORY;
+        if (CatManager.Instance.allCatsDead) DataManager.data.endBattleStatus = EndBattleStatus.DEFEATED;
         
-        await endBattleUIManager.AnimateEndBattle(true);
+        await endBattleUIManager.AnimateEndBattle();
     }
 }
 
