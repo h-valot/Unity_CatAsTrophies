@@ -258,10 +258,18 @@ public class TurnManager : MonoBehaviour
         // exit, if the debug mode is enabled
         if (Registry.gameSettings.gameBattleDebugMode) return;
         
-        if (EnemyGenerator.Instance.allEnemiesDead) DataManager.data.endBattleStatus = EndBattleStatus.VICTORY;
-        if (CatManager.Instance.allCatsDead) DataManager.data.endBattleStatus = EndBattleStatus.DEFEATED;
+        if (EnemyGenerator.Instance.allEnemiesDead)
+        {
+            DataManager.data.endBattleStatus = EndBattleStatus.VICTORY;
+            await endBattleUIManager.AnimateEndBattle();
+        }
         
-        await endBattleUIManager.AnimateEndBattle();
+        if (CatManager.Instance.allCatsDead)
+        {
+            DataManager.data.endBattleStatus = EndBattleStatus.DEFEATED;
+            await endBattleUIManager.AnimateEndTitle();
+            SceneManager.LoadScene("mainmenu");
+        }
     }
 }
 

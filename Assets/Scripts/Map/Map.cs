@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Data;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -47,4 +48,16 @@ public class Map
     /// Returns true is there is nodes in the nodes list, otherwise false
     /// </summary>
     public bool IsNotEmpty() => nodes.Count > 0;
+
+    /// <summary>
+    /// Remove the last move of the player, only if the player has left the last battle
+    /// </summary>
+    public void UndoPlayerPath()
+    {
+        // exit, if the player didn't left the battle
+        if (DataManager.data.endBattleStatus != EndBattleStatus.LEFT) return;
+        
+        playerPath.Remove(playerPath[^1]);
+        DataManager.data.endBattleStatus = EndBattleStatus.NONE;
+    }
 }

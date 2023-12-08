@@ -28,6 +28,8 @@ public class MapPlayerTracker : MonoBehaviour
         mapView.SetLineColors();
 
         await nodeUI.ShowSelectionAnimation();
+
+        DataManager.data.endBattleStatus = EndBattleStatus.NONE;
         
         switch (nodeUI.node.nodeType)
         {

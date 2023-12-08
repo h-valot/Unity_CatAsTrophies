@@ -33,13 +33,15 @@ public class MapManager : MonoBehaviour
             Map map = DataManager.data.map;
             
             // generate a new map, if the payer has already reached the boss 
-            if (map.playerPath.Any(point => point.Equals(map.GetBossNode().point)))
+            if (map.playerPath.Any(point => point.Equals(map.GetBossNode().point)) || 
+                DataManager.data.endBattleStatus == EndBattleStatus.DEFEATED)
             {
                 GenerateNewMap();
             }
             // load the current map, if player has not reached the boss yet
             else
             {
+                map.UndoPlayerPath();
                 currentMap = map;
                 mapView.ShowMap(map);
             }

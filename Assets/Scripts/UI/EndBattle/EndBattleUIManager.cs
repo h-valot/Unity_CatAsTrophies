@@ -26,10 +26,10 @@ public class EndBattleUIManager : MonoBehaviour
     {
         await AnimateEndTitle();
         await AnimateEndMap();
-        if (DataManager.data.endBattleStatus == EndBattleStatus.VICTORY) await AnimateEndReward();
+        await AnimateEndReward();
     }
     
-    private async Task AnimateEndTitle()
+    public async Task AnimateEndTitle()
     {
         endTitleParent.SetActive(true);
 
