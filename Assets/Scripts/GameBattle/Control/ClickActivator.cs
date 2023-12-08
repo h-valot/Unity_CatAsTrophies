@@ -11,9 +11,12 @@ public class ClickActivator : MonoBehaviour
 
     private void OnMouseDown()
     {
-        timeStartClick = Time.time;
         isTouching = true;
-        Timer(Registry.gameSettings.holdingTimeToTriggerAbility, timeStartClick);
+        if (catUsed.state == CatState.OnBattle)
+        {
+            timeStartClick = Time.time;
+            Timer(Registry.gameSettings.holdingTimeToTriggerAbility, timeStartClick);
+        }
     }
 
     private void OnMouseUp()

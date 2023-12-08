@@ -190,7 +190,6 @@ public class Entity : MonoBehaviour
 
         if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
         {
-            Debug.Log($"{this}: Set bool is Sleeping to false.");
             animator.SetBool("IsSleeping", false);
         }
 
