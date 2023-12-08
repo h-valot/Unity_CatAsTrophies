@@ -35,6 +35,7 @@ namespace Data
             else
             {
                 data ??= new PersistantData();
+                Save();
             }
         }
         

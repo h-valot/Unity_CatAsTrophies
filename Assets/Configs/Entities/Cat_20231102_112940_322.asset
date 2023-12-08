@@ -18,6 +18,7 @@ MonoBehaviour:
   health: 6
   armorAtStart: 0
   sprite: {fileID: 0}
+  abilityDescription: 
   ability:
     animation: 0
     instructions: []

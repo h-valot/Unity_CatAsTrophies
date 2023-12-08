@@ -19,7 +19,7 @@ public class NodeUI : MonoBehaviour
     public void Initialize(Node node)
     {
         this.node = node;
-        nodeImage.sprite = node.nodeConfig.sprite;
+        nodeImage.sprite = node.Sprite;
         nodeImage.transform.localScale *= Registry.mapConfig.nodeScaleModifier;
     }
     
