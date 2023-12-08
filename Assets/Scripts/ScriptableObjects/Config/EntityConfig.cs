@@ -12,8 +12,9 @@ public class EntityConfig : ScriptableObject
     public float health;
     public int armorAtStart;
     public Sprite sprite;
-    
-    [Header("ABILITY")]
+
+    [Header("ABILITY")] 
+    public string abilityDescription;
     public Ability ability = new Ability();
     public List<Ability> autoAttack = new List<Ability>();
 

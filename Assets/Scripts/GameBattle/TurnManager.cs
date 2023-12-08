@@ -20,9 +20,6 @@ public class TurnManager : MonoBehaviour
     public Vector3 offsetBattlePosition;
     public MeshRenderer backgroundFadeRenderer;
 
-    [Header("END BATTLE SETTINGS")] 
-    public float victoryDuration;
-
     [Header("DEBUGGING")]
     public TurnState state;
     public bool passTurn;

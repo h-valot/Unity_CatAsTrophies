@@ -23,6 +23,7 @@ namespace Editor
         
         // abilities
         private Ability _ability;
+        private string _abilityDescription;
         private List<Ability> _autoAttacks = new List<Ability>();
         
         // graphics
@@ -197,6 +198,7 @@ namespace Editor
             // AUTO ATTACK
             GUILayout.Space(10);
             GUILayout.Label("AUTO ATTACK", EditorStyles.boldLabel);
+            if (_currentEntity.isCat) _abilityDescription = EditorGUILayout.TextField("Ability description", _abilityDescription);
             DisplayAbilityList(_autoAttacks);
         
 
@@ -262,6 +264,7 @@ namespace Editor
 
             // ABILITY
             _ability = _currentEntity.ability;
+            _abilityDescription = _currentEntity.abilityDescription;
             _autoAttacks = _currentEntity.autoAttack;
 
             // GRAPHICS
@@ -441,6 +444,7 @@ namespace Editor
             
             // ability
             _currentEntity.ability = _ability;
+            _currentEntity.abilityDescription = _abilityDescription;
             _currentEntity.autoAttack = _autoAttacks;
             
             // graphics
