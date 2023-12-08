@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f35135fbf860840905a262cca2b2d5, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  startingScene: mainmenu
+  startingScene: GameBattle
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5
@@ -21,6 +21,12 @@ MonoBehaviour:
   holdingTimeMaxSingleClick: 0.3
   holdingTimeToTriggerAbility: 0.75
   dragingMinimumAmount: 100
+  stackedHandPointPosition:
+  - {x: -1.85, y: -2.4, z: -1.75}
+  - {x: -2.75, y: -2.4, z: -1.75}
+  - {x: -2.4, y: -2.4, z: -0.85}
+  - {x: -1.5, y: -2.4, z: -0.85}
+  highlightedHandPointPosition: {x: -0.5, y: -2.4, z: -1.75}
   dotDamageAmount: 1
   hotHealAmount: 1
   damageResistanceModifier: 0.5

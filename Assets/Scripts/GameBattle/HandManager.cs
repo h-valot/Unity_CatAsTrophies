@@ -144,6 +144,23 @@ public class HandManager : MonoBehaviour
     public void HighlightCat(Cat highlightedCat)
     {
         Debug.Log($"HighLightCat : {highlightedCat}");
+
+        //Create a list of all cat that are non highlighted
+        int indexStackedHandPointPosition = 0;
+        for (int i = 0;i < catsInHand.Length;i++)
+        {
+            if (catsInHand[i] != highlightedCat.id && catsInHand[i] != null)
+            {
+                handPoints[i].localPosition = Registry.gameSettings.stackedHandPointPosition[indexStackedHandPointPosition];
+                Misc.GetCatById(catsInHand[i]).transform.position = handPoints[i].position;
+                indexStackedHandPointPosition++;
+            }
+            else if (catsInHand[i] != null)
+            {
+                handPoints[i].localPosition = Registry.gameSettings.highlightedHandPointPosition;
+                Misc.GetCatById(catsInHand[i]).transform.position = handPoints[i].position;
+            }
+        }
     }
 
     /// <summary>

@@ -16,6 +16,8 @@ public class GameSettings : ScriptableObject
     public float holdingTimeMaxSingleClick;
     public float holdingTimeToTriggerAbility;
     public float dragingMinimumAmount;
+    public Vector3[] stackedHandPointPosition = new Vector3[4];
+    public Vector3 highlightedHandPointPosition;
 
     [Header("EFFECTS")]
     public int dotDamageAmount;
