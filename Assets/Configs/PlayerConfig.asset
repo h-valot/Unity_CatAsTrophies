@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fd0f72ea6634e4e829603362810972, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  deckEntities:
-  - {fileID: 11400000, guid: 50d9eb724465c4840aebc85a7b525988, type: 2}
-  deckEntitiesCount: 0a000000
-  collection: []
+  deck:
+  - entity: {fileID: 11400000, guid: 50d9eb724465c4840aebc85a7b525988, type: 2}
+    count: 10
   deckLenght: 10

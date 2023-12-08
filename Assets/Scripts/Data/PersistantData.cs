@@ -1,3 +1,5 @@
+using Player;
+
 namespace Data
 {
     [System.Serializable]
@@ -12,6 +14,9 @@ namespace Data
         // level loading data
         public CompositionConfig compoToLoad;
         public EndBattleStatus endBattleStatus;
+        
+        // player collection
+        public Collection collection;
     }
 }
 

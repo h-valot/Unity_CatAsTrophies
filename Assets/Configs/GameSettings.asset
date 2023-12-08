@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingScene: mainmenu
   gameBattleDebugMode: 0
+  playerDeckDebugMode: 1
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5

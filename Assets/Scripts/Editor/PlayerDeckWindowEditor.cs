@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Player;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,8 +11,7 @@ namespace Editor
         #region INITIALIZATION
         private PlayerConfig _playerConfig;
 
-        private List<EntityConfig> _catsConfig = new List<EntityConfig>();
-        private List<int> _catsCount = new List<int>();
+        private List<Item> _deck = new List<Item>();
     
         private readonly List<String> _catsName = new List<string>();
         private readonly List<int> _catsIndex = new List<int>();  
@@ -81,18 +81,18 @@ namespace Editor
             _catsIndex.Clear();
             _catsName.Clear();
         
-            foreach (var cat in _playerConfig.deckEntities)
+            foreach (Item cat in _playerConfig.deck)
             {
-                _catsIndex.Add(_entitiesConfig.cats.IndexOf(cat));
+                _catsIndex.Add(_entitiesConfig.cats.IndexOf(cat.entity));
             }
         }
     
         private int GetTotalNumberOfCats()
         {
             int output = 0;
-            foreach (int catCount in _catsCount)
+            foreach (Item cat in _deck)
             {
-                output += catCount;
+                output += cat.count;
             }
             return output;
         }
@@ -121,16 +121,15 @@ namespace Editor
                     GUILayout.Label("Cats");
                     if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                     {
-                        _catsConfig.Add(_entitiesConfig.cats[0]);
-                        _catsCount.Add(1);
+                        _deck.Add(new Item(_entitiesConfig.cats[0], 1));
                     }
                 }
                 GUILayout.EndHorizontal();
 
                 // LIST
-                if (_catsConfig != null)
+                if (_deck != null)
                 {
-                    for (int index = 0; index < _catsConfig.Count; index++)
+                    for (int index = 0; index < _deck.Count; index++)
                     {
                         DisplayCatPlacement(index);
                     }
@@ -144,17 +143,15 @@ namespace Editor
             GUILayout.BeginHorizontal("HelpBox");
             {
                 _catsIndex[index] = EditorGUILayout.Popup("", _catsIndex[index], _catsName.ToArray());
-                _catsConfig[index] = _entitiesConfig.cats[_catsIndex[index]];
-                        
-                _catsCount[index] = EditorGUILayout.IntField("Count", _catsCount[index]);
+                _deck[index].entity = _entitiesConfig.cats[_catsIndex[index]];
+                _deck[index].count = EditorGUILayout.IntField("Count", _deck[index].count);
                         
                 GUI.backgroundColor = Color.red;
                 if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))
                 {
                     if (EditorUtility.DisplayDialog("Delete entity", "Do you really want to permanently delete this entity?", "Yes", "No"))
                     {
-                        _catsConfig.Remove(_catsConfig[index]);
-                        _catsCount.Remove(_catsCount[index]);
+                        _deck.Remove(_deck[index]);
                         return;
                     }
                 }
@@ -166,8 +163,7 @@ namespace Editor
         private void SaveDataToAsset()
         {
             // save data into a temp game asset
-            _playerConfig.deckEntities = _catsConfig;
-            _playerConfig.deckEntitiesCount = _catsCount;
+            _playerConfig.deck = _deck;
         
             // save changes
             EditorUtility.SetDirty(_playerConfig);
@@ -182,14 +178,12 @@ namespace Editor
         {
             _entitiesConfig = EditorMisc.FindEntitiesConfig();
             _playerConfig = EditorMisc.FindPlayerConfig();
-            _catsConfig = _playerConfig.deckEntities;
-            _catsCount = _playerConfig.deckEntitiesCount;
+            _deck = _playerConfig.deck;
         }
     
         private void UpdateEntitiesConfig()
         {
-            _playerConfig.deckEntities = _catsConfig;
-            _playerConfig.deckEntitiesCount = _catsCount;
+            _playerConfig.deck = _deck;
             _playerConfig.deckLenght = GetTotalNumberOfCats();
             EditorUtility.SetDirty(_playerConfig);
         }
