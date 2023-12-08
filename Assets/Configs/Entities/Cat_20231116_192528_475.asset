@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCat: 1
   id: Cat_20231116_192528_475
-  entityName: glasscanon
-  health: 10
+  entityName: Vampire
+  health: 9
+  armorAtStart: 0
   ability:
     animation: 0
     instructions: []
@@ -30,12 +31,9 @@ MonoBehaviour:
       value: 2
       target: 0
       us: 0
-    - type: 12
-      value: 1
-      target: 0
-      us: 0
-  basePrefab: {fileID: 0}
-  baseMaterial: {fileID: 0}
+  basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
+  catSkinTexture: {fileID: 2800000, guid: d8040132bde0dbb4c997b12c209d1e83, type: 3}
+  catEyesTexture: {fileID: 2800000, guid: 96fdf6cc12ce69f4fa320bd8647f0400, type: 3}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
-  headAddon: {fileID: 0}
+  headAddon: {fileID: 919132149155446097, guid: 122a9094f3c13d24bb46204bc7fc9b63, type: 3}
