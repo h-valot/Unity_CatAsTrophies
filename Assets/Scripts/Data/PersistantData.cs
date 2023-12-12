@@ -12,11 +12,11 @@ namespace Data
         public float musicVolume;
         
         // level loading data
-        public CompositionConfig compoToLoad;
+        public int compoIndexToLoad;
         public EndBattleStatus endBattleStatus;
         
         // player collection
-        public Collection collection;
+        public PlayerStorage playerStorage;
     }
 }
 

@@ -83,7 +83,7 @@ namespace Editor
         
             foreach (Item cat in _playerConfig.deck)
             {
-                _catsIndex.Add(_entitiesConfig.cats.IndexOf(cat.entity));
+                _catsIndex.Add(cat.entityIndex);
             }
         }
     
@@ -121,7 +121,7 @@ namespace Editor
                     GUILayout.Label("Cats");
                     if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                     {
-                        _deck.Add(new Item(_entitiesConfig.cats[0], 1));
+                        _deck.Add(new Item(0, 1));
                     }
                 }
                 GUILayout.EndHorizontal();
@@ -143,7 +143,7 @@ namespace Editor
             GUILayout.BeginHorizontal("HelpBox");
             {
                 _catsIndex[index] = EditorGUILayout.Popup("", _catsIndex[index], _catsName.ToArray());
-                _deck[index].entity = _entitiesConfig.cats[_catsIndex[index]];
+                _deck[index].entityIndex = _catsIndex[index];
                 _deck[index].count = EditorGUILayout.IntField("Count", _deck[index].count);
                         
                 GUI.backgroundColor = Color.red;

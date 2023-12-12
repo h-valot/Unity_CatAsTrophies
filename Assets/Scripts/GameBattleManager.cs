@@ -39,7 +39,7 @@ public class GameBattleManager : MonoBehaviour
         else
         {
             DebugCompManager.Instance.HideDebugButtons();
-            EnemyGenerator.Instance.GenerateComposition(DataManager.data.compoToLoad);
+            EnemyGenerator.Instance.GenerateComposition(DataManager.data.compoIndexToLoad);
         }
         
         // start the game loop

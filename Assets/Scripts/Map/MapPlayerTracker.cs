@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data;
+using List;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using List = NUnit.Framework.List;
 using Random = UnityEngine.Random;
 
 public class MapPlayerTracker : MonoBehaviour
@@ -34,18 +37,15 @@ public class MapPlayerTracker : MonoBehaviour
         switch (nodeUI.node.nodeType)
         {
             case NodeType.BOSS_BATTLE:
-                var bossCompositions = Registry.entitiesConfig.compositions.Where(compo => compo.tier == CompositionTier.BOSS).ToList();
-                DataManager.data.compoToLoad = bossCompositions[Random.Range(0, bossCompositions.Count)];
+                DataManager.data.compoIndexToLoad = GetComposition(CompositionTier.BOSS);
                 SceneManager.LoadScene("GameBattle");
                 break;
             case NodeType.ELITE_BATTLE:
-                var eliteCompositions = Registry.entitiesConfig.compositions.Where(compo => compo.tier == CompositionTier.ELITE).ToList();
-                DataManager.data.compoToLoad = eliteCompositions[Random.Range(0, eliteCompositions.Count)];
+                DataManager.data.compoIndexToLoad = GetComposition(CompositionTier.ELITE);
                 SceneManager.LoadScene("GameBattle");
                 break;
             case NodeType.SIMPLE_BATTLE:
-                var simpleCompositions = Registry.entitiesConfig.compositions.Where(compo => compo.tier == CompositionTier.SIMPLE).ToList();
-                DataManager.data.compoToLoad = simpleCompositions[Random.Range(0, simpleCompositions.Count)];
+                DataManager.data.compoIndexToLoad = GetComposition(CompositionTier.SIMPLE);
                 SceneManager.LoadScene("GameBattle");
                 break;
             case NodeType.SHOP:
@@ -65,5 +65,19 @@ public class MapPlayerTracker : MonoBehaviour
         }
         
         _isLocked = false;
+    }
+
+    /// <summary>
+    /// Returns the index of a random composition of the given tier  
+    /// </summary>
+    private int GetComposition(CompositionTier compositionTier)
+    {
+        var candidates = new List<int>();
+        for (int i = 0; i < Registry.entitiesConfig.compositions.Count; i++)
+            if (Registry.entitiesConfig.compositions[i].tier == compositionTier)
+                candidates.Add(i);
+        
+        candidates.Shuffle();
+        return candidates[Random.Range(0, candidates.Count)];
     }
 }

@@ -6,7 +6,7 @@ using List;
 namespace Player
 {
     [System.Serializable]
-    public class Collection
+    public class PlayerStorage
     {
         public List<Item> collection = new List<Item>();
         public List<Item> deck = new List<Item>();
@@ -15,21 +15,21 @@ namespace Player
         /// <summary>
         /// Adds one entity to the player's deck if the collection 
         /// </summary>
-        public void AddToDeck(EntityConfig newEntity)
+        public void AddToDeck(int newEntityIndex)
         {
             foreach (var item in collection)
             {
                 // continue, if there is no more cat of this type in the collection
-                if (item.entity == newEntity && item.count > 0) continue;
+                if (item.entityIndex == newEntityIndex && item.count > 0) continue;
 
-                if (deck.FirstOrDefault(item => item.entity == newEntity) != null)
+                if (deck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
                 {
-                    deck.FirstOrDefault(item => item.entity == newEntity).count++;
+                    deck.FirstOrDefault(item => item.entityIndex == newEntityIndex).count++;
                     item.count--;
                 }
                 else
                 {
-                    deck.Add(new Item(newEntity, 1));
+                    deck.Add(new Item(newEntityIndex, 1));
                     item.count--;
                 }
             }
@@ -38,21 +38,21 @@ namespace Player
         /// <summary>
         /// Adds one entity from the deck to the collection
         /// </summary>
-        public void RemoveFromDeck(EntityConfig newEntity)
+        public void RemoveFromDeck(int newEntityIndex)
         {
             foreach (var item in deck)
             {
                 // continue, if there is no more cat of this type in the collection
-                if (item.entity == newEntity && item.count > 0) continue;
+                if (item.entityIndex == newEntityIndex && item.count > 0) continue;
 
-                if (collection.FirstOrDefault(item => item.entity == newEntity) != null)
+                if (collection.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
                 {
-                    collection.FirstOrDefault(item => item.entity == newEntity).count++;
+                    collection.FirstOrDefault(item => item.entityIndex == newEntityIndex).count++;
                     item.count--;
                 }
                 else
                 {
-                    collection.Add(new Item(newEntity, 1));
+                    collection.Add(new Item(newEntityIndex, 1));
                     item.count--;
                 }
             }
@@ -69,15 +69,15 @@ namespace Player
         /// <summary>
         /// Add the given entity to the in-game deck
         /// </summary>
-        public void AddToInGameDeck(EntityConfig newEntity)
+        public void AddToInGameDeck(int newEntityIndex)
         {
-            if (inGameDeck.FirstOrDefault(item => item.entity == newEntity) != null)
+            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
             {
-                inGameDeck.FirstOrDefault(item => item.entity == newEntity)!.count++;
+                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.count++;
             }
             else
             {
-                inGameDeck.Add(new Item(newEntity, 1));
+                inGameDeck.Add(new Item(newEntityIndex, 1));
             }
         }
     }

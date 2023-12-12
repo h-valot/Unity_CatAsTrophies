@@ -36,7 +36,7 @@ public class RewardUIManager : MonoBehaviour
             foreach (var tier in Registry.entitiesConfig.cats[index].apparitionTiers)
             {
                 // continue, if the tier doesn't match the beaten one
-                if (tier != DataManager.data.compoToLoad.tier) continue;
+                if (tier != Registry.entitiesConfig.compositions[DataManager.data.compoIndexToLoad].tier) continue;
 
                 // get premium candidates
                 if (mustBePremium)
