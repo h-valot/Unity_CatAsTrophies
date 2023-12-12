@@ -58,7 +58,7 @@ public class Enemy : Entity
 
         base.HandleDeath();
 
-        // destroy the enemy
-        Destroy(gameObject);
+        EnemyGenerator.Instance.Remove(this);
+        gameObject.SetActive(false);
     }
 }

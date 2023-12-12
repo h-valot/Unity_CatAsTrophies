@@ -22,18 +22,27 @@ public class InputHandler : MonoBehaviour
         {
             var ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            // Raycast that only return cats, used to know if you clicked on a cat or not, will be used in HandManager.cs
+            // Raycast that only return cats, used to know if you clicked on a cat or not, to reset hand if you didn't click a cat in your hand
             if (Physics.Raycast(ray, out var hitInfoCat, 99, mask))
             {
                 if (!clickAlreadyCat)
                 {
+                    if (hitInfoCat.transform.gameObject.GetComponentInParent<Cat>().state != CatState.InHand)
+                    {
+                        HandManager.Instance.ArrangeHand();
+                        Debug.Log($"Code to remove the cat info panel here");
+                        Registry.events.OnCatDestacked();
+                    }
                     clickAlreadyCat = true;
                 }
             }
             else
             {
-                if (!clickAlreadyNotCat)
+                if (!clickAlreadyNotCat && !clickAlreadyCat)
                 {
+                    HandManager.Instance.ArrangeHand();
+                    Debug.Log($"Code to remove the cat info panel here");
+                    Registry.events.OnCatDestacked();
                     clickAlreadyNotCat = true;
                 }
             }

@@ -4,6 +4,8 @@ using UnityEngine;
 public class GameSettings : ScriptableObject
 {
     public string startingScene;
+    public bool gameBattleDebugMode;
+    public bool playerDeckDebugMode;
 
     [Header("ANIMATIONS")]
     public float delayBeforeAnimation;
@@ -16,6 +18,8 @@ public class GameSettings : ScriptableObject
     public float holdingTimeMaxSingleClick;
     public float holdingTimeToTriggerAbility;
     public float dragingMinimumAmount;
+    public Vector3[] stackedHandPointPosition = new Vector3[4];
+    public Vector3 highlightedHandPointPosition;
 
     [Header("EFFECTS")]
     public int dotDamageAmount;

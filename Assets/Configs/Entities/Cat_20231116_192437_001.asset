@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCat: 1
   id: Cat_20231116_192437_001
-  entityName: Gravalanch
+  entityName: Kamillekaz
   health: 10
   armorAtStart: 0
+  sprite: {fileID: 21300000, guid: e6f2425e3344d0c45994d483ea981dff, type: 3}
+  abilityDescription: 
   ability:
     animation: 0
     instructions: []
@@ -37,3 +39,7 @@ MonoBehaviour:
   rightHandAddon: {fileID: 919132149155446097, guid: d5a0c7813c20d9847907190a58489b39, type: 3}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}
+  canBeReward: 1
+  apparitionTiers: 0000000001000000
+  pricing: 0
+  cost: 0

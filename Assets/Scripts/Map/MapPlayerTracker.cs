@@ -1,6 +1,9 @@
 using System;
+using System.Linq;
+using Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class MapPlayerTracker : MonoBehaviour
 {
@@ -25,14 +28,24 @@ public class MapPlayerTracker : MonoBehaviour
         mapView.SetLineColors();
 
         await nodeUI.ShowSelectionAnimation();
+
+        DataManager.data.endBattleStatus = EndBattleStatus.NONE;
         
         switch (nodeUI.node.nodeType)
         {
             case NodeType.BOSS_BATTLE:
+                var bossCompositions = Registry.entitiesConfig.compositions.Where(compo => compo.tier == CompositionTier.BOSS).ToList();
+                DataManager.data.compoToLoad = bossCompositions[Random.Range(0, bossCompositions.Count)];
+                SceneManager.LoadScene("GameBattle");
                 break;
             case NodeType.ELITE_BATTLE:
+                var eliteCompositions = Registry.entitiesConfig.compositions.Where(compo => compo.tier == CompositionTier.ELITE).ToList();
+                DataManager.data.compoToLoad = eliteCompositions[Random.Range(0, eliteCompositions.Count)];
+                SceneManager.LoadScene("GameBattle");
                 break;
             case NodeType.SIMPLE_BATTLE:
+                var simpleCompositions = Registry.entitiesConfig.compositions.Where(compo => compo.tier == CompositionTier.SIMPLE).ToList();
+                DataManager.data.compoToLoad = simpleCompositions[Random.Range(0, simpleCompositions.Count)];
                 SceneManager.LoadScene("GameBattle");
                 break;
             case NodeType.SHOP:

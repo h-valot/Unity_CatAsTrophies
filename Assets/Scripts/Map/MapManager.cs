@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using Data;
+using Player;
 
 public class MapManager : MonoBehaviour
 {
@@ -10,18 +11,6 @@ public class MapManager : MonoBehaviour
     
     [Header("DEBUGGING")]
     public Map currentMap;
-    
-    // private void OnEnable()
-    // {
-    //     if (Registry.events == null) return;
-    //     Registry.events.OnSceneLoaded += Initialize;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     if (Registry.events == null) return;
-    //     Registry.events.OnSceneLoaded -= Initialize;
-    // }
 
     public void DisplayCanvas()
     {
@@ -38,20 +27,22 @@ public class MapManager : MonoBehaviour
     /// Generate a new map if the old one, doesn't exists or is completed.
     /// Otherwise, show the current map
     /// </summary>
-    public void Initialize()
+    private void Initialize()
     {
         if (DataManager.data.map != null && DataManager.data.map.IsNotEmpty())
         {
             Map map = DataManager.data.map;
             
             // generate a new map, if the payer has already reached the boss 
-            if (map.playerPath.Any(point => point.Equals(map.GetBossNode().point)))
+            if (map.playerPath.Any(point => point.Equals(map.GetBossNode().point)) || 
+                DataManager.data.endBattleStatus == EndBattleStatus.DEFEATED)
             {
                 GenerateNewMap();
             }
             // load the current map, if player has not reached the boss yet
             else
             {
+                map.UndoPlayerPath();
                 currentMap = map;
                 mapView.ShowMap(map);
             }
@@ -67,6 +58,9 @@ public class MapManager : MonoBehaviour
     /// </summary>
     public void GenerateNewMap()
     {
+        DataManager.data.collection ??= new Collection();
+        DataManager.data.collection.SwitchToInGameDeck();
+        
         currentMap = MapGenerator.GetMap(Registry.mapConfig);
         mapView.ShowMap(currentMap);
     }

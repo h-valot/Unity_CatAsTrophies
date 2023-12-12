@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MapConfig", menuName = "Config/Map/Map", order = 1)]
 public class MapConfig : ScriptableObject
 {
-    public List<NodeConfig> nodes = new List<NodeConfig>();
+    public List<Sprite> sprites = new List<Sprite>();
 
     [Header("MAP SIZE")]
     [Tooltip("Minimum and maximum number of starting node (in the very first layer)")]
@@ -17,7 +17,7 @@ public class MapConfig : ScriptableObject
     [Tooltip("Minimum and maximum distance between layers")]
     public FloatMinMax layerDistance;
     
-    [Tooltip("Minimum distance between two node")]
+    [Tooltip("Minimum distance between two nodes")]
     public float nodesDistance = 1;
     
     [Tooltip("Number of poisson disc sampling point positioning tries. High value = low performance but cleaner distance between points")]

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Comp_20231113_113814_232
   isPlayerDeck: 0
+  tier: 0
   compositionName: RGB
   entities:
   - {fileID: 11400000, guid: 92e463e6d5d75624fb7b0595a6fd5d3d, type: 2}

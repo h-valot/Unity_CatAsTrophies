@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   startingScene: mainmenu
+  gameBattleDebugMode: 0
+  playerDeckDebugMode: 1
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5
@@ -21,6 +23,12 @@ MonoBehaviour:
   holdingTimeMaxSingleClick: 0.3
   holdingTimeToTriggerAbility: 0.75
   dragingMinimumAmount: 100
+  stackedHandPointPosition:
+  - {x: -1.85, y: -2.4, z: -1.75}
+  - {x: -2.75, y: -2.4, z: -1.75}
+  - {x: -2.4, y: -2.4, z: -0.85}
+  - {x: -1.5, y: -2.4, z: -0.85}
+  highlightedHandPointPosition: {x: -0.5, y: -2.4, z: -1.75}
   dotDamageAmount: 1
   hotHealAmount: 1
   damageResistanceModifier: 0.5
@@ -32,7 +40,7 @@ MonoBehaviour:
   scrollingFeedbackLifetime: 2
   defaultFontSize: 0.5
   effectFontSize: 0.2
-  colorTextDamage: {r: 0.5754717, g: 0, b: 0, a: 1}
-  colorTextHeal: {r: 0.4483544, g: 0.8301887, b: 0.12922749, a: 1}
-  colorTextArmor: {r: 0, g: 0.6759999, b: 1, a: 1}
-  colorTextEffect: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+  colorTextDamage: {r: 0.5764706, g: 0, b: 0, a: 1}
+  colorTextHeal: {r: 0.44705883, g: 0.83137256, b: 0.12941177, a: 1}
+  colorTextArmor: {r: 0, g: 0.6745098, b: 1, a: 1}
+  colorTextEffect: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}

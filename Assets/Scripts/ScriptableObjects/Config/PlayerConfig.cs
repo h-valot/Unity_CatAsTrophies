@@ -1,13 +1,11 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Config/Player", order = 1)]
 public class PlayerConfig : ScriptableObject
 {
-    public List<EntityConfig> deckEntities = new List<EntityConfig>();
-    public List<int> deckEntitiesCount = new List<int>();
-    
-    public List<EntityConfig> collection;
+    public List<Item> deck = new List<Item>();
 
     [Header("DEBUGGING")] 
     public int deckLenght;

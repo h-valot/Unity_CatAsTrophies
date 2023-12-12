@@ -1,23 +1,29 @@
-using Unity.VisualScripting;
+using Player;
 
 namespace Data
 {
     [System.Serializable]
     public class PersistantData
     {
-        public PersistantData(PersistantData data)
-        {
-            // exit, if there is no data to load
-            if (data == null) return;
-            
-            // sync data
-            map = data.map;
-            MusicVolumeValue = data.MusicVolumeValue;
-        }
-        
         // current loaded and displayed map
         public Map map;
 
-        public float MusicVolumeValue;
+        // sound musics
+        public float musicVolume;
+        
+        // level loading data
+        public CompositionConfig compoToLoad;
+        public EndBattleStatus endBattleStatus;
+        
+        // player collection
+        public Collection collection;
     }
+}
+
+public enum EndBattleStatus
+{
+    NONE = 0,
+    VICTORY,
+    DEFEATED,
+    LEFT
 }
