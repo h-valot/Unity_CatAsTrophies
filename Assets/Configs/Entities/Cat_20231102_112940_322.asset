@@ -18,7 +18,7 @@ MonoBehaviour:
   health: 6
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: 4fcd58f763447904682f332af2e0c353, type: 3}
-  abilityDescription: 
+  abilityDescription: Deals 4 Damages to the front enemy.
   ability:
     animation: 0
     instructions: []
