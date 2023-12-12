@@ -159,6 +159,8 @@ public class HandManager : MonoBehaviour
         }
 
         Debug.Log($"Code to display the cat info panel here");
+        Registry.events.OnCatStacked("test", "test");
+
     }
 
     /// <summary>
