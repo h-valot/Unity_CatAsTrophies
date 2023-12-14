@@ -54,6 +54,7 @@ public class Entity : MonoBehaviour
         if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
         {
             selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count - 1);
+
         } 
     }
 
