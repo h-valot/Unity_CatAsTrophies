@@ -18,7 +18,7 @@ MonoBehaviour:
   health: 8
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: 03476796a70623b47848bb04bd53de92, type: 3}
-  abilityDescription: 
+  abilityDescription: Adds 2 Armors to the front cat.
   ability:
     animation: 0
     instructions: []

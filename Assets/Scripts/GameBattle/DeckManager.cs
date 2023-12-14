@@ -27,17 +27,17 @@ public class DeckManager : MonoBehaviour
     /// </summary>
     public void LoadPlayerDeck()
     {
-        if (DataManager.data.collection.inGameDeck.Count == 0)
+        if (DataManager.data.playerStorage.inGameDeck.Count == 0)
         {
             Debug.LogError("DECK MANAGER: the deck of the player is empty", this);
             return;
         }
         
-        foreach (Item item in DataManager.data.collection.inGameDeck)
+        foreach (Item item in DataManager.data.playerStorage.inGameDeck)
         {
             for (int j = 0; j < item.count; j++)
             {
-                CatManager.Instance.SpawnCatGraphics(Registry.entitiesConfig.cats.IndexOf(item.entity));
+                CatManager.Instance.SpawnCatGraphics(item.entityIndex);
             }
         }
     }
