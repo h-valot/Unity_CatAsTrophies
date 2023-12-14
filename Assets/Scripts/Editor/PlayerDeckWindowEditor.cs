@@ -92,7 +92,7 @@ namespace Editor
             int output = 0;
             foreach (Item cat in _deck)
             {
-                output += cat.count;
+                output += cat.Count;
             }
             return output;
         }
@@ -144,7 +144,7 @@ namespace Editor
             {
                 _catsIndex[index] = EditorGUILayout.Popup("", _catsIndex[index], _catsName.ToArray());
                 _deck[index].entityIndex = _catsIndex[index];
-                _deck[index].count = EditorGUILayout.IntField("Count", _deck[index].count);
+                _deck[index].Count = EditorGUILayout.IntField("Count", _deck[index].Count);
                         
                 GUI.backgroundColor = Color.red;
                 if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))

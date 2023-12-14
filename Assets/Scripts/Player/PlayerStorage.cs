@@ -13,71 +13,45 @@ namespace Player
         public List<Item> inGameDeck = new List<Item>();
 
         /// <summary>
-        /// Adds one entity to the player's deck if the collection 
-        /// </summary>
-        public void AddToDeck(int newEntityIndex)
-        {
-            foreach (var item in collection)
-            {
-                // continue, if there is no more cat of this type in the collection
-                if (item.entityIndex == newEntityIndex && item.count > 0) continue;
-
-                if (deck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
-                {
-                    deck.FirstOrDefault(item => item.entityIndex == newEntityIndex).count++;
-                    item.count--;
-                }
-                else
-                {
-                    deck.Add(new Item(newEntityIndex, 1));
-                    item.count--;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Adds one entity from the deck to the collection
-        /// </summary>
-        public void RemoveFromDeck(int newEntityIndex)
-        {
-            foreach (var item in deck)
-            {
-                // continue, if there is no more cat of this type in the collection
-                if (item.entityIndex == newEntityIndex && item.count > 0) continue;
-
-                if (collection.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
-                {
-                    collection.FirstOrDefault(item => item.entityIndex == newEntityIndex).count++;
-                    item.count--;
-                }
-                else
-                {
-                    collection.Add(new Item(newEntityIndex, 1));
-                    item.count--;
-                }
-            }
-        }
-
-        /// <summary>
         /// Updates in game deck with the player's deck of the debug deck
         /// </summary>
         public void SwitchToInGameDeck()
         {
-            inGameDeck.FillWith(Registry.gameSettings.playerDeckDebugMode ? Registry.playerConfig.deck : deck);
+            inGameDeck.FillWith(deck);
         }
 
         /// <summary>
-        /// Add the given entity to the in-game deck
+        /// Transfers an entity from the "from" list to the "to" list.
+        /// If the entity doesn't exists, exits the function.
         /// </summary>
+        public void Transfer(List<Item> from, List<Item> to, int entityIndex)
+        {
+            // exit if the from list haven't the entity
+            if (from.FirstOrDefault(item => item.entityIndex == entityIndex) == null) return;
+            
+            // exit if the from list have zero entity of the given index
+            if (from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Count == 0) return;
+            
+            if (to.FirstOrDefault(item => item.entityIndex == entityIndex) != null)
+            {
+                to.FirstOrDefault(item => item.entityIndex == entityIndex)!.Count++;
+            }
+            else
+            {
+                collection.Add(new Item(entityIndex, 1));
+            }
+            from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Count--;
+        }
+
         public void AddToInGameDeck(int newEntityIndex)
         {
             if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
             {
-                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.count++;
+                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Count++;
             }
             else
             {
-                inGameDeck.Add(new Item(newEntityIndex, 1));
+                collection.Add(new Item(newEntityIndex, 1));
             }
         }
     }

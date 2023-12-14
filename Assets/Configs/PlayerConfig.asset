@@ -15,14 +15,14 @@ MonoBehaviour:
   deck:
   - entityIndex: 0
     inGameHealth: 0
-    count: 2
   - entityIndex: 1
     inGameHealth: 0
-    count: 2
   - entityIndex: 2
     inGameHealth: 0
-    count: 2
   - entityIndex: 3
     inGameHealth: 0
-    count: 2
-  deckLenght: 8
+  - entityIndex: 10
+    inGameHealth: 0
+  - entityIndex: 12
+    inGameHealth: 0
+  deckLenght: 12

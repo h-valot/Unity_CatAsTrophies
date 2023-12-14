@@ -1,3 +1,5 @@
+using System;
+
 namespace Player
 {
     [System.Serializable]
@@ -5,12 +7,23 @@ namespace Player
     {
         public int entityIndex;
         public int inGameHealth;
-        public int count;
+        
+        public int Count
+        {
+            get => _count;
+            set
+            {
+                _count = value;
+                onCountChanged?.Invoke();
+            }
+        }
+        public Action onCountChanged;
+        private int _count;
 
         public Item(int newEntityIndex, int newCount)
         {
             entityIndex = newEntityIndex;
-            count = newCount;
+            _count = newCount;
         }
     }
 }

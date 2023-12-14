@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,6 +15,7 @@ public class EnhancedButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     
     [Header("SETTINGS")]
     public float scaleDownMultiplier;
+    public float animationDuration = 0.1f;
     
     [Space(10)]
     public UnityEvent OnClick;
@@ -23,9 +25,9 @@ public class EnhancedButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         AnimateButton();
     }
     
-    public void OnPointerUp(PointerEventData data)
+    public async void OnPointerUp(PointerEventData data)
     {
-        CancelButtonAnimation();
+        await CancelButtonAnimation();
         OnClick.Invoke();
     }
 
@@ -34,16 +36,17 @@ public class EnhancedButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     /// </summary>
     private void AnimateButton()
     {
-        graphicsParent.transform.DOScale(scaleDownMultiplier, 0.1f).SetEase(Ease.OutBack);
         if (image != null) image.DOFade(0.75f, 0);
+        graphicsParent.transform.DOScale(scaleDownMultiplier, animationDuration).SetEase(Ease.OutBack);
     }
 
     /// <summary>
     /// Cancel all animations
     /// </summary>
-    private void CancelButtonAnimation()
+    private async Task CancelButtonAnimation()
     {
-        graphicsParent.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack);
+        graphicsParent.transform.DOScale(Vector3.one, animationDuration).SetEase(Ease.OutBack);
+        await Task.Delay(Mathf.RoundToInt(1000 * animationDuration));
         if (image != null) image.DOFade(0, 0);
     }
 }
