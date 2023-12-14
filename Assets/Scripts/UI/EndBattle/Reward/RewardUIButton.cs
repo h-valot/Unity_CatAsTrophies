@@ -30,6 +30,6 @@ public class RewardUIButton : MonoBehaviour
     public void GatherReward()
     {
         // add the catReward to the player's run deck
-        DataManager.data.playerStorage.AddToInGameDeck(catRewardIndex);
+        DataManager.data.collection.AddToInGameDeck(Registry.entitiesConfig.cats[catRewardIndex]);
     }
 }

@@ -16,7 +16,6 @@ MonoBehaviour:
   id: Enemy_20231110_093656_823
   entityName: Pink
   health: 8
-  armorAtStart: 0
   ability:
     animation: 0
     instructions: []
@@ -24,7 +23,7 @@ MonoBehaviour:
   - animation: 2
     instructions:
     - type: 16
-      value: 2
+      value: 1
       target: 3
       us: 1
   - animation: 2
@@ -34,8 +33,7 @@ MonoBehaviour:
       target: 2
       us: 1
   basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
-  catSkinTexture: {fileID: 0}
-  catEyesTexture: {fileID: 0}
+  baseMaterial: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}

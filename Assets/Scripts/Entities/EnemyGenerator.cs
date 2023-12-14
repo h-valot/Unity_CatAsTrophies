@@ -18,10 +18,10 @@ public class EnemyGenerator : MonoBehaviour
         enemies = new List<Enemy>();
     }
 
-    public void GenerateComposition(int compositionIndex)
+    public void GenerateComposition(CompositionConfig composition)
     {
         // exception
-        if (compositionIndex == null)
+        if (composition == null)
         {
             Debug.LogError($"ENEMY GENERATOR: trying to generate an enemy composition that doesn't exists", this);
             return;
@@ -31,20 +31,20 @@ public class EnemyGenerator : MonoBehaviour
         for (int enemyIndex = 0; enemyIndex < BattlefieldManager.Instance.enemyBattlePawns.Length; enemyIndex++)
         {
             // continue if the composition slot is empty
-            if (!Registry.entitiesConfig.compositions[compositionIndex].entities[enemyIndex]) continue;
+            if (!composition.entities[enemyIndex]) continue;
             
-            var newEnemyId = SpawnEnemyGraphics(compositionIndex, enemyIndex);
+            var newEnemyId = SpawnEnemyGraphics(composition, enemyIndex);
             BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].Setup(newEnemyId);
             Misc.GetEntityById(newEnemyId).gameObject.transform.position = BattlefieldManager.Instance.enemyBattlePawns[enemyIndex].transform.position;
         }
     }
 
-    private string SpawnEnemyGraphics(int compositionIndex, int enemyIndex)
+    private string SpawnEnemyGraphics(CompositionConfig composition, int enemyIndex)
     {
         // creating enemy        
-        Enemy newEnemy = Instantiate(Registry.entitiesConfig.compositions[compositionIndex].entities[enemyIndex].basePrefab, transform).GetComponent<Enemy>();
-        newEnemy.Initialize(Registry.entitiesConfig.enemies.IndexOf(Registry.entitiesConfig.compositions[compositionIndex].entities[enemyIndex]));
-        newEnemy.name = $"Enemy_{totalEnemyCount}_{Registry.entitiesConfig.compositions[compositionIndex].entities[enemyIndex].entityName}";
+        Enemy newEnemy = Instantiate(composition.entities[enemyIndex].basePrefab, transform).GetComponent<Enemy>();
+        newEnemy.Initialize(Registry.entitiesConfig.enemies.IndexOf(composition.entities[enemyIndex]));
+        newEnemy.name = $"Enemy_{totalEnemyCount}_{composition.entities[enemyIndex].entityName}";
         totalEnemyCount++;
         
         // store entities to lists (reference for misc functions)

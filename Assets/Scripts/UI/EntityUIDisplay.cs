@@ -20,6 +20,12 @@ public class EntityUIDisplay : MonoBehaviour
 
     private List<GameObject> effectDisplays = new List<GameObject>();
     private Entity entityRef;
+
+    private void Start()
+    {
+        armorParent.SetActive(false);
+        canvasGO.SetActive(false);
+    }
     
     public void OnEnable()
     {
@@ -37,7 +43,7 @@ public class EntityUIDisplay : MonoBehaviour
         {
             entityRef = Misc.GetEntityById(battlePawn.entityIdLinked);
             canvasGO.SetActive(true);
-
+            
             entityRef.OnStatsUpdate += UpdateDisplay;
 
             UpdateDisplay();

@@ -58,8 +58,8 @@ public class MapManager : MonoBehaviour
     /// </summary>
     public void GenerateNewMap()
     {
-        DataManager.data.playerStorage ??= new PlayerStorage();
-        DataManager.data.playerStorage.SwitchToInGameDeck();
+        DataManager.data.collection ??= new Collection();
+        DataManager.data.collection.SwitchToInGameDeck();
         
         currentMap = MapGenerator.GetMap(Registry.mapConfig);
         mapView.ShowMap(currentMap);
