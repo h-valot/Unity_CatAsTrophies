@@ -16,28 +16,32 @@ MonoBehaviour:
   id: Enemy_20231110_100929_968
   entityName: Blue
   health: 10
+  armorAtStart: 0
+  sprite: {fileID: 0}
+  abilityDescription: 
   ability:
     animation: 0
     instructions: []
   autoAttack:
   - animation: 2
     instructions:
-    - type: 0
-      value: 1
-      target: 0
-      us: 1
     - type: 16
-      value: 1
+      value: 2
       target: 3
       us: 1
   - animation: 2
     instructions:
     - type: 11
-      value: 1
+      value: 2
       target: 3
       us: 0
   basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
-  baseMaterial: {fileID: 0}
+  catSkinTexture: {fileID: 0}
+  catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}
+  canBeReward: 0
+  apparitionTiers: 
+  pricing: 0
+  cost: 0

@@ -17,6 +17,8 @@ MonoBehaviour:
   entityName: Boss1
   health: 50
   armorAtStart: 0
+  sprite: {fileID: 0}
+  abilityDescription: 
   ability:
     animation: 0
     instructions: []
@@ -43,8 +45,19 @@ MonoBehaviour:
       value: 2
       target: 1
       us: 0
+  - animation: 2
+    instructions:
+    - type: 15
+      value: 2
+      target: 1
+      us: 0
   basePrefab: {fileID: 5087666672669579333, guid: 9867af5c47691e34588d7b87ae1b6ede, type: 3}
-  baseMaterial: {fileID: 0}
+  catSkinTexture: {fileID: 0}
+  catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}
+  canBeReward: 0
+  apparitionTiers: 
+  pricing: 0
+  cost: 0
