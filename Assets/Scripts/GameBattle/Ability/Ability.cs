@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class Ability
 {
     public AbilityAnimation animation;
+    public Sprite intentionSprite;
     public List<Instruction> instructions = new List<Instruction>();
     
     private Entity source;
