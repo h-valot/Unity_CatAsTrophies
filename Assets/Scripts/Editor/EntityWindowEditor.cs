@@ -335,7 +335,8 @@ namespace Editor
             GUILayout.BeginVertical("HelpBox");
             {
                 ability.animation = (AbilityAnimation)EditorGUILayout.EnumPopup("Animation type", ability.animation);
-            
+                if(!_currentEntity.isCat) ability.intentionSprite = (Sprite)EditorGUILayout.ObjectField("Ability sprite", ability.intentionSprite, typeof(Sprite), true);
+
                 // HEADER
                 GUILayout.BeginHorizontal();
                 {
