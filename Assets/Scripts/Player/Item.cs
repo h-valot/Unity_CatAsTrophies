@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Player
 {
@@ -6,24 +7,31 @@ namespace Player
     public class Item
     {
         public int entityIndex;
-        public int inGameHealth;
-        
-        public int Count
-        {
-            get => _count;
-            set
-            {
-                _count = value;
-                onCountChanged?.Invoke();
-            }
-        }
-        public Action onCountChanged;
-        private int _count;
+        public Action onDataChanged;
+        public List<ItemData> data = new List<ItemData>();
 
-        public Item(int newEntityIndex, int newCount)
+        public Item(int newEntityIndex = 0)
         {
             entityIndex = newEntityIndex;
-            _count = newCount;
+        }
+
+        public void Add(ItemData data, int amount = 1)
+        {
+            for (int i = 0; i < amount; i++)
+                this.data.Add(data);
+
+            onDataChanged?.Invoke();
+        }
+
+        public void Remove(int amount = 1)
+        {
+            // exit, if data is empty
+            if (data.Count <= 0) return;
+            
+            for (int i = 0; i < amount; i++)
+                data.Remove(data[^1]);
+            
+            onDataChanged?.Invoke();
         }
     }
 }

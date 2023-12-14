@@ -35,9 +35,9 @@ public class DeckManager : MonoBehaviour
         
         foreach (Item item in DataManager.data.playerStorage.inGameDeck)
         {
-            for (int j = 0; j < item.Count; j++)
+            for (int catIndex = 0; catIndex < item.data.Count; catIndex++)
             {
-                CatManager.Instance.SpawnCatGraphics(item.entityIndex);
+                CatManager.Instance.SpawnCatGraphics(item,catIndex);
             }
         }
     }

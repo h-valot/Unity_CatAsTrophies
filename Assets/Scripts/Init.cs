@@ -24,12 +24,13 @@ public class Init : MonoBehaviour
         DataManager.Load();
         
         // debugging
+        DataManager.data.playerStorage ??= new PlayerStorage();
         if (gameSettings.playerDeckDebugMode)
         {
             DataManager.data.playerStorage.deck = Registry.playerConfig.deck;
             if (DataManager.data.playerStorage.collection.Count == 0)
                 foreach (var item in DataManager.data.playerStorage.deck)
-                    DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex, 0));
+                    DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex));
         }
         
         Registry.isInitialized = true;

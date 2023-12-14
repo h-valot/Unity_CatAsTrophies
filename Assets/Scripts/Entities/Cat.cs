@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
 public class Cat : Entity
@@ -27,7 +28,7 @@ public class Cat : Entity
     private GameObject leftHandAddonRef;
     private float blobShadowPositionY;
 
-    public void Initialize(int typeIndex)
+    public void Initialize(int typeIndex, float currentHealth)
     {
         base.Initialize();
         state = CatState.InDeck;
@@ -35,7 +36,7 @@ public class Cat : Entity
         
         // setup entity stats
         maxHealth = Registry.entitiesConfig.cats[catType].health;
-        health = maxHealth;
+        health = currentHealth;
         autoAttacks = Registry.entitiesConfig.cats[catType].autoAttack;
         ability = Registry.entitiesConfig.cats[catType].ability;
         
@@ -264,6 +265,7 @@ public class Cat : Entity
         
         state = CatState.InGraveyard;
         GraveyardManager.Instance.AddCat(id);
+        DataManager.data.playerStorage.RemoveFromInGameDeck(catType);
 
         CatManager.Instance.deadCatAmount++;
         

@@ -19,27 +19,27 @@ public class CollectionUIItem : MonoBehaviour
     {
         _item = item;
         _isInDeck = isInDeck;
-        _item.onCountChanged += UpdateGraphics;
+        _item.onDataChanged += UpdateGraphics;
     }
 
     private void OnDisable()
     {
-        _item.onCountChanged -= UpdateGraphics;
+        _item.onDataChanged -= UpdateGraphics;
     }
 
     public void UpdateGraphics()
     {
         catImage.sprite = Registry.entitiesConfig.cats[_item.entityIndex].sprite;
-        countTM.text = $"{_item.Count}";
+        countTM.text = $"{_item.data.Count}";
 
-        if (_item.Count == 0) blackImage.DOFade(0.5f, 0);
+        if (_item.data.Count == 0) blackImage.DOFade(0.5f, 0);
         else blackImage.DOFade(0, 0);
     }
     
     public void Press()
     {
         // exit, if there is no more cats
-        if (_item.Count == 0)
+        if (_item.data.Count == 0)
         {
             UpdateGraphics();
             return;

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Data;
 using List;
 
 namespace Player
@@ -11,7 +10,7 @@ namespace Player
         public List<Item> collection = new List<Item>();
         public List<Item> deck = new List<Item>();
         public List<Item> inGameDeck = new List<Item>();
-
+        
         /// <summary>
         /// Updates in game deck with the player's deck of the debug deck
         /// </summary>
@@ -30,28 +29,38 @@ namespace Player
             if (from.FirstOrDefault(item => item.entityIndex == entityIndex) == null) return;
             
             // exit if the from list have zero entity of the given index
-            if (from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Count == 0) return;
+            if (from.FirstOrDefault(item => item.entityIndex == entityIndex)!.data.Count == 0) return;
             
             if (to.FirstOrDefault(item => item.entityIndex == entityIndex) != null)
             {
-                to.FirstOrDefault(item => item.entityIndex == entityIndex)!.Count++;
+                var data = new ItemData(Registry.entitiesConfig.cats[entityIndex].health);
+                to.FirstOrDefault(item => item.entityIndex == entityIndex)!.Add(data);
             }
             else
             {
-                collection.Add(new Item(entityIndex, 1));
+                to.Add(new Item(entityIndex));
             }
-            from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Count--;
+            from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Remove();
         }
 
         public void AddToInGameDeck(int newEntityIndex)
         {
             if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
             {
-                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Count++;
+                var data = new ItemData(Registry.entitiesConfig.cats[newEntityIndex].health);
+                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Add(data);
             }
             else
             {
-                collection.Add(new Item(newEntityIndex, 1));
+                inGameDeck.Add(new Item(newEntityIndex));
+            }
+        }
+
+        public void RemoveFromInGameDeck(int newEntityIndex)
+        {
+            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
+            {
+                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Remove();
             }
         }
     }
