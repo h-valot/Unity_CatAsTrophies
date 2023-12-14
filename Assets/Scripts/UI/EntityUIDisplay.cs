@@ -17,6 +17,7 @@ public class EntityUIDisplay : MonoBehaviour
     public TextMeshProUGUI healthTM;
     public TextMeshProUGUI armorTM;
     public GameObject armorParent;
+    public GameObject AttackIntent;
 
     private List<GameObject> effectDisplays = new List<GameObject>();
     private Entity entityRef;
@@ -39,7 +40,7 @@ public class EntityUIDisplay : MonoBehaviour
             canvasGO.SetActive(true);
 
             entityRef.OnStatsUpdate += UpdateDisplay;
-
+            entityRef.onIntentUpdate += UpdateDisplay;
             UpdateDisplay();
         }
         else
@@ -96,5 +97,11 @@ public class EntityUIDisplay : MonoBehaviour
             newEffectDisplay.UpdateDisplay(effect.type, effect.turnDuration);
             effectDisplays.Add(newEffectDisplay.gameObject);
         }
+
+        // Update the Intent
+        
+
+
+
     }
 }

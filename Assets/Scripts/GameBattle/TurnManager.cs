@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class TurnManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class TurnManager : MonoBehaviour
     public TurnState state;
     public bool passTurn;
     public List<Entity> catAttackQueue; // Use to store reference of cats in for the attack phase
+    public Action onIntentUpdate;
 
     private void Awake() => Instance = this;
     
@@ -263,6 +265,23 @@ public class TurnManager : MonoBehaviour
             DataManager.data.endBattleStatus = EndBattleStatus.DEFEATED;
             await endBattleUIManager.AnimateEndTitle();
             SceneManager.LoadScene("mainmenu");
+        }
+    }
+
+    private void DisplayEnemyIntents()
+    {
+        foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
+        {
+            Entity _Entity = Misc.GetEntityById(battlePawn.entityIdLinked);
+
+            //skip this battlepawn if there is no entity on it
+            if (_Entity == null)
+            {
+                continue;
+            }
+
+            _Entity.SelectAutoAttack();
+            onIntentUpdate?.Invoke();
         }
     }
 }
