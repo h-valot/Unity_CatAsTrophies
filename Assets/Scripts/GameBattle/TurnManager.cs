@@ -21,7 +21,6 @@ public class TurnManager : MonoBehaviour
     public TurnState state;
     public bool passTurn;
     public List<Entity> catAttackQueue; // Use to store reference of cats in for the attack phase
-    public Action onIntentUpdate;
 
     private void Awake() => Instance = this;
     
@@ -44,6 +43,18 @@ public class TurnManager : MonoBehaviour
                 // if there is no more cats in the deck, shuffle the graveyard into the deck
                 // handle the case where no cats can be draw
                 FulfillHand(5);
+
+                //Select autoatcks here to allow display of enemies intents sprites
+                foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
+                {
+                    Entity enemyEntity = Misc.GetEntityById(battlePawn.entityIdLinked);
+                    
+                    if (enemyEntity == null) continue;
+                    if (enemyEntity.HasEffect(EffectType.Stun)) continue;
+                    if (enemyEntity.HasEffect(EffectType.Sleep)) continue;
+
+                    enemyEntity.SelectAutoAttack();
+                }
 
                 // new car turn and timer to allow time for animations
                 Registry.events.OnNewPlayerTurn?.Invoke();
@@ -189,7 +200,7 @@ public class TurnManager : MonoBehaviour
             _Entity.isInFrontOfBackgroundFade = true;
 
             //select the autoattack that will be used by the entity
-            _Entity.SelectAutoAttack();
+            //_Entity.SelectAutoAttack();
 
             //Get every target ids of the selected ability and move them in front of the background fade
             List<string> involvedTargetIds = new List<string>();
@@ -265,23 +276,6 @@ public class TurnManager : MonoBehaviour
             DataManager.data.endBattleStatus = EndBattleStatus.DEFEATED;
             await endBattleUIManager.AnimateEndTitle();
             SceneManager.LoadScene("mainmenu");
-        }
-    }
-
-    private void DisplayEnemyIntents()
-    {
-        foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
-        {
-            Entity _Entity = Misc.GetEntityById(battlePawn.entityIdLinked);
-
-            //skip this battlepawn if there is no entity on it
-            if (_Entity == null)
-            {
-                continue;
-            }
-
-            _Entity.SelectAutoAttack();
-            onIntentUpdate?.Invoke();
         }
     }
 }
