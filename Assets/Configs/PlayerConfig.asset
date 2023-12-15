@@ -19,18 +19,14 @@ MonoBehaviour:
     - health: 6
   - entityIndex: 1
     data:
-    - health: 6
+    - health: 8
     - health: 8
   - entityIndex: 2
     data:
-    - health: 2
+    - health: 7
     - health: 7
   - entityIndex: 3
     data:
     - health: 6
     - health: 6
-  - entityIndex: 12
-    data:
-    - health: 6
-    - health: 9
   deckLenght: 8
