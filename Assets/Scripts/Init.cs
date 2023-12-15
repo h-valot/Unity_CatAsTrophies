@@ -1,4 +1,5 @@
 using Data;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,16 @@ public class Init : MonoBehaviour
         Registry.events = events;
 
         DataManager.Load();
+        
+        // debugging
+        DataManager.data.playerStorage ??= new PlayerStorage();
+        if (gameSettings.playerDeckDebugMode)
+        {
+            DataManager.data.playerStorage.deck = Registry.playerConfig.deck;
+            if (DataManager.data.playerStorage.collection.Count == 0)
+                foreach (var item in DataManager.data.playerStorage.deck)
+                    DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex));
+        }
         
         Registry.isInitialized = true;
         asyncLoad.allowSceneActivation = true;

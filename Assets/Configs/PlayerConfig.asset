@@ -13,12 +13,24 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   deck:
-  - entity: {fileID: 11400000, guid: 7e2c661d86b3f9044a29327925962bd6, type: 2}
-    count: 2
-  - entity: {fileID: 11400000, guid: 5fe912247c4cab14a8270711cd9bcff0, type: 2}
-    count: 2
-  - entity: {fileID: 11400000, guid: b540be31440297049a3289ba82df386e, type: 2}
-    count: 2
-  - entity: {fileID: 11400000, guid: 42fbb0a7e0479be488438047c57d1b8c, type: 2}
-    count: 2
+  - entityIndex: 0
+    data:
+    - health: 6
+    - health: 6
+  - entityIndex: 1
+    data:
+    - health: 6
+    - health: 8
+  - entityIndex: 2
+    data:
+    - health: 2
+    - health: 7
+  - entityIndex: 3
+    data:
+    - health: 6
+    - health: 6
+  - entityIndex: 12
+    data:
+    - health: 6
+    - health: 9
   deckLenght: 8

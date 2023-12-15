@@ -44,7 +44,7 @@ namespace Editor
             LoadDataFromAsset();
         
             // update information displayer
-            UpdateInformations();
+            UpdateInformation();
         }
     
         private void OnGUI()
@@ -53,18 +53,18 @@ namespace Editor
             {
                 _informationsScroll = EditorGUILayout.BeginScrollView(_informationsScroll);
                 {
-                    DisplayInformations();
+                    DisplayInformation();
                 }
                 EditorGUILayout.EndScrollView();
             }
             EditorGUILayout.EndHorizontal();
         }
     
-        private void DisplayInformations()
+        private void DisplayInformation()
         {
-            // INFORMATIONS
+            // INFORMATION
             GUILayout.Label("PLAYER'S DECK", EditorStyles.boldLabel);
-            DisplayCatsChoser();
+            DisplayCatsChooser();
             GUILayout.Label($"There is a total of {GetTotalNumberOfCats()} cats in the player's deck.");
         
             // DATA MANAGEMENT
@@ -76,28 +76,28 @@ namespace Editor
             }
         }
 
-        private void UpdateInformations()
+        private void UpdateInformation()
         {
             _catsIndex.Clear();
             _catsName.Clear();
         
             foreach (Item cat in _playerConfig.deck)
             {
-                _catsIndex.Add(_entitiesConfig.cats.IndexOf(cat.entity));
+                _catsIndex.Add(cat.entityIndex);
             }
         }
     
         private int GetTotalNumberOfCats()
         {
             int output = 0;
-            foreach (Item cat in _deck)
+            foreach (Item item in _deck)
             {
-                output += cat.count;
+                output += item.data.Count;
             }
             return output;
         }
     
-        private void DisplayCatsChoser()
+        private void DisplayCatsChooser()
         {
             // exit if 
             if (_entitiesConfig.cats.Count <= 0)
@@ -121,7 +121,9 @@ namespace Editor
                     GUILayout.Label("Cats");
                     if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                     {
-                        _deck.Add(new Item(_entitiesConfig.cats[0], 1));
+                        var newItem = new Item();
+                        newItem.data.Add(new CatData(_entitiesConfig.cats[0].health));
+                        _deck.Add(newItem); 
                     }
                 }
                 GUILayout.EndHorizontal();
@@ -143,9 +145,18 @@ namespace Editor
             GUILayout.BeginHorizontal("HelpBox");
             {
                 _catsIndex[index] = EditorGUILayout.Popup("", _catsIndex[index], _catsName.ToArray());
-                _deck[index].entity = _entitiesConfig.cats[_catsIndex[index]];
-                _deck[index].count = EditorGUILayout.IntField("Count", _deck[index].count);
-                        
+                _deck[index].entityIndex = _catsIndex[index];
+                
+                if (GUILayout.Button("-", GUILayout.Width(20), GUILayout.Height(20)))
+                {
+                    _deck[index].Remove();
+                }
+                GUILayout.Label($"{_deck[index].data.Count}", GUILayout.Width(20), GUILayout.Height(20));
+                if (GUILayout.Button("+", GUILayout.Width(20), GUILayout.Height(20)))
+                {
+                    _deck[index].Add(new CatData(_entitiesConfig.cats[_deck[index].entityIndex].health));
+                }
+                
                 GUI.backgroundColor = Color.red;
                 if (GUILayout.Button("x", GUILayout.Width(20), GUILayout.Height(20)))
                 {

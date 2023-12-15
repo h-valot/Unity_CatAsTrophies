@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "EntityConfig", menuName = "Config/Entity/Entity", order = 1)]
 public class EntityConfig : ScriptableObject
@@ -13,7 +14,7 @@ public class EntityConfig : ScriptableObject
     public int armorAtStart;
     public Sprite sprite;
 
-    [Header("ABILITY")] 
+    [Header("ABILITY")]
     public string abilityDescription;
     public Ability ability = new Ability();
     public List<Ability> autoAttack = new List<Ability>();
