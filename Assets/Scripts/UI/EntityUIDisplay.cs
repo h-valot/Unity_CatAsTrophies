@@ -17,6 +17,7 @@ public class EntityUIDisplay : MonoBehaviour
     public TextMeshProUGUI healthTM;
     public TextMeshProUGUI armorTM;
     public GameObject armorParent;
+    public Image intent;
 
     private List<GameObject> effectDisplays = new List<GameObject>();
     private Entity entityRef;
@@ -39,13 +40,15 @@ public class EntityUIDisplay : MonoBehaviour
             canvasGO.SetActive(true);
 
             entityRef.OnStatsUpdate += UpdateDisplay;
-
+            entityRef.onIntentUpdate += DisplayIntent;
+            entityRef.onIntentReset += ResetIntent;
             UpdateDisplay();
         }
         else
         {
             entityRef.OnStatsUpdate -= UpdateDisplay;
-
+            entityRef.onIntentUpdate -= DisplayIntent;
+            entityRef.onIntentReset -= ResetIntent;
             canvasGO.SetActive(false);
             entityRef = null;
         }
@@ -95,6 +98,33 @@ public class EntityUIDisplay : MonoBehaviour
             var newEffectDisplay = Instantiate(effectPrefab, layoutGroup).GetComponent<EffectUIDiplay>();
             newEffectDisplay.UpdateDisplay(effect.type, effect.turnDuration);
             effectDisplays.Add(newEffectDisplay.gameObject);
+        }
+
+        if (entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite == null)
+        {
+            intent.enabled = false;
+        }
+    }
+
+    private void DisplayIntent()
+    {
+        // Update the Intent
+        if (entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite != null)
+        {
+            intent.enabled = true;
+            intent.sprite = entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite;
+        }
+        else
+        {
+            intent.enabled = false;
+        }
+    }
+
+    private void ResetIntent(Entity entity)
+    {
+        if (entity == entityRef)
+        {
+            intent.enabled = false;
         }
     }
 }
