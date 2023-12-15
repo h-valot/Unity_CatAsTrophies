@@ -50,6 +50,7 @@ MonoBehaviour:
       target: 1
       us: 0
   - animation: 2
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 15
       value: 2
