@@ -8,14 +8,14 @@ namespace Player
     {
         public int entityIndex;
         public Action onDataChanged;
-        public List<ItemData> data = new List<ItemData>();
+        public List<CatData> data = new List<CatData>();
 
         public Item(int newEntityIndex = 0)
         {
             entityIndex = newEntityIndex;
         }
 
-        public void Add(ItemData data, int amount = 1)
+        public void Add(CatData data, int amount = 1)
         {
             for (int i = 0; i < amount; i++)
                 this.data.Add(data);

@@ -254,6 +254,7 @@ public class TurnManager : MonoBehaviour
         
         if (EnemyGenerator.Instance.allEnemiesDead)
         {
+            DataManager.data.playerStorage.SynchronizeCatData(CatManager.Instance.cats);
             DataManager.data.endBattleStatus = EndBattleStatus.VICTORY;
             await endBattleUIManager.AnimateEndBattle();
         }

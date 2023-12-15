@@ -265,7 +265,6 @@ public class Cat : Entity
         
         state = CatState.InGraveyard;
         GraveyardManager.Instance.AddCat(id);
-        DataManager.data.playerStorage.RemoveFromInGameDeck(catType);
 
         CatManager.Instance.deadCatAmount++;
         

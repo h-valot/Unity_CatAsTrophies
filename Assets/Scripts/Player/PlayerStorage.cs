@@ -33,7 +33,7 @@ namespace Player
             
             if (to.FirstOrDefault(item => item.entityIndex == entityIndex) != null)
             {
-                var data = new ItemData(Registry.entitiesConfig.cats[entityIndex].health);
+                var data = new CatData(Registry.entitiesConfig.cats[entityIndex].health);
                 to.FirstOrDefault(item => item.entityIndex == entityIndex)!.Add(data);
             }
             else
@@ -43,11 +43,14 @@ namespace Player
             from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Remove();
         }
 
+        /// <summary>
+        /// Add the given entity into the in-game deck
+        /// </summary>
         public void AddToInGameDeck(int newEntityIndex)
         {
             if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
             {
-                var data = new ItemData(Registry.entitiesConfig.cats[newEntityIndex].health);
+                var data = new CatData(Registry.entitiesConfig.cats[newEntityIndex].health);
                 inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Add(data);
             }
             else
@@ -56,12 +59,59 @@ namespace Player
             }
         }
 
+        /// <summary>
+        /// Remove the given entity from the in-game deck
+        /// </summary>
         public void RemoveFromInGameDeck(int newEntityIndex)
         {
             if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
             {
                 inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Remove();
             }
+        }
+
+        /// <summary>
+        /// Synchronize battle cat's data into the player's in-game deck
+        /// </summary>
+        public void SynchronizeCatData(List<Cat> cats)
+        {
+            foreach (var item in inGameDeck)
+            {
+                var index = 0;
+                foreach (var cat in cats)
+                {
+                    // continue, if types aren't the same
+                    if (cat.catType != item.entityIndex) continue;
+
+                    // continue, if the cat is dead
+                    if (cat.state == CatState.InGraveyard)
+                    {
+                        RemoveFromInGameDeck(cat.catType);
+                        continue;
+                    }
+                    
+                    // synchronize data
+                    item.data[index].health = cat.health;
+                    index++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Resets all cats' data from collection, deck and in-game deck
+        /// </summary>
+        public void ResetAllData()
+        {
+            ResetData(collection);
+            ResetData(deck);
+            ResetData(inGameDeck);
+        }
+
+        private void ResetData(List<Item> items)
+        {
+            foreach (var item in items)
+                foreach (var data in item.data)
+                    data.health = Registry.entitiesConfig.cats[item.entityIndex].health;
         }
     }
 }

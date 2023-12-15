@@ -122,7 +122,7 @@ namespace Editor
                     if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                     {
                         var newItem = new Item();
-                        newItem.data.Add(new ItemData(_entitiesConfig.cats[0].health));
+                        newItem.data.Add(new CatData(_entitiesConfig.cats[0].health));
                         _deck.Add(newItem); 
                     }
                 }
@@ -154,7 +154,7 @@ namespace Editor
                 GUILayout.Label($"{_deck[index].data.Count}", GUILayout.Width(20), GUILayout.Height(20));
                 if (GUILayout.Button("+", GUILayout.Width(20), GUILayout.Height(20)))
                 {
-                    _deck[index].Add(new ItemData(_entitiesConfig.cats[_deck[index].entityIndex].health));
+                    _deck[index].Add(new CatData(_entitiesConfig.cats[_deck[index].entityIndex].health));
                 }
                 
                 GUI.backgroundColor = Color.red;

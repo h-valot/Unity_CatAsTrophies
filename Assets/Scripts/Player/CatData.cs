@@ -1,9 +1,9 @@
 [System.Serializable]
-public class ItemData
+public class CatData
 {
     public float health;
 
-    public ItemData(float health)
+    public CatData(float health)
     {
         this.health = health;
     }
