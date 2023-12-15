@@ -12,15 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd33a257ea5a3d342a714575b67328e8, type: 3}
   m_Name: MapConfig
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: bbf456efcf84e1d4983986e1982d4cf2, type: 3}
-  - {fileID: 21300000, guid: 8caff11d484503a4b8672d940a907916, type: 3}
-  - {fileID: 21300000, guid: df7c60ff2be90864f8b877873ad898c1, type: 3}
-  - {fileID: 21300000, guid: 98c6330f6c536c94da5243382b9cf01e, type: 3}
-  - {fileID: 21300000, guid: d5b7ba07c1aa0f54b98299560f59ef3a, type: 3}
-  - {fileID: 21300000, guid: 7c10f4e4bc31f424b860fbd4b5d156db, type: 3}
-  - {fileID: 21300000, guid: b8cc95c698a1bdf44a3a5884f359b9cb, type: 3}
-  - {fileID: 21300000, guid: e3401fe8498cef141aa9041bf01b96ce, type: 3}
+  nodes: []
   startingNodeAmount:
     min: 3
     max: 4
@@ -40,11 +32,19 @@ MonoBehaviour:
   - nodeType: 2
     randomizeNodes: 0
   - nodeType: 2
-    randomizeNodes: 0.503
+    randomizeNodes: 0.2
   - nodeType: 2
-    randomizeNodes: 0.557
+    randomizeNodes: 0.5
   - nodeType: 2
-    randomizeNodes: 0.546
+    randomizeNodes: 0.5
+  - nodeType: 7
+    randomizeNodes: 0
+  - nodeType: 2
+    randomizeNodes: 0
+  - nodeType: 2
+    randomizeNodes: 0.1
+  - nodeType: 2
+    randomizeNodes: 0.5
   - nodeType: 7
     randomizeNodes: 0
   - nodeType: 0
