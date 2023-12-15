@@ -13,7 +13,7 @@ public class EnhancedButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public Image image = null;
     
     [Header("SETTINGS")]
-    public float scaleDownMultiplier =0.8f;
+    public float scaleDownMultiplier = 0.8f;
     
     [Space(10)]
     public UnityEvent OnClick;

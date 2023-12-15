@@ -18,7 +18,7 @@ namespace Player
         /// </summary>
         public void SwitchToInGameDeck()
         {
-            inGameDeck.FillWith(deck);
+            inGameDeck = deck.ToList();
         }
 
         /// <summary>
@@ -33,9 +33,18 @@ namespace Player
             // exit, if the from list have zero entity of the given index
             if (GetCount(entityIndex, from) == 0) return;
 
-            var newItem = new Item(entityIndex, Registry.entitiesConfig.cats[entityIndex].health);
-            newItem.onChanged?.Invoke();
-            to.Add(newItem);
+            if (to.FirstOrDefault(item => item.entityIndex == entityIndex) != null)
+            {
+                to.FirstOrDefault(item => item.entityIndex == entityIndex)!.amount++;
+            }
+            else
+            {
+                var newItem = new Item(entityIndex);
+                newItem.Add(Registry.entitiesConfig.cats[entityIndex].health);
+                to.Add(newItem);
+            }
+            
+            to.Add(new Item(entityIndex, Registry.entitiesConfig.cats[entityIndex].health));
             from.Remove(from.FirstOrDefault(item => item.entityIndex == entityIndex));
         }
 

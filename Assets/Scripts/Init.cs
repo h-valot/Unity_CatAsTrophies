@@ -1,3 +1,4 @@
+using System.Linq;
 using Data;
 using Player;
 using UnityEngine;
@@ -27,10 +28,7 @@ public class Init : MonoBehaviour
         DataManager.data.playerStorage ??= new PlayerStorage();
         if (gameSettings.playerDeckDebugMode)
         {
-            DataManager.data.playerStorage.deck = Registry.playerConfig.deck;
-            if (DataManager.data.playerStorage.collection.Count == 0)
-                foreach (var item in DataManager.data.playerStorage.deck)
-                    DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex));
+            DataManager.data.playerStorage.deck = Registry.playerConfig.deck.ToList();
         }
         
         Registry.isInitialized = true;

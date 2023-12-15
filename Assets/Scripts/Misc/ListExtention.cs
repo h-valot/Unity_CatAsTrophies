@@ -20,15 +20,5 @@ namespace List
                 (list[i], list[rnd]) = (list[rnd], list[i]);
             }
         }
-
-        /// <summary>
-        /// Clears and copies the given list into the list
-        /// </summary>
-        public static void FillWith<T>(this IList<T> list, IList<T> listToCopy)
-        {
-            list.Clear();
-            foreach (T item in listToCopy)
-                list.Add(item);
-        }
     }
 }

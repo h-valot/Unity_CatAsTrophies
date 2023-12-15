@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameGraveyardManager : MonoBehaviour
 {
     [Header("REFERENCES")]
-    public RessurectionUIManager ressurectionUIManager;
+    public ResurrectionUIManager resurrectionUIManager;
     
     void Start()
     {
@@ -16,6 +16,6 @@ public class GameGraveyardManager : MonoBehaviour
         }
 
         Registry.events.OnSceneLoaded?.Invoke();
-        ressurectionUIManager.Initialize();
+        resurrectionUIManager.Initialize();
     }
 }
