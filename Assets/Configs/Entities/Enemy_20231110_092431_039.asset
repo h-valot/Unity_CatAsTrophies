@@ -17,17 +17,22 @@ MonoBehaviour:
   entityName: Green
   health: 9
   armorAtStart: 0
+  sprite: {fileID: 0}
+  abilityDescription: 
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 1
+    intentionSprite: {fileID: 21300000, guid: 66c1a0632f28bfa45bc766cd705d2890, type: 3}
     instructions:
     - type: 0
       value: 3
       target: 4
       us: 0
   - animation: 2
+    intentionSprite: {fileID: 21300000, guid: 5ce451405da8dcc42a6638a97774da2f, type: 3}
     instructions:
     - type: 11
       value: 2
@@ -39,3 +44,7 @@ MonoBehaviour:
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}
+  canBeReward: 0
+  apparitionTiers: 
+  pricing: 0
+  cost: 0

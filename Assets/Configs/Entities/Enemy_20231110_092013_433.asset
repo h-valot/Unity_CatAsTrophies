@@ -16,24 +16,35 @@ MonoBehaviour:
   id: Enemy_20231110_092013_433
   entityName: Yellow
   health: 12
+  armorAtStart: 0
+  sprite: {fileID: 0}
+  abilityDescription: 
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 1
+    intentionSprite: {fileID: 21300000, guid: 66c1a0632f28bfa45bc766cd705d2890, type: 3}
     instructions:
     - type: 0
       value: 2
       target: 2
       us: 0
   - animation: 2
+    intentionSprite: {fileID: 21300000, guid: b1799f75d2dd5344c875db7c3003a84a, type: 3}
     instructions:
     - type: 27
       value: 2
       target: 0
       us: 1
   basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
-  baseMaterial: {fileID: 0}
+  catSkinTexture: {fileID: 0}
+  catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}
+  canBeReward: 0
+  apparitionTiers: 
+  pricing: 0
+  cost: 0

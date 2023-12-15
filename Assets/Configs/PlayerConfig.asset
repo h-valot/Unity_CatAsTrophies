@@ -14,15 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck:
   - entityIndex: 0
-    inGameHealth: 0
-    count: 2
+    data:
+    - health: 6
+    - health: 6
   - entityIndex: 1
-    inGameHealth: 0
-    count: 2
+    data:
+    - health: 6
+    - health: 8
   - entityIndex: 2
-    inGameHealth: 0
-    count: 2
+    data:
+    - health: 2
+    - health: 7
   - entityIndex: 3
-    inGameHealth: 0
-    count: 2
+    data:
+    - health: 6
+    - health: 6
+  - entityIndex: 12
+    data:
+    - health: 6
+    - health: 9
   deckLenght: 8
