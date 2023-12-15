@@ -4,7 +4,7 @@ using Data;
 using Player;
 using UnityEngine;
 
-public class ResurrectionUIManager : MonoBehaviour
+public class ResurrectionManager : MonoBehaviour
 {
     [Header("REFERENCES")]
     public GameObject graphicsParent;
@@ -14,7 +14,7 @@ public class ResurrectionUIManager : MonoBehaviour
     public int selectedCat;
     public Action<int> onCatSelected;
 
-    public List<int> candidates = new List<int>();
+    public List<Vector2Int> candidates = new List<Vector2Int>();
     public List<ResurrectionUICard> cards = new List<ResurrectionUICard>();
     
     public void Initialize()
@@ -30,12 +30,15 @@ public class ResurrectionUIManager : MonoBehaviour
 
     private void GetCandidates()
     {
-        for (var index = 0; index < DataManager.data.playerStorage.inGameDeck.Count; index++)
+        foreach (var item in DataManager.data.playerStorage.inGameDeck)
         {
-            // continue, if the cat is alive
-            if (!DataManager.data.playerStorage.inGameDeck[index].isDead) continue;
+            foreach (var cat in item.cats)
+            {
+                // continue, if the cat is alive
+                if (!cat.isDead) continue;
 
-            candidates.Add(DataManager.data.playerStorage.inGameDeck[index].entityIndex);
+                candidates.Add(new Vector2Int(item.entityIndex, item.cats.IndexOf(cat)));
+            }
         }
     }
 
@@ -44,7 +47,7 @@ public class ResurrectionUIManager : MonoBehaviour
         for (var index = 0; index < candidates.Count; index++)
         {
             var newCard = Instantiate(resurrectionUICardPrefab, contentTransform);
-            newCard.Initialize(index);
+            newCard.Initialize(index, onCatSelected);
             cards.Add(newCard);
         }
     }
@@ -65,7 +68,7 @@ public class ResurrectionUIManager : MonoBehaviour
     
     public void Resurrect()
     {
-        DataManager.data.playerStorage.inGameDeck[candidates[selectedCat]].Reset();
+        DataManager.data.playerStorage.inGameDeck[candidates[selectedCat].x].cats[candidates[selectedCat].y].Reset();
     }
 
     public void Show()

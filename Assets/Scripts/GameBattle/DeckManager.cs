@@ -35,10 +35,13 @@ public class DeckManager : MonoBehaviour
         
         foreach (Item item in DataManager.data.playerStorage.inGameDeck)
         {
-            // continue, if this cat is dead
-            if (item.isDead) continue;
+            foreach (var catData in item.cats)
+            {
+                // continue, if this cat is dead
+                if (catData.isDead) continue;
                 
-            CatManager.Instance.SpawnCatGraphics(item);
+                CatManager.Instance.SpawnCatGraphics(catData);
+            }
         }
     }
 

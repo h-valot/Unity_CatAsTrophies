@@ -26,15 +26,15 @@ public class CatManager : MonoBehaviour
     /// <summary>
     /// Link all cat type's specificities into the new instantiated cat.
     /// </summary>
-    /// <param name="item">Type of the cat</param>
-    public void SpawnCatGraphics(Item item)
+    /// <param name="catData">Type of the cat</param>
+    public void SpawnCatGraphics(CatData catData)
     {
         Cat newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
         
         // setup the cat
-        newCat.Initialize(item.entityIndex, item.health);
-        newCat.ability = Registry.entitiesConfig.cats[item.entityIndex].ability;
-        newCat.autoAttacks = Registry.entitiesConfig.cats[item.entityIndex].autoAttack;
+        newCat.Initialize(catData.entityIndex, catData.health);
+        newCat.ability = Registry.entitiesConfig.cats[catData.entityIndex].ability;
+        newCat.autoAttacks = Registry.entitiesConfig.cats[catData.entityIndex].autoAttack;
         
         // register the entity in lists 
         cats.Add(newCat);
@@ -42,7 +42,7 @@ public class CatManager : MonoBehaviour
         DeckManager.Instance.AddCat(newCat.id);
         
         // name the cat's game object
-        newCat.gameObject.name = $"Cat_{totalCatCount}_{Registry.entitiesConfig.cats[item.entityIndex].entityName}";
+        newCat.gameObject.name = $"Cat_{totalCatCount}_{Registry.entitiesConfig.cats[catData.entityIndex].entityName}";
         newCat.graphicsParent.SetActive(false);
 
         totalCatCount++;

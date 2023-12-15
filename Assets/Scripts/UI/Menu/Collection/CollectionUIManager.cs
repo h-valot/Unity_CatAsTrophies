@@ -33,9 +33,6 @@ public class CollectionUIManager : MonoBehaviour
     {
         foreach (var item in DataManager.data.playerStorage.collection)
         {
-            // continue, if the player 
-            if (collectionItems.FirstOrDefault(uiItem => uiItem.item.entityIndex == item.entityIndex) != null) continue;
-            
             var newItem = Instantiate(itemPrefab, collectionContentTransform);
             newItem.Initialize(item, false);
             newItem.UpdateGraphics();
@@ -44,9 +41,6 @@ public class CollectionUIManager : MonoBehaviour
         
         foreach (var item in DataManager.data.playerStorage.deck)
         {
-            // continue, if the player 
-            if (deckItems.FirstOrDefault(uiItem => uiItem.item.entityIndex == item.entityIndex) != null) continue;
-            
             var newItem = Instantiate(itemPrefab, deckContentTransform);
             newItem.Initialize(item, true);
             newItem.UpdateGraphics();

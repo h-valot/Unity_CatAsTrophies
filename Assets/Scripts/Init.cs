@@ -29,6 +29,9 @@ public class Init : MonoBehaviour
         if (gameSettings.playerDeckDebugMode)
         {
             DataManager.data.playerStorage.deck = Registry.playerConfig.deck.ToList();
+            if (DataManager.data.playerStorage.collection.Count == 0)
+                foreach (var item in DataManager.data.playerStorage.deck)
+                    DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex));
         }
         
         Registry.isInitialized = true;

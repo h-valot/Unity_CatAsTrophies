@@ -14,38 +14,32 @@ public class CollectionUIItem : MonoBehaviour
 
     [HideInInspector] public Item item;
     private bool _isInDeck;
-    private int _count;
     
     public void Initialize(Item item, bool isInDeck)
     {
         this.item = item;
         _isInDeck = isInDeck;
-        this.item.onChanged += UpdateGraphics;
+        this.item.onDataChanged += UpdateGraphics;
     }
 
     private void OnDisable()
     {
-        item.onChanged -= UpdateGraphics;
+        item.onDataChanged -= UpdateGraphics;
     }
 
     public void UpdateGraphics()
     {
         catImage.sprite = Registry.entitiesConfig.cats[item.entityIndex].sprite;
-        
-        _count = _isInDeck 
-            ? DataManager.data.playerStorage.GetCount(item.entityIndex, DataManager.data.playerStorage.deck) 
-            : DataManager.data.playerStorage.GetCount(item.entityIndex, DataManager.data.playerStorage.collection);
-        
-        countTM.text = $"{_count}";
+        countTM.text = $"{item.cats.Count}";
 
-        if (_count == 0) blackImage.DOFade(0.5f, 0);
+        if (item.cats.Count == 0) blackImage.DOFade(0.5f, 0);
         else blackImage.DOFade(0, 0);
     }
     
     public void Press()
     {
         // exit, if there is no more cats
-        if (_count == 0)
+        if (item.cats.Count == 0)
         {
             UpdateGraphics();
             return;

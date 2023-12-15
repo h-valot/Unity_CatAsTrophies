@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ResurrectionUICard : MonoBehaviour
@@ -5,11 +6,13 @@ public class ResurrectionUICard : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject graphicsParent;
 
-    public int id;
+    private int _id;
+    private Action<int> _onSelected;
 
-    public void Initialize(int newId)
+    public void Initialize(int newId, Action<int> onSelected)
     {
-        id = newId;
+        _id = newId;
+        _onSelected = onSelected;
         UpdateGraphics();
     }
 
@@ -17,6 +20,9 @@ public class ResurrectionUICard : MonoBehaviour
     {
         
     }
-    
-    
+
+    public void Select()
+    {
+        _onSelected?.Invoke(_id);
+    }
 }

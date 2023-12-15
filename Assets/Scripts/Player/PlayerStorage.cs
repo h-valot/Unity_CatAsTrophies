@@ -31,43 +31,34 @@ namespace Player
             if (from.FirstOrDefault(item => item.entityIndex == entityIndex) == null) return;
             
             // exit, if the from list have zero entity of the given index
-            if (GetCount(entityIndex, from) == 0) return;
+            if (from.FirstOrDefault(item => item.entityIndex == entityIndex)!.cats.Count == 0) return;
 
             if (to.FirstOrDefault(item => item.entityIndex == entityIndex) != null)
             {
-                to.FirstOrDefault(item => item.entityIndex == entityIndex)!.amount++;
+                var newData = new CatData(entityIndex, Registry.entitiesConfig.cats[entityIndex].health);
+                to.FirstOrDefault(item => item.entityIndex == entityIndex)!.Add(newData);
             }
             else
             {
-                var newItem = new Item(entityIndex);
-                newItem.Add(Registry.entitiesConfig.cats[entityIndex].health);
-                to.Add(newItem);
+                to.Add(new Item(entityIndex));
             }
-            
-            to.Add(new Item(entityIndex, Registry.entitiesConfig.cats[entityIndex].health));
-            from.Remove(from.FirstOrDefault(item => item.entityIndex == entityIndex));
+            from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Remove();
         }
 
         /// <summary>
         /// Add the given entity into the in-game deck
         /// </summary>
-        public void AddToInGameDeck(int newEntityIndex)
+        public void AddToInGameDeck(int entityIndex)
         {
-            inGameDeck.Add(new Item(newEntityIndex, Registry.entitiesConfig.cats[newEntityIndex].health));
-        }
-
-        /// <summary>
-        /// Set the given entity from the in-game deck to dead
-        /// </summary>
-        public void SetDead(int newEntityIndex)
-        {
-            // exit, if there is no item with this id
-            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) == null) return;
-            
-            // exit, if the current cat is already dead
-            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.isDead) return;
-
-            inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.isDead = true;
+            if (inGameDeck.FirstOrDefault(item => item.entityIndex == entityIndex) != null)
+            {
+                var newData = new CatData(entityIndex, Registry.entitiesConfig.cats[entityIndex].health);
+                inGameDeck.FirstOrDefault(item => item.entityIndex == entityIndex)!.Add(newData);
+            }
+            else
+            {
+                inGameDeck.Add(new Item(entityIndex));
+            }
         }
 
         /// <summary>
@@ -86,12 +77,12 @@ namespace Player
                     // continue, if the cat is dead
                     if (cat.state == CatState.IN_GRAVEYARD)
                     {
-                        SetDead(cat.catType);
+                        item.cats[index].isDead = true;
                         continue;
                     }
-                    
+                
                     // synchronize data
-                    item.health = cat.health;
+                    item.cats[index].health = cat.health;
                     index++;
                 }
             }
@@ -111,22 +102,12 @@ namespace Player
         {
             foreach (var item in items)
             {
-                item.health = Registry.entitiesConfig.cats[item.entityIndex].health;
-                item.isDead = false;
+                foreach (var data in item.cats)
+                {
+                    data.health = Registry.entitiesConfig.cats[item.entityIndex].health;
+                    data.isDead = false;
+                }
             }
-        }
-
-        public int GetCount(int entityIndex, List<Item> items)
-        {
-            var output = 0;
-            foreach (var item in items)
-            {
-                // continue, if the index isn't the same
-                if (item.entityIndex != entityIndex) continue;
-
-                output++;
-            }
-            return output;
         }
     }
 }

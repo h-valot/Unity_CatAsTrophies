@@ -21,12 +21,15 @@ public class HealingUIManager : MonoBehaviour
     {
         foreach (var item in DataManager.data.playerStorage.inGameDeck)
         {
-            // continue, if the cat is dead
-            if (item.isDead) continue;
+            foreach (var cat in item.cats)
+            {
+                // continue, if the cat is dead
+                if (cat.isDead) continue;
             
-            item.health += Registry.gameSettings.healAmount;
-            if (item.health > Registry.entitiesConfig.cats[item.entityIndex].health)
-                item.health = Registry.entitiesConfig.cats[item.entityIndex].health;
+                cat.health += Registry.gameSettings.healAmount;
+                if (cat.health > Registry.entitiesConfig.cats[item.entityIndex].health)
+                    cat.health = Registry.entitiesConfig.cats[item.entityIndex].health;
+            }
         }
     }
 }

@@ -7,30 +7,31 @@ namespace Player
     public class Item
     {
         public int entityIndex;
-
-        public List<CatData> data = new List<CatData>();
-        public int amount;
-        public Action onChanged;
+        public Action onDataChanged;
+        public List<CatData> cats = new List<CatData>();
 
         public Item(int newEntityIndex = 0)
         {
             entityIndex = newEntityIndex;
         }
 
-        public void Add(float health, int amount = 1)
+        public void Add(CatData data, int amount = 1)
         {
             for (int i = 0; i < amount; i++)
-            {
-                data.Add(new CatData(entityIndex, health));
-            }
+                cats.Add(data);
+
+            onDataChanged?.Invoke();
         }
 
         public void Remove(int amount = 1)
         {
+            // exit, if data is empty
+            if (cats.Count <= 0) return;
+            
             for (int i = 0; i < amount; i++)
-            {
-                data.Remove(data[^1]);
-            }
+                cats.Remove(cats[^1]);
+            
+            onDataChanged?.Invoke();
         }
     }
 }
