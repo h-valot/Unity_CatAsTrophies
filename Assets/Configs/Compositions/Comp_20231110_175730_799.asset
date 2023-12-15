@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Comp_20231110_175730_799
   isPlayerDeck: 0
-  compositionName: RPP
+  tier: 0
+  compositionName: RP
   entities:
   - {fileID: 11400000, guid: 92e463e6d5d75624fb7b0595a6fd5d3d, type: 2}
   - {fileID: 11400000, guid: 2d617157b03d0204d91f618fea007689, type: 2}
-  - {fileID: 11400000, guid: 045f7c8b3c689dc449e05e129211e555, type: 2}
+  - {fileID: 0}

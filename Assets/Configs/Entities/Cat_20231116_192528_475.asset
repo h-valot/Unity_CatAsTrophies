@@ -39,7 +39,7 @@ MonoBehaviour:
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 919132149155446097, guid: 122a9094f3c13d24bb46204bc7fc9b63, type: 3}
-  canBeReward: 0
-  apparitionTiers: 
+  canBeReward: 1
+  apparitionTiers: 0100000002000000
   pricing: 0
   cost: 0
