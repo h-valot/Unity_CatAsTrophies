@@ -17,17 +17,22 @@ MonoBehaviour:
   entityName: Pink
   health: 8
   armorAtStart: 0
+  sprite: {fileID: 0}
+  abilityDescription: 
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 2
+    intentionSprite: {fileID: 21300000, guid: d40e8133238fe564182e51bbc512b24f, type: 3}
     instructions:
     - type: 16
       value: 2
       target: 3
       us: 1
   - animation: 2
+    intentionSprite: {fileID: 21300000, guid: b1799f75d2dd5344c875db7c3003a84a, type: 3}
     instructions:
     - type: 27
       value: 2
@@ -39,3 +44,7 @@ MonoBehaviour:
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}
+  canBeReward: 0
+  apparitionTiers: 
+  pricing: 0
+  cost: 0

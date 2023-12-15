@@ -16,11 +16,16 @@ MonoBehaviour:
   id: Enemy_20231113_114527_134
   entityName: Elite Purple
   health: 28
+  armorAtStart: 0
+  sprite: {fileID: 0}
+  abilityDescription: 
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 1
+    intentionSprite: {fileID: 21300000, guid: 66c1a0632f28bfa45bc766cd705d2890, type: 3}
     instructions:
     - type: 0
       value: 2
@@ -31,6 +36,7 @@ MonoBehaviour:
       target: 0
       us: 1
   - animation: 2
+    intentionSprite: {fileID: 21300000, guid: b1799f75d2dd5344c875db7c3003a84a, type: 3}
     instructions:
     - type: 27
       value: 2
@@ -41,6 +47,7 @@ MonoBehaviour:
       target: 0
       us: 0
   - animation: 1
+    intentionSprite: {fileID: 21300000, guid: 66c1a0632f28bfa45bc766cd705d2890, type: 3}
     instructions:
     - type: 0
       value: 2
@@ -51,7 +58,12 @@ MonoBehaviour:
       target: 4
       us: 0
   basePrefab: {fileID: 5087666672669579333, guid: ca51a6e961891774b8c880dcd1d812f5, type: 3}
-  baseMaterial: {fileID: 0}
+  catSkinTexture: {fileID: 0}
+  catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 0}
+  canBeReward: 0
+  apparitionTiers: 
+  pricing: 0
+  cost: 0

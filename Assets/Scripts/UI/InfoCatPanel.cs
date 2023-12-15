@@ -19,6 +19,8 @@ public class InfoCatPanel : MonoBehaviour
     private void DisplayCatInfo(string catTypeName, string catTypeInfo)
     {
         graphicsParent.SetActive(true);
+        nameCat.text = catTypeName;
+        infoCat.text = catTypeInfo;
     }
 
     private void RemoveCatInfo()

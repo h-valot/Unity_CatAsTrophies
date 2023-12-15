@@ -33,8 +33,10 @@ public class Entity : MonoBehaviour
     public Action OnStatsUpdate;
     public Action OnBattlefieldEntered;
     public Action<string, Color, bool> OnStatusRecieved; //text to display, color of the text, is an effect or not (change font size)
+    public Action onIntentUpdate;
+    public Action<Entity> onIntentReset;
 
-    private int selectedAutoAttack;
+    public int selectedAutoAttack;
     protected bool stopAsync;
 
     public bool isInFrontOfBackgroundFade = false; //used by TurnManager.cs
@@ -54,6 +56,7 @@ public class Entity : MonoBehaviour
         if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
         {
             selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count - 1);
+            onIntentUpdate?.Invoke();
         } 
     }
 
@@ -88,6 +91,7 @@ public class Entity : MonoBehaviour
         
         // use a random ability
         autoAttacks[selectedAutoAttack].Use(this);
+        onIntentReset?.Invoke(this);
     }
     
     public void UpdateHealth(int _value)

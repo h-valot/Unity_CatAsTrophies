@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class HandManager : MonoBehaviour
 {
@@ -7,7 +9,10 @@ public class HandManager : MonoBehaviour
     
     [Header("REFERENCES")]
     public Transform[] handPoints;
-    
+    public Canvas[] heartCanvas;
+    public Image[] heartFill;
+    public TextMeshProUGUI[] heartText;
+
     [Header("DEBUGGING")]
     public string[] catsInHand;
     public string newCatId;
@@ -34,11 +39,16 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void HideHand()
     {
-        foreach (string catId in catsInHand)
+        for (int i = 0; i < catsInHand.Length; i++)
         {
-            if (Misc.GetCatById(catId) != null)
+            if (Misc.GetCatById(catsInHand[i]) != null)
             {
-                Misc.GetCatById(catId).graphicsParent.SetActive(false);
+                Misc.GetCatById(catsInHand[i]).graphicsParent.SetActive(false);
+                heartCanvas[i].enabled = false;
+            }
+            else
+            {
+                heartCanvas[i].enabled = false;
             }
         }
     }
@@ -48,11 +58,18 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void ShowHand()
     {
-        foreach (string catId in catsInHand)
+        for (int i = 0; i < catsInHand.Length; i++)
         {
-            if (Misc.GetCatById(catId) != null)
+            if (Misc.GetCatById(catsInHand[i]) != null)
             {
-                Misc.GetCatById(catId).graphicsParent.SetActive(true);
+                Misc.GetCatById(catsInHand[i]).graphicsParent.SetActive(true);
+                heartCanvas[i].enabled = true;
+                heartText[i].text = Misc.GetCatById(catsInHand[i]).health.ToString();
+                heartFill[i].fillAmount = Misc.GetCatById(catsInHand[i]).health / Misc.GetCatById(catsInHand[i]).maxHealth;
+            }
+            else
+            {
+                heartCanvas[i].enabled = false;
             }
         }
     }
@@ -79,6 +96,9 @@ public class HandManager : MonoBehaviour
             {
                 catsInHand[i] = _catId;
                 output = handPoints[i].position;
+                heartCanvas[i].enabled = true;
+                heartText[i].text = Misc.GetCatById(catsInHand[i]).health.ToString();
+                heartFill[i].fillAmount = Misc.GetCatById(catsInHand[i]).health / Misc.GetCatById(catsInHand[i]).maxHealth;
                 break;
             }
         }
@@ -111,6 +131,7 @@ public class HandManager : MonoBehaviour
         for (int i = 0; i < catsInHand.Length; i++)
         {
             catsInHand[i] = null;
+            heartCanvas[i].enabled = false;
         }
 
         // check the number of remaining cat in hand to center the hand properly
@@ -130,9 +151,12 @@ public class HandManager : MonoBehaviour
         }
 
         // Add remaining cats in hand
-        foreach (string catId in newCatsInHand)
+        for (int i = 0; i < newCatsInHand.Count; i++)
         {
-            Misc.GetCatById(catId).PutInHand();
+            if (Misc.GetCatById(newCatsInHand[i]) != null)
+            {
+                Misc.GetCatById(newCatsInHand[i]).PutInHand();
+            }
         }
     }
 
@@ -158,8 +182,9 @@ public class HandManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"Code to display the cat info panel here");
-        Registry.events.OnCatStacked("test", "test");
+        //Display and update cat info panel
+        Registry.events.OnCatStacked(Registry.entitiesConfig.cats[highlightedCat.catType].entityName, 
+            Registry.entitiesConfig.cats[highlightedCat.catType].abilityDescription); //goes to InfoCatPanel.cs
 
     }
 
@@ -173,6 +198,7 @@ public class HandManager : MonoBehaviour
             if (catsInHand[i] == _catId)
             {
                 catsInHand[i] = null;
+                heartCanvas[i].enabled = false;
             }
         }
     }
@@ -182,12 +208,17 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void DiscardHand()
     {
-        foreach (string catId in catsInHand)
+        for (int i = 0; i < catsInHand.Length; i++)
         {
-            if (catId != null)
+            if (catsInHand[i] != null)
             {
-                Misc.GetCatById(catId).Withdraw();
-                RemoveFromHand(catId);
+                Misc.GetCatById(catsInHand[i]).Withdraw();
+                RemoveFromHand(catsInHand[i]);
+                heartCanvas[i].enabled = false;
+            }
+            else
+            {
+                heartCanvas[i].enabled = false;
             }
         }
     }
