@@ -17,6 +17,7 @@ namespace Data
         
         // player collection
         public PlayerStorage playerStorage;
+        
     }
 }
 
