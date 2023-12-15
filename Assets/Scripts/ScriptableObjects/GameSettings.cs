@@ -31,6 +31,9 @@ public class GameSettings : ScriptableObject
     public int buffAttackAmout;
     public int debuffAttackAmout;
 
+    [Header("BONFIRE SCENE")] 
+    public int healAmount;
+    
     [Header("SCROLLING TEXT EFFECT")]
     public float scrollingFeedbackLifetime;
     public float defaultFontSize;

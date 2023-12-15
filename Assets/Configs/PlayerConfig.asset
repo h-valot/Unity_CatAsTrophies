@@ -14,23 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck:
   - entityIndex: 0
-    data:
-    - health: 6
-    - health: 6
+    health: 0
+    isDead: 0
+  - entityIndex: 0
+    health: 0
+    isDead: 0
   - entityIndex: 1
-    data:
-    - health: 6
-    - health: 8
+    health: 6
+    isDead: 0
+  - entityIndex: 1
+    health: 6
+    isDead: 0
   - entityIndex: 2
-    data:
-    - health: 2
-    - health: 7
+    health: 6
+    isDead: 0
+  - entityIndex: 2
+    health: 6
+    isDead: 0
   - entityIndex: 3
-    data:
-    - health: 6
-    - health: 6
+    health: 6
+    isDead: 0
+  - entityIndex: 3
+    health: 6
+    isDead: 0
   - entityIndex: 12
-    data:
-    - health: 6
-    - health: 9
-  deckLenght: 8
+    health: 6
+    isDead: 0
+  - entityIndex: 12
+    health: 6
+    isDead: 0
+  deckLenght: 10

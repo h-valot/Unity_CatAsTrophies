@@ -37,6 +37,7 @@ MonoBehaviour:
   debuffArmorAmout: 1
   buffAttackAmout: 1
   debuffAttackAmout: 1
+  healAmount: 2
   scrollingFeedbackLifetime: 2
   defaultFontSize: 0.5
   effectFontSize: 0.2

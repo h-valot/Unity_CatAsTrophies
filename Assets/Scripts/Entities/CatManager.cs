@@ -27,12 +27,12 @@ public class CatManager : MonoBehaviour
     /// Link all cat type's specificities into the new instantiated cat.
     /// </summary>
     /// <param name="item">Type of the cat</param>
-    public void SpawnCatGraphics(Item item, int catIndex)
+    public void SpawnCatGraphics(Item item)
     {
         Cat newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
         
         // setup the cat
-        newCat.Initialize(item.entityIndex, item.data[catIndex].health);
+        newCat.Initialize(item.entityIndex, item.health);
         newCat.ability = Registry.entitiesConfig.cats[item.entityIndex].ability;
         newCat.autoAttacks = Registry.entitiesConfig.cats[item.entityIndex].autoAttack;
         

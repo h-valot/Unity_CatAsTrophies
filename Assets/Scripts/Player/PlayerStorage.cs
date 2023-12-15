@@ -27,22 +27,16 @@ namespace Player
         /// </summary>
         public void Transfer(List<Item> from, List<Item> to, int entityIndex)
         {
-            // exit if the from list haven't the entity
+            // exit, if the from list haven't the entity
             if (from.FirstOrDefault(item => item.entityIndex == entityIndex) == null) return;
             
-            // exit if the from list have zero entity of the given index
-            if (from.FirstOrDefault(item => item.entityIndex == entityIndex)!.data.Count == 0) return;
-            
-            if (to.FirstOrDefault(item => item.entityIndex == entityIndex) != null)
-            {
-                var data = new CatData(Registry.entitiesConfig.cats[entityIndex].health);
-                to.FirstOrDefault(item => item.entityIndex == entityIndex)!.Add(data);
-            }
-            else
-            {
-                to.Add(new Item(entityIndex));
-            }
-            from.FirstOrDefault(item => item.entityIndex == entityIndex)!.Remove();
+            // exit, if the from list have zero entity of the given index
+            if (GetCount(entityIndex, from) == 0) return;
+
+            var newItem = new Item(entityIndex, Registry.entitiesConfig.cats[entityIndex].health);
+            newItem.onChanged?.Invoke();
+            to.Add(newItem);
+            from.Remove(from.FirstOrDefault(item => item.entityIndex == entityIndex));
         }
 
         /// <summary>
@@ -50,26 +44,21 @@ namespace Player
         /// </summary>
         public void AddToInGameDeck(int newEntityIndex)
         {
-            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
-            {
-                var data = new CatData(Registry.entitiesConfig.cats[newEntityIndex].health);
-                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Add(data);
-            }
-            else
-            {
-                inGameDeck.Add(new Item(newEntityIndex));
-            }
+            inGameDeck.Add(new Item(newEntityIndex, Registry.entitiesConfig.cats[newEntityIndex].health));
         }
 
         /// <summary>
-        /// Remove the given entity from the in-game deck
+        /// Set the given entity from the in-game deck to dead
         /// </summary>
-        public void RemoveFromInGameDeck(int newEntityIndex)
+        public void SetDead(int newEntityIndex)
         {
-            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) != null)
-            {
-                inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.Remove();
-            }
+            // exit, if there is no item with this id
+            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex) == null) return;
+            
+            // exit, if the current cat is already dead
+            if (inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.isDead) return;
+
+            inGameDeck.FirstOrDefault(item => item.entityIndex == newEntityIndex)!.isDead = true;
         }
 
         /// <summary>
@@ -86,14 +75,14 @@ namespace Player
                     if (cat.catType != item.entityIndex) continue;
 
                     // continue, if the cat is dead
-                    if (cat.state == CatState.InGraveyard)
+                    if (cat.state == CatState.IN_GRAVEYARD)
                     {
-                        RemoveFromInGameDeck(cat.catType);
+                        SetDead(cat.catType);
                         continue;
                     }
                     
                     // synchronize data
-                    item.data[index].health = cat.health;
+                    item.health = cat.health;
                     index++;
                 }
             }
@@ -112,8 +101,23 @@ namespace Player
         private void ResetData(List<Item> items)
         {
             foreach (var item in items)
-                foreach (var data in item.data)
-                    data.health = Registry.entitiesConfig.cats[item.entityIndex].health;
+            {
+                item.health = Registry.entitiesConfig.cats[item.entityIndex].health;
+                item.isDead = false;
+            }
+        }
+
+        public int GetCount(int entityIndex, List<Item> items)
+        {
+            var output = 0;
+            foreach (var item in items)
+            {
+                // continue, if the index isn't the same
+                if (item.entityIndex != entityIndex) continue;
+
+                output++;
+            }
+            return output;
         }
     }
 }

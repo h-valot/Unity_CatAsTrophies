@@ -27,7 +27,7 @@ public class InputHandler : MonoBehaviour
             {
                 if (!clickAlreadyCat)
                 {
-                    if (hitInfoCat.transform.gameObject.GetComponentInParent<Cat>().state != CatState.InHand)
+                    if (hitInfoCat.transform.gameObject.GetComponentInParent<Cat>().state != CatState.IN_HAND)
                     {
                         HandManager.Instance.ArrangeHand();
                         //remove cat info panel

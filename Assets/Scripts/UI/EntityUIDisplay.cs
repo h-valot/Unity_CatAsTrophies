@@ -59,7 +59,7 @@ public class EntityUIDisplay : MonoBehaviour
         // get if the entity is a cat or an enemy
         if (battlePawn.TryGetComponent(out Cat cat))
         {
-            canvasGO.gameObject.SetActive(cat.state == CatState.OnBattle);
+            canvasGO.gameObject.SetActive(cat.state == CatState.ON_BATTLE);
         }
         
         if (battlePawn.TryGetComponent(out Enemy enemy))

@@ -31,7 +31,7 @@ public class Cat : Entity
     public void Initialize(int typeIndex, float currentHealth)
     {
         base.Initialize();
-        state = CatState.InDeck;
+        state = CatState.IN_DECK;
         catType = typeIndex;
         
         // setup entity stats
@@ -99,7 +99,7 @@ public class Cat : Entity
 
     private void ResetAbility() => isAbilityUsed = false;
     
-    public bool CanMove() => state == CatState.InHand;
+    public bool CanMove() => state == CatState.IN_HAND;
 
     /// <summary>
     /// Put the cat in the player's hand, reset rotation and scale and update the state
@@ -120,7 +120,7 @@ public class Cat : Entity
         animator.SetTrigger("IsInHand");
         animator.SetBool("IsFalling", false);
 
-        state = CatState.InHand;
+        state = CatState.IN_HAND;
         return id;
     }
 
@@ -158,7 +158,7 @@ public class Cat : Entity
 
         int AttackingOrder = TurnManager.Instance.AddCatAttackQueue(this); //Add the cat to the attack queue in the turn manager and return it's order of attack
         isAbilityUsed = true;
-        state = CatState.OnBattle;
+        state = CatState.ON_BATTLE;
         OnBattlefieldEntered?.Invoke();
         stopAsync = false;
     }
@@ -184,7 +184,7 @@ public class Cat : Entity
         }
 
 
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.InHand)
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.IN_HAND)
         {
             animator.SetTrigger("IsFighting");
         }
@@ -222,7 +222,7 @@ public class Cat : Entity
     public override void UseAutoAttack()
     {
         // exit if cat isn't on the battlefield
-        if (state != CatState.OnBattle) return;
+        if (state != CatState.ON_BATTLE) return;
         
         base.UseAutoAttack();
     }
@@ -233,7 +233,7 @@ public class Cat : Entity
     public void Withdraw()
     {
         // exit if the cat is in the graveyard
-        if (state == CatState.InGraveyard) return;
+        if (state == CatState.IN_GRAVEYARD) return;
      
         // handle entity stats tweaking 
         armor = 0;
@@ -246,7 +246,7 @@ public class Cat : Entity
         stopAsync = true;
 
         DiscardManager.Instance.AddCat(id);
-        state = CatState.Discarded;
+        state = CatState.DISCARDED;
     }
     
     /// <summary>
@@ -263,8 +263,9 @@ public class Cat : Entity
         
         BattlefieldManager.Instance.RemoveFromBattlePawn(id);
         
-        state = CatState.InGraveyard;
+        state = CatState.IN_GRAVEYARD;
         GraveyardManager.Instance.AddCat(id);
+        DataManager.data.playerStorage.SetDead(catType);
 
         CatManager.Instance.deadCatAmount++;
         
@@ -274,9 +275,9 @@ public class Cat : Entity
 
 public enum CatState
 {
-    InDeck = 0,
-    InHand,
-    OnBattle,
-    Discarded,
-    InGraveyard
+    IN_DECK = 0,
+    IN_HAND,
+    ON_BATTLE,
+    DISCARDED,
+    IN_GRAVEYARD
 }

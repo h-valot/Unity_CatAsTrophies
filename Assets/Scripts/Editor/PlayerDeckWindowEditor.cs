@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Player;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,8 @@ namespace Editor
         #region INITIALIZATION
         private PlayerConfig _playerConfig;
 
-        private List<Item> _deck = new List<Item>();
+        private List<EditorItem> _editorItems = new List<EditorItem>();
+        private List<Item> _items = new List<Item>();
     
         private readonly List<String> _catsName = new List<string>();
         private readonly List<int> _catsIndex = new List<int>();  
@@ -65,7 +67,7 @@ namespace Editor
             // INFORMATION
             GUILayout.Label("PLAYER'S DECK", EditorStyles.boldLabel);
             DisplayCatsChooser();
-            GUILayout.Label($"There is a total of {GetTotalNumberOfCats()} cats in the player's deck.");
+            GUILayout.Label($"There is a total of {ConvertToItems(_editorItems).Count} cats in the player's deck.");
         
             // DATA MANAGEMENT
             // save button
@@ -81,20 +83,10 @@ namespace Editor
             _catsIndex.Clear();
             _catsName.Clear();
         
-            foreach (Item cat in _playerConfig.deck)
+            foreach (var editorItem in ConvertToEditorItems(_playerConfig.deck))
             {
-                _catsIndex.Add(cat.entityIndex);
+                _catsIndex.Add(editorItem.entityIndex);
             }
-        }
-    
-        private int GetTotalNumberOfCats()
-        {
-            int output = 0;
-            foreach (Item item in _deck)
-            {
-                output += item.data.Count;
-            }
-            return output;
         }
     
         private void DisplayCatsChooser()
@@ -121,17 +113,15 @@ namespace Editor
                     GUILayout.Label("Cats");
                     if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                     {
-                        var newItem = new Item();
-                        newItem.data.Add(new CatData(_entitiesConfig.cats[0].health));
-                        _deck.Add(newItem); 
+                        _editorItems.Add(new EditorItem(_entitiesConfig.cats[0].health));
                     }
                 }
                 GUILayout.EndHorizontal();
 
                 // LIST
-                if (_deck != null)
+                if (_editorItems != null)
                 {
-                    for (int index = 0; index < _deck.Count; index++)
+                    for (int index = 0; index < _editorItems.Count; index++)
                     {
                         DisplayCatPlacement(index);
                     }
@@ -145,16 +135,17 @@ namespace Editor
             GUILayout.BeginHorizontal("HelpBox");
             {
                 _catsIndex[index] = EditorGUILayout.Popup("", _catsIndex[index], _catsName.ToArray());
-                _deck[index].entityIndex = _catsIndex[index];
+                _editorItems[index].entityIndex = _catsIndex[index];
                 
                 if (GUILayout.Button("-", GUILayout.Width(20), GUILayout.Height(20)))
                 {
-                    _deck[index].Remove();
+                    _editorItems[index].amount--;
+                    if (_editorItems[index].amount == 0) _editorItems.Remove(_editorItems[index]);
                 }
-                GUILayout.Label($"{_deck[index].data.Count}", GUILayout.Width(20), GUILayout.Height(20));
+                GUILayout.Label($"{_editorItems[index].amount}", GUILayout.Width(20), GUILayout.Height(20));
                 if (GUILayout.Button("+", GUILayout.Width(20), GUILayout.Height(20)))
                 {
-                    _deck[index].Add(new CatData(_entitiesConfig.cats[_deck[index].entityIndex].health));
+                    _editorItems[index].amount++;
                 }
                 
                 GUI.backgroundColor = Color.red;
@@ -162,7 +153,7 @@ namespace Editor
                 {
                     if (EditorUtility.DisplayDialog("Delete entity", "Do you really want to permanently delete this entity?", "Yes", "No"))
                     {
-                        _deck.Remove(_deck[index]);
+                        _editorItems.Remove(_editorItems[index]);
                         return;
                     }
                 }
@@ -170,11 +161,43 @@ namespace Editor
             }
             GUILayout.EndHorizontal();
         }
-    
+
+        private List<Item> ConvertToItems(List<EditorItem> editorItems)
+        {
+            _items.Clear();
+            foreach (var editorItem in editorItems)
+            {
+                for (int i = 0; i < editorItem.amount; i++)
+                {
+                    _items.Add(new Item(editorItem.entityIndex, editorItem.health));
+                }
+            }
+            return _items;
+        }
+
+        private List<EditorItem> ConvertToEditorItems(List<Item> items)
+        {
+            _editorItems.Clear();
+            foreach (var item in items)
+            {
+                var itemAlreadyAdded = false;
+                foreach (var editorItem in _editorItems)
+                {
+                    // continue, if index aren't the same
+                    if (editorItem.entityIndex != item.entityIndex) continue; 
+                    
+                    editorItem.amount++;
+                    itemAlreadyAdded = true;
+                }
+                if (!itemAlreadyAdded) _editorItems.Add(new EditorItem(item.health, item.entityIndex));
+            }
+            return _editorItems;
+        }
+        
         private void SaveDataToAsset()
         {
             // save data into a temp game asset
-            _playerConfig.deck = _deck;
+            _playerConfig.deck = ConvertToItems(_editorItems);
         
             // save changes
             EditorUtility.SetDirty(_playerConfig);
@@ -189,13 +212,13 @@ namespace Editor
         {
             _entitiesConfig = EditorMisc.FindEntitiesConfig();
             _playerConfig = EditorMisc.FindPlayerConfig();
-            _deck = _playerConfig.deck;
+            _editorItems = ConvertToEditorItems(_playerConfig.deck);
         }
     
         private void UpdateEntitiesConfig()
         {
-            _playerConfig.deck = _deck;
-            _playerConfig.deckLenght = GetTotalNumberOfCats();
+            _playerConfig.deck = ConvertToItems(_editorItems);
+            _playerConfig.deckLenght = ConvertToItems(_editorItems).Count;
             EditorUtility.SetDirty(_playerConfig);
         }
     }

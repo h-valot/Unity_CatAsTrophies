@@ -12,7 +12,7 @@ public class ClickActivator : MonoBehaviour
     private void OnMouseDown()
     {
         isTouching = true;
-        if (catUsed.state == CatState.OnBattle)
+        if (catUsed.state == CatState.ON_BATTLE)
         {
             timeStartClick = Time.time;
             Timer(Registry.gameSettings.holdingTimeToTriggerAbility, timeStartClick);
@@ -40,7 +40,7 @@ public class ClickActivator : MonoBehaviour
     /// </summary>
     private bool CanTriggerAbility()
     {
-        return catUsed.state == CatState.OnBattle &&
+        return catUsed.state == CatState.ON_BATTLE &&
                catUsed.isAbilityUsed == false;
     }
 }
