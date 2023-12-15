@@ -18,9 +18,6 @@ public class CollectionUIManager : MonoBehaviour
     
     public void Show()
     {
-        // debugging
-        DataManager.data.playerStorage.deck = Registry.playerConfig.deck;
-        
         GenerateItems();
         graphicsParent.SetActive(true);
     }
@@ -36,16 +33,16 @@ public class CollectionUIManager : MonoBehaviour
         foreach (var item in DataManager.data.playerStorage.collection)
         {
             var newItem = Instantiate(itemPrefab, collectionContentTransform);
-            newItem.Initialize(false);
-            newItem.UpdateGraphics(item);
+            newItem.Initialize(item, false);
+            newItem.UpdateGraphics();
             collectionItems.Add(newItem);
         }
         
         foreach (var item in DataManager.data.playerStorage.deck)
         {
             var newItem = Instantiate(itemPrefab, deckContentTransform);
-            newItem.Initialize(true);
-            newItem.UpdateGraphics(item);
+            newItem.Initialize(item, true);
+            newItem.UpdateGraphics();
             collectionItems.Add(newItem);
         }
     }

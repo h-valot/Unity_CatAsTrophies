@@ -21,15 +21,18 @@ MonoBehaviour:
   abilityDescription: 
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 2
+    intentionSprite: {fileID: 21300000, guid: d40e8133238fe564182e51bbc512b24f, type: 3}
     instructions:
     - type: 16
       value: 2
       target: 3
       us: 1
   - animation: 2
+    intentionSprite: {fileID: 21300000, guid: 5ce451405da8dcc42a6638a97774da2f, type: 3}
     instructions:
     - type: 11
       value: 2

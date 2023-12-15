@@ -172,12 +172,14 @@ public class HandManager : MonoBehaviour
             if (catsInHand[i] != highlightedCat.id && catsInHand[i] != null)
             {
                 handPoints[i].localPosition = Registry.gameSettings.stackedHandPointPosition[indexStackedHandPointPosition];
+                heartCanvas[i].enabled = false;
                 Misc.GetCatById(catsInHand[i]).transform.position = handPoints[i].position;
                 indexStackedHandPointPosition++;
             }
             else if (catsInHand[i] != null)
             {
                 handPoints[i].localPosition = Registry.gameSettings.highlightedHandPointPosition;
+                heartCanvas[i].enabled = true;
                 Misc.GetCatById(catsInHand[i]).transform.position = handPoints[i].position;
             }
         }
