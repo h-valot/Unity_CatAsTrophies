@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameGraveyardManager : MonoBehaviour
 {
+    public VolumeControl volumeControl;
     void Start()
     {
         // load the init scene if it hasn't been loaded yet
@@ -13,5 +14,6 @@ public class GameGraveyardManager : MonoBehaviour
         }
 
         Registry.events.OnSceneLoaded?.Invoke();
+        volumeControl.Initialize();
     }
 }

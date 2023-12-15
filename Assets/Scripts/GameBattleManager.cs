@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameBattleManager : MonoBehaviour
 {
     public static GameBattleManager Instance;
+    public VolumeControl volumeControl;
     private void Awake() => Instance = this;
 
     private void Start()
@@ -25,6 +26,7 @@ public class GameBattleManager : MonoBehaviour
         BattlefieldManager.Instance.Initialize(); 
         DiscardManager.Instance.Initialize();
         Registry.events.OnSceneLoaded?.Invoke();
+        volumeControl.Initialize();
 
         // instantiate player's deck of cats
         DeckManager.Instance.LoadPlayerDeck();

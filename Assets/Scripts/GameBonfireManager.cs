@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameBonfireManager : MonoBehaviour
 {
+    public VolumeControl volumeControl;
     void Start()
     {
         // load the init scene if it hasn't been loaded yet
@@ -12,6 +13,7 @@ public class GameBonfireManager : MonoBehaviour
             return;
         }
         
-        Registry.events.OnSceneLoaded?.Invoke();
+        Registry.events.OnSceneLoaded?.Invoke();    
+        volumeControl.Initialize();
     }
 }
