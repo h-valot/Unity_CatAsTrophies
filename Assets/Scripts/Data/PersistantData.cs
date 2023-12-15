@@ -16,7 +16,7 @@ namespace Data
         public EndBattleStatus endBattleStatus;
         
         // player collection
-        public PlayerStorage collection;
+        public PlayerStorage playerStorage;
     }
 }
 
