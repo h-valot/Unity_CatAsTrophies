@@ -17,11 +17,15 @@ MonoBehaviour:
   entityName: Frost Mage
   health: 3
   armorAtStart: 0
+  sprite: {fileID: 21300000, guid: 1298ec29eecce6c4797647c4cb945d43, type: 3}
+  abilityDescription: Add 5 Armors to himself.
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 2
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 27
       value: 5
@@ -29,7 +33,11 @@ MonoBehaviour:
       us: 0
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
   catSkinTexture: {fileID: 2800000, guid: e48cd87067e5b634cb9d42768f2bda6d, type: 3}
-  catEyesTexture: {fileID: 2800000, guid: d44f39f527cc83142bd4e637acec7d60, type: 3}
+  catEyesTexture: {fileID: 2800000, guid: e84c209e6d91b574f95e89aefb8fee82, type: 3}
   rightHandAddon: {fileID: 919132149155446097, guid: ad5569779d521de448f499c53f919529, type: 3}
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 919132149155446097, guid: ac2588a30f4437247a4521ad1694cb78, type: 3}
+  canBeReward: 1
+  apparitionTiers: 0100000002000000
+  pricing: 0
+  cost: 0
