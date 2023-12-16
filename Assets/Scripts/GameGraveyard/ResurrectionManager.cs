@@ -1,86 +1,77 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Data;
-using Player;
+using DG.Tweening;
 using UnityEngine;
 
 public class ResurrectionManager : MonoBehaviour
 {
+    [Header("EXTERNAL REFERENCES")]
+    public MapManager mapManager;
+    
     [Header("REFERENCES")]
-    public GameObject graphicsParent;
-    public ResurrectionUICard resurrectionUICardPrefab;
-    public Transform contentTransform;
+    public ResurrectionUIManager resurrectionUIManager;
+    
+    [Header("INTANTIATE")]
+    public CatModel catModel;
+    public Transform hidePoint, showPoint;
+    public float hidingDuration, showingDuration;
 
-    public int selectedCat;
-    public Action<int> onCatSelected;
-
-    public List<Vector2Int> candidates = new List<Vector2Int>();
-    public List<ResurrectionUICard> cards = new List<ResurrectionUICard>();
+    private int _selectedCandidate;
+    private Action<int> _onSelectionChanged;
+    private readonly List<Vector2Int> _candidates = new List<Vector2Int>();
     
     public void Initialize()
     {
-        Hide();
-        onCatSelected += Select;
+        _onSelectionChanged += Select;
+        
+        GetCandidates();
+        if (_candidates.Count > 0)
+        {
+            Select(0);
+            resurrectionUIManager.Initialize(_candidates, _onSelectionChanged, mapManager);
+            resurrectionUIManager.ShowResurrection();
+        }
+        else
+        {
+            resurrectionUIManager.ShowEmpty();
+        }
     }
-
-    private void OnDisable()
-    {
-        onCatSelected -= Select;
-    }
-
+    
     private void GetCandidates()
     {
         foreach (var item in DataManager.data.playerStorage.inGameDeck)
         {
-            foreach (var cat in item.cats)
+            for (int index = 0; index < item.cats.Count; index++)
             {
                 // continue, if the cat is alive
-                if (!cat.isDead) continue;
+                if (!item.cats[index].isDead) continue;
 
-                candidates.Add(new Vector2Int(item.entityIndex, item.cats.IndexOf(cat)));
+                _candidates.Add(new Vector2Int(item.entityIndex, index));
             }
         }
     }
 
-    private void InstantiateCards()
+    private async void Select(int selectedCandidate)
     {
-        for (var index = 0; index < candidates.Count; index++)
-        {
-            var newCard = Instantiate(resurrectionUICardPrefab, contentTransform);
-            newCard.Initialize(index, onCatSelected);
-            cards.Add(newCard);
-        }
+        _selectedCandidate = selectedCandidate;
+        await AnimateSelection();
     }
 
-    private void ClearCards()
+    private async Task AnimateSelection()
     {
-        foreach (var card in cards)
-        {
-            Destroy(card.gameObject);
-        }
-        cards.Clear();
-    }
-    
-    public void Select(int selectedIndex)
-    {
-        selectedCat = selectedIndex;
-    }
-    
-    public void Resurrect()
-    {
-        DataManager.data.playerStorage.inGameDeck[candidates[selectedCat].x].cats[candidates[selectedCat].y].Reset();
+        catModel.transform.DOMove(hidePoint.position, hidingDuration).SetEase(Ease.InOutQuad);
+        await Task.Delay(Mathf.RoundToInt(1000 * hidingDuration));
+        
+        catModel.UpdateGraphics(_candidates[_selectedCandidate].x);
+
+        catModel.transform.DOMove(showPoint.position, showingDuration).SetEase(Ease.InOutQuad);
+        await Task.Delay(Mathf.RoundToInt(1000 * showingDuration));
     }
 
-    public void Show()
+    private void OnDisable()
     {
-        GetCandidates();
-        InstantiateCards();
-        graphicsParent.SetActive(true);
-    }
-    
-    public void Hide()
-    {
-        ClearCards();
-        graphicsParent.SetActive(false);
+        _onSelectionChanged -= Select;
     }
 }

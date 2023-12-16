@@ -37,10 +37,10 @@ MonoBehaviour:
   nodeAttaignableColor: {r: 1, g: 1, b: 1, a: 1}
   nodeVisitedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mapLayers:
-  - nodeType: 2
+  - nodeType: 5
     randomizeNodes: 0
-  - nodeType: 2
-    randomizeNodes: 0.503
+  - nodeType: 5
+    randomizeNodes: 0
   - nodeType: 2
     randomizeNodes: 0.557
   - nodeType: 2
