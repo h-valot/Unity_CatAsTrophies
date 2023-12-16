@@ -237,6 +237,7 @@ public class Cat : Entity
      
         // handle entity stats tweaking 
         armor = 0;
+        effects.Clear();
         
         // handle graphics tweaking
         graphicsParent.SetActive(false);
