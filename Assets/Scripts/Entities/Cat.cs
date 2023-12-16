@@ -155,8 +155,9 @@ public class Cat : Entity
 
         // trigger animations
         animator.SetTrigger("IsFighting");
-
-        int AttackingOrder = TurnManager.Instance.AddCatAttackQueue(this); //Add the cat to the attack queue in the turn manager and return it's order of attack
+        
+        // add the cat to the attack queue in the turn manager and return it's order of attack
+        int attackingOrder = TurnManager.Instance.AddCatAttackQueue(this);
         isAbilityUsed = true;
         state = CatState.ON_BATTLE;
         OnBattlefieldEntered?.Invoke();
@@ -189,7 +190,7 @@ public class Cat : Entity
             animator.SetTrigger("IsFighting");
         }
 
-        //trigger update display function in EntityUIDisplay.cs
+        // trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
 
@@ -212,7 +213,8 @@ public class Cat : Entity
     
     public void AddCatAttackQueue()
     {
-        int AttackingOrder = TurnManager.Instance.AddCatAttackQueue(this); //Add the cat to the attack queue in the turn manager and return it's order of attack
+        // add the cat to the attack queue in the turn manager and return it's order of attack
+        int attackingOrder = TurnManager.Instance.AddCatAttackQueue(this);
         isAbilityUsed = true;
     }
 
