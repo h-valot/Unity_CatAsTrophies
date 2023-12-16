@@ -20,5 +20,13 @@ namespace List
                 (list[i], list[rnd]) = (list[rnd], list[i]);
             }
         }
+
+        /// <summary>
+        /// Clears and fills the list with the given list  
+        /// </summary>
+        public static List<T> Copy<T>(this IList<T> list)
+        {
+            return new List<T>(list);
+        }
     }
 }

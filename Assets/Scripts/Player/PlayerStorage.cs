@@ -18,7 +18,7 @@ namespace Player
         /// </summary>
         public void SwitchToInGameDeck()
         {
-            inGameDeck = deck.ToList();
+            inGameDeck = deck.Copy();
         }
 
         /// <summary>
