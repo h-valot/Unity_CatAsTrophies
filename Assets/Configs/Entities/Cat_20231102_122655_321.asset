@@ -21,9 +21,11 @@ MonoBehaviour:
   abilityDescription: Deals 2 Damages to every enemy.
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 2
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 0
       value: 2

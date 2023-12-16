@@ -201,7 +201,7 @@ MonoBehaviour:
   background: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   backgroundColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4288666868
   backgroundPadding: {x: -50, y: -50}
   showEscapeButton: 1
 --- !u!1 &4440593759050748735

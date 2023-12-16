@@ -17,15 +17,15 @@ MonoBehaviour:
     cats:
     - entityIndex: 0
       health: 6
-      isDead: 1
+      isDead: 0
     - entityIndex: 0
       health: 6
-      isDead: 1
+      isDead: 0
   - entityIndex: 1
     cats:
     - entityIndex: 1
       health: 8
-      isDead: 1
+      isDead: 0
     - entityIndex: 1
       health: 8
       isDead: 0
@@ -45,12 +45,4 @@ MonoBehaviour:
     - entityIndex: 3
       health: 6
       isDead: 0
-  - entityIndex: 12
-    cats:
-    - entityIndex: 12
-      health: 9
-      isDead: 1
-    - entityIndex: 12
-      health: 9
-      isDead: 0
-  deckLenght: 10
+  deckLenght: 8

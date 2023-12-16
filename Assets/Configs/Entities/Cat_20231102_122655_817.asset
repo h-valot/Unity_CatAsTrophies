@@ -21,9 +21,11 @@ MonoBehaviour:
   abilityDescription: Heals 2 HP to the cat with the less HP.
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 2
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 7
       value: 2
