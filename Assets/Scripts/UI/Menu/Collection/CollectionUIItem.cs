@@ -62,7 +62,6 @@ public class CollectionUIItem : MonoBehaviour
             blackImage.DOFade(0.5f, 0);
              if (isInDeck)
              {
-                 Debug.Log("COLLECTION UI ITEM: item ui set as last sibling");
                  graphicsParent.SetActive(false);
                  transform.SetAsLastSibling();
              }
