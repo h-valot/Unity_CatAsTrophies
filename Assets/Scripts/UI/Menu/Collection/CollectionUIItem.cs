@@ -1,5 +1,4 @@
 using System;
-using Data;
 using DG.Tweening;
 using Player;
 using TMPro;
@@ -10,7 +9,8 @@ public class CollectionUIItem : MonoBehaviour
 {
     [Header("REFERENCES")] 
     public GameObject graphicsParent;
-    public Image catImage;
+    public Sprite epicBackground, commonBackground;
+    public Image backgroundImage, faceImage;
     public Image blackImage;
     public TextMeshProUGUI countTM;
 
@@ -18,13 +18,13 @@ public class CollectionUIItem : MonoBehaviour
     public GameObject canvasParent;
     public bool isInDeck;
     
-    public Action onItemDragBegin;
-    public Action onItemDragEnd;
+    public Action<bool> onItemDragBegin;
+    public Action<bool> onItemDragEnd;
     public Action<Item> onItemSelected;
     
     [HideInInspector] public Item item;
     
-    public void Initialize(Item item, Action onItemDragBegin, Action onItemDragEnd, Action<Item> onItemSelected, GameObject canvasParent, bool isInDeck)
+    public void Initialize(Item item, Action<bool> onItemDragBegin, Action<bool> onItemDragEnd, Action<Item> onItemSelected, GameObject canvasParent, bool isInDeck)
     {
         this.item = item;
         this.onItemDragBegin = onItemDragBegin;
@@ -42,35 +42,39 @@ public class CollectionUIItem : MonoBehaviour
         item.onDataChanged -= UpdateGraphics;
     }
 
+    /// <summary>
+    /// Updates graphics according to the item reference
+    /// </summary>
     public void UpdateGraphics()
     {
-        graphicsParent.SetActive(true);
-        catImage.sprite = Registry.entitiesConfig.cats[item.entityIndex].sprite;
+        // updates information
+        backgroundImage.sprite = Registry.entitiesConfig.cats[item.entityIndex].rarety == Rarety.EPIC ? epicBackground : commonBackground;
+        faceImage.sprite = Registry.entitiesConfig.cats[item.entityIndex].sprite;
         countTM.text = $"{item.cats.Count}";
         
+        // updates graphics visibility
+        graphicsParent.SetActive(true);
+        blackImage.DOFade(0, 0);
+        
+        // hides item ui, if it's empty
         if (item.cats.Count == 0)
         {
             blackImage.DOFade(0.5f, 0);
              if (isInDeck)
              {
+                 Debug.Log("COLLECTION UI ITEM: item ui set as last sibling");
                  graphicsParent.SetActive(false);
                  transform.SetAsLastSibling();
              }
         }
-        else
-        {
-            blackImage.DOFade(0, 0);
-        }
     }
 
-    public void Drag()
+    /// <summary>
+    /// Set graphics cat counter amount to the given parameter
+    /// </summary>
+    public void SetGraphicsCatAmount(int amount)
     {
-        countTM.text = "1";
-    }
-
-    public void Undrag()
-    {
-        countTM.text = $"{item.cats.Count}";
+        countTM.text = $"{amount}";
     }
     
     public void Press()

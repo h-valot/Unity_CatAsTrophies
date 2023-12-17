@@ -15,15 +15,18 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231116_192314_888
   entityName: Sniper
+  rarety: 1
   health: 5
   armorAtStart: 0
   sprite: {fileID: 0}
   abilityDescription: 
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 1
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 21
       value: 1

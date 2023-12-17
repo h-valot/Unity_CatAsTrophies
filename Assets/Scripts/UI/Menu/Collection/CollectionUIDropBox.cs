@@ -1,13 +1,9 @@
-using System.Linq;
 using Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class CollectionUIDropBox : MonoBehaviour, IDropHandler
 {
-    [Header("REFERENCES")] 
-    public Transform content;
-    
     [Header("SETTINGS")] 
     public bool isDeck;
     
@@ -32,7 +28,6 @@ public class CollectionUIDropBox : MonoBehaviour, IDropHandler
         // transfers cat depending on their origin
         if (draggable.itemUI.isInDeck)
         {
-            Debug.Log("COLLECTION UI DROP BOX: tranfers item from deck to collection");
             DataManager.data.playerStorage.Transfer(
                 DataManager.data.playerStorage.deck, 
                 DataManager.data.playerStorage.collection, 
@@ -40,7 +35,6 @@ public class CollectionUIDropBox : MonoBehaviour, IDropHandler
         }
         else
         {
-            Debug.Log("COLLECTION UI DROP BOX: tranfers item from collection to deck");
             DataManager.data.playerStorage.Transfer(
                 DataManager.data.playerStorage.collection, 
                 DataManager.data.playerStorage.deck, 

@@ -89,7 +89,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphicsParent: {fileID: 181582907819007600}
-  catImage: {fileID: 1923692428043167456}
+  epicBackground: {fileID: 21300000, guid: 4fd72769cab76f2488aed7823e4e53b0, type: 3}
+  commonBackground: {fileID: 21300000, guid: 5c8e0b0196fe14447a499060a79bdf04, type: 3}
+  backgroundImage: {fileID: 2934745118790174103}
+  faceImage: {fileID: 1923692428043167456}
   blackImage: {fileID: 2889819714265252224}
   countTM: {fileID: 4934241692729742365}
   canvasParent: {fileID: 0}
@@ -162,7 +165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c165ecbc64df16f40b3b1ce2e97e6cbe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4fd72769cab76f2488aed7823e4e53b0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -432,6 +435,7 @@ MonoBehaviour:
   - {fileID: 1923692428043167456}
   - {fileID: 4091523604391192277}
   parentAfterDrag: {fileID: 0}
+  siblingIndexAfterDrag: 0
 --- !u!1 &5577950726047745417
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +508,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -6, y: -6}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &199103152341747130
 CanvasRenderer:

@@ -15,6 +15,7 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_122655_321
   entityName: Wizard
+  rarety: 1
   health: 7
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: 35e7936706d9c6d48a0087c337b2b708, type: 3}

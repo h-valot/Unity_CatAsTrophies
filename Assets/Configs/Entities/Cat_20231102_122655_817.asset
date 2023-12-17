@@ -15,6 +15,7 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_122655_817
   entityName: Priest
+  rarety: 1
   health: 6
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: beb276ea47d3edf42be85dd84a1a49d7, type: 3}

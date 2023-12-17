@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using DG.Tweening;
 using Player;
@@ -12,11 +13,15 @@ public class CollectionUIManager : MonoBehaviour
     [Header("REFERENCES")] 
     public GameObject canvasParent;
     public CollectionUIItem itemPrefab;
+    public Sprite epicBackground, commonBackground;
 
-    [Header("INFORMATION")]
-    public TextMeshProUGUI catNameTM;
-    public TextMeshProUGUI healthPointTM;
-    public TextMeshProUGUI catAmountTM;
+    [Header("INFORMATION")] 
+    public Image catBackgroundImage;
+    public Image catFaceImage;
+    public TextMeshProUGUI nameTM;
+    public TextMeshProUGUI amountTM;
+    public TextMeshProUGUI raretyTM;
+    public TextMeshProUGUI hpTM;
     public TextMeshProUGUI abilityTM;
     
     [Header("DECK")] public Transform deckContentTransform;
@@ -30,9 +35,11 @@ public class CollectionUIManager : MonoBehaviour
     [Header("ANIMATION")] 
     public float highlightCycleDuration;
     
-    public Action onItemDragBegin;
-    public Action onItemDragEnd;
+    public Action<bool> onItemDragBegin;
+    public Action<bool> onItemDragEnd;
     public Action<Item> onItemSelected;
+    private Sequence _deckSequence;
+    private Sequence _collectionSequence;
 
     public void Show()
     {
@@ -89,6 +96,7 @@ public class CollectionUIManager : MonoBehaviour
     {
         onItemDragBegin += HighlightDragZones;
         onItemDragEnd += HideDragZones;
+        onItemDragEnd += UpdatePositions;
         onItemSelected += UpdateInformation;
     }
 
@@ -96,41 +104,67 @@ public class CollectionUIManager : MonoBehaviour
     {
         onItemDragBegin -= HighlightDragZones;
         onItemDragEnd -= HideDragZones;
+        onItemDragEnd -= UpdatePositions;
         onItemSelected -= UpdateInformation;
     }
 
-    private Sequence _deckSequence;
-    private Sequence _collectionSequence;
-    private void HighlightDragZones()
+    private void HighlightDragZones(bool isInDeck)
     {
-        deckHighlightImage.DOFade(0, 0);
-        collectionHighlightImage.DOFade(0, 0);
+        if (isInDeck)
+        {
+            collectionHighlightImage.DOFade(0, 0);
+            
+            _collectionSequence = DOTween.Sequence();
+            _collectionSequence.SetLoops(-1);
+            _collectionSequence.Append(collectionHighlightImage.DOFade(1, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
+            _collectionSequence.Append(collectionHighlightImage.DOFade(0, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
+        }
+        else
+        {
+            deckHighlightImage.DOFade(0, 0);
         
-        _deckSequence = DOTween.Sequence();
-        _deckSequence.SetLoops(-1);
-        _deckSequence.Append(deckHighlightImage.DOFade(1, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
-        _deckSequence.Append(deckHighlightImage.DOFade(0, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
-        
-        _collectionSequence = DOTween.Sequence();
-        _collectionSequence.SetLoops(-1);
-        _collectionSequence.Append(collectionHighlightImage.DOFade(1, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
-        _collectionSequence.Append(collectionHighlightImage.DOFade(0, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
+            _deckSequence = DOTween.Sequence();
+            _deckSequence.SetLoops(-1);
+            _deckSequence.Append(deckHighlightImage.DOFade(1, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
+            _deckSequence.Append(deckHighlightImage.DOFade(0, highlightCycleDuration / 2).SetEase(Ease.InOutQuad));
+        }
     }
 
-    private void HideDragZones()
+    private void HideDragZones(bool isInDeck)
     {
-        _deckSequence.Kill();
-        _collectionSequence.Kill();
-        
-        deckHighlightImage.DOFade(1, 0);
-        collectionHighlightImage.DOFade(0, 0);
+        if (isInDeck)
+        {
+            _collectionSequence.Kill();
+            collectionHighlightImage.DOFade(0, 0);
+        }
+        else
+        {
+            _deckSequence.Kill();
+            deckHighlightImage.DOFade(1, 0);
+        }
     }
 
+    /// <summary>
+    /// Updates position of items ui in the deck to properly hide empty one
+    /// </summary>
+    private void UpdatePositions(bool isInDeck)
+    {
+        // foreach (var item in deckItems.Where(item => item.graphicsParent.activeInHierarchy == false))
+        //     item.transform.SetAsLastSibling();
+    }
+
+    /// <summary>
+    /// Updates information panel with the given item infos
+    /// </summary>
     private void UpdateInformation(Item item)
     {
-        catNameTM.text = Registry.entitiesConfig.cats[item.entityIndex].entityName;
-        healthPointTM.text = $"HP: {Registry.entitiesConfig.cats[item.entityIndex].health}";
-        catAmountTM.text = $"Amount: {item.cats.Count}";
+        catBackgroundImage.sprite = Registry.entitiesConfig.cats[item.entityIndex].rarety == Rarety.EPIC ? epicBackground : commonBackground;
+        catFaceImage.sprite = Registry.entitiesConfig.cats[item.entityIndex].sprite;
+        
+        nameTM.text = Registry.entitiesConfig.cats[item.entityIndex].entityName;
+        amountTM.text = $"Amount: {item.cats.Count}";
+        raretyTM.text = $"{Registry.entitiesConfig.cats[item.entityIndex].rarety.ToString().ToLower()}";
+        hpTM.text = $"{Registry.entitiesConfig.cats[item.entityIndex].health}";
         abilityTM.text = Registry.entitiesConfig.cats[item.entityIndex].abilityDescription;
     }
 }

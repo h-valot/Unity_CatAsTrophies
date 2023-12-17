@@ -17,6 +17,7 @@ namespace Editor
 
         // global infos
         private string _entityName;
+        private Rarety _rarety;
         private float _health;
         private int _armorAtStart;
         private Sprite _sprite;
@@ -184,6 +185,7 @@ namespace Editor
             // INFORMATIONS
             GUILayout.Label("INFORMATION", EditorStyles.boldLabel);
             _entityName = EditorGUILayout.TextField("Name", _entityName);
+            _rarety = (Rarety)EditorGUILayout.EnumPopup("Rarety", _rarety);
             _health = EditorGUILayout.FloatField("Health", _health);
             _armorAtStart = EditorGUILayout.IntField("Armor at start", _armorAtStart);
             _sprite = (Sprite)EditorGUILayout.ObjectField("Sprite", _sprite, typeof(Sprite), true);
@@ -258,6 +260,7 @@ namespace Editor
         
             // INFORMATIONS
             _entityName = _currentEntity.entityName;
+            _rarety = _currentEntity.rarety;
             _health = _currentEntity.health;
             _armorAtStart = _currentEntity.armorAtStart;
             _sprite = _currentEntity.sprite;
@@ -439,6 +442,7 @@ namespace Editor
             
             // base infos
             _currentEntity.entityName = _entityName;
+            _currentEntity.rarety = _rarety;
             _currentEntity.health = _health;
             _currentEntity.armorAtStart = _armorAtStart;
             _currentEntity.sprite = _sprite;

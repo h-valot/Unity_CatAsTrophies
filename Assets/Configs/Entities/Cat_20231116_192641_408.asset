@@ -15,15 +15,18 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231116_192641_408
   entityName: Frost Mage
+  rarety: 0
   health: 3
   armorAtStart: 0
   sprite: {fileID: 0}
   abilityDescription: 
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 2
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 27
       value: 5
