@@ -109,5 +109,17 @@ namespace Player
                 }
             }
         }
+
+        /// <summary>
+        /// Returns the number of cats in the given list of item
+        /// </summary>
+        public int GetLenght(List<Item> items)
+        {
+            var output = 0;
+            foreach (var item in items)
+                output += item.cats.Count;
+            
+            return output;
+        }
     }
 }

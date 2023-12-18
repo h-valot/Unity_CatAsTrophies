@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fd0f72ea6634e4e829603362810972, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
+  deckMaxLengh: 10
   deck:
   - entityIndex: 0
     cats:
@@ -45,4 +46,12 @@ MonoBehaviour:
     - entityIndex: 3
       health: 6
       isDead: 0
-  deckLenght: 8
+  - entityIndex: 7
+    cats:
+    - entityIndex: 7
+      health: 9
+      isDead: 0
+    - entityIndex: 7
+      health: 9
+      isDead: 0
+  deckLenght: 10

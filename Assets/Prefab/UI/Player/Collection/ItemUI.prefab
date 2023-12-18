@@ -88,18 +88,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da669e41e1d0c5d41b3ef08c5f99fdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicsParent: {fileID: 181582907819007600}
   epicBackground: {fileID: 21300000, guid: 4fd72769cab76f2488aed7823e4e53b0, type: 3}
   commonBackground: {fileID: 21300000, guid: 5c8e0b0196fe14447a499060a79bdf04, type: 3}
   backgroundImage: {fileID: 2934745118790174103}
   faceImage: {fileID: 1923692428043167456}
   blackImage: {fileID: 2889819714265252224}
   countTM: {fileID: 4934241692729742365}
-  canvasParent: {fileID: 0}
+  countParent: {fileID: 5577950726047745417}
+  buttonParent: {fileID: 5490568295582873216}
+  emptyBackgroundColor: {r: 0.45490196, g: 0.36862746, b: 0.30588236, a: 1}
+  emptyFaceColor: {r: 0.36078432, g: 0.29411766, b: 0.23921569, a: 1}
+  emptyBackgroundSprite: {fileID: 21300000, guid: 2aa5e909f5905fd4cb2133f33659926c, type: 3}
+  emptyFaceSprite: {fileID: 21300000, guid: 3fede2227b9978a4692c392ed2ff8725, type: 3}
   isInDeck: 0
   item:
     entityIndex: 0
     cats: []
+  itemModel: {fileID: 0}
 --- !u!1 &3323504493390019624
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,14 +163,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.45400003, g: 0.36752382, b: 0.3057551, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4fd72769cab76f2488aed7823e4e53b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2aa5e909f5905fd4cb2133f33659926c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -174,7 +179,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.2
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5404256535896732335
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 3e52a2bd7be5df44783c1815d2902533, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -385,7 +390,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2.85
 --- !u!114 &4964828482701765793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,13 +434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemUI: {fileID: 4015094893599302442}
-  images:
-  - {fileID: 2889819714265252224}
-  - {fileID: 2934745118790174103}
-  - {fileID: 1923692428043167456}
-  - {fileID: 4091523604391192277}
-  parentAfterDrag: {fileID: 0}
-  siblingIndexAfterDrag: 0
 --- !u!1 &5577950726047745417
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7894102832472811767
 RectTransform:
   m_ObjectHideFlags: 0
@@ -485,7 +483,7 @@ GameObject:
   - component: {fileID: 199103152341747130}
   - component: {fileID: 1923692428043167456}
   m_Layer: 5
-  m_Name: IMG_Cat
+  m_Name: IMG_Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,14 +529,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.36200002, g: 0.29393163, b: 0.23823933, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 13886d4e09153aa41ac80e9564998e3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fede2227b9978a4692c392ed2ff8725, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -613,7 +611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e6f2425e3344d0c45994d483ea981dff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fede2227b9978a4692c392ed2ff8725, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

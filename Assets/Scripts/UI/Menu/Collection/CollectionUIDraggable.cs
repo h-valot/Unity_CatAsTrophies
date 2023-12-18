@@ -1,53 +1,53 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class CollectionUIDraggable : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [Header("REFERENCES")] 
     public CollectionUIItem itemUI;
-    public Image[] images;
-    
-    [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public int siblingIndexAfterDrag;
+
+    [HideInInspector] public bool canDrag = true;
+    [HideInInspector] public int entityIndexBeforeDrag;
+    private int _amountAfterDrag;
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        // update graphics
+        // updates informations
+        canDrag = true;        
+        entityIndexBeforeDrag = itemUI.item.entityIndex;
+        
+        _amountAfterDrag = itemUI.UpdateGraphicsAmount(-1);
+        if (_amountAfterDrag < 0)
+        {
+            canDrag = false;
+            return;
+        }
+        
+        // background animation
         itemUI.onItemDragBegin?.Invoke(itemUI.isInDeck);
-        itemUI.SetGraphicsCatAmount(1);
         
-        // save grid content transform
-        parentAfterDrag = itemUI.transform.parent;
-        siblingIndexAfterDrag = itemUI.transform.GetSiblingIndex();
-        
-        // highlight item ui
-        itemUI.transform.SetParent(itemUI.canvasParent.transform);
-        itemUI.transform.SetAsLastSibling();
-        
-        // disable images raycasts
-        foreach (var image in images)
-            image.raycastTarget = false;
+        // updates model graphics
+        itemUI.itemModel.UpdateGraphics(itemUI.item);
+        itemUI.itemModel.transform.position = Input.mousePosition;
+        itemUI.itemModel.Show();
     }
     
     public void OnDrag(PointerEventData eventData)
     {
+        if (!canDrag) return;
+        
         // dynamically update position
-        itemUI.transform.position = Input.mousePosition;
+        itemUI.itemModel.transform.position = Input.mousePosition;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        // replace item ui to its original parent
-        itemUI.transform.SetParent(parentAfterDrag);
-        itemUI.transform.SetSiblingIndex(siblingIndexAfterDrag);
+        // updates model graphics
+        itemUI.itemModel.Hide();
         
-        // enable images raycasts
-        foreach (var image in images)
-            image.raycastTarget = true;
+        // updates item ui graphics 
+        itemUI.UpdateGraphicsAmount(0);
         
-        // update graphics
-        itemUI.UpdateGraphics();
         itemUI.onItemDragEnd?.Invoke(itemUI.isInDeck);
     }
 }
