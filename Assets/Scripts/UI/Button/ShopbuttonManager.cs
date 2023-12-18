@@ -3,37 +3,50 @@ using UnityEngine.UI;
 
 public class ShopbuttonManager : MonoBehaviour
 {
+    [Header("REFERENCES")] 
+    public GameObject graphicsParent;
     public Image featuredTabImage, catsTabImage, boostsTabImage, coinsTabImage;
-    public Transform featuredPanel, catsPanel, boostsPanel, coinsPanel;
+    public GameObject featuredPanel, catsPanel, boostsPanel, coinsPanel;
 
     [Header("SETTINGS")] 
     public Color unselectedTabColor;
 
+    public void Show() => graphicsParent.SetActive(true);
+    public void Hide() => graphicsParent.SetActive(false);
+    
     public void OpenFeaturedPanel()
     {
-        featuredPanel.SetAsLastSibling();
+        HideAllPanels();
         SetAllTabsUnselected();
+        
+        featuredPanel.SetActive(true);
         featuredTabImage.color = Color.white;
     }
     
     public void OpenCatsPanel()
     {
-        catsPanel.SetAsLastSibling();
+        HideAllPanels();
         SetAllTabsUnselected();
+        
+        catsPanel.SetActive(true);
         catsTabImage.color = Color.white;
     }
     
     public void OpenBoostsPanel()
     {
-        boostsPanel.SetAsLastSibling();
+        HideAllPanels();
         SetAllTabsUnselected();
+        
+        boostsPanel.SetActive(true);
         boostsTabImage.color = Color.white;
     }
     
     public void OpenCoinsPanel()
     {
-        coinsPanel.SetAsLastSibling();
+        HideAllPanels();
         SetAllTabsUnselected();
+        
+        coinsPanel.SetActive(true);
         coinsTabImage.color = Color.white;
     }
 
@@ -43,5 +56,13 @@ public class ShopbuttonManager : MonoBehaviour
         catsTabImage.color = unselectedTabColor;
         boostsTabImage.color = unselectedTabColor;
         coinsTabImage.color = unselectedTabColor;
+    }
+
+    private void HideAllPanels()
+    {
+        featuredPanel.SetActive(false);
+        catsPanel.SetActive(false);
+        boostsPanel.SetActive(false);
+        coinsPanel.SetActive(false);
     }
 }
