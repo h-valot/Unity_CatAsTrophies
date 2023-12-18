@@ -85,19 +85,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1528917410368174060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da669e41e1d0c5d41b3ef08c5f99fdbb, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6bb6632d35ef140b0b4914a5423983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countTM: {fileID: 4934241692729742365}
   epicBackground: {fileID: 21300000, guid: 4fd72769cab76f2488aed7823e4e53b0, type: 3}
   commonBackground: {fileID: 21300000, guid: 5c8e0b0196fe14447a499060a79bdf04, type: 3}
   backgroundImage: {fileID: 2934745118790174103}
   faceImage: {fileID: 1923692428043167456}
   blackImage: {fileID: 2889819714265252224}
-  countTM: {fileID: 4934241692729742365}
   countParent: {fileID: 5577950726047745417}
   buttonParent: {fileID: 5490568295582873216}
-  emptyBackgroundColor: {r: 0.45490196, g: 0.36862746, b: 0.30588236, a: 1}
-  emptyFaceColor: {r: 0.36078432, g: 0.29411766, b: 0.23921569, a: 1}
+  emptyBackgroundColor: {r: 0.45882356, g: 0.37254903, b: 0.3019608, a: 1}
+  emptyFaceColor: {r: 0.35686275, g: 0.29411766, b: 0.2392157, a: 1}
   emptyBackgroundSprite: {fileID: 21300000, guid: 2aa5e909f5905fd4cb2133f33659926c, type: 3}
   emptyFaceSprite: {fileID: 21300000, guid: 3fede2227b9978a4692c392ed2ff8725, type: 3}
   isInDeck: 0
@@ -247,8 +247,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dba588e510b97fc49895047eb595846a, type: 2}
+  m_sharedMaterial: {fileID: 8247470494970147418, guid: dba588e510b97fc49895047eb595846a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -272,15 +272,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 45
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 159.02
-  m_fontStyle: 1
+  m_fontSizeMax: 45
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: -5
   m_wordSpacing: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5490568295582873216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38574e328316ea7418cda426053b9c9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 753a41d8d4edeef45aa08ea7171ee090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   graphicsParent: {fileID: 181582907819007600}
@@ -434,6 +434,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemUI: {fileID: 4015094893599302442}
+  canDrag: 1
+  entityIndexBeforeDrag: 0
 --- !u!1 &5577950726047745417
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,45 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopbuttonManager : MonoBehaviour
 {
-    public GameObject featureButton;
-    public GameObject catsButton;
-    public GameObject boostButton;
-    public GameObject tunaButton;
+    public Image featuredTabImage, catsTabImage, boostsTabImage, coinsTabImage;
+    public Transform featuredPanel, catsPanel, boostsPanel, coinsPanel;
+
+    [Header("SETTINGS")] 
+    public Color unselectedTabColor;
 
     public void OpenFeaturedPanel()
     {
-        featureButton.SetActive(true);
-        catsButton.SetActive(false);
-        boostButton.SetActive(false);
-        tunaButton.SetActive(false);
-        Debug.Log("Je suis dans le panel Featured");
+        featuredPanel.SetAsLastSibling();
+        SetAllTabsUnselected();
+        featuredTabImage.color = Color.white;
     }
+    
     public void OpenCatsPanel()
     {
-        featureButton.SetActive(false);
-        catsButton.SetActive(true);
-        boostButton.SetActive(false);
-        tunaButton.SetActive(false);
-        Debug.Log("Je suis dans le panel Cats");
+        catsPanel.SetAsLastSibling();
+        SetAllTabsUnselected();
+        catsTabImage.color = Color.white;
     }
-    public void OpenBoostPanel()
+    
+    public void OpenBoostsPanel()
     {
-        featureButton.SetActive(false);
-        catsButton.SetActive(false);
-        boostButton.SetActive(true);
-        tunaButton.SetActive(false);
-        Debug.Log("Je suis dans le panel Boost");
+        boostsPanel.SetAsLastSibling();
+        SetAllTabsUnselected();
+        boostsTabImage.color = Color.white;
     }
-    public void OpenTunaPanel()
+    
+    public void OpenCoinsPanel()
     {
-        featureButton.SetActive(false);
-        catsButton.SetActive(false);
-        boostButton.SetActive(false);
-        tunaButton.SetActive(true);
-        Debug.Log("Je suis dans le panel Tuna");
+        coinsPanel.SetAsLastSibling();
+        SetAllTabsUnselected();
+        coinsTabImage.color = Color.white;
+    }
+
+    private void SetAllTabsUnselected()
+    {
+        featuredTabImage.color = unselectedTabColor;
+        catsTabImage.color = unselectedTabColor;
+        boostsTabImage.color = unselectedTabColor;
+        coinsTabImage.color = unselectedTabColor;
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
   health: 7
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: 35e7936706d9c6d48a0087c337b2b708, type: 3}
-  abilityDescription: Deals 2 Damages to every enemy.
+  abilityDescription: 
   ability:
     animation: 0
     intentionSprite: {fileID: 0}

@@ -540,7 +540,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4847721616462323994}
         m_TargetAssemblyTypeName: ShopbuttonManager, Assembly-CSharp
-        m_MethodName: OpenTunaPanel
+        m_MethodName: OpenCoinsPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1064,7 +1064,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4847721616462323994}
         m_TargetAssemblyTypeName: ShopbuttonManager, Assembly-CSharp
-        m_MethodName: OpenBoostPanel
+        m_MethodName: OpenBoostsPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -30,8 +30,7 @@ public class InputHandler : MonoBehaviour
                     if (hitInfoCat.transform.gameObject.GetComponentInParent<Cat>().state != CatState.IN_HAND)
                     {
                         HandManager.Instance.ArrangeHand();
-                        //remove cat info panel
-                        Registry.events.OnCatDestacked(); //goes to infoCatPanel.cs
+                        Debug.Log($"Code to remove the cat info panel here");
                     }
                     clickAlreadyCat = true;
                 }
@@ -41,8 +40,7 @@ public class InputHandler : MonoBehaviour
                 if (!clickAlreadyNotCat && !clickAlreadyCat)
                 {
                     HandManager.Instance.ArrangeHand();
-                    //remove cat info panel
-                    Registry.events.OnCatDestacked(); //goes to infoCatPanel.cs
+                    Debug.Log($"Code to remove the cat info panel here");
                     clickAlreadyNotCat = true;
                 }
             }

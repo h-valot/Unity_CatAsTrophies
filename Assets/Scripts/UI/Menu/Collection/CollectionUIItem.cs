@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class CollectionUIItem : MonoBehaviour
 {
     [Header("REFERENCES")] 
+    public TextMeshProUGUI countTM;
     public Sprite epicBackground, commonBackground;
     public Image backgroundImage, faceImage;
     public Image blackImage;
-    public TextMeshProUGUI countTM;
 
     [Header("EMPTY SETTINGS")] 
     public GameObject countParent;
