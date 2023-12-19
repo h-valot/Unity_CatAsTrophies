@@ -1,4 +1,3 @@
-using System.Linq;
 using Data;
 using List;
 using Player;
@@ -13,10 +12,11 @@ public class Init : MonoBehaviour
     public MapConfig mapConfig;
     public Events events;
 
-    private void Start()
+    [Header("GRAPHICS")] 
+    public LoadingScreenUIManager loadingScreenUIManager;
+    
+    private async void Start()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(gameSettings.startingScene);
-        
         Registry.entitiesConfig = entitiesConfig;
         Registry.gameSettings = gameSettings;
         Registry.playerConfig = playerConfig;
@@ -34,8 +34,10 @@ public class Init : MonoBehaviour
                 foreach (var item in DataManager.data.playerStorage.deck)
                     DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex));
         }
-        
+
+        await loadingScreenUIManager.Animate();
+
         Registry.isInitialized = true;
-        asyncLoad.allowSceneActivation = true;
+        SceneManager.LoadScene(gameSettings.startingScene);
     }
 }
