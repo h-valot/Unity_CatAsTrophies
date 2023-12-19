@@ -237,6 +237,7 @@ public class MapView : MonoBehaviour
         image.color = backgroundColor;
         image.type = Image.Type.Sliced;
         image.sprite = background;
+        image.pixelsPerUnitMultiplier = 2;
     }
     
     private void Stretch(RectTransform rectTransform)

@@ -11,7 +11,11 @@ public class ShopbuttonManager : MonoBehaviour
     [Header("SETTINGS")] 
     public Color unselectedTabColor;
 
-    public void Show() => graphicsParent.SetActive(true);
+    public void Show()
+    {
+        graphicsParent.SetActive(true);
+        OpenFeaturedPanel();
+    }
     public void Hide() => graphicsParent.SetActive(false);
     
     public void OpenFeaturedPanel()

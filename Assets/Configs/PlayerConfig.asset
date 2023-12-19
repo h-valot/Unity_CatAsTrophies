@@ -18,10 +18,10 @@ MonoBehaviour:
     cats:
     - entityIndex: 0
       health: 6
-      isDead: 0
+      isDead: 1
     - entityIndex: 0
       health: 6
-      isDead: 0
+      isDead: 1
   - entityIndex: 1
     cats:
     - entityIndex: 1
@@ -53,5 +53,5 @@ MonoBehaviour:
       isDead: 0
     - entityIndex: 7
       health: 9
-      isDead: 0
+      isDead: 1
   deckLenght: 10
