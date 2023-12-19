@@ -43,7 +43,7 @@ public class EndBattleUIManager : MonoBehaviour
 
     private async Task AnimateEndMap()
     {
-        mapManager.DisplayCanvas();
+        mapManager.ShowCanvasNormal();
     }
     
     private async Task AnimateEndReward()

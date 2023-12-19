@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMultiplier: 1.5
+  levitatingMultiplier: 0.5
+  levitatingCycleDuration: 5
+  graphicsParent: {fileID: 6110347387237189368}
   catMeshRenderer: {fileID: 3576935699718850821}
   catEyesMeshRenderer: {fileID: 2304554968783553448}
   boneHead: {fileID: 2288940876047503702}

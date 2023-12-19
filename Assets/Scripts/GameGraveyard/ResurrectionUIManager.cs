@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResurrectionUIManager : MonoBehaviour
 {
@@ -20,22 +22,25 @@ public class ResurrectionUIManager : MonoBehaviour
     [Header("DONE PANEL")]
     public TextMeshProUGUI doneFlavorTM;
     public float doneDuration = 3f;
+    public Image doneLoadingImage;
+
+    [Header("EMPTY PANEL")] 
+    public float emptyDuration = 3f;
+    public Image emptyLoadingImage;
+    
+    public MapManager mapManager;
     
     private int _selectedCandidate;
     private Action<int> _onSelectionChanged;
     private List<Vector2Int> _candidates = new List<Vector2Int>();
-    private MapManager _mapManager;
     
-    public void Initialize(List<Vector2Int> candidates, Action<int> onSelectionChanged, MapManager mapManager)
+    public void Initialize(List<Vector2Int> candidates, Action<int> onSelectionChanged)
     {
         _candidates = candidates;
         _onSelectionChanged = onSelectionChanged;
-        _mapManager = mapManager;
         
         UpdateGraphics();
-        HideResurrection();
-        HideEmpty();
-        HideDone();
+        HideAll();
     }
 
     public void NavigateToRight()
@@ -75,18 +80,34 @@ public class ResurrectionUIManager : MonoBehaviour
     {
         doneFlavorTM.text = $"Your {Registry.entitiesConfig.cats[_candidates[_selectedCandidate].x].entityName.ToLower()} has been resurrected.";
         ShowDone();
+        doneLoadingImage.DOFillAmount(1, doneDuration);
         await Task.Delay(Mathf.RoundToInt(1000 * doneDuration));
         
+        mapManager.ShowCanvasLocked();
+        HideAll();
+    }
+
+    private void HideAll()
+    {
         HideDone();
         HideEmpty();
         HideResurrection();
-        _mapManager.DisplayCanvas();
     }
     
     public void HideResurrection() => resurrectionParent.SetActive(false);
     public void ShowResurrection() => resurrectionParent.SetActive(true);
+    
     public void HideEmpty() => emptyParent.SetActive(false);
-    public void ShowEmpty() => emptyParent.SetActive(true);
+    public async Task ShowEmpty()
+    {
+        emptyParent.SetActive(true);
+        emptyLoadingImage.DOFillAmount(1, emptyDuration);
+        await Task.Delay(Mathf.RoundToInt(1000 * emptyDuration));
+        
+        mapManager.ShowCanvasLocked();
+        HideAll();
+    }
+    
     public void HideDone() => doneParent.SetActive(false);
     public void ShowDone() => doneParent.SetActive(true);
 }

@@ -22,20 +22,21 @@ public class ResurrectionManager : MonoBehaviour
     private Action<int> _onSelectionChanged;
     private readonly List<Vector2Int> _candidates = new List<Vector2Int>();
     
-    public void Initialize()
+    public async void Initialize()
     {
         _onSelectionChanged += Select;
         
         GetCandidates();
+        resurrectionUIManager.mapManager = mapManager;
         if (_candidates.Count > 0)
         {
             Select(0);
-            resurrectionUIManager.Initialize(_candidates, _onSelectionChanged, mapManager);
+            resurrectionUIManager.Initialize(_candidates, _onSelectionChanged);
             resurrectionUIManager.ShowResurrection();
         }
         else
         {
-            resurrectionUIManager.ShowEmpty();
+            await resurrectionUIManager.ShowEmpty();
         }
     }
     

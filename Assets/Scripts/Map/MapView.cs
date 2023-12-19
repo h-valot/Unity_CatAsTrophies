@@ -32,6 +32,7 @@ public class MapView : MonoBehaviour
 
     [Header("Escape settings")]
     public bool showEscapeButton;
+    public bool isInteractible;
     
     private Map _map;
     private readonly List<NodeUI> _nodesUI = new List<NodeUI>();
@@ -75,7 +76,7 @@ public class MapView : MonoBehaviour
         foreach (Node node in nodes)
         {
             var newNodeUI = Instantiate(nodePrefab, contentParent).GetComponent<NodeUI>();
-            newNodeUI.Initialize(node);
+            newNodeUI.Initialize(node, isInteractible);
             newNodeUI.transform.localPosition = GetNodePosition(node);
             _nodesUI.Add(newNodeUI);
         }

@@ -515,6 +515,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 588947434859488765}
     m_Modifications:
+    - target: {fileID: 2044725590179883154, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044725590179883154, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044725590179883154, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2291610641515436251, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -525,6 +537,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2291610641515436251, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352000190358810953, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352000190358810953, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2526175372046106880, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
@@ -671,13 +691,13 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &269423212 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8881589263937813627, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8744535991731532981, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
   m_PrefabInstance: {fileID: 269423210}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be83d0088258b14981a03cd2b6e2221, type: 3}
+  m_Script: {fileID: 11500000, guid: fb595c7e3e88dd04c9eb9972d0d0ec12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &303231944
@@ -1145,6 +1165,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427239333}
   m_CullTransparentMesh: 0
+--- !u!114 &531828591 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2490486925014367408, guid: efc1773233bf2cf4fa139affac1e55fa, type: 3}
+  m_PrefabInstance: {fileID: 269423210}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615f6d868701edb49bfef960152d21fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &691977213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,8 +1512,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280429107
+  m_fontColor: {r: 0.20000002, g: 0.16470589, b: 0.13333334, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1668,7 +1699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b596ae2e66f1d1145ad2eff03b300061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeControl: {fileID: 0}
+  volumeControl: {fileID: 531828591}
 --- !u!1001 &1186012651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1734,7 +1765,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04087c1da601352418e1859cd797f69e, type: 3}
---- !u!114 &1186012652 stripped
+--- !u!114 &1186012653 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 253022445413061595, guid: 04087c1da601352418e1859cd797f69e, type: 3}
   m_PrefabInstance: {fileID: 1186012651}
@@ -1947,8 +1978,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 269423212}
-        m_TargetAssemblyTypeName: GameMenu, Assembly-CSharp
-        m_MethodName: OpenMenu
+        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+        m_MethodName: ShowSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2412,8 +2443,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280429107
+  m_fontColor: {r: 0.20000002, g: 0.16470589, b: 0.13333334, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2546,8 +2577,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280429107
+  m_fontColor: {r: 0.20000002, g: 0.16470589, b: 0.13333334, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2827,9 +2858,9 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1186012652}
+      - m_Target: {fileID: 1186012653}
         m_TargetAssemblyTypeName: MapManager, Assembly-CSharp
-        m_MethodName: DisplayCanvas
+        m_MethodName: ShowCanvasNormal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2922,20 +2953,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7018430410967718633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7586247317744395895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58646f91a397b1246a7c620f59bb4407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameMenus:
-  - {fileID: 269423212}
 --- !u!1 &7586247317744395895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,7 +2962,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 588947434859488765}
-  - component: {fileID: 7018430410967718633}
   m_Layer: 5
   m_Name: MENU
   m_TagString: Untagged

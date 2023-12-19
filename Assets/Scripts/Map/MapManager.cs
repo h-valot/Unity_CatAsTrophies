@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using Data;
 using Player;
+using Unity.VisualScripting;
 
 public class MapManager : MonoBehaviour
 {
@@ -12,12 +13,32 @@ public class MapManager : MonoBehaviour
     [Header("DEBUGGING")]
     public Map currentMap;
 
-    public void DisplayCanvas()
+    public void ShowCanvasNormal()
+    {
+        mapView.showEscapeButton = true;
+        mapView.isInteractible = true;
+        ShowCanvas();
+    }
+
+    public void ShowCanvasUninteractible()
+    {
+        mapView.showEscapeButton = true;
+        mapView.isInteractible = false;
+        ShowCanvas();
+    }
+
+    public void ShowCanvasLocked()
+    {
+        mapView.showEscapeButton = false;
+        mapView.isInteractible = true;
+        ShowCanvas();
+    }
+
+    private void ShowCanvas()
     {
         mapCanvasParent.SetActive(true);
         Initialize();
     }
-
     public void HideCanvas()
     {
         mapCanvasParent.SetActive(false);

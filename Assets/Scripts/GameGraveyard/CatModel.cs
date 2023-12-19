@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 public class CatModel : MonoBehaviour
@@ -58,7 +60,7 @@ public class CatModel : MonoBehaviour
         newAddon.transform.localRotation = Quaternion.identity;
         newAddon.transform.localScale *= scaleMultiplier;
         newAddon.SetActive(false);
-
+        
         return newAddon;
     }
 }

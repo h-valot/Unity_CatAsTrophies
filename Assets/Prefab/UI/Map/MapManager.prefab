@@ -677,6 +677,7 @@ MonoBehaviour:
     rgba: 4288402943
   backgroundPadding: {x: -50, y: -50}
   showEscapeButton: 1
+  isInteractible: 1
 --- !u!1 &4347075800763746697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,7 +1037,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8428975428604415175
 MonoBehaviour:
