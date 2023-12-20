@@ -318,4 +318,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introSong: {fileID: 8300000, guid: 3d74c0a113dc6464e9bdecb7605193d4, type: 3}
-  loopSong: {fileID: 8300000, guid: 19f8fc78cb61d4044ab3bc545a73d4aa, type: 3}
+  loopSong: {fileID: 8300000, guid: 59e2c5ac3e4e7d94b8141e55621cf706, type: 3}
