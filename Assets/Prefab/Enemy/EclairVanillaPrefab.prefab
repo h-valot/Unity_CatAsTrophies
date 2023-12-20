@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3586727341761150166}
   - component: {fileID: 8820716560862059485}
   m_Layer: 0
-  m_Name: EclairChocolatPrefab
+  m_Name: EclairVanillaPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +233,7 @@ PrefabInstance:
     - target: {fileID: -49509088320031490, guid: a60fc79d52611c74b8094594f20d9f5b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 79364253ae3c69c43a8d9568182a040d, type: 2}
+      objectReference: {fileID: 2100000, guid: f8adedcdb81700f4f99ec8d08c4f2079, type: 2}
     - target: {fileID: 919132149155446097, guid: a60fc79d52611c74b8094594f20d9f5b, type: 3}
       propertyPath: m_Name
       value: EclairChocolatEntity
