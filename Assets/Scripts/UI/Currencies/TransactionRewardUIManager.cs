@@ -11,7 +11,7 @@ namespace UI.Shop
         public RewardUIManager rewardUIManager; 
         public ShopbuttonManager shopbuttonManager;
             
-        [Header("REFERENCES")] 
+        [Header("REFERENCES")]
         public GameObject graphicsParent;
         public RSE_DebugLog rseDebugLog;
         public RSO_CurrencyTuna rsoCurrencyTuna;

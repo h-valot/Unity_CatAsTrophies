@@ -15,6 +15,7 @@ MonoBehaviour:
   startingScene: mainmenu
   gameBattleDebugMode: 0
   playerDeckDebugMode: 1
+  playLoadingScreen: 1
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5
