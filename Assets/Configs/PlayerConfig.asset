@@ -18,15 +18,15 @@ MonoBehaviour:
     cats:
     - entityIndex: 0
       health: 6
-      isDead: 0
+      isDead: 1
     - entityIndex: 0
       health: 6
-      isDead: 0
+      isDead: 1
   - entityIndex: 1
     cats:
     - entityIndex: 1
       health: 8
-      isDead: 0
+      isDead: 1
     - entityIndex: 1
       health: 8
       isDead: 0

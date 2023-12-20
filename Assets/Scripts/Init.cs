@@ -35,7 +35,7 @@ public class Init : MonoBehaviour
                     DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex));
         }
 
-        await loadingScreenUIManager.Animate();
+        if (gameSettings.playLoadingScreen) await loadingScreenUIManager.Animate();
 
         Registry.isInitialized = true;
         SceneManager.LoadScene(gameSettings.startingScene);

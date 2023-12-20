@@ -880,7 +880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: All your cat are alive.
+  m_text: All your cats are alive.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dba588e510b97fc49895047eb595846a, type: 2}
   m_sharedMaterial: {fileID: 8247470494970147418, guid: dba588e510b97fc49895047eb595846a, type: 2}

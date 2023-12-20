@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,6 +5,8 @@ public class CatModel : MonoBehaviour
 {
     [Header("GRAPHICS TWEAKING")] 
     public float scaleMultiplier = 1.5f;
+    public Transform graphicsParent;
+    public float levitationAmplitude, levitationCycleDuration;
     
     [Header("MESH RENDERER")]
     public SkinnedMeshRenderer catMeshRenderer;
@@ -44,6 +45,8 @@ public class CatModel : MonoBehaviour
         if (_headAddon) Destroy(_headAddon.gameObject);
         _headAddon = InstantiateAddon(Registry.entitiesConfig.cats[catType].headAddon, boneHead.transform);
         if (_headAddon) _headAddon.SetActive(true);
+        
+        AnimateLevitation();
     }
     
     /// <summary>
@@ -62,5 +65,15 @@ public class CatModel : MonoBehaviour
         newAddon.SetActive(false);
         
         return newAddon;
+    }
+
+    private void AnimateLevitation()
+    {
+        var yPos = graphicsParent.localPosition.y;
+     
+        Sequence sequence = DOTween.Sequence();
+        sequence.SetLoops(-1);
+        sequence.Append(graphicsParent.DOLocalMoveY(yPos + levitationAmplitude, levitationCycleDuration / 2).SetEase(Ease.InOutSine));
+        sequence.Append(graphicsParent.DOLocalMoveY(yPos, levitationCycleDuration / 2).SetEase(Ease.InOutSine));
     }
 }
