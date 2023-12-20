@@ -1283,7 +1283,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 246266036}
         m_TargetAssemblyTypeName: ShopbuttonManager, Assembly-CSharp
-        m_MethodName: Show
+        m_MethodName: ShowNormal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

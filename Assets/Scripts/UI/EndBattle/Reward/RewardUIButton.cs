@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RewardUIButton : MonoBehaviour
 {
     [Header("REFERENCES")] 
-    public GameObject imageParent;
+    public GameObject faceParent;
     public GameObject infoParent;
 
     [Header("GLOBAL")]
@@ -46,13 +46,13 @@ public class RewardUIButton : MonoBehaviour
     {
         _isInfoShown = true;
         infoParent.SetActive(true);
-        imageParent.SetActive(false);
+        faceParent.SetActive(false);
     }
     public void HideInfo()
     {
         _isInfoShown = false;
         infoParent.SetActive(false);
-        imageParent.SetActive(true);
+        faceParent.SetActive(true);
     }
     
     /// <summary>

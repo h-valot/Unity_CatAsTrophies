@@ -2147,6 +2147,7 @@ MonoBehaviour:
   catsPanel: {fileID: 6930024582299195153}
   boostsPanel: {fileID: 6195665197353080323}
   coinsPanel: {fileID: 6160969199268689412}
+  catsCollectionButton: {fileID: 7497512043499857122}
   unselectedTabColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &3715678709164957811
 GameObject:

@@ -7,6 +7,8 @@ using UnityEngine;
 public class RewardUIManager : MonoBehaviour
 {
     [Header("REFERENCES")] 
+    public ShopbuttonManager shopbuttonManager;
+    public GameObject graphicsParent;
     public RewardUIButton[] buttons;
 
     [Header("DEBUGGING")] 
@@ -60,5 +62,13 @@ public class RewardUIManager : MonoBehaviour
         int rewardSelected = rewardCandidates[Random.Range(0, rewardCandidates.Count - 1)];
         rewardsSelected.Add(rewardSelected);
         return rewardSelected;
+    }
+    
+    public void Show() => graphicsParent.SetActive(true);
+    public void Hide() => graphicsParent.SetActive(false);
+
+    public void ShowShop()
+    {
+        shopbuttonManager.ShowWithoutCatsButton();
     }
 }

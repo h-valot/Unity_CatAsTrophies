@@ -412,12 +412,12 @@ RectTransform:
   - {fileID: 3644751530433852311}
   - {fileID: 1339948194593215013}
   - {fileID: 6453286168006160430}
-  m_Father: {fileID: 8741644573821232988}
+  m_Father: {fileID: 6277513284664009223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 150}
-  m_SizeDelta: {x: -80, y: 75}
+  m_AnchoredPosition: {x: 0, y: -96.400024}
+  m_SizeDelta: {x: 0, y: 75}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &860100556453219953
 GameObject:
@@ -914,7 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6277513284664009223}
   m_Layer: 5
-  m_Name: Cat
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -933,7 +933,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6701358392265676031}
-  - {fileID: 4014223418746172569}
+  - {fileID: 4742859255943874936}
   m_Father: {fileID: 8741644573821232988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -971,12 +971,12 @@ RectTransform:
   m_Children:
   - {fileID: 1662960111875025095}
   - {fileID: 8075084135379466868}
-  m_Father: {fileID: 4014223418746172569}
+  m_Father: {fileID: 4051581874286178810}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 0, y: 80}
+  m_AnchoredPosition: {x: 0, y: -123.599976}
+  m_SizeDelta: {x: -80, y: 80}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2516201059861453882
 GameObject:
@@ -1142,12 +1142,12 @@ RectTransform:
   m_Children:
   - {fileID: 7584153101271978031}
   - {fileID: 8869800855645724176}
-  m_Father: {fileID: 4014223418746172569}
+  m_Father: {fileID: 4051581874286178810}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 350}
+  m_AnchoredPosition: {x: 0, y: 246.4}
+  m_SizeDelta: {x: -80, y: 350}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &3408771880991479289
 GameObject:
@@ -1371,15 +1371,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753a41d8d4edeef45aa08ea7171ee090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicsParent: {fileID: 0}
+  graphicsParent: {fileID: 46117465918464085}
   image: {fileID: 9039692985384227856}
   scaleDownMultiplier: 0.8
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CollectionUIManager, Assembly-CSharp
-        m_MethodName: Show
+      - m_Target: {fileID: 4006374466837703234}
+        m_TargetAssemblyTypeName: RewardUIButton, Assembly-CSharp
+        m_MethodName: GatherReward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1477,15 +1477,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753a41d8d4edeef45aa08ea7171ee090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicsParent: {fileID: 0}
+  graphicsParent: {fileID: 756724279045371572}
   image: {fileID: 8634720386247646501}
   scaleDownMultiplier: 0.8
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CollectionUIManager, Assembly-CSharp
-        m_MethodName: Show
+      - m_Target: {fileID: 4006374466837703234}
+        m_TargetAssemblyTypeName: RewardUIButton, Assembly-CSharp
+        m_MethodName: ShowInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1735,8 +1735,7 @@ RectTransform:
   - {fileID: 238959310923126511}
   - {fileID: 4815151284487855972}
   - {fileID: 6277513284664009223}
-  - {fileID: 4742859255943874936}
-  - {fileID: 5165726976378413432}
+  - {fileID: 4051581874286178810}
   - {fileID: 6186752550857959545}
   - {fileID: 6006697017670480246}
   m_Father: {fileID: 4252318152887447855}
@@ -1966,8 +1965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe894ac69c60ca747949aca075adb935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageParent: {fileID: 5924455708886134397}
-  infoParent: {fileID: 6433877176910352195}
+  faceParent: {fileID: 2452551326496180305}
+  infoParent: {fileID: 6659896195376952464}
   catNameTM: {fileID: 7335554339973163126}
   selectButton: {fileID: 46117465918464085}
   buyButton: {fileID: 420231051989272611}
@@ -1977,43 +1976,6 @@ MonoBehaviour:
   commonBackground: {fileID: 21300000, guid: 5c8e0b0196fe14447a499060a79bdf04, type: 3}
   infoCatHealthTM: {fileID: 1540639696330868646}
   infoCatAbilityTM: {fileID: 3617356132897930996}
---- !u!1 &6433877176910352195
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4014223418746172569}
-  m_Layer: 5
-  m_Name: Info
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &4014223418746172569
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6433877176910352195}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7259516736588782981}
-  - {fileID: 7603162865689887485}
-  m_Father: {fileID: 6277513284664009223}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6582303507548593123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5165726976378413432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2120,13 +2082,51 @@ RectTransform:
   - {fileID: 7748422421503584970}
   - {fileID: 7162196582358458426}
   - {fileID: 3418581674830987536}
-  m_Father: {fileID: 8741644573821232988}
+  m_Father: {fileID: 4051581874286178810}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 150}
+  m_AnchoredPosition: {x: 0, y: 149.99997}
   m_SizeDelta: {x: -80, y: 75}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!1 &6659896195376952464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4051581874286178810}
+  m_Layer: 5
+  m_Name: Info
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &4051581874286178810
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6659896195376952464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7259516736588782981}
+  - {fileID: 7603162865689887485}
+  - {fileID: 5165726976378413432}
+  m_Father: {fileID: 8741644573821232988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6968337441019656524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5764706, g: 0.4666667, b: 0.38823533, a: 1}
+  m_Color: {r: 0.35686275, g: 0.29411766, b: 0.2392157, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2574,15 +2574,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753a41d8d4edeef45aa08ea7171ee090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicsParent: {fileID: 420231051989272611}
+  graphicsParent: {fileID: 6638271171218106646}
   image: {fileID: 7187017293544036800}
   scaleDownMultiplier: 0.8
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CollectionUIManager, Assembly-CSharp
-        m_MethodName: Show
+      - m_Target: {fileID: 4006374466837703234}
+        m_TargetAssemblyTypeName: RewardUIButton, Assembly-CSharp
+        m_MethodName: HideInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -48,7 +48,7 @@ public class EndBattleUIManager : MonoBehaviour
     
     private async Task AnimateEndReward()
     {
-        rewardUIManager.gameObject.SetActive(true);
+        rewardUIManager.Show();
         rewardUIManager.UpdateDisplay();
     }
 }

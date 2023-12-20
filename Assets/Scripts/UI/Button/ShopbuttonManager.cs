@@ -7,15 +7,26 @@ public class ShopbuttonManager : MonoBehaviour
     public GameObject graphicsParent;
     public Image featuredTabImage, catsTabImage, boostsTabImage, coinsTabImage;
     public GameObject featuredPanel, catsPanel, boostsPanel, coinsPanel;
+    public GameObject catsCollectionButton;
 
     [Header("SETTINGS")] 
     public Color unselectedTabColor;
 
-    public void Show()
+    public void ShowNormal()
     {
         graphicsParent.SetActive(true);
+        catsCollectionButton.SetActive(true);
         OpenFeaturedPanel();
     }
+    
+    public void ShowWithoutCatsButton()
+    {
+        graphicsParent.SetActive(true);
+        catsCollectionButton.SetActive(false);
+        OpenCoinsPanel();
+    }
+    
+    
     public void Hide() => graphicsParent.SetActive(false);
     
     public void OpenFeaturedPanel()
