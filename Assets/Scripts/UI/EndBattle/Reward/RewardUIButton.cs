@@ -6,31 +6,60 @@ using UnityEngine.UI;
 public class RewardUIButton : MonoBehaviour
 {
     [Header("REFERENCES")] 
-    public GameObject graphicsParent;
-    public HoldUIButton holdButton;
-    public Image rewardImage;
-    public GameObject buyButton;
-    public TextMeshProUGUI rewardNameTM;
+    public GameObject imageParent;
+    public GameObject infoParent;
 
-    private int catRewardIndex;
+    [Header("GLOBAL")]
+    public TextMeshProUGUI catNameTM;
+    public GameObject selectButton;
+    public GameObject buyButton;
+
+    [Header("REWARD")] 
+    public Image catFaceImage;
+    public Image catBackgroundImage;
+    public Sprite epicBackground, commonBackground;
+    
+    [Header("INFO")]
+    public TextMeshProUGUI infoCatHealthTM;
+    public TextMeshProUGUI infoCatAbilityTM;
+
+    private int _catRewardIndex;
+    private bool _isInfoShown;
 
     public void UpdateDisplay(int newCatRewardIndex)
     {
-        catRewardIndex = newCatRewardIndex;
+        _catRewardIndex = newCatRewardIndex;
         
-        // lock the button, if the cat reward is premium
-        if (Registry.entitiesConfig.cats[catRewardIndex].pricing == RewardPricing.PREMIUM) holdButton.Lock();
+        catNameTM.text = Registry.entitiesConfig.cats[_catRewardIndex].entityName;
         
-        rewardImage.sprite = Registry.entitiesConfig.cats[catRewardIndex].sprite;
-        rewardNameTM.text = Registry.entitiesConfig.cats[catRewardIndex].entityName;
+        catBackgroundImage.sprite = Registry.entitiesConfig.cats[_catRewardIndex].rarety == Rarety.EPIC ? epicBackground : commonBackground;
+        catFaceImage.sprite = Registry.entitiesConfig.cats[_catRewardIndex].sprite;
+
+        infoCatHealthTM.text = $"{Registry.entitiesConfig.cats[_catRewardIndex].health}";
+        infoCatAbilityTM.text = $"{Registry.entitiesConfig.cats[_catRewardIndex].abilityDescription}";
         
-        buyButton.SetActive(Registry.entitiesConfig.cats[catRewardIndex].pricing == RewardPricing.PREMIUM);
+        selectButton.SetActive(Registry.entitiesConfig.cats[_catRewardIndex].pricing == RewardPricing.FREE);
+        buyButton.SetActive(Registry.entitiesConfig.cats[_catRewardIndex].pricing == RewardPricing.PREMIUM);
+    }
+
+    public void ShowInfo()
+    {
+        _isInfoShown = true;
+        infoParent.SetActive(true);
+        imageParent.SetActive(false);
+    }
+    public void HideInfo()
+    {
+        _isInfoShown = false;
+        infoParent.SetActive(false);
+        imageParent.SetActive(true);
     }
     
+    /// <summary>
+    /// Adds the catReward to the player's run deck
+    /// </summary>
     public void GatherReward()
     {
-        // add the catReward to the player's run deck
-        
-        DataManager.data.playerStorage.AddToInGameDeck(catRewardIndex);
+        DataManager.data.playerStorage.AddToInGameDeck(_catRewardIndex);
     }
 }
