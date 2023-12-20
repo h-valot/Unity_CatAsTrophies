@@ -1,14 +1,13 @@
 using System.Linq;
 using UnityEngine;
 using Data;
-using Player;
-using Unity.VisualScripting;
 
 public class MapManager : MonoBehaviour
 {
     [Header("REFERENCE")]
     public MapView mapView;
     public GameObject mapCanvasParent;
+    public RSE_DebugLog rseDebugLog;
     
     [Header("DEBUGGING")]
     public Map currentMap;
@@ -50,6 +49,7 @@ public class MapManager : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
+        
         if (DataManager.data.map != null && DataManager.data.map.IsNotEmpty())
         {
             Map map = DataManager.data.map;
@@ -81,6 +81,13 @@ public class MapManager : MonoBehaviour
     {
         DataManager.data.playerStorage.ResetAllData();
         DataManager.data.playerStorage.SwitchToInGameDeck();
+        
+        if (DataManager.data.playerStorage.GetLenght(DataManager.data.playerStorage.inGameDeck) <= 0)
+        {
+            HideCanvas();
+            rseDebugLog.Call("Your deck of cats is empty. Fill it before starting a new run.", Color.red);
+            return;
+        }
         
         currentMap = MapGenerator.GetMap(Registry.mapConfig);
         mapView.ShowMap(currentMap);

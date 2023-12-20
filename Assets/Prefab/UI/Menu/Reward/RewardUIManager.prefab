@@ -310,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7597028388000903622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2382,6 +2382,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7597028388000903622}
+  - {fileID: 1421575306126158267}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2407,6 +2408,10 @@ MonoBehaviour:
   - {fileID: 269182916744986398}
   - {fileID: 5311684440751096324}
   - {fileID: 8157256968745179486}
+  rsoCurrencyTuna: {fileID: 11400000, guid: d747626b8b88dd34cb209370688859e5, type: 2}
+  rsoCurrencyTreat: {fileID: 11400000, guid: f714da42ab9581546bf4cea61d843d4d, type: 2}
+  tunaTM: {fileID: 3931898182138284369}
+  treatTM: {fileID: 3875801949276411594}
   rewardsSelected: 
 --- !u!1 &8387428371248875655
 GameObject:
@@ -2716,6 +2721,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4006374466837703234, guid: eb7405ebf18833d46b25860c0106338c, type: 3}
+      propertyPath: transactionRewardUIManager
+      value: 
+      objectReference: {fileID: 390180927173063721}
     - target: {fileID: 6411467029061159092, guid: eb7405ebf18833d46b25860c0106338c, type: 3}
       propertyPath: m_Name
       value: RewardUIButtonLeft
@@ -2957,6 +2966,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4006374466837703234, guid: eb7405ebf18833d46b25860c0106338c, type: 3}
+      propertyPath: transactionRewardUIManager
+      value: 
+      objectReference: {fileID: 390180927173063721}
     - target: {fileID: 6411467029061159092, guid: eb7405ebf18833d46b25860c0106338c, type: 3}
       propertyPath: m_Name
       value: RewardUIButtonRight
@@ -3062,6 +3075,129 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe894ac69c60ca747949aca075adb935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &8612465826814179970
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4839311078149115699}
+    m_Modifications:
+    - target: {fileID: 2472070231114295932, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_text
+      value: '120
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784603096452993323, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_Name
+      value: TransactionRewardUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282000372847562411, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+      propertyPath: rewardUIManager
+      value: 
+      objectReference: {fileID: 5810561003162223317}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+--- !u!114 &390180927173063721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8282000372847562411, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+  m_PrefabInstance: {fileID: 8612465826814179970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164eed8f0618ad7418b62c1a5f9b8bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &1421575306126158267 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7223724583594939193, guid: 17bcf7bd0ea855648bf97efc14fc0db9, type: 3}
+  m_PrefabInstance: {fileID: 8612465826814179970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9092596686168926278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3194,6 +3330,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4006374466837703234, guid: eb7405ebf18833d46b25860c0106338c, type: 3}
+      propertyPath: transactionRewardUIManager
+      value: 
+      objectReference: {fileID: 390180927173063721}
     - target: {fileID: 6411467029061159092, guid: eb7405ebf18833d46b25860c0106338c, type: 3}
       propertyPath: m_Name
       value: RewardUIButtonCenter

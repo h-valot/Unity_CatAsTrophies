@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52fd0f72ea6634e4e829603362810972, type: 3}
-  m_Name: PlayerConfig
+  m_Script: {fileID: 11500000, guid: 48bfb2e9537bed74183c21ded4a16c57, type: 3}
+  m_Name: RSE_DebugLog
   m_EditorClassIdentifier: 
-  deckMaxLengh: 10
-  deck:
-  - entityIndex: 9
-    cats: []
-  deckLenght: 8

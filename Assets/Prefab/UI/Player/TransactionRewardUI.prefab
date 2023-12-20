@@ -113,7 +113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 85}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1988610028673960297
@@ -334,9 +334,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7223724583594939193}
-  - component: {fileID: 7054229153891249364}
+  - component: {fileID: 8282000372847562411}
   m_Layer: 5
-  m_Name: TransactionUI
+  m_Name: TransactionRewardUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7054229153891249364
+--- !u!114 &8282000372847562411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,14 +371,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2784603096452993323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd095ebe98da36e46b0892ea107c4495, type: 3}
+  m_Script: {fileID: 11500000, guid: 164eed8f0618ad7418b62c1a5f9b8bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicsParent: {fileID: 8924153038100825790}
-  rsoCurrencyTuna: {fileID: 11400000, guid: d747626b8b88dd34cb209370688859e5, type: 2}
-  rsoCurrencyTreat: {fileID: 11400000, guid: f714da42ab9581546bf4cea61d843d4d, type: 2}
-  rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
+  rewardUIManager: {fileID: 0}
   shopbuttonManager: {fileID: 0}
+  graphicsParent: {fileID: 8924153038100825790}
+  rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
+  rsoCurrencyTuna: {fileID: 11400000, guid: d747626b8b88dd34cb209370688859e5, type: 2}
   buyButton: {fileID: 6180629391628553391}
   coinsButton: {fileID: 8419569949707120752}
   titleTM: {fileID: 85086977324882546}
@@ -504,8 +504,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7054229153891249364}
-        m_TargetAssemblyTypeName: TransactionUIManager, Assembly-CSharp
+      - m_Target: {fileID: 8282000372847562411}
+        m_TargetAssemblyTypeName: UI.Shop.TransactionRewardUIManager, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
@@ -744,7 +744,7 @@ PrefabInstance:
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7054229153891249364}
+      objectReference: {fileID: 8282000372847562411}
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -755,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TransactionUIManager, Assembly-CSharp
+      value: UI.Shop.TransactionRewardUIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -882,7 +882,7 @@ PrefabInstance:
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7054229153891249364}
+      objectReference: {fileID: 8282000372847562411}
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -893,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TransactionUIManager, Assembly-CSharp
+      value: UI.Shop.TransactionRewardUIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1078597469448918498, guid: 803fb78ae534f2a4191b1f64b78ecbcf, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1037,7 +1037,7 @@ PrefabInstance:
     - target: {fileID: 545858472682402285, guid: 62068a597f3881342943788fd214a237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7054229153891249364}
+      objectReference: {fileID: 8282000372847562411}
     - target: {fileID: 545858472682402285, guid: 62068a597f3881342943788fd214a237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1048,7 +1048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 545858472682402285, guid: 62068a597f3881342943788fd214a237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TransactionUIManager, Assembly-CSharp
+      value: UI.Shop.TransactionRewardUIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 545858472682402285, guid: 62068a597f3881342943788fd214a237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1167,7 +1167,7 @@ PrefabInstance:
     - target: {fileID: 1078597469448918498, guid: 0b5e35ba1f900a8488509d9ca8e9ee8b, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7054229153891249364}
+      objectReference: {fileID: 8282000372847562411}
     - target: {fileID: 1078597469448918498, guid: 0b5e35ba1f900a8488509d9ca8e9ee8b, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1178,7 +1178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078597469448918498, guid: 0b5e35ba1f900a8488509d9ca8e9ee8b, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TransactionUIManager, Assembly-CSharp
+      value: UI.Shop.TransactionRewardUIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1078597469448918498, guid: 0b5e35ba1f900a8488509d9ca8e9ee8b, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

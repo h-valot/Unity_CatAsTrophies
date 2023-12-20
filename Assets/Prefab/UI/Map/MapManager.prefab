@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapView: {fileID: 6435305520408718604}
   mapCanvasParent: {fileID: 7885169802098533733}
+  rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
   currentMap:
     nodes: []
     playerPath: []

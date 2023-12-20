@@ -7,8 +7,6 @@ namespace Player
     [System.Serializable]
     public class PlayerStorage
     {
-        public int tuna, treats;
-        
         public List<Item> collection = new List<Item>();
         public List<Item> deck = new List<Item>();
         public List<Item> inGameDeck = new List<Item>();
