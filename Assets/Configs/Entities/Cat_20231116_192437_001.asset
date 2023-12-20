@@ -19,7 +19,7 @@ MonoBehaviour:
   health: 10
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: e6f2425e3344d0c45994d483ea981dff, type: 3}
-  abilityDescription: Deals 10 Damages to himself and to the 2 front enemies.
+  abilityDescription: Deals 10 damages to itself and the 2 front enemies.
   ability:
     animation: 0
     intentionSprite: {fileID: 0}

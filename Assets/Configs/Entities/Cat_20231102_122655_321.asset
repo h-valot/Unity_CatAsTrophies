@@ -19,7 +19,7 @@ MonoBehaviour:
   health: 7
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: 35e7936706d9c6d48a0087c337b2b708, type: 3}
-  abilityDescription: 
+  abilityDescription: Deals 2 damages to all enemies.
   ability:
     animation: 0
     intentionSprite: {fileID: 0}
@@ -40,5 +40,5 @@ MonoBehaviour:
   headAddon: {fileID: 919132149155446097, guid: 83fc67a20fa31994991a380b748b3b38, type: 3}
   canBeReward: 1
   apparitionTiers: 000000000100000002000000
-  pricing: 1
-  cost: 100
+  pricing: 0
+  cost: 0

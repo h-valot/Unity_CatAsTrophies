@@ -18,8 +18,8 @@ MonoBehaviour:
   rarety: 1
   health: 5
   armorAtStart: 0
-  sprite: {fileID: 0}
-  abilityDescription: 
+  sprite: {fileID: 21300000, guid: b07cdc6b7274fa942af7dc03739f4d45, type: 3}
+  abilityDescription: Deals 3 damages to the front enemy ignoring its armor points.
   ability:
     animation: 0
     intentionSprite: {fileID: 0}

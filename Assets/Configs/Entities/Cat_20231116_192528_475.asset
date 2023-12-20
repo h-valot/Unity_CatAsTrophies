@@ -19,7 +19,7 @@ MonoBehaviour:
   health: 9
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: 13886d4e09153aa41ac80e9564998e3a, type: 3}
-  abilityDescription: Deals 4 Damages to the front enemy and heals himself by 2 HP.
+  abilityDescription: Deals 4 damages to the front enemy and heals itself by 2 HP.
   ability:
     animation: 0
     intentionSprite: {fileID: 0}
