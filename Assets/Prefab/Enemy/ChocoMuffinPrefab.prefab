@@ -82,6 +82,7 @@ MonoBehaviour:
   graphicsParent: {fileID: 3045761098863965795}
   animator: {fileID: 2092680620852310547}
   skinnedMeshRenderer: {fileID: 0}
+  catEyesRenderer: {fileID: 0}
   blobShadow: {fileID: 8447845708646851671}
   blobShadowRenderer: {fileID: 295559058976969517}
   battlePosition: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   handRotation: {x: 0, y: 0, z: 0}
   dragRotation: {x: 0, y: 0, z: 0}
   battleScale: 1.25
+  selectedAutoAttack: 0
   isInFrontOfBackgroundFade: 0
   enemyType: 0
 --- !u!1 &8447845708646851671
@@ -260,7 +262,7 @@ Animator:
   m_GameObject: {fileID: 2287834131395654135}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 77fe9f1b34187c34f85aa99aabba5523, type: 2}
+  m_Controller: {fileID: 9100000, guid: 714d206897c51b14bbdefa9a418154dc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

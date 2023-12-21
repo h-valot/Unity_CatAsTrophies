@@ -234,6 +234,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3bdcc75e0de10d04f8abbb087008f21a, type: 2}
+    - target: {fileID: -3629815281288894781, guid: bfb7a7adbe6cb024eb4e7119afb00735, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dd48aea38a2067a46bc7e195067491cf, type: 2}
     - target: {fileID: 919132149155446097, guid: bfb7a7adbe6cb024eb4e7119afb00735, type: 3}
       propertyPath: m_Name
       value: WrappedCandyEntity
