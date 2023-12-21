@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
+  rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
   isDeck: 1
 --- !u!1 &867793653351495395
 GameObject:
@@ -3734,6 +3735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
+  rseDebugLog: {fileID: 0}
   isDeck: 0
 --- !u!114 &3928295341702760623
 MonoBehaviour:
@@ -3829,6 +3831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
+  rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
   isDeck: 0
 --- !u!1 &7068021900417963629
 GameObject:

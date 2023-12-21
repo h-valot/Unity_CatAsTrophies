@@ -6,6 +6,7 @@ public class CollectionUIDropBox : MonoBehaviour, IDropHandler
 {
     [Header("REFERENCES")]
     public RSE_CollectionDragBox rseCollectionDragBox;
+    public RSE_DebugLog rseDebugLog;
     
     [Header("SETTINGS")] 
     public bool isDeck;
@@ -25,10 +26,18 @@ public class CollectionUIDropBox : MonoBehaviour, IDropHandler
         if (!draggable.itemUI.isInDeck && !isDeck) return;
 
         // exit, if the player's deck is full of cats
-        if (isDeck && DataManager.data.playerStorage.GetLenght(DataManager.data.playerStorage.deck) >= Registry.playerConfig.deckMaxLengh) return;
+        if (isDeck && DataManager.data.playerStorage.GetLenght(DataManager.data.playerStorage.deck) >= Registry.playerConfig.deckMaxLengh)
+        {
+            rseDebugLog.Call($"You can't have more than {Registry.playerConfig.deckMaxLengh} cats in your deck.", Color.red);
+            return;
+        }
 
         // exit, if the player's deck has already reach the maximum capacity of different cats
-        if (isDeck && DataManager.data.playerStorage.deck.Count == 7) return;
+        if (isDeck && DataManager.data.playerStorage.deck.Count == 7)
+        {
+            rseDebugLog.Call($"You can't have more than 7 different cat in your deck.", Color.red);
+            return;
+        }
         
         // transfers cat depending on their origin
         if (draggable.itemUI.isInDeck)
