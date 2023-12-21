@@ -33,5 +33,10 @@ namespace Data
             rsoCurrencyTuna.value = DataManager.data.tuna;
             rsoCurrencyTreat.value = DataManager.data.treat;
         }
+
+        private void OnApplicationQuit()
+        {
+            DataManager.Save();
+        }
     }
 }
