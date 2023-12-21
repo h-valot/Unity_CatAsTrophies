@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace List
 {
@@ -21,13 +22,11 @@ namespace List
         }
 
         /// <summary>
-        /// Clears and copies the given list into the list
+        /// Clears and fills the list with the given list  
         /// </summary>
-        public static void FillWith<T>(this IList<T> list, IList<T> listToCopy)
+        public static List<T> Copy<T>(this IList<T> list)
         {
-            list.Clear();
-            foreach (T item in listToCopy)
-                list.Add(item);
+            return new List<T>(list);
         }
     }
 }

@@ -8,10 +8,10 @@ public class VolumeControl : MonoBehaviour
     public AudioMixer mixer;
     public Slider volumeSlider;
 
-    private void Start()
+    public void Initialize()
     {
-        volumeSlider.value = DataManager.data.musicVolume;
-    }
+       volumeSlider.value = DataManager.data.musicVolume;
+    } 
     
     public void SetLevel(float sliderValue)
     {

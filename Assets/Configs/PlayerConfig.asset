@@ -12,25 +12,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fd0f72ea6634e4e829603362810972, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
+  deckMaxLengh: 10
   deck:
   - entityIndex: 0
-    data:
-    - health: 6
-    - health: 6
+    cats:
+    - entityIndex: 0
+      health: 6
+      isDead: 0
+    - entityIndex: 0
+      health: 6
+      isDead: 0
+    - entityIndex: 0
+      health: 6
+      isDead: 0
+    - entityIndex: 0
+      health: 6
+      isDead: 0
   - entityIndex: 1
-    data:
-    - health: 6
-    - health: 8
+    cats:
+    - entityIndex: 1
+      health: 8
+      isDead: 0
+    - entityIndex: 1
+      health: 8
+      isDead: 0
+    - entityIndex: 1
+      health: 8
+      isDead: 0
+    - entityIndex: 1
+      health: 8
+      isDead: 0
   - entityIndex: 2
-    data:
-    - health: 2
-    - health: 7
+    cats:
+    - entityIndex: 2
+      health: 7
+      isDead: 0
+    - entityIndex: 2
+      health: 7
+      isDead: 0
+    - entityIndex: 2
+      health: 7
+      isDead: 0
+    - entityIndex: 2
+      health: 7
+      isDead: 0
   - entityIndex: 3
-    data:
-    - health: 6
-    - health: 6
-  - entityIndex: 12
-    data:
-    - health: 6
-    - health: 9
-  deckLenght: 8
+    cats:
+    - entityIndex: 3
+      health: 6
+      isDead: 0
+    - entityIndex: 3
+      health: 6
+      isDead: 0
+    - entityIndex: 3
+      health: 6
+      isDead: 0
+    - entityIndex: 3
+      health: 6
+      isDead: 0
+  deckLenght: 16

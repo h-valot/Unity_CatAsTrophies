@@ -15,8 +15,8 @@ MonoBehaviour:
   id: Comp_20231113_114005_918
   isPlayerDeck: 0
   tier: 0
-  compositionName: YP
+  compositionName: YG
   entities:
   - {fileID: 11400000, guid: 2a1dcafab2958734a89ae4ef6048c69c, type: 2}
-  - {fileID: 11400000, guid: 2d617157b03d0204d91f618fea007689, type: 2}
+  - {fileID: 11400000, guid: 0a71da92363fb634d90ed10a94f31d6b, type: 2}
   - {fileID: 0}

@@ -33,18 +33,26 @@ MonoBehaviour:
   nodesDistance: 2
   rejectionSamples: 50
   nodeScaleModifier: 1
-  nodeLockedColor: {r: 0, g: 0, b: 0, a: 1}
-  nodeAttaignableColor: {r: 1, g: 1, b: 1, a: 1}
-  nodeVisitedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  nodeLockedColor: {r: 0.20000002, g: 0.16470589, b: 0.13333334, a: 1}
+  nodeAttaignableColor: {r: 0.45882356, g: 0.37254903, b: 0.3019608, a: 1}
+  nodeVisitedColor: {r: 0.7176471, g: 0.5803922, b: 0.48627454, a: 1}
   mapLayers:
   - nodeType: 2
     randomizeNodes: 0
   - nodeType: 2
-    randomizeNodes: 0.503
+    randomizeNodes: 0.2
   - nodeType: 2
-    randomizeNodes: 0.557
+    randomizeNodes: 0.5
   - nodeType: 2
-    randomizeNodes: 0.546
+    randomizeNodes: 0.5
+  - nodeType: 7
+    randomizeNodes: 0
+  - nodeType: 2
+    randomizeNodes: 0
+  - nodeType: 2
+    randomizeNodes: 0.1
+  - nodeType: 2
+    randomizeNodes: 0.5
   - nodeType: 7
     randomizeNodes: 0
   - nodeType: 0

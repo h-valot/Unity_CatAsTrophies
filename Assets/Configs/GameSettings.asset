@@ -15,6 +15,7 @@ MonoBehaviour:
   startingScene: mainmenu
   gameBattleDebugMode: 0
   playerDeckDebugMode: 1
+  playLoadingScreen: 0
   delayBeforeAnimation: 0.5
   abilityAnimationDuration: 0.75
   delayAfterAnimation: 0.5
@@ -24,11 +25,11 @@ MonoBehaviour:
   holdingTimeToTriggerAbility: 0.75
   dragingMinimumAmount: 100
   stackedHandPointPosition:
-  - {x: -1.85, y: -2.4, z: -1.75}
-  - {x: -2.75, y: -2.4, z: -1.75}
-  - {x: -2.4, y: -2.4, z: -0.85}
-  - {x: -1.5, y: -2.4, z: -0.85}
-  highlightedHandPointPosition: {x: -0.5, y: -2.4, z: -1.75}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  highlightedHandPointPosition: {x: 0, y: 0, z: 0}
   dotDamageAmount: 1
   hotHealAmount: 1
   damageResistanceModifier: 0.5
@@ -37,10 +38,11 @@ MonoBehaviour:
   debuffArmorAmout: 1
   buffAttackAmout: 1
   debuffAttackAmout: 1
+  healAmount: 2
   scrollingFeedbackLifetime: 2
   defaultFontSize: 0.5
   effectFontSize: 0.2
-  colorTextDamage: {r: 0.5764706, g: 0, b: 0, a: 1}
+  colorTextDamage: {r: 0.9333334, g: 0.3647059, b: 0.36862746, a: 1}
   colorTextHeal: {r: 0.44705883, g: 0.83137256, b: 0.12941177, a: 1}
   colorTextArmor: {r: 0, g: 0.6745098, b: 1, a: 1}
   colorTextEffect: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}

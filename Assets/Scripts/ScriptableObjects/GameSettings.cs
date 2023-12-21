@@ -6,6 +6,7 @@ public class GameSettings : ScriptableObject
     public string startingScene;
     public bool gameBattleDebugMode;
     public bool playerDeckDebugMode;
+    public bool playLoadingScreen;
 
     [Header("ANIMATIONS")]
     public float delayBeforeAnimation;
@@ -31,6 +32,9 @@ public class GameSettings : ScriptableObject
     public int buffAttackAmout;
     public int debuffAttackAmout;
 
+    [Header("BONFIRE SCENE")] 
+    public int healAmount;
+    
     [Header("SCROLLING TEXT EFFECT")]
     public float scrollingFeedbackLifetime;
     public float defaultFontSize;

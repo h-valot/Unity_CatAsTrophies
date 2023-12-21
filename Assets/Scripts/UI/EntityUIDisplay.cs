@@ -17,10 +17,17 @@ public class EntityUIDisplay : MonoBehaviour
     public TextMeshProUGUI healthTM;
     public TextMeshProUGUI armorTM;
     public GameObject armorParent;
-    public Image intent;
+    public GameObject intentGO;
+    public Image intentImage;
 
     private List<GameObject> effectDisplays = new List<GameObject>();
     private Entity entityRef;
+
+    private void Start()
+    {
+        armorParent.SetActive(false);
+        canvasGO.SetActive(false);
+    }
     
     public void OnEnable()
     {
@@ -38,7 +45,7 @@ public class EntityUIDisplay : MonoBehaviour
         {
             entityRef = Misc.GetEntityById(battlePawn.entityIdLinked);
             canvasGO.SetActive(true);
-
+            
             entityRef.OnStatsUpdate += UpdateDisplay;
             entityRef.onIntentUpdate += DisplayIntent;
             entityRef.onIntentReset += ResetIntent;
@@ -59,7 +66,7 @@ public class EntityUIDisplay : MonoBehaviour
         // get if the entity is a cat or an enemy
         if (battlePawn.TryGetComponent(out Cat cat))
         {
-            canvasGO.gameObject.SetActive(cat.state == CatState.OnBattle);
+            canvasGO.gameObject.SetActive(cat.state == CatState.ON_BATTLE);
         }
         
         if (battlePawn.TryGetComponent(out Enemy enemy))
@@ -102,7 +109,7 @@ public class EntityUIDisplay : MonoBehaviour
 
         if (entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite == null)
         {
-            intent.enabled = false;
+            intentGO.SetActive(false);
         }
     }
 
@@ -111,20 +118,17 @@ public class EntityUIDisplay : MonoBehaviour
         // Update the Intent
         if (entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite != null)
         {
-            intent.enabled = true;
-            intent.sprite = entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite;
+            intentGO.SetActive(true);
+            intentImage.sprite = entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite;
         }
         else
         {
-            intent.enabled = false;
+            intentGO.SetActive(false);
         }
     }
 
     private void ResetIntent(Entity entity)
     {
-        if (entity == entityRef)
-        {
-            intent.enabled = false;
-        }
+        if (entity == entityRef) intentGO.SetActive(false);
     }
 }

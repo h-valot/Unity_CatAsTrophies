@@ -8,6 +8,7 @@ public class NodeUI : MonoBehaviour
 {
     [Header("REFERENCES")]
     public Image nodeImage;
+    public GameObject raycastMask;
     public Image animationCircleImage;
     public float animationCircleDuration = 0.3f;
     public float durationBeforeLoadingScene = 0.5f;
@@ -16,9 +17,10 @@ public class NodeUI : MonoBehaviour
     public NodeStates state;
     public Node node;
 
-    public void Initialize(Node node)
+    public void Initialize(Node node, bool isInteractible)
     {
         this.node = node;
+        raycastMask.SetActive(!isInteractible);
         nodeImage.sprite = node.sprite;
         nodeImage.transform.localScale *= Registry.mapConfig.nodeScaleModifier;
     }

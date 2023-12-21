@@ -15,15 +15,18 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_112940_322
   entityName: Ranger
+  rarety: 1
   health: 6
   armorAtStart: 0
-  sprite: {fileID: 21300000, guid: 4fcd58f763447904682f332af2e0c353, type: 3}
-  abilityDescription: Deals 4 Damages to the front enemy.
+  sprite: {fileID: 21300000, guid: 5634828cc2543f54f956c5f7a8934ac2, type: 3}
+  abilityDescription: Deals 4 damages to the front enemy.
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 1
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 0
       value: 4

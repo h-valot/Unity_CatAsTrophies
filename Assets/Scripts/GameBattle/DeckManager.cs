@@ -35,9 +35,12 @@ public class DeckManager : MonoBehaviour
         
         foreach (Item item in DataManager.data.playerStorage.inGameDeck)
         {
-            for (int catIndex = 0; catIndex < item.data.Count; catIndex++)
+            foreach (var catData in item.cats)
             {
-                CatManager.Instance.SpawnCatGraphics(item,catIndex);
+                // continue, if this cat is dead
+                if (catData.isDead) continue;
+                
+                CatManager.Instance.SpawnCatGraphics(catData);
             }
         }
     }

@@ -26,7 +26,7 @@ public class DebugCompButton : MonoBehaviour
 
         if (battlefieldEmpty)
         {
-            EnemyGenerator.Instance.GenerateComposition(compoId);
+            EnemyGenerator.Instance.GenerateComposition(Registry.entitiesConfig.compositions[compoId]);
         }
         else
         {

@@ -8,7 +8,7 @@ namespace Player
     {
         public int entityIndex;
         public Action onDataChanged;
-        public List<CatData> data = new List<CatData>();
+        public List<CatData> cats = new List<CatData>();
 
         public Item(int newEntityIndex = 0)
         {
@@ -18,20 +18,24 @@ namespace Player
         public void Add(CatData data, int amount = 1)
         {
             for (int i = 0; i < amount; i++)
-                this.data.Add(data);
+                cats.Add(data);
 
+#if UNITY_EDITOR || UNITY_ANDROID
             onDataChanged?.Invoke();
+#endif
         }
 
         public void Remove(int amount = 1)
         {
             // exit, if data is empty
-            if (data.Count <= 0) return;
+            if (cats.Count <= 0) return;
             
             for (int i = 0; i < amount; i++)
-                data.Remove(data[^1]);
+                cats.Remove(cats[^1]);
             
+#if UNITY_EDITOR || UNITY_ANDROID
             onDataChanged?.Invoke();
+#endif
         }
     }
 }

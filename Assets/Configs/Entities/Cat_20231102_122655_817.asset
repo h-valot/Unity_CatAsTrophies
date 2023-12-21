@@ -15,15 +15,18 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231102_122655_817
   entityName: Priest
+  rarety: 1
   health: 6
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: beb276ea47d3edf42be85dd84a1a49d7, type: 3}
-  abilityDescription: Heals 2 HP to the cat with the less HP.
+  abilityDescription: Heals the cat with lowest HP by 2.
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
   - animation: 2
+    intentionSprite: {fileID: 0}
     instructions:
     - type: 7
       value: 2
@@ -36,6 +39,6 @@ MonoBehaviour:
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 919132149155446097, guid: fd243656595e0184e8005304a854ea7b, type: 3}
   canBeReward: 1
-  apparitionTiers: 000000000100000002000000
+  apparitionTiers: 0000000001000000
   pricing: 0
   cost: 0

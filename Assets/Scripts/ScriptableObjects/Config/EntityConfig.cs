@@ -10,6 +10,7 @@ public class EntityConfig : ScriptableObject
     
     [Header("STATS")]
     public string entityName;
+    public Rarety rarety;
     public float health;
     public int armorAtStart;
     public Sprite sprite;
@@ -43,4 +44,10 @@ public enum RewardPricing
 {
     FREE = 0,
     PREMIUM
+}
+
+public enum Rarety
+{
+    EPIC = 0,
+    COMMON
 }

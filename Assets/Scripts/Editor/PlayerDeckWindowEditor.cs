@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using Player;
 using UnityEditor;
 using UnityEngine;
@@ -65,7 +67,7 @@ namespace Editor
             // INFORMATION
             GUILayout.Label("PLAYER'S DECK", EditorStyles.boldLabel);
             DisplayCatsChooser();
-            GUILayout.Label($"There is a total of {GetTotalNumberOfCats()} cats in the player's deck.");
+            GUILayout.Label($"There is a total of {GetDeckLenght()} cats in the player's deck.");
         
             // DATA MANAGEMENT
             // save button
@@ -81,20 +83,10 @@ namespace Editor
             _catsIndex.Clear();
             _catsName.Clear();
         
-            foreach (Item cat in _playerConfig.deck)
+            foreach (var item in _playerConfig.deck)
             {
-                _catsIndex.Add(cat.entityIndex);
+                _catsIndex.Add(item.entityIndex);
             }
-        }
-    
-        private int GetTotalNumberOfCats()
-        {
-            int output = 0;
-            foreach (Item item in _deck)
-            {
-                output += item.data.Count;
-            }
-            return output;
         }
     
         private void DisplayCatsChooser()
@@ -121,9 +113,7 @@ namespace Editor
                     GUILayout.Label("Cats");
                     if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                     {
-                        var newItem = new Item();
-                        newItem.data.Add(new CatData(_entitiesConfig.cats[0].health));
-                        _deck.Add(newItem); 
+                        _deck.Add(new Item());
                     }
                 }
                 GUILayout.EndHorizontal();
@@ -151,10 +141,10 @@ namespace Editor
                 {
                     _deck[index].Remove();
                 }
-                GUILayout.Label($"{_deck[index].data.Count}", GUILayout.Width(20), GUILayout.Height(20));
+                GUILayout.Label($"{_deck[index].cats.Count}", GUILayout.Width(20), GUILayout.Height(20));
                 if (GUILayout.Button("+", GUILayout.Width(20), GUILayout.Height(20)))
                 {
-                    _deck[index].Add(new CatData(_entitiesConfig.cats[_deck[index].entityIndex].health));
+                    _deck[index].Add(new CatData(_deck[index].entityIndex, _entitiesConfig.cats[_deck[index].entityIndex].health));
                 }
                 
                 GUI.backgroundColor = Color.red;
@@ -170,7 +160,17 @@ namespace Editor
             }
             GUILayout.EndHorizontal();
         }
-    
+
+        private int GetDeckLenght()
+        {
+            var output = 0;
+            foreach (var item in _deck)
+            {
+                output += item.cats.Count;
+            }
+            return output;
+        }
+        
         private void SaveDataToAsset()
         {
             // save data into a temp game asset
@@ -195,7 +195,7 @@ namespace Editor
         private void UpdateEntitiesConfig()
         {
             _playerConfig.deck = _deck;
-            _playerConfig.deckLenght = GetTotalNumberOfCats();
+            _playerConfig.deckLenght = GetDeckLenght();
             EditorUtility.SetDirty(_playerConfig);
         }
     }
