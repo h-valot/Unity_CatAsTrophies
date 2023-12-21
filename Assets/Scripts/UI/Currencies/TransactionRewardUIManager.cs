@@ -60,6 +60,7 @@ namespace UI.Shop
             rsoCurrencyTuna.value -= Mathf.RoundToInt(Registry.entitiesConfig.cats[_catIndex].cost);
             DataManager.data.playerStorage.AddToInGameDeck(_catIndex);
             rseDebugLog.Call($"{Registry.entitiesConfig.cats[_catIndex].entityName} has been added to you in game deck", Color.white);
+            
             rewardUIManager.Hide();
             Hide();
         }

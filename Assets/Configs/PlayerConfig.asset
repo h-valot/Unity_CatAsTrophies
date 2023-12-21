@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deckMaxLengh: 10
   deck:
-  - entityIndex: 0
+  - entityIndex: 9
     cats:
     - entityIndex: 0
       health: 6
@@ -28,46 +28,16 @@ MonoBehaviour:
     - entityIndex: 0
       health: 6
       isDead: 0
-  - entityIndex: 1
-    cats:
-    - entityIndex: 1
-      health: 8
+    - entityIndex: 9
+      health: 999
       isDead: 0
-    - entityIndex: 1
-      health: 8
+    - entityIndex: 9
+      health: 999
       isDead: 0
-    - entityIndex: 1
-      health: 8
+    - entityIndex: 9
+      health: 999
       isDead: 0
-    - entityIndex: 1
-      health: 8
+    - entityIndex: 9
+      health: 999
       isDead: 0
-  - entityIndex: 2
-    cats:
-    - entityIndex: 2
-      health: 7
-      isDead: 0
-    - entityIndex: 2
-      health: 7
-      isDead: 0
-    - entityIndex: 2
-      health: 7
-      isDead: 0
-    - entityIndex: 2
-      health: 7
-      isDead: 0
-  - entityIndex: 3
-    cats:
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-  deckLenght: 16
+  deckLenght: 8
