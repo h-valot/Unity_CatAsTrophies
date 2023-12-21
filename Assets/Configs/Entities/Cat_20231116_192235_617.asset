@@ -15,10 +15,11 @@ MonoBehaviour:
   isCat: 1
   id: Cat_20231116_192235_617
   entityName: Chatman
+  rarety: 1
   health: 6
   armorAtStart: 0
-  sprite: {fileID: 0}
-  abilityDescription: 
+  sprite: {fileID: 21300000, guid: 24c75e833ed5c204db35979a352a3b12, type: 3}
+  abilityDescription: Buffs the damages of the front cat by 1 for 2 turns.
   ability:
     animation: 0
     intentionSprite: {fileID: 0}
@@ -38,6 +39,6 @@ MonoBehaviour:
   leftHandAddon: {fileID: 0}
   headAddon: {fileID: 919132149155446097, guid: c5db90852b5087c428c1c24e52f27f8b, type: 3}
   canBeReward: 1
-  apparitionTiers: 0100000002000000
+  apparitionTiers: 010000000200000000000000
   pricing: 0
   cost: 0

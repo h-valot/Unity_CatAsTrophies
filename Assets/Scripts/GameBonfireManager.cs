@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameBonfireManager : MonoBehaviour
 {
-    [Header("REFERENCES")] 
+    public VolumeControl volumeControl;
     public HealingUIManager healingUIManager;
     
     void Start()
@@ -15,7 +15,8 @@ public class GameBonfireManager : MonoBehaviour
             return;
         }
         
-        Registry.events.OnSceneLoaded?.Invoke();
+        Registry.events.OnSceneLoaded?.Invoke();    
         healingUIManager.Initialize();
+        volumeControl.Initialize();
     }
 }

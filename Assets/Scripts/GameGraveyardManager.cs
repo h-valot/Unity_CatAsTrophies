@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameGraveyardManager : MonoBehaviour
 {
-    [Header("REFERENCES")]
+    public VolumeControl volumeControl;
     public ResurrectionManager resurrectionManager;
     
     void Start()
@@ -16,6 +16,7 @@ public class GameGraveyardManager : MonoBehaviour
         }
 
         Registry.events.OnSceneLoaded?.Invoke();
+        volumeControl.Initialize();
         resurrectionManager.Initialize();
     }
 }

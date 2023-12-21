@@ -82,6 +82,7 @@ MonoBehaviour:
   graphicsParent: {fileID: 3045761098863965795}
   animator: {fileID: 2685218147459456907}
   skinnedMeshRenderer: {fileID: 0}
+  catEyesRenderer: {fileID: 0}
   blobShadow: {fileID: 8447845708646851671}
   blobShadowRenderer: {fileID: 295559058976969517}
   battlePosition: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   handRotation: {x: 0, y: 0, z: 0}
   dragRotation: {x: 0, y: 0, z: 0}
   battleScale: 1
+  selectedAutoAttack: 0
   isInFrontOfBackgroundFade: 0
   enemyType: 0
 --- !u!1 &8447845708646851671
@@ -228,6 +230,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -49509088320031490, guid: a60fc79d52611c74b8094594f20d9f5b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 79364253ae3c69c43a8d9568182a040d, type: 2}
     - target: {fileID: 919132149155446097, guid: a60fc79d52611c74b8094594f20d9f5b, type: 3}
       propertyPath: m_Name
       value: EclairChocolatEntity

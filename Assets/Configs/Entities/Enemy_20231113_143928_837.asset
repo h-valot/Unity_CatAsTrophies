@@ -53,7 +53,7 @@ MonoBehaviour:
       value: 1
       target: 5
       us: 0
-  basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
+  basePrefab: {fileID: 5087666672669579333, guid: fbaf3aab06c00a0488bc590cf54cd029, type: 3}
   catSkinTexture: {fileID: 0}
   catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}

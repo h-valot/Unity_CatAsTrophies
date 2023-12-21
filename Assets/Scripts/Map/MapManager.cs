@@ -1,23 +1,43 @@
 using System.Linq;
 using UnityEngine;
 using Data;
-using Player;
 
 public class MapManager : MonoBehaviour
 {
     [Header("REFERENCE")]
     public MapView mapView;
     public GameObject mapCanvasParent;
+    public RSE_DebugLog rseDebugLog;
     
     [Header("DEBUGGING")]
     public Map currentMap;
 
-    public void DisplayCanvas()
+    public void ShowCanvasNormal()
+    {
+        mapView.showEscapeButton = true;
+        mapView.isInteractible = true;
+        ShowCanvas();
+    }
+
+    public void ShowCanvasUninteractible()
+    {
+        mapView.showEscapeButton = true;
+        mapView.isInteractible = false;
+        ShowCanvas();
+    }
+
+    public void ShowCanvasLocked()
+    {
+        mapView.showEscapeButton = false;
+        mapView.isInteractible = true;
+        ShowCanvas();
+    }
+
+    private void ShowCanvas()
     {
         mapCanvasParent.SetActive(true);
         Initialize();
     }
-
     public void HideCanvas()
     {
         mapCanvasParent.SetActive(false);
@@ -29,6 +49,7 @@ public class MapManager : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
+        
         if (DataManager.data.map != null && DataManager.data.map.IsNotEmpty())
         {
             Map map = DataManager.data.map;
@@ -60,6 +81,13 @@ public class MapManager : MonoBehaviour
     {
         DataManager.data.playerStorage.ResetAllData();
         DataManager.data.playerStorage.SwitchToInGameDeck();
+        
+        if (DataManager.data.playerStorage.GetLenght(DataManager.data.playerStorage.inGameDeck) <= 0)
+        {
+            HideCanvas();
+            rseDebugLog.Call("Your deck of cats is empty. Fill it before starting a new run.", Color.red);
+            return;
+        }
         
         currentMap = MapGenerator.GetMap(Registry.mapConfig);
         mapView.ShowMap(currentMap);

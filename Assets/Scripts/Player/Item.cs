@@ -20,7 +20,9 @@ namespace Player
             for (int i = 0; i < amount; i++)
                 cats.Add(data);
 
+#if UNITY_EDITOR || UNITY_ANDROID
             onDataChanged?.Invoke();
+#endif
         }
 
         public void Remove(int amount = 1)
@@ -31,7 +33,9 @@ namespace Player
             for (int i = 0; i < amount; i++)
                 cats.Remove(cats[^1]);
             
+#if UNITY_EDITOR || UNITY_ANDROID
             onDataChanged?.Invoke();
+#endif
         }
     }
 }

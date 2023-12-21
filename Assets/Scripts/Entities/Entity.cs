@@ -55,13 +55,13 @@ public class Entity : MonoBehaviour
         // exit if entity is stunned or slep
         if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
         {
-            selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count - 1);
+            selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count);
             onIntentUpdate?.Invoke();
         } 
     }
 
     /// <summary>
-    /// return all the target ids of every instruction of the selected ability.
+    /// Returns all the target ids of every instruction of the selected ability.
     /// </summary>
     public List<string> GetAutoAttackTarget()
     {

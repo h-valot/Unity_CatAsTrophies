@@ -6,6 +6,7 @@ public class GameSettings : ScriptableObject
     public string startingScene;
     public bool gameBattleDebugMode;
     public bool playerDeckDebugMode;
+    public bool playLoadingScreen;
 
     [Header("ANIMATIONS")]
     public float delayBeforeAnimation;

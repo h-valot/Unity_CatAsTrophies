@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public VolumeControl volumeControl;
+    public MainMenuButtonAnimation mainMenuButtonAnimation;
+    
     private void Start()
     {
         // load the init scene if it hasn't been loaded yet
@@ -13,5 +16,7 @@ public class MainMenuManager : MonoBehaviour
         }
         
         Registry.events.OnSceneLoaded?.Invoke();
+        volumeControl.Initialize();
+        mainMenuButtonAnimation.Animate();
     }
 }

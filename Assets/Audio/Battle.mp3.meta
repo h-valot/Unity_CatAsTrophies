@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/Battle.mp3.meta
 guid: 6154c03fb3a866e408d6fa8a903cad3d
+========
+guid: 59e2c5ac3e4e7d94b8141e55621cf706
+>>>>>>>> map:Assets/Audio/Version_final_V2_looperCut.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7

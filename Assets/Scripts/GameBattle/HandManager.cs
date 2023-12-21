@@ -184,10 +184,7 @@ public class HandManager : MonoBehaviour
             }
         }
 
-        //Display and update cat info panel
-        Registry.events.OnCatStacked(Registry.entitiesConfig.cats[highlightedCat.catType].entityName, 
-            Registry.entitiesConfig.cats[highlightedCat.catType].abilityDescription); //goes to InfoCatPanel.cs
-
+        Debug.Log($"Code to display the cat info panel here");
     }
 
     /// <summary>

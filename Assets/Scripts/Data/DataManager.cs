@@ -35,6 +35,9 @@ namespace Data
             else
             {
                 data ??= new PersistantData();
+                
+                // exceptionnal modification
+                data.tuna = 400;
             }
         }
         
