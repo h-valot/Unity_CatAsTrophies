@@ -321,10 +321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bcf5a6e6056a048b22260e992c4e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introSong: {fileID: 8300000, guid: 3d74c0a113dc6464e9bdecb7605193d4, type: 3}
-  loopSong: {fileID: 8300000, guid: 19f8fc78cb61d4044ab3bc545a73d4aa, type: 3}
-  introBattleSong: {fileID: 8300000, guid: 79e7af7a41b4e5c43b11d78fd84b74e8, type: 3}
-  loopBattleSong: {fileID: 8300000, guid: 3f501ee7efa65624b84e264c44912ecb, type: 3}
+  introSong: {fileID: 8300000, guid: feaa3268a480ef94a8a7634b9d4eadf4, type: 3}
+  loopSong: {fileID: 8300000, guid: 333367d4b7714804da9f972f364a5900, type: 3}
+  introBattleSong: {fileID: 8300000, guid: 6154c03fb3a866e408d6fa8a903cad3d, type: 3}
+  loopBattleSong: {fileID: 8300000, guid: 79e7af7a41b4e5c43b11d78fd84b74e8, type: 3}
   graveyardSong: {fileID: 8300000, guid: 62c4cdccca7eaf34d915361e9cd2e7b0, type: 3}
   restSong: {fileID: 8300000, guid: 004c183833e32e44b8379df4a885c4ee, type: 3}
   audioSource: {fileID: 1738186487456979651}
