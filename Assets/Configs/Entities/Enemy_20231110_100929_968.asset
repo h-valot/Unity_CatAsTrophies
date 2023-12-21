@@ -15,6 +15,7 @@ MonoBehaviour:
   isCat: 0
   id: Enemy_20231110_100929_968
   entityName: Blue
+  rarety: 0
   health: 10
   armorAtStart: 0
   sprite: {fileID: 0}
@@ -38,7 +39,7 @@ MonoBehaviour:
       value: 2
       target: 3
       us: 1
-  basePrefab: {fileID: 5087666672669579333, guid: 4440fe4c1795fc541a32361095f98f56, type: 3}
+  basePrefab: {fileID: 5087666672669579333, guid: d899fc7c7b2202b4b9d8263ce2344c6c, type: 3}
   catSkinTexture: {fileID: 0}
   catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}
