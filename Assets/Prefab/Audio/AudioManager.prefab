@@ -326,5 +326,5 @@ MonoBehaviour:
   introBattleSong: {fileID: 8300000, guid: 6154c03fb3a866e408d6fa8a903cad3d, type: 3}
   loopBattleSong: {fileID: 8300000, guid: 79e7af7a41b4e5c43b11d78fd84b74e8, type: 3}
   graveyardSong: {fileID: 8300000, guid: 62c4cdccca7eaf34d915361e9cd2e7b0, type: 3}
-  restSong: {fileID: 8300000, guid: 004c183833e32e44b8379df4a885c4ee, type: 3}
+  restSong: {fileID: 8300000, guid: 641536db4f75c954ca21dbfcbb8bd10f, type: 3}
   audioSource: {fileID: 1738186487456979651}

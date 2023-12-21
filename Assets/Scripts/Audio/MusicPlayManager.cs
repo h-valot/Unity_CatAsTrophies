@@ -145,8 +145,19 @@ public class MusicPlayManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Registry.events.onRestClick += OnRestStopPlaying;
+    }
+
+    private void OnRestStopPlaying()
+    {
+        audioSource.Stop();
+    }
+
     private void OnDisable()
     {
         stopAsync = true;
+        Registry.events.onRestClick -= OnRestStopPlaying;
     }
 }

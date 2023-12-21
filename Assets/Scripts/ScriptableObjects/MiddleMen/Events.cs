@@ -25,4 +25,5 @@ public class Events : ScriptableObject
     public Action DebuffSound;
     public Action BuffSound;
     public Action HealSound;
+    public Action onRestClick;
 }
