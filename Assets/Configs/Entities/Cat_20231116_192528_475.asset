@@ -45,4 +45,4 @@ MonoBehaviour:
   canBeReward: 1
   apparitionTiers: 000000000100000002000000
   pricing: 1
-  cost: 40
+  cost: 10
