@@ -150,6 +150,14 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3822459326892282776, guid: f388f00530a96e04d8f2a295279d1e29, type: 3}
+      propertyPath: m_DynamicPixelsPerUnit
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822459326892282776, guid: f388f00530a96e04d8f2a295279d1e29, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7043696167711176845, guid: f388f00530a96e04d8f2a295279d1e29, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

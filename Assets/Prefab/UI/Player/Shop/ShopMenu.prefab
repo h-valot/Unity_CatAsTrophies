@@ -6473,7 +6473,7 @@ PrefabInstance:
       objectReference: {fileID: 2836806661264008110}
     - target: {fileID: 4697427103784268387, guid: 57930ada7ab1d8a49bc3c30ee8603e2f, type: 3}
       propertyPath: m_text
-      value: Pile of fishs
+      value: Some fishes
       objectReference: {fileID: 0}
     - target: {fileID: 4697427103784268387, guid: 57930ada7ab1d8a49bc3c30ee8603e2f, type: 3}
       propertyPath: m_fontSize
@@ -6776,7 +6776,7 @@ PrefabInstance:
       objectReference: {fileID: 2836806661264008110}
     - target: {fileID: 4697427103784268387, guid: 57930ada7ab1d8a49bc3c30ee8603e2f, type: 3}
       propertyPath: m_text
-      value: Some fishs
+      value: Pile of fishes
       objectReference: {fileID: 0}
     - target: {fileID: 4726848811097727599, guid: 57930ada7ab1d8a49bc3c30ee8603e2f, type: 3}
       propertyPath: m_text

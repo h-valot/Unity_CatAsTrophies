@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 4712066496008061822}
   - component: {fileID: 2524240591003116311}
   m_Layer: 5
-  m_Name: DebbugPanelSkip
+  m_Name: DebugPanelSkip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
