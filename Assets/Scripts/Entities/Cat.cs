@@ -157,10 +157,7 @@ public class Cat : Entity
         // trigger animations
         animator.SetBool("IsOnBattlefield", true);
         animator.SetBool("IsFalling", false);
-
-        // add the cat to the attack queue in the turn manager and return it's order of attack
-        int attackingOrder = TurnManager.Instance.AddCatAttackQueue(this);
-        isAbilityUsed = true;
+        
         state = CatState.ON_BATTLE;
         OnBattlefieldEntered?.Invoke();
         stopAsync = false;

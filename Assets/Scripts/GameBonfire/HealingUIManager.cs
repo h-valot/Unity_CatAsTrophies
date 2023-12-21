@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Data;
 using DG.Tweening;
@@ -52,6 +51,9 @@ public class HealingUIManager : MonoBehaviour
                     cat.health = Registry.entitiesConfig.cats[item.entityIndex].health;
             }
         }
+        
+        // stop fire noises
+        Registry.events.onRestClick?.Invoke();
         
         HideHeal();
         await ShowDone();

@@ -25,7 +25,7 @@ MonoBehaviour:
     intentionSprite: {fileID: 0}
     instructions: []
   autoAttack:
-  - animation: 2
+  - animation: 3
     intentionSprite: {fileID: 0}
     instructions:
     - type: 0

@@ -92,6 +92,8 @@ public class Entity : MonoBehaviour
         // use a random ability
         autoAttacks[selectedAutoAttack].Use(this);
         onIntentReset?.Invoke(this);
+
+        //Play Adapted Sound
     }
     
     public void UpdateHealth(int _value)

@@ -12,8 +12,9 @@ public class Init : MonoBehaviour
     public MapConfig mapConfig;
     public Events events;
 
-    [Header("GRAPHICS")] 
+    [Header("REFERENCES")] 
     public LoadingScreenUIManager loadingScreenUIManager;
+    public RSODataManager rsoDataManager;
     
     private async void Start()
     {
@@ -24,6 +25,7 @@ public class Init : MonoBehaviour
         Registry.events = events;
 
         DataManager.Load();
+        rsoDataManager.Load();
         
         // debugging
         DataManager.data.playerStorage ??= new PlayerStorage();

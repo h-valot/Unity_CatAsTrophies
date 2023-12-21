@@ -18,6 +18,7 @@ namespace UI.Reward
         public TextMeshProUGUI catNameTM;
         public GameObject selectButton;
         public GameObject buyButton;
+        public TextMeshProUGUI buyPriceTM;
 
         [Header("REWARD")] 
         public Image catFaceImage;
@@ -45,6 +46,7 @@ namespace UI.Reward
         
             selectButton.SetActive(Registry.entitiesConfig.cats[_catIndex].pricing == RewardPricing.FREE);
             buyButton.SetActive(Registry.entitiesConfig.cats[_catIndex].pricing == RewardPricing.PREMIUM);
+            buyPriceTM.text = $"{Registry.entitiesConfig.cats[_catIndex].cost}";
         }
 
         public void ShowInfo()

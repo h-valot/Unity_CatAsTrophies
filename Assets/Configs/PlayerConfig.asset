@@ -22,20 +22,8 @@ MonoBehaviour:
     - entityIndex: 0
       health: 6
       isDead: 0
-    - entityIndex: 0
-      health: 6
-      isDead: 0
-    - entityIndex: 0
-      health: 6
-      isDead: 0
   - entityIndex: 1
     cats:
-    - entityIndex: 1
-      health: 8
-      isDead: 0
-    - entityIndex: 1
-      health: 8
-      isDead: 0
     - entityIndex: 1
       health: 8
       isDead: 0
@@ -50,12 +38,6 @@ MonoBehaviour:
     - entityIndex: 2
       health: 7
       isDead: 0
-    - entityIndex: 2
-      health: 7
-      isDead: 0
-    - entityIndex: 2
-      health: 7
-      isDead: 0
   - entityIndex: 3
     cats:
     - entityIndex: 3
@@ -64,10 +46,4 @@ MonoBehaviour:
     - entityIndex: 3
       health: 6
       isDead: 0
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-  deckLenght: 16
+  deckLenght: 8

@@ -17,4 +17,11 @@ public class Events : ScriptableObject
 
     // Scene management
     public Action OnSceneLoaded;
+
+    //Sound Management
+    public Action AttackSound;
+    public Action DebuffSound;
+    public Action BuffSound;
+    public Action HealSound;
+    public Action onRestClick;
 }

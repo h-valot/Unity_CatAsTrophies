@@ -1146,7 +1146,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2106627816592384953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.64179105}
+  m_AnchorMin: {x: 0, y: 0.6666666}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -1223,7 +1223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -1110}
+  m_AnchoredPosition: {x: 735, y: -1220}
   m_SizeDelta: {x: 1470, y: 300}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1733952772926570084
@@ -1524,7 +1524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -900}
+  m_AnchoredPosition: {x: 735, y: -1000}
   m_SizeDelta: {x: 1470, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2117532857660286528
@@ -2398,7 +2398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -210}
+  m_AnchoredPosition: {x: 735, y: -220}
   m_SizeDelta: {x: 1470, y: 300}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &3218358141374574233
@@ -4513,7 +4513,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5792205095731418314}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.35820895
+  m_Size: 0.33333334
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4560,7 +4560,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1675}
+  m_SizeDelta: {x: 0, y: 1800}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2889067389839922869
 MonoBehaviour:
@@ -4674,8 +4674,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -540}
-  m_SizeDelta: {x: 1470, y: 180}
+  m_AnchoredPosition: {x: 735, y: -560}
+  m_SizeDelta: {x: 1470, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6298103150664644023
 GameObject:
@@ -5406,7 +5406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -750}
+  m_AnchoredPosition: {x: 735, y: -840}
   m_SizeDelta: {x: 1470, y: 120}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &7028625414734985652
@@ -6582,7 +6582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -1440}
+  m_AnchoredPosition: {x: 735, y: -1560}
   m_SizeDelta: {x: 1470, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &8741447716343994762
@@ -7040,7 +7040,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 120}
+  m_SizeDelta: {x: 0, y: 180}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &9046760648346924213
 CanvasRenderer:
@@ -7072,7 +7072,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Hugo Valot
 
-    Camille Laborderie'
+    Camille Laborderie
+
+    Samuel Flament'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dba588e510b97fc49895047eb595846a, type: 2}
   m_sharedMaterial: {fileID: 8247470494970147418, guid: dba588e510b97fc49895047eb595846a, type: 2}

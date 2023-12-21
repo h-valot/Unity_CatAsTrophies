@@ -17,7 +17,7 @@ namespace Data
         
         // player collection
         public PlayerStorage playerStorage;
-        
+        public int tuna, treat;
     }
 }
 

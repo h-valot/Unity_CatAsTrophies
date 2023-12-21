@@ -1657,6 +1657,7 @@ MonoBehaviour:
   catNameTM: {fileID: 7335554339973163126}
   selectButton: {fileID: 46117465918464085}
   buyButton: {fileID: 5803374927723625408}
+  buyPriceTM: {fileID: 2810586842815438099}
   catFaceImage: {fileID: 8211080716157579737}
   catBackgroundImage: {fileID: 3789462550812112905}
   epicBackground: {fileID: 21300000, guid: 4fd72769cab76f2488aed7823e4e53b0, type: 3}
@@ -2439,6 +2440,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8532646825347951960, guid: 0b5e35ba1f900a8488509d9ca8e9ee8b, type: 3}
   m_PrefabInstance: {fileID: 9108665556637446457}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2810586842815438099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6442767361913351210, guid: 0b5e35ba1f900a8488509d9ca8e9ee8b, type: 3}
+  m_PrefabInstance: {fileID: 9108665556637446457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5803374927723625408 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3378194155693542137, guid: 0b5e35ba1f900a8488509d9ca8e9ee8b, type: 3}

@@ -521,12 +521,23 @@ public class Ability
                 break;
             case AbilityAnimation.Attacking:
                 source.animator.SetTrigger("IsAttacking");
+                Registry.events.AttackSound?.Invoke();
                 break;
             case AbilityAnimation.Casting:
                 source.animator.SetTrigger("IsCasting");
+                Registry.events.BuffSound?.Invoke();
+                break;
+            case AbilityAnimation.CastingDebuff:
+                source.animator.SetTrigger("IsCasting");
+                Registry.events.DebuffSound?.Invoke();
+                break;
+            case AbilityAnimation.Heal:
+                source.animator.SetTrigger("IsCasting");
+                Registry.events.HealSound?.Invoke();
                 break;
             case AbilityAnimation.Kicking:
                 source.animator.SetTrigger("IsKicking");
+                Registry.events.AttackSound?.Invoke();
                 break;
         }
     }
@@ -547,5 +558,7 @@ public enum AbilityAnimation
     None = 0,
     Attacking,
     Casting,
+    CastingDebuff,
+    Heal,
     Kicking
 }
