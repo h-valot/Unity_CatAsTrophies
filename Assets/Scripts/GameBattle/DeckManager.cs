@@ -1,5 +1,4 @@
 using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
@@ -39,7 +38,6 @@ public class DeckManager : MonoBehaviour
             {
                 // continue, if this cat is dead
                 if (catData.isDead) continue;
-                
                 CatManager.Instance.SpawnCatGraphics(catData);
             }
         }

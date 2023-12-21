@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using List;
+using UnityEngine;
 
 namespace Player
 {
@@ -55,7 +56,10 @@ namespace Player
             }
             else
             {
-                inGameDeck.Add(new Item(entityIndex));
+                var newItem = new Item(entityIndex);
+                var newData = new CatData(entityIndex, Registry.entitiesConfig.cats[entityIndex].health);
+                newItem.Add(newData);
+                inGameDeck.Add(newItem);
             }
         }
 
