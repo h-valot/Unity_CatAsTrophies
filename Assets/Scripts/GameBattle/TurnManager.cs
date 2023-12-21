@@ -75,7 +75,10 @@ public class TurnManager : MonoBehaviour
 
                 // cats use their attacks
                 await HandleCatsAttacks();
-                
+
+                // handle effect end turn (stun, buff, etc.)
+                Registry.events.OnEndPlayerTurn?.Invoke();
+
                 // give the turn to the enemies
                 state = TurnState.ENEMY_TURN;
                 HandleTurnState();
@@ -89,6 +92,9 @@ public class TurnManager : MonoBehaviour
 
                 // enemies uses their attacks
                 await HandleEnemiesAttacks();
+
+                // handle effect end turn (stun, buff, etc.)
+                Registry.events.OnEndEnemyTurn?.Invoke();
 
                 // handle end battle, if all enemies are dead
                 await HandleEndBattle();

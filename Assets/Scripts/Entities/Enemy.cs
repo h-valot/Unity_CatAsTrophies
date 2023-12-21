@@ -29,14 +29,16 @@ public class Enemy : Entity
     private void OnEnable()
     {
         Registry.events.OnNewEnemyTurn += ResetArmor;
-        Registry.events.OnNewEnemyTurn += TriggerAllEffects;
+        Registry.events.OnNewEnemyTurn += TriggerAllEffectsBeginTurn;
+        Registry.events.OnEndEnemyTurn += TriggerAllEffectsEndTurn;
         Registry.events.OnEnemiesUseAutoAttack += UseAutoAttack;
     }
 
     private void OnDisable()
     {
         Registry.events.OnNewEnemyTurn -= ResetArmor;
-        Registry.events.OnNewEnemyTurn -= TriggerAllEffects;
+        Registry.events.OnNewEnemyTurn -= TriggerAllEffectsBeginTurn;
+        Registry.events.OnEndEnemyTurn -= TriggerAllEffectsEndTurn;
         Registry.events.OnEnemiesUseAutoAttack -= UseAutoAttack;
     }
     

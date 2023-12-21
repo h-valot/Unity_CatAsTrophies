@@ -85,7 +85,8 @@ public class Cat : Entity
     {
         Registry.events.OnNewPlayerTurn += ResetAbility;
         Registry.events.OnNewPlayerTurn += ResetArmor;
-        Registry.events.OnNewPlayerTurn += TriggerAllEffects;
+        Registry.events.OnNewPlayerTurn += TriggerAllEffectsBeginTurn;
+        Registry.events.OnEndPlayerTurn += TriggerAllEffectsEndTurn;
         Registry.events.OnCatsUseAutoAttack += UseAutoAttack;
     }
 
@@ -93,7 +94,8 @@ public class Cat : Entity
     {
         Registry.events.OnNewPlayerTurn -= ResetAbility;
         Registry.events.OnNewPlayerTurn -= ResetArmor;
-        Registry.events.OnNewPlayerTurn -= TriggerAllEffects;
+        Registry.events.OnNewPlayerTurn -= TriggerAllEffectsBeginTurn;
+        Registry.events.OnEndPlayerTurn -= TriggerAllEffectsEndTurn;
         Registry.events.OnCatsUseAutoAttack -= UseAutoAttack;
     }
 
@@ -163,17 +165,53 @@ public class Cat : Entity
         stopAsync = false;
     }
 
-    protected override void TriggerAllEffects()
+    protected override void TriggerAllEffectsBeginTurn()
     {
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
-            effect.Trigger();
-
-            // if the effect expire, add it to a list of all effects to remove
-            if (effect.turnDuration <= 0)
+            if (effect.type == EffectType.Dot || effect.type == EffectType.Hot)
             {
-                effectsToRemove.Add(effect);
+                effect.Trigger();
+
+                // if the effect expire, add it to a list of all effects to remove
+                if (effect.turnDuration <= 0)
+                {
+                    effectsToRemove.Add(effect);
+                }
+            }
+        }
+
+        // removes all expired effects
+        foreach (var effect in effectsToRemove)
+        {
+            effects.Remove(effect);
+        }
+
+
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.IN_HAND)
+        {
+            animator.SetBool("IsActing", false);
+        }
+
+        // trigger update display function in EntityUIDisplay.cs
+        OnStatsUpdate?.Invoke();
+    }
+
+    protected override void TriggerAllEffectsEndTurn()
+    {
+        List<Effect> effectsToRemove = new List<Effect>();
+        foreach (var effect in effects)
+        {
+            if (effect.type != EffectType.Dot && effect.type != EffectType.Hot)
+            {
+                effect.Trigger();
+
+                // if the effect expire, add it to a list of all effects to remove
+                if (effect.turnDuration <= 0)
+                {
+                    effectsToRemove.Add(effect);
+                }
             }
         }
 

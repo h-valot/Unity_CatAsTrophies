@@ -5,7 +5,9 @@ using UnityEngine;
 public class Events : ScriptableObject
 {
     public Action OnNewPlayerTurn;
+    public Action OnEndPlayerTurn;
     public Action OnNewEnemyTurn;
+    public Action OnEndEnemyTurn;
 
     public Action OnCatsUseAutoAttack;
     public Action OnEnemiesUseAutoAttack;
