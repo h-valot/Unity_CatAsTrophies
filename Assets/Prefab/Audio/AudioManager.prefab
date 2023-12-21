@@ -176,6 +176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5351926425546367437}
   buttonSound: {fileID: 8300000, guid: 4f8d9b11615ab68488395130c5c45534, type: 3}
+  attackSound: {fileID: 8300000, guid: ae4c4d4dcf45fe3409eb49f35b24d044, type: 3}
+  buffSound: {fileID: 8300000, guid: 5224e9b5ae3104b4b90fc0cf30de6174, type: 3}
+  debuffSound: {fileID: 8300000, guid: 8eb374d1df89f7047a0b61ce6e153172, type: 3}
+  healSound: {fileID: 8300000, guid: d7c01ea96094ce041b7c7b7431b78458, type: 3}
 --- !u!1 &9108000854668661460
 GameObject:
   m_ObjectHideFlags: 0
