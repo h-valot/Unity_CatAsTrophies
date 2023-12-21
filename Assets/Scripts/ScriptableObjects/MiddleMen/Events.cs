@@ -12,6 +12,8 @@ public class Events : ScriptableObject
 
     // Communication between InputHandler.cs and HandManager.cs
     public Action OnClickNotCat;
+    public Action<string, string> OnCatStacked;
+    public Action OnCatDestacked;
 
     // Scene management
     public Action OnSceneLoaded;
