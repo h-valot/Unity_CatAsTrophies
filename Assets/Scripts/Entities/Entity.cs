@@ -101,6 +101,7 @@ public class Entity : MonoBehaviour
 
         if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
         {
+            animator.SetBool("IsActing", true);
             animator.SetTrigger("IsTakingDamage");
         }
 
@@ -344,7 +345,7 @@ public class Entity : MonoBehaviour
         await Task.Delay((int)(_timerToWait * 1000));
         if (!stopAsync)
         {
-            animator.SetTrigger("IsFighting");
+            animator.SetBool("IsActing", false);
         }
     }
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   isCat: 0
   id: Enemy_20231201_134643_330
   entityName: Boss1
+  rarety: 0
   health: 50
   armorAtStart: 0
   sprite: {fileID: 0}
@@ -49,14 +50,7 @@ MonoBehaviour:
       value: 2
       target: 1
       us: 0
-  - animation: 2
-    intentionSprite: {fileID: 0}
-    instructions:
-    - type: 15
-      value: 2
-      target: 1
-      us: 0
-  basePrefab: {fileID: 5087666672669579333, guid: 9867af5c47691e34588d7b87ae1b6ede, type: 3}
+  basePrefab: {fileID: 5087666672669579333, guid: 2c70381c131370b43b7c8728dfa106ac, type: 3}
   catSkinTexture: {fileID: 0}
   catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}

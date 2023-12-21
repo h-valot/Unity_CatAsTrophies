@@ -513,7 +513,7 @@ public class Ability
     public void Animate()
     {
         Timer(Registry.gameSettings.abilityAnimationDuration);
-        
+        source.animator.SetBool("IsActing", true);
         switch (animation)
         {
             case AbilityAnimation.None:
@@ -534,7 +534,7 @@ public class Ability
     private async void Timer(float _timerToWait)
     {
         await Task.Delay((int)(_timerToWait * 1000));
-        source.animator.SetTrigger("IsFighting");
+        source.animator.SetBool("IsActing", false);
         if (source.HasEffect(EffectType.Stun) || source.HasEffect(EffectType.Sleep))
         {
             source.animator.SetBool("IsSleeping", true);

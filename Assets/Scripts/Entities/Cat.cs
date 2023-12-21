@@ -117,7 +117,7 @@ public class Cat : Entity
         blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY, blobShadow.transform.localPosition.z);
 
         // trigger animations
-        animator.SetTrigger("IsInHand");
+        animator.SetBool("IsInHand", true);
         animator.SetBool("IsFalling", false);
 
         state = CatState.IN_HAND;
@@ -131,6 +131,7 @@ public class Cat : Entity
     {
         graphicsParent.transform.eulerAngles = dragRotation;
         animator.SetBool("IsFalling", true);
+        animator.SetBool("IsInHand", false);
 
         blobShadowRenderer.enabled = true;
         blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY + Registry.gameSettings.verticalOffsetBlobShadow, blobShadow.transform.localPosition.z);
@@ -154,8 +155,9 @@ public class Cat : Entity
         blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY, blobShadow.transform.localPosition.z);
 
         // trigger animations
-        animator.SetTrigger("IsFighting");
-        
+        animator.SetBool("IsOnBattlefield", true);
+        animator.SetBool("IsFalling", false);
+
         // add the cat to the attack queue in the turn manager and return it's order of attack
         int attackingOrder = TurnManager.Instance.AddCatAttackQueue(this);
         isAbilityUsed = true;
@@ -187,7 +189,7 @@ public class Cat : Entity
 
         if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.IN_HAND)
         {
-            animator.SetTrigger("IsFighting");
+            animator.SetBool("IsActing", false);
         }
 
         // trigger update display function in EntityUIDisplay.cs
