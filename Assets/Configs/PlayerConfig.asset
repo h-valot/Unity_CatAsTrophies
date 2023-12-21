@@ -15,34 +15,31 @@ MonoBehaviour:
   deck:
   - entityIndex: 0
     cats:
-    - entityIndex: 0
+    - entityIndex: 1
       health: 6
       isDead: 0
-    - entityIndex: 0
+    - entityIndex: 1
       health: 6
       isDead: 0
-  - entityIndex: 1
+  - entityIndex: 9
     cats:
-    - entityIndex: 1
-      health: 8
+    - entityIndex: 2
+      health: 999
       isDead: 0
-    - entityIndex: 1
-      health: 8
+    - entityIndex: 2
+      health: 999
       isDead: 0
   - entityIndex: 2
     cats:
-    - entityIndex: 2
+    - entityIndex: 3
       health: 7
       isDead: 0
-    - entityIndex: 2
+    - entityIndex: 3
+      health: 7
+      isDead: 0
+    - entityIndex: 3
       health: 7
       isDead: 0
   - entityIndex: 3
-    cats:
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-    - entityIndex: 3
-      health: 6
-      isDead: 0
-  deckLenght: 8
+    cats: []
+  deckLenght: 7
