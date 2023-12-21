@@ -259,6 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a41351c1279346872a339410fb21b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphicsParent: {fileID: 1890958589}
+  nameCat: {fileID: 708480854}
+  infoCat: {fileID: 1413756570}
 --- !u!23 &122362666 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2501800861589722985, guid: 2df9d9cff6323e94b97fc24183eeb44a, type: 3}
