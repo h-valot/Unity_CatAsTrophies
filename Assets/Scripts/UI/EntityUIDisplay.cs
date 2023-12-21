@@ -17,7 +17,8 @@ public class EntityUIDisplay : MonoBehaviour
     public TextMeshProUGUI healthTM;
     public TextMeshProUGUI armorTM;
     public GameObject armorParent;
-    public Image intent;
+    public GameObject intentGO;
+    public Image intentImage;
 
     private List<GameObject> effectDisplays = new List<GameObject>();
     private Entity entityRef;
@@ -108,7 +109,7 @@ public class EntityUIDisplay : MonoBehaviour
 
         if (entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite == null)
         {
-            intent.enabled = false;
+            intentGO.SetActive(false);
         }
     }
 
@@ -117,20 +118,17 @@ public class EntityUIDisplay : MonoBehaviour
         // Update the Intent
         if (entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite != null)
         {
-            intent.enabled = true;
-            intent.sprite = entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite;
+            intentGO.SetActive(true);
+            intentImage.sprite = entityRef.autoAttacks[entityRef.selectedAutoAttack].intentionSprite;
         }
         else
         {
-            intent.enabled = false;
+            intentGO.SetActive(false);
         }
     }
 
     private void ResetIntent(Entity entity)
     {
-        if (entity == entityRef)
-        {
-            intent.enabled = false;
-        }
+        if (entity == entityRef) intentGO.SetActive(false);
     }
 }

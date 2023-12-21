@@ -209,8 +209,6 @@ MonoBehaviour:
   commonBackground: {fileID: 21300000, guid: 5c8e0b0196fe14447a499060a79bdf04, type: 3}
   healthTM: {fileID: 6049471335764962500}
   healthFillImage: {fileID: 1013812527085367871}
-  catId: 
-  catType: 0
 --- !u!1 &2440671598546010121
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.75, g: 0.11249998, b: 0.11249998, a: 1}
+  m_Color: {r: 0.93, g: 0.3627, b: 0.3627, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
