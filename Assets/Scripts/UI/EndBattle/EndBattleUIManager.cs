@@ -52,7 +52,6 @@ namespace UI.EndBattle
                 treatParent.SetActive(true);
                 treatTM.text = $"+{treatWon}";
                 rsoCurrencyTreat.value += treatWon;
-
             }
             
             endTitleLoadingImage.DOFillAmount(1, endTitleDuration);

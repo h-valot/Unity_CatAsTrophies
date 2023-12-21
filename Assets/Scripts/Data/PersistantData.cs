@@ -5,6 +5,10 @@ namespace Data
     [System.Serializable]
     public class PersistantData
     {
+        // currencies
+        public int tuna;
+        public int treat;
+        
         // current loaded and displayed map
         public Map map;
 
@@ -17,7 +21,6 @@ namespace Data
         
         // player collection
         public PlayerStorage playerStorage;
-        public int tuna, treat;
     }
 }
 

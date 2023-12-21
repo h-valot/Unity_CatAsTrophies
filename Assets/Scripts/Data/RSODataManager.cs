@@ -12,31 +12,24 @@ namespace Data
 
         private void OnEnable()
         {
-            rsoCurrencyTuna.OnChanged += Save;
-            rsoCurrencyTreat.OnChanged += Save;
+            rsoCurrencyTuna.OnChanged += SaveTuna;
+            rsoCurrencyTreat.OnChanged += SaveTreat;
         }
 
         private void OnDisable()
         {
-            rsoCurrencyTuna.OnChanged -= Save;
-            rsoCurrencyTreat.OnChanged -= Save;
+            rsoCurrencyTuna.OnChanged -= SaveTuna;
+            rsoCurrencyTreat.OnChanged -= SaveTreat;
         }
 
-        private void Save()
-        {
-            DataManager.data.tuna = rsoCurrencyTuna.value;
-            DataManager.data.treat = rsoCurrencyTreat.value;
-        }
+        private void SaveTuna() => DataManager.data.tuna = rsoCurrencyTuna.value;
+        private void SaveTreat() => DataManager.data.treat = rsoCurrencyTreat.value;
+        private void OnApplicationQuit() => DataManager.Save();
 
         public void Load()
         {
             rsoCurrencyTuna.value = DataManager.data.tuna;
             rsoCurrencyTreat.value = DataManager.data.treat;
-        }
-
-        private void OnApplicationQuit()
-        {
-            DataManager.Save();
         }
     }
 }
