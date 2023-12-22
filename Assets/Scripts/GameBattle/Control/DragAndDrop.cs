@@ -104,7 +104,14 @@ public class DragAndDrop : MonoBehaviour
             {
                 if (Misc.GetCatById(closestPawn.entityIdLinked) != null)
                 {
-                    Misc.GetCatById(closestPawn.entityIdLinked).Withdraw();
+                    if (Misc.GetCatById(closestPawn.entityIdLinked).startedTurnOnBattlefield)
+                    {
+                        Misc.GetCatById(closestPawn.entityIdLinked).Withdraw();
+                    }
+                    else
+                    {
+                        Misc.GetCatById(closestPawn.entityIdLinked).PutInHand();
+                    }
                 }
             }
             closestPawn.Setup(catDragged.id);

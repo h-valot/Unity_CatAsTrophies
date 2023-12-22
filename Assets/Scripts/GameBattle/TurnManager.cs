@@ -121,8 +121,29 @@ public class TurnManager : MonoBehaviour
 
     private async Task HandlePlayerActions()
     {
-        while (catAttackQueue.Count < 3 || passTurn)
+        while (catAttackQueue.Count < 3 && !passTurn && this)
         {
+            //prevent soft lock when there is less than 3 cat in player deck
+            if (HandManager.Instance.IsHandEmpty())
+            {
+                Debug.Log("Hand is empty.");
+                bool AllUsedBattlePawnAreLocked =true;
+                int i = 0;
+                foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
+                {
+                    if (!battlePawn.IsLocked() && battlePawn.entityIdLinked != "")
+                    {
+                        Debug.Log("batllePawn " + i + "isnt locked and got an entity: " + battlePawn.entityIdLinked);
+                        AllUsedBattlePawnAreLocked = false;
+                    }
+                    i++;
+                }
+                if (AllUsedBattlePawnAreLocked)
+                {
+                    Debug.Log("AllUsedBattlePawnAreLocked.");
+                    passTurn = true;
+                }
+            }
             await Task.Delay(100);
         }
         await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));

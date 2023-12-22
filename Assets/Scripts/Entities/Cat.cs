@@ -27,11 +27,13 @@ public class Cat : Entity
     private GameObject rightHandAddonRef;
     private GameObject leftHandAddonRef;
     private float blobShadowPositionY;
+    public bool startedTurnOnBattlefield;
 
     public void Initialize(int typeIndex, float currentHealth)
     {
         base.Initialize();
         state = CatState.IN_DECK;
+        startedTurnOnBattlefield = false;
         catType = typeIndex;
         
         // setup entity stats
@@ -115,12 +117,15 @@ public class Cat : Entity
         graphicsParent.transform.eulerAngles = handRotation;
         graphicsParent.SetActive(true);
         gameObject.SetActive(true);
+        if (rightHandAddonRef) rightHandAddonRef.SetActive(false);
+        if (leftHandAddonRef) leftHandAddonRef.SetActive(false);
         blobShadowRenderer.enabled = false; 
         blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY, blobShadow.transform.localPosition.z);
 
         // trigger animations
         animator.SetBool("IsInHand", true);
         animator.SetBool("IsFalling", false);
+        animator.SetBool("IsOnBattlefield", false);
 
         state = CatState.IN_HAND;
         return id;
@@ -167,6 +172,12 @@ public class Cat : Entity
 
     protected override void TriggerAllEffectsBeginTurn()
     {
+        if (state == CatState.ON_BATTLE)
+        {
+            startedTurnOnBattlefield = true;
+        }
+
+
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
