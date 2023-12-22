@@ -10,10 +10,13 @@ public class InfoCatPanel : MonoBehaviour
     public TextMeshProUGUI infoCat;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        Debug.Log(graphicsParent);
         Registry.events.OnCatStacked += DisplayCatInfo;
         Registry.events.OnCatDestacked += RemoveCatInfo;
+        graphicsParent = transform.Find("GraphicsParent").gameObject;
+        Debug.Log(graphicsParent);
     }
 
     private void DisplayCatInfo(string catTypeName, string catTypeInfo)

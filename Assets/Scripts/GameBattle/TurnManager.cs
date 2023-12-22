@@ -25,6 +25,7 @@ public class TurnManager : MonoBehaviour
     [Header("DEBUGGING")]
     public TurnState state;
     public bool passTurn;
+    public bool battleEnded;
     public List<Entity> catAttackQueue; // Use to store reference of cats in for the attack phase
 
     private void Awake() => Instance = this;
@@ -32,6 +33,7 @@ public class TurnManager : MonoBehaviour
     public void Initialize()
     {
         passTurn = false;
+        battleEnded = false;
     }
     
     public async void HandleTurnState()
@@ -101,7 +103,11 @@ public class TurnManager : MonoBehaviour
                 
                 // start a new turn
                 state = TurnState.PLAYER_TURN;
-                HandleTurnState();
+                
+                if (!battleEnded)
+                {
+                    HandleTurnState();
+                }
                 break;
         }
     }
@@ -126,21 +132,18 @@ public class TurnManager : MonoBehaviour
             //prevent soft lock when there is less than 3 cat in player deck
             if (HandManager.Instance.IsHandEmpty())
             {
-                Debug.Log("Hand is empty.");
                 bool AllUsedBattlePawnAreLocked =true;
                 int i = 0;
                 foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
                 {
                     if (!battlePawn.IsLocked() && battlePawn.entityIdLinked != "")
                     {
-                        Debug.Log("batllePawn " + i + "isnt locked and got an entity: " + battlePawn.entityIdLinked);
                         AllUsedBattlePawnAreLocked = false;
                     }
                     i++;
                 }
                 if (AllUsedBattlePawnAreLocked)
                 {
-                    Debug.Log("AllUsedBattlePawnAreLocked.");
                     passTurn = true;
                 }
             }
@@ -299,6 +302,7 @@ public class TurnManager : MonoBehaviour
         
         if (EnemyGenerator.Instance.allEnemiesDead)
         {
+            battleEnded = true;
             DataManager.data.playerStorage.SynchronizeCatData(CatManager.Instance.cats);
             DataManager.data.endBattleStatus = EndBattleStatus.VICTORY;
             await endBattleUIManager.AnimateEndBattle();
@@ -306,6 +310,7 @@ public class TurnManager : MonoBehaviour
         
         if (CatManager.Instance.allCatsDead)
         {
+            battleEnded = true;
             DataManager.data.endBattleStatus = EndBattleStatus.DEFEATED;
             await endBattleUIManager.AnimateEndTitle();
             SceneManager.LoadScene("mainmenu");
