@@ -683,7 +683,7 @@ MonoBehaviour:
   playerConfig: {fileID: 11400000, guid: ec3c8e6c6bee9ac4ab5315ea24b3ce84, type: 2}
   mapConfig: {fileID: 11400000, guid: ecff155d1ea30e347a02067dfa8932d1, type: 2}
   events: {fileID: 11400000, guid: 53a8944a4f66d06488e650440ad92b5d, type: 2}
-  loadingScreenUIManager: {fileID: 1886691395}
+  loadingScreen: {fileID: 1886691395}
   rsoDataManager: {fileID: 2073155678}
 --- !u!1 &1144055173
 GameObject:
@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 1886691391}
   - component: {fileID: 1886691395}
   m_Layer: 5
-  m_Name: MainCanvas
+  m_Name: LoadingScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
