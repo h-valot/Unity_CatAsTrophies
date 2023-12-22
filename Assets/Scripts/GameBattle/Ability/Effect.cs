@@ -22,7 +22,7 @@ public class Effect
                 Misc.GetEntityById(sourceId).UpdateHealth(-Registry.gameSettings.dotDamageAmount);
                 break;
             case EffectType.Hot: //Usable
-                Misc.GetEntityById(sourceId).UpdateHealth(Registry.gameSettings.hotHealAmount);
+                Misc.GetEntityById(sourceId).HealUpdate(Registry.gameSettings.hotHealAmount);
                 break;
             case EffectType.DebuffAttack: //Usable
                 break;
