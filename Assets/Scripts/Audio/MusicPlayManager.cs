@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
@@ -43,28 +41,24 @@ public class MusicPlayManager : MonoBehaviour
         {
             PlayintroSong();
             LaunchLoop(introSong.length);
-            Debug.Log(introSong.length);
         }
 
         else if (currentScene == "GameBattle")
         {
             PlayIntroBattleSong();
             LaunchLoop(introBattleSong.length);
-            Debug.Log(introBattleSong.length);
         }
 
         else if (currentScene == "GameGraveyard")
         {
             PlayGraveyardSong();
             LaunchLoop(graveyardSong.length);
-            Debug.Log(graveyardSong.length);
         }
 
         else if (currentScene == "GameBonfire")
         {
             PlayRestSong();
             LaunchLoop(restSong.length);
-            Debug.Log(restSong.length);
         }
     }
 
@@ -113,24 +107,21 @@ public class MusicPlayManager : MonoBehaviour
         audioSource.Play();
     }
 
-    private async void LaunchLoop(float _timerToWait)
+    private async void LaunchLoop(float waitingDuration)
     {
-        await Task.Delay((int)(_timerToWait * 1000));
+        await Task.Delay(Mathf.RoundToInt(waitingDuration * 1000));
         currentScene = SceneManager.GetActiveScene().name;
-        Debug.Log("Le timer est fini");
 
         if (!stopAsync && this)
         {
             if (currentScene == "mainmenu")
             {
                 PlayloopSong();
-                Debug.Log("Tu devrais entendre la loop");
             }
 
             else if (currentScene == "GameBattle")
             {
                 PlayLoopBattleSong();
-                Debug.Log("Tu devrais entendre la Battleloop");
             }
 
             else if (currentScene == "GameGraveyard")

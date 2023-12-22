@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 1374756696331654632}
   - component: {fileID: 4554564597620202761}
   m_Layer: 5
-  m_Name: B_Button
+  m_Name: BTN_LoadScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 0.7176471, g: 0.5803922, b: 0.48627454, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

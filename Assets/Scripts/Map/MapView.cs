@@ -59,16 +59,16 @@ public class MapView : MonoBehaviour
         CreateMapBackground();
     }
 
-    private void ClearMap()
+    public void ClearMap()
     {
         scrollRect.gameObject.SetActive(false);
-        _nodesUI.Clear();
-
-        while (contentParent.childCount > 0) 
-        {
-            DestroyImmediate(contentParent.GetChild(0).gameObject);
-        }
         escapeButton.SetActive(showEscapeButton);
+        
+        _nodesUI.Clear();
+        _lineConnections.Clear();
+        
+        while (contentParent.childCount > 0) 
+            DestroyImmediate(contentParent.GetChild(0).gameObject);
     }
     
     private void CreateNodes(List<Node> nodes)

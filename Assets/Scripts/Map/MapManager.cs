@@ -41,6 +41,7 @@ public class MapManager : MonoBehaviour
     public void HideCanvas()
     {
         mapCanvasParent.SetActive(false);
+        mapView.ClearMap();
     }
 
     /// <summary>
@@ -49,7 +50,6 @@ public class MapManager : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
-        
         if (DataManager.data.map != null && DataManager.data.map.IsNotEmpty())
         {
             Map map = DataManager.data.map;
