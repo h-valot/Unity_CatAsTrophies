@@ -89,6 +89,7 @@ public class Cat : Entity
         Registry.events.OnNewPlayerTurn += ResetArmor;
         Registry.events.OnNewPlayerTurn += TriggerAllEffectsBeginTurn;
         Registry.events.OnEndPlayerTurn += TriggerAllEffectsEndTurn;
+        Registry.events.OnEndPlayerTurn += ResetAbility;
         Registry.events.OnCatsUseAutoAttack += UseAutoAttack;
     }
 
@@ -98,6 +99,7 @@ public class Cat : Entity
         Registry.events.OnNewPlayerTurn -= ResetArmor;
         Registry.events.OnNewPlayerTurn -= TriggerAllEffectsBeginTurn;
         Registry.events.OnEndPlayerTurn -= TriggerAllEffectsEndTurn;
+        Registry.events.OnEndPlayerTurn -= ResetAbility;
         Registry.events.OnCatsUseAutoAttack -= UseAutoAttack;
     }
 
