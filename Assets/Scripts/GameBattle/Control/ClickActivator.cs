@@ -31,6 +31,14 @@ public class ClickActivator : MonoBehaviour
         await Task.Delay((int)(_timerToWait * 1000));
         if (isTouching && TurnManager.Instance.catAttackQueue.Count < 3 && CanTriggerAbility() && timeStartClick == _timeStartClick)
         {
+            foreach (var battlePawn in BattlefieldManager.Instance.catBattlePawns)
+            {
+                if (Misc.GetCatById(battlePawn.entityIdLinked) == catUsed)
+                {
+                    battlePawn.orderInQueue = TurnManager.Instance.catAttackQueue.Count;
+                    break;
+                }
+            }
             catUsed.AddCatAttackQueue();
         }
     }

@@ -31,7 +31,7 @@ public class InputHandler : MonoBehaviour
                     {
                         HandManager.Instance.ArrangeHand();
                         //remove cat info panel
-                        Registry.events.OnCatDestacked(); //goes to infoCatPanel.cs
+                        Registry.events.OnCatDestacked.Invoke(); //goes to infoCatPanel.cs
                     }
                     clickAlreadyCat = true;
                 }
@@ -42,7 +42,7 @@ public class InputHandler : MonoBehaviour
                 {
                     HandManager.Instance.ArrangeHand();
                     //remove cat info panel
-                    Registry.events.OnCatDestacked(); //goes to infoCatPanel.cs
+                    Registry.events.OnCatDestacked.Invoke(); //goes to infoCatPanel.cs
                     clickAlreadyNotCat = true;
                 }
             }

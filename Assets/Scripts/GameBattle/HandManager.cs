@@ -75,6 +75,21 @@ public class HandManager : MonoBehaviour
     }
 
     /// <summary>
+    /// return true if hand empty
+    /// </summary>
+    public bool IsHandEmpty ()
+    {
+        foreach (var cat in catsInHand)
+        {
+            if (cat != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
     /// Spawn a cat and add it to the player's hand
     /// </summary>
     /// <param name="_catId">Type index of the cat</param>

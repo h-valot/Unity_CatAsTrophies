@@ -27,11 +27,13 @@ public class Cat : Entity
     private GameObject rightHandAddonRef;
     private GameObject leftHandAddonRef;
     private float blobShadowPositionY;
+    public bool startedTurnOnBattlefield;
 
     public void Initialize(int typeIndex, float currentHealth)
     {
         base.Initialize();
         state = CatState.IN_DECK;
+        startedTurnOnBattlefield = false;
         catType = typeIndex;
         
         // setup entity stats
@@ -85,7 +87,9 @@ public class Cat : Entity
     {
         Registry.events.OnNewPlayerTurn += ResetAbility;
         Registry.events.OnNewPlayerTurn += ResetArmor;
-        Registry.events.OnNewPlayerTurn += TriggerAllEffects;
+        Registry.events.OnNewPlayerTurn += TriggerAllEffectsBeginTurn;
+        Registry.events.OnEndPlayerTurn += TriggerAllEffectsEndTurn;
+        Registry.events.OnEndPlayerTurn += ResetAbility;
         Registry.events.OnCatsUseAutoAttack += UseAutoAttack;
     }
 
@@ -93,7 +97,9 @@ public class Cat : Entity
     {
         Registry.events.OnNewPlayerTurn -= ResetAbility;
         Registry.events.OnNewPlayerTurn -= ResetArmor;
-        Registry.events.OnNewPlayerTurn -= TriggerAllEffects;
+        Registry.events.OnNewPlayerTurn -= TriggerAllEffectsBeginTurn;
+        Registry.events.OnEndPlayerTurn -= TriggerAllEffectsEndTurn;
+        Registry.events.OnEndPlayerTurn -= ResetAbility;
         Registry.events.OnCatsUseAutoAttack -= UseAutoAttack;
     }
 
@@ -113,13 +119,17 @@ public class Cat : Entity
         graphicsParent.transform.eulerAngles = handRotation;
         graphicsParent.SetActive(true);
         gameObject.SetActive(true);
+        if (rightHandAddonRef) rightHandAddonRef.SetActive(false);
+        if (leftHandAddonRef) leftHandAddonRef.SetActive(false);
         blobShadowRenderer.enabled = false; 
         blobShadow.transform.localPosition = new Vector3(blobShadow.transform.localPosition.x, blobShadowPositionY, blobShadow.transform.localPosition.z);
 
         // trigger animations
         animator.SetBool("IsInHand", true);
         animator.SetBool("IsFalling", false);
+        animator.SetBool("IsOnBattlefield", false);
 
+        startedTurnOnBattlefield = false;
         state = CatState.IN_HAND;
         return id;
     }
@@ -163,17 +173,59 @@ public class Cat : Entity
         stopAsync = false;
     }
 
-    protected override void TriggerAllEffects()
+    protected override void TriggerAllEffectsBeginTurn()
+    {
+        if (state == CatState.ON_BATTLE)
+        {
+            startedTurnOnBattlefield = true;
+        }
+
+
+        List<Effect> effectsToRemove = new List<Effect>();
+        foreach (var effect in effects)
+        {
+            if (effect.type == EffectType.Dot || effect.type == EffectType.Hot)
+            {
+                effect.Trigger();
+
+                // if the effect expire, add it to a list of all effects to remove
+                if (effect.turnDuration <= 0)
+                {
+                    effectsToRemove.Add(effect);
+                }
+            }
+        }
+
+        // removes all expired effects
+        foreach (var effect in effectsToRemove)
+        {
+            effects.Remove(effect);
+        }
+
+
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.IN_HAND)
+        {
+            animator.SetBool("IsActing", false);
+        }
+
+        // trigger update display function in EntityUIDisplay.cs
+        OnStatsUpdate?.Invoke();
+    }
+
+    protected override void TriggerAllEffectsEndTurn()
     {
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
-            effect.Trigger();
-
-            // if the effect expire, add it to a list of all effects to remove
-            if (effect.turnDuration <= 0)
+            if (effect.type != EffectType.Dot && effect.type != EffectType.Hot)
             {
-                effectsToRemove.Add(effect);
+                effect.Trigger();
+
+                // if the effect expire, add it to a list of all effects to remove
+                if (effect.turnDuration <= 0)
+                {
+                    effectsToRemove.Add(effect);
+                }
             }
         }
 

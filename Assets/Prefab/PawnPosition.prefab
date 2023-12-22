@@ -50,6 +50,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 5503812230330246291}
   battlePosition: 0
   entityIdLinked: 
+  lock1: {fileID: 21300000, guid: 89942a2f21346574db74c27e08609e93, type: 3}
+  lock2: {fileID: 21300000, guid: b54a03d1c937dfe4a85b2d475a58fb42, type: 3}
+  lock3: {fileID: 21300000, guid: 3b50afe43146ec0488e3361ed81acb83, type: 3}
+  defaultPawn: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &6708484202068955025
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +82,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 629490240392768250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

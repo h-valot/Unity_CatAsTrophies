@@ -174,18 +174,22 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Trigger all effects
     /// </summary>
-    protected virtual void TriggerAllEffects()
+    protected virtual void TriggerAllEffectsBeginTurn()
     {
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
-            effect.Trigger();
-            
-            // if the effect expire, add it to a list of all effects to remove
-            if (effect.turnDuration <= 0)
+            if ( effect.type == EffectType.Dot || effect.type == EffectType.Hot)
             {
-                effectsToRemove.Add(effect);
+                effect.Trigger();
+
+                // if the effect expire, add it to a list of all effects to remove
+                if (effect.turnDuration <= 0)
+                {
+                    effectsToRemove.Add(effect);
+                }
             }
+            
         }
 
         // removes all expired effects
@@ -203,7 +207,41 @@ public class Entity : MonoBehaviour
         //trigger update display function in EntityUIDisplay.cs
         OnStatsUpdate?.Invoke();
     }
-    
+
+    protected virtual void TriggerAllEffectsEndTurn()
+    {
+        List<Effect> effectsToRemove = new List<Effect>();
+        foreach (var effect in effects)
+        {
+            if (effect.type != EffectType.Dot && effect.type != EffectType.Hot)
+            {
+                effect.Trigger();
+
+                // if the effect expire, add it to a list of all effects to remove
+                if (effect.turnDuration <= 0)
+                {
+                    effectsToRemove.Add(effect);
+                }
+            }
+
+        }
+
+        // removes all expired effects
+        foreach (var effect in effectsToRemove)
+        {
+            effects.Remove(effect);
+        }
+
+
+        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        {
+            animator.SetBool("IsSleeping", false);
+        }
+
+        //trigger update display function in EntityUIDisplay.cs
+        OnStatsUpdate?.Invoke();
+    }
+
     public void ClearAllHarmfulEffects()
     {
         List<Effect> effectsToRemove = new List<Effect>();
