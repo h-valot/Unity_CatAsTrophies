@@ -19,7 +19,7 @@ MonoBehaviour:
   health: 6
   armorAtStart: 0
   sprite: {fileID: 21300000, guid: 24c75e833ed5c204db35979a352a3b12, type: 3}
-  abilityDescription: Buffs the damages of the front cat by 1 for 2 turns.
+  abilityDescription: Buffs damages of the front cat for 2 turns.
   ability:
     animation: 0
     intentionSprite: {fileID: 0}
@@ -33,7 +33,7 @@ MonoBehaviour:
       target: 2
       us: 1
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
-  catSkinTexture: {fileID: 2800000, guid: 24c75e833ed5c204db35979a352a3b12, type: 3}
+  catSkinTexture: {fileID: 2800000, guid: d0317fbe55afe0d45950f60ad41a31be, type: 3}
   catEyesTexture: {fileID: 2800000, guid: d44f39f527cc83142bd4e637acec7d60, type: 3}
   rightHandAddon: {fileID: 919132149155446097, guid: 870d2e95afb8fd048845ef6baa3dd043, type: 3}
   leftHandAddon: {fileID: 0}

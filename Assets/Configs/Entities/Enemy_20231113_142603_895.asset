@@ -15,6 +15,7 @@ MonoBehaviour:
   isCat: 0
   id: Enemy_20231113_142603_895
   entityName: Elite Blue
+  rarety: 0
   health: 18
   armorAtStart: 0
   sprite: {fileID: 0}
@@ -45,7 +46,7 @@ MonoBehaviour:
       value: 1
       target: 5
       us: 0
-  basePrefab: {fileID: 5087666672669579333, guid: 8f07f9a3480ae9e4eb345ea854a5815a, type: 3}
+  basePrefab: {fileID: 5087666672669579333, guid: 92bd1f93389fe7a449ef4b805582defb, type: 3}
   catSkinTexture: {fileID: 0}
   catEyesTexture: {fileID: 0}
   rightHandAddon: {fileID: 0}
