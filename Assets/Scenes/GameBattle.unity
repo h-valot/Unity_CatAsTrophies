@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &44489297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -732,7 +732,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enemy turn
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dba588e510b97fc49895047eb595846a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dd5afbd46b1cc3b409cf7ba7a08b3bdb, type: 2}
   m_sharedMaterial: {fileID: 8247470494970147418, guid: dba588e510b97fc49895047eb595846a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -757,8 +757,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 128.4
-  m_fontSizeBase: 128.4
+  m_fontSize: 125
+  m_fontSizeBase: 125
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -796,7 +796,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &243293494
@@ -2356,6 +2356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 819835936}
+  - component: {fileID: 819835937}
   m_Layer: 5
   m_Name: TurnDisplayer
   m_TagString: Untagged
@@ -2383,6 +2384,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &819835937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819835935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee664daa8b41aa449944ea0007c1fc7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnTitleGO: {fileID: 44489296}
+  turnTitleTM: {fileID: 243293493}
+  turnTitleDuration: 3
 --- !u!114 &820258453 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6863025257809989219, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
@@ -5757,10 +5773,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endBattleUIManager: {fileID: 820258453}
+  turnMenu: {fileID: 819835937}
   offsetBattlePosition: {x: 0, y: 2.2744, z: -7}
   backgroundFadeRenderer: {fileID: 122362666}
   state: 0
   passTurn: 0
+  battleEnded: 0
   catAttackQueue: []
 --- !u!4 &1692114596
 Transform:

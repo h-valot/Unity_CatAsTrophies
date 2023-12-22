@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonSoundManager : MonoBehaviour
@@ -22,25 +20,21 @@ public class ButtonSoundManager : MonoBehaviour
     {
         audioSource.loop = false;
         audioSource.PlayOneShot(attackSound);
-        Debug.Log("attackSound");
     }
     public void DebuffSound()
     {
         audioSource.loop = false;
         audioSource.PlayOneShot(debuffSound);
-        Debug.Log("DebuffSoundSound");
     }
     public void BuffSound()
     {
         audioSource.loop = false;
         audioSource.PlayOneShot(buffSound);
-        Debug.Log("BuffSound");
     }
     public void HealSound()
     {
         audioSource.loop = false;
         audioSource.PlayOneShot(healSound);
-        Debug.Log("HealSound");
     }
 
     public void OnEnable()

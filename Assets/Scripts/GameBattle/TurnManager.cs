@@ -1,15 +1,11 @@
-using NUnit.Framework;
-using NUnit.Framework.Internal.Commands;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Data;
+using UI.Battle;
 using UI.EndBattle;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class TurnManager : MonoBehaviour
 {
@@ -17,6 +13,7 @@ public class TurnManager : MonoBehaviour
 
     [Header("REFERENCES")]
     public EndBattleUIManager endBattleUIManager;
+    public TurnMenu turnMenu;
     
     [Header("ENTITY ATTACKS SETUP")]
     public Vector3 offsetBattlePosition;
@@ -26,7 +23,7 @@ public class TurnManager : MonoBehaviour
     public TurnState state;
     public bool passTurn;
     public bool battleEnded;
-    public List<Entity> catAttackQueue; // Use to store reference of cats in for the attack phase
+    public List<Entity> catAttackQueue; // use to store reference of cats in for the attack phase
 
     private void Awake() => Instance = this;
     
@@ -51,7 +48,10 @@ public class TurnManager : MonoBehaviour
                 // handle the case where no cats can be draw
                 FulfillHand(5);
 
-                //Select autoatcks here to allow display of enemies intents sprites
+                // display your turn title
+                turnMenu.AnimateTitle("Your turn");
+
+                // select autoatcks here to allow display of enemies intents sprites
                 foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
                 {
                     Entity enemyEntity = Misc.GetEntityById(battlePawn.entityIdLinked);
@@ -101,20 +101,17 @@ public class TurnManager : MonoBehaviour
                 // handle end battle, if all enemies are dead
                 await HandleEndBattle();
                 
-                // start a new turn
+                // start a new turn, if the battle isn't ended yet
                 state = TurnState.PLAYER_TURN;
+                if (!battleEnded) HandleTurnState();
                 
-                if (!battleEnded)
-                {
-                    HandleTurnState();
-                }
                 break;
         }
     }
 
-    private void FulfillHand(int _catCount)
+    private void FulfillHand(int catCount)
     {
-        for (int i = 0; i < _catCount; i++)
+        for (int i = 0; i < catCount; i++)
         {
             if (DeckManager.Instance.catsInDeck.Count > 0 ||
                 DiscardManager.Instance.catsDiscarded.Count > 0)
@@ -152,7 +149,10 @@ public class TurnManager : MonoBehaviour
         await Task.Delay((int)Math.Round(Registry.gameSettings.abilityAnimationDuration * 1000));
     }
 
-    //For each battle pawn associated with a cat (the white circle on the battlefield), get the entityId and trigger the UseAutoAttack function
+    /// <summary>
+    /// For each battle pawn associated with a cat (the white circle on the battlefield),
+    /// get the entityId and trigger the UseAutoAttack function
+    /// </summary>
     private async Task HandleCatsAttacks()
     {
         //display the background fade
@@ -219,25 +219,25 @@ public class TurnManager : MonoBehaviour
     {
         //display the background fade
         backgroundFadeRenderer.enabled = true;
+        
+        // display turn title
+        turnMenu.AnimateTitle("Enemy turn");
 
         foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
         {
             Entity _Entity = Misc.GetEntityById(battlePawn.entityIdLinked);
 
-            //skip this battlepawn if there is no entity on it
-            if (_Entity == null)
-            {
-                continue; 
-            }
+            // skip this battlepawn if there is no entity on it
+            if (_Entity == null) continue; 
 
-            //offset the enemy that will attack to be in front of the background fade
+            // offset the enemy that will attack to be in front of the background fade
             _Entity.transform.position += offsetBattlePosition;
             _Entity.isInFrontOfBackgroundFade = true;
 
-            //select the autoattack that will be used by the entity
-            //_Entity.SelectAutoAttack();
+            // select the autoattack that will be used by the entity
+            // _Entity.SelectAutoAttack();
 
-            //Get every target ids of the selected ability and move them in front of the background fade
+            // get every target ids of the selected ability and move them in front of the background fade
             List<string> involvedTargetIds = new List<string>();
             List<Entity> involvedTarget = new List<Entity>();
             involvedTargetIds = _Entity.GetAutoAttackTarget();
@@ -254,15 +254,15 @@ public class TurnManager : MonoBehaviour
                 }
             }
 
-            //little delay to better understand the fight
+            // little delay to better understand the fight
             await Task.Delay((int)Math.Round(Registry.gameSettings.delayBeforeAnimation * 1000));
 
-            //use the selected ability
+            // use the selected ability
             _Entity.UseAutoAttack();
-            //wait for the end of ability animation + a delay
+            // wait for the end of ability animation + a delay
             await Task.Delay((int)Math.Round((Registry.gameSettings.abilityAnimationDuration + Registry.gameSettings.delayAfterAnimation) * 1000));
 
-            //place the entity back behind the background fade
+            // place the entity back behind the background fade
             _Entity.transform.position -= offsetBattlePosition;
             _Entity.isInFrontOfBackgroundFade = false;
             foreach (Entity _target in involvedTarget)
@@ -276,7 +276,7 @@ public class TurnManager : MonoBehaviour
             }
         }
 
-        //disable background fade
+        // disable background fade
         backgroundFadeRenderer.enabled = false;
     }
 
@@ -288,12 +288,8 @@ public class TurnManager : MonoBehaviour
         catAttackQueue.Add(catReference);
         return (catAttackQueue.Count);
     }
-
-    //Triggered at the start of the player turn
-    private void ClearCatAttackQueue()
-    {
-        catAttackQueue.Clear();
-    }
+    
+    private void ClearCatAttackQueue() => catAttackQueue.Clear();
     
     private async Task HandleEndBattle()
     {
