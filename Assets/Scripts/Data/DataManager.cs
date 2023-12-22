@@ -38,6 +38,7 @@ namespace Data
                 
                 // exceptionnal modification
                 data.tuna = 400;
+                data.musicVolume = 0.5f;
             }
         }
         
