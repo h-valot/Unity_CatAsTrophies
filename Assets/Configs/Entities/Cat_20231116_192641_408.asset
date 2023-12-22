@@ -37,7 +37,7 @@ MonoBehaviour:
   catEyesTexture: {fileID: 2800000, guid: d44f39f527cc83142bd4e637acec7d60, type: 3}
   rightHandAddon: {fileID: 919132149155446097, guid: ad5569779d521de448f499c53f919529, type: 3}
   leftHandAddon: {fileID: 0}
-  headAddon: {fileID: 919132149155446097, guid: ac2588a30f4437247a4521ad1694cb78, type: 3}
+  headAddon: {fileID: 919132149155446097, guid: bdb2230ead98a5341a2c26a88324bbba, type: 3}
   canBeReward: 1
   apparitionTiers: 0100000002000000
   pricing: 0

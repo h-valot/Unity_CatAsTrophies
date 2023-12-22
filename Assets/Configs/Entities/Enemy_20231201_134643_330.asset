@@ -26,10 +26,14 @@ MonoBehaviour:
     instructions: []
   autoAttack:
   - animation: 1
-    intentionSprite: {fileID: 21300000, guid: 66c1a0632f28bfa45bc766cd705d2890, type: 3}
+    intentionSprite: {fileID: 21300000, guid: 5ce451405da8dcc42a6638a97774da2f, type: 3}
     instructions:
     - type: 0
       value: 3
+      target: 3
+      us: 0
+    - type: 1
+      value: 2
       target: 3
       us: 0
   - animation: 2
@@ -37,18 +41,18 @@ MonoBehaviour:
     instructions:
     - type: 11
       value: 3
-      target: 5
+      target: 1
       us: 0
     - type: 27
       value: 4
       target: 0
       us: 0
-  - animation: 1
+  - animation: 0
     intentionSprite: {fileID: 21300000, guid: 66c1a0632f28bfa45bc766cd705d2890, type: 3}
     instructions:
-    - type: 1
-      value: 2
-      target: 1
+    - type: 0
+      value: 6
+      target: 2
       us: 0
   basePrefab: {fileID: 5087666672669579333, guid: 2c70381c131370b43b7c8728dfa106ac, type: 3}
   catSkinTexture: {fileID: 0}

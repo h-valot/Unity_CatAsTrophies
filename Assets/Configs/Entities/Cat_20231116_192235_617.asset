@@ -33,11 +33,11 @@ MonoBehaviour:
       target: 2
       us: 1
   basePrefab: {fileID: 1184799638771992382, guid: eea40f481c7ec2a47996fb39ed4ca1f6, type: 3}
-  catSkinTexture: {fileID: 2800000, guid: b473947344cf3f141a0af0440660f6ff, type: 3}
+  catSkinTexture: {fileID: 2800000, guid: 24c75e833ed5c204db35979a352a3b12, type: 3}
   catEyesTexture: {fileID: 2800000, guid: d44f39f527cc83142bd4e637acec7d60, type: 3}
-  rightHandAddon: {fileID: 919132149155446097, guid: 1241ff25539cccf4d8dc3f00bbfd7c4b, type: 3}
+  rightHandAddon: {fileID: 919132149155446097, guid: 870d2e95afb8fd048845ef6baa3dd043, type: 3}
   leftHandAddon: {fileID: 0}
-  headAddon: {fileID: 919132149155446097, guid: c5db90852b5087c428c1c24e52f27f8b, type: 3}
+  headAddon: {fileID: 919132149155446097, guid: c82bdfa3089e0da49aa4a68ed8c32c0b, type: 3}
   canBeReward: 1
   apparitionTiers: 010000000200000000000000
   pricing: 0

@@ -356,10 +356,10 @@ RectTransform:
   - {fileID: 3884597228280740164}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 550, y: 650}
+  m_SizeDelta: {x: 550, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779730314740659576
 MonoBehaviour:
@@ -373,9 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30d37f69d399dd4db35cc25c98c24de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopbuttonManager: {fileID: 0}
+  shopManager: {fileID: 0}
   titleTM: {fileID: 1663136829610594035}
   priceTM: {fileID: 8382622201299753329}
+  givenCurrencyTM: {fileID: 0}
   currency: 0
 --- !u!222 &4748797583785648449
 CanvasRenderer:
