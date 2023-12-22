@@ -1,3 +1,4 @@
+using Misc;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RSE_CollectionDragBox", menuName = "Data/RSE/Collection drag box")]

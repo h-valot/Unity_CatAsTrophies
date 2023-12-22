@@ -541,16 +541,16 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 991072771}
-        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
-        m_MethodName: LoadMainMenu
-        m_Mode: 1
+      - m_Target: {fileID: 1922933528}
+        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: mainmenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &186111650
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2240,7 +2240,6 @@ GameObject:
   - component: {fileID: 795142622}
   - component: {fileID: 795142621}
   - component: {fileID: 795142620}
-  - component: {fileID: 795142619}
   m_Layer: 5
   m_Name: BTN_OpenSettings
   m_TagString: Untagged
@@ -2267,18 +2266,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &795142619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795142617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &795142620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2399,17 +2386,6 @@ MonoBehaviour:
   turnTitleGO: {fileID: 44489296}
   turnTitleTM: {fileID: 243293493}
   turnTitleDuration: 3
---- !u!114 &820258453 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6863025257809989219, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
-  m_PrefabInstance: {fileID: 7010625135206074601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d24a6e86bd7b7141846737da97843a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &826176701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,10 +3782,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 819835936}
   - {fileID: 1688934232}
   - {fileID: 1071985673}
   - {fileID: 991072770}
-  - {fileID: 819835936}
   m_Father: {fileID: 826176705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5924,7 +5900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ac7eab468493c43bd11afb9782a6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endBattleUIManager: {fileID: 820258453}
+  endBattleManager: {fileID: 7010625135206074603}
   turnMenu: {fileID: 819835937}
   offsetBattlePosition: {x: 0, y: 2.2744, z: -7}
   backgroundFadeRenderer: {fileID: 122362666}
@@ -6763,6 +6739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922933527}
+  - component: {fileID: 1922933528}
   m_Layer: 5
   m_Name: ConfirmExitBattle
   m_TagString: Untagged
@@ -6791,6 +6768,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1922933528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922933526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1954702516
 GameObject:
   m_ObjectHideFlags: 0
@@ -6910,7 +6899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21ba2de1df3921459003009ce89f376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeControl: {fileID: 1498058682}
+  volumeController: {fileID: 1498058682}
 --- !u!1 &2013726436
 GameObject:
   m_ObjectHideFlags: 0
@@ -7723,6 +7712,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8392636607414983073, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
   m_PrefabInstance: {fileID: 7010625135206074601}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7010625135206074603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6863025257809989219, guid: 719773ecbe0eee745b3973ad66fd62d1, type: 3}
+  m_PrefabInstance: {fileID: 7010625135206074601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d24a6e86bd7b7141846737da97843a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9197258428211661940
 PrefabInstance:
   m_ObjectHideFlags: 0

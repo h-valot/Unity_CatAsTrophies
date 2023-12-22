@@ -1,51 +1,53 @@
-using System;
 using UnityEngine;
 
-public class MenuManager : MonoBehaviour
+namespace UI.Menu
 {
-    public static MenuManager Instance;
+    public class MenuManager : MonoBehaviour
+    {
+        public static MenuManager Instance;
     
-    [Header("REFERENCES")] 
-    public GameMenu[] gameMenus;
+        [Header("REFERENCES")] 
+        public MenuItem[] gameMenus;
     
-    private void Awake() => Instance = this;
+        private void Awake() => Instance = this;
 
-    private void OnEnable()
-    {
-        if (Registry.events == null) return;
-        Registry.events.OnSceneLoaded += Initialize;
-    }
-
-    private void OnDisable()
-    {
-        if (Registry.events == null) return;
-        Registry.events.OnSceneLoaded -= Initialize;
-    }
-    
-    public void Initialize()
-    {
-        foreach (GameMenu menu in gameMenus)
+        private void OnEnable()
         {
-            menu.Initialize();
+            if (Registry.events == null) return;
+            Registry.events.OnSceneLoaded += Initialize;
         }
-    }
-    
-    /// <summary>
-    /// Check if there is any ui menu currently opened
-    /// </summary>
-    public bool IsMenuOpened()
-    {
-        bool output = false;
-        
-        foreach (GameMenu menu in gameMenus)
+
+        private void OnDisable()
         {
-            if (menu.isActivated)
+            if (Registry.events == null) return;
+            Registry.events.OnSceneLoaded -= Initialize;
+        }
+    
+        public void Initialize()
+        {
+            foreach (MenuItem menu in gameMenus)
             {
-                output = true;
-                break;
+                menu.Initialize();
             }
         }
+    
+        /// <summary>
+        /// Check if there is any ui menu currently opened
+        /// </summary>
+        public bool IsMenuOpened()
+        {
+            bool output = false;
+        
+            foreach (MenuItem menu in gameMenus)
+            {
+                if (menu.isActivated)
+                {
+                    output = true;
+                    break;
+                }
+            }
 
-        return output;
+            return output;
+        }
     }
 }

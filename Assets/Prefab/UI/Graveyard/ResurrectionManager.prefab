@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapManager: {fileID: 0}
-  resurrectionUIManager: {fileID: 4776651618328925648}
+  resurrectionManager: {fileID: 4776651618328925648}
   catModel: {fileID: 2789796289033829121}
   hidePoint: {fileID: 7483961505762085492}
   showPoint: {fileID: 5600896027304297807}

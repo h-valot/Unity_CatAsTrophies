@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Player;
+using Data.Player;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Config/Player", order = 1)]

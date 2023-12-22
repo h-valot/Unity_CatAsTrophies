@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using List;
+using Misc;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public static class MapGenerator
 {
-    private static MapConfig mapConfig;
-    private static List<List<Node>> nodes = new List<List<Node>>();
-    private static List<List<Point>> paths = new List<List<Point>>();
+    private static MapConfig _mapConfig;
     
-    private static readonly List<NodeType> randomNodes = new List<NodeType> 
+    private static readonly List<List<Node>> _nodes = new List<List<Node>>();
+    private static readonly List<List<Point>> _paths = new List<List<Point>>();
+    private static readonly List<NodeType> _randomNodes = new List<NodeType> 
         { NodeType.GRAVEYARD, NodeType.SIMPLE_BATTLE, NodeType.ELITE_BATTLE};
     
     /// <summary>
@@ -26,8 +27,8 @@ public static class MapGenerator
             return null;
         }
         
-        MapGenerator.mapConfig = mapConfig;
-        nodes.Clear();
+        _mapConfig = mapConfig;
+        _nodes.Clear();
         
         GenerateNodes();
         GeneratePaths();
@@ -36,7 +37,7 @@ public static class MapGenerator
         RemoveCrossConnections();
 
         // select all nodes with connections
-        var nodesList = nodes
+        var nodesList = _nodes
             .SelectMany(nodesRow => nodesRow)
             .Where(node => node.incomingNodes.Count > 0 || node.outgoingNodes.Count > 0)
             .ToList();
@@ -53,20 +54,20 @@ public static class MapGenerator
     private static void GenerateNodes()
     {
         // for the amount of layer in this map config, create a layer of nodes
-        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count; layerIndex++)
+        for (int layerIndex = 0; layerIndex < _mapConfig.mapLayers.Count; layerIndex++)
         {
-            nodes.Add(new List<Node>());
-            MapLayer layer = mapConfig.mapLayers[layerIndex];
+            _nodes.Add(new List<Node>());
+            MapLayer layer = _mapConfig.mapLayers[layerIndex];
             
             // for the max map width, create a node
             // all layers are fulfilled here, paths will not pass through all nodes (some of those nodes will stay unused)
-            for (int nodeIndex = 0; nodeIndex < mapConfig.GetGridMaxWidth(); nodeIndex++)
+            for (int nodeIndex = 0; nodeIndex < _mapConfig.GetGridMaxWidth(); nodeIndex++)
             {
                 // get a random node type if the random float is less than the randomize node value in the layer
                 NodeType nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode() : layer.nodeType;
                 
                 // create and store the node in the corresponding layer
-                nodes[layerIndex].Add(new Node(nodeType, (int)nodeType, new Point(layerIndex, nodeIndex)));
+                _nodes[layerIndex].Add(new Node(nodeType, (int)nodeType, new Point(layerIndex, nodeIndex)));
             }
         }
     }
@@ -76,12 +77,12 @@ public static class MapGenerator
     /// </summary>
     private static void GeneratePaths()
     {
-        int startingNodeAmount = mapConfig.startingNodeAmount.GetValue();
-        int preBossNodeAmount = mapConfig.preBossNodeAmount.GetValue();
+        int startingNodeAmount = _mapConfig.startingNodeAmount.GetValue();
+        int preBossNodeAmount = _mapConfig.preBossNodeAmount.GetValue();
         List<Point> candidates = new List<Point>();
         Point bossPoint = GetBossPoint();
         
-        for (int i = 0; i < mapConfig.GetGridMaxWidth(); i++)
+        for (int i = 0; i < _mapConfig.GetGridMaxWidth(); i++)
         {
             candidates.Add(new Point(0, i));
         }
@@ -115,7 +116,7 @@ public static class MapGenerator
             path.Add(bossPoint);
             
             // 4. add the newly created path to the list of all paths
-            paths.Add(path);
+            _paths.Add(path);
         }
     }
 
@@ -125,10 +126,10 @@ public static class MapGenerator
     private static Point GetBossPoint()
     {
         // take the very last column
-        int col = mapConfig.mapLayers.Count - 1;
+        int col = _mapConfig.mapLayers.Count - 1;
 
         // take a random row based on the map width
-        int row = Random.Range(0, mapConfig.GetGridMaxWidth());
+        int row = Random.Range(0, _mapConfig.GetGridMaxWidth());
 
         return new Point(col, row);
     }
@@ -143,12 +144,12 @@ public static class MapGenerator
         List<Point> candidates = new List<Point>();
         int rowIndex = fromPoint.row;
 
-        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count - 2; layerIndex++)
+        for (int layerIndex = 0; layerIndex < _mapConfig.mapLayers.Count - 2; layerIndex++)
         {
             // from the left to the right, check the up, forward and down next points
             for (int forwardRowIndex = rowIndex - 1; forwardRowIndex < rowIndex + 2; forwardRowIndex++)
             {
-                if (forwardRowIndex >= 0 && forwardRowIndex < mapConfig.GetGridMaxWidth())
+                if (forwardRowIndex >= 0 && forwardRowIndex < _mapConfig.GetGridMaxWidth())
                 {
                     candidates.Add(new Point(layerIndex, forwardRowIndex));
                 }
@@ -172,12 +173,12 @@ public static class MapGenerator
     private static void RandomizeNodesPosition()
     {
         float layerOffset = 0;
-        for (int layerIndex = 0; layerIndex < mapConfig.mapLayers.Count; layerIndex++)
+        for (int layerIndex = 0; layerIndex < _mapConfig.mapLayers.Count; layerIndex++)
         {
             // get the distance from the previous layer and to the next one
-            float layerDistance = mapConfig.layerDistance.GetValue();
+            float layerDistance = _mapConfig.layerDistance.GetValue();
             if (layerIndex > 0) layerOffset += layerDistance;
-            List<Vector2> positions = PoissonDiscSampling.GeneratePoints(nodes[layerIndex].Count, mapConfig.nodesDistance, mapConfig.rejectionSamples);
+            List<Vector2> positions = PoissonDiscSampling.GeneratePoints(_nodes[layerIndex].Count, _mapConfig.nodesDistance, _mapConfig.rejectionSamples);
 
             // get the lowest and the highest position on y axis
             float positionLowestY = 9999;
@@ -192,14 +193,14 @@ public static class MapGenerator
             float distanceLowHighY = Mathf.Abs(positionLowestY - positionHighestY);
             
             // foreach node in this layer, randomize their position based on x (position among other nodes in layer) and y (layer)
-            for (int nodeIndex = 0; nodeIndex < nodes[layerIndex].Count; nodeIndex++)
+            for (int nodeIndex = 0; nodeIndex < _nodes[layerIndex].Count; nodeIndex++)
             {
                 // update node position based on offsets
-                nodes[layerIndex][nodeIndex].pos.x = positions[nodeIndex].x + layerOffset;
-                nodes[layerIndex][nodeIndex].pos.y = positions[nodeIndex].y - distanceLowHighY / 2;
+                _nodes[layerIndex][nodeIndex].pos.x = positions[nodeIndex].x + layerOffset;
+                _nodes[layerIndex][nodeIndex].pos.y = positions[nodeIndex].y - distanceLowHighY / 2;
                 
                 // center the boss node
-                if (layerIndex == mapConfig.mapLayers.Count - 1) nodes[layerIndex][nodeIndex].pos.y = 0;
+                if (layerIndex == _mapConfig.mapLayers.Count - 1) _nodes[layerIndex][nodeIndex].pos.y = 0;
             }
         }
     }
@@ -209,7 +210,7 @@ public static class MapGenerator
     /// </summary>
     private static void SetUpConnections()
     {
-        foreach (List<Point> path in paths)
+        foreach (List<Point> path in _paths)
         {
             for (int pointIndex = 0; pointIndex < path.Count - 1; pointIndex++)
             {
@@ -229,9 +230,9 @@ public static class MapGenerator
     /// </summary>
     private static void RemoveCrossConnections()
     {
-        for (int colIndex = 0; colIndex < mapConfig.mapLayers.Count; colIndex++)
+        for (int colIndex = 0; colIndex < _mapConfig.mapLayers.Count; colIndex++)
         {
-            for (int rowIndex = 0; rowIndex < mapConfig.GetGridMaxWidth(); rowIndex++)
+            for (int rowIndex = 0; rowIndex < _mapConfig.GetGridMaxWidth(); rowIndex++)
             {
                 // continue if the current, top, right and top-right node doesn't exist and has no connections with others
                 Node node = GetNode(new Point(colIndex, rowIndex));
@@ -267,7 +268,7 @@ public static class MapGenerator
     /// </summary>
     private static NodeType GetRandomNode()
     {
-        return randomNodes[Random.Range(0, randomNodes.Count)];
+        return _randomNodes[Random.Range(0, _randomNodes.Count)];
     }
     
     /// <summary>
@@ -276,9 +277,9 @@ public static class MapGenerator
     private static Node GetNode(Point point)
     {
         // exit if out of bounds
-        if (point.col >= nodes.Count) return null;
-        if (point.row >= nodes[point.col].Count) return null;
+        if (point.col >= _nodes.Count) return null;
+        if (point.row >= _nodes[point.col].Count) return null;
 
-        return nodes[point.col][point.row];
+        return _nodes[point.col][point.row];
     }
 }

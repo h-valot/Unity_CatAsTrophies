@@ -1,6 +1,7 @@
 using Data;
+using Data.Player;
 using List;
-using Player;
+using UI.Init;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,7 @@ public class Init : MonoBehaviour
     public Events events;
 
     [Header("REFERENCES")] 
-    public LoadingScreenUIManager loadingScreenUIManager;
+    public LoadingScreen loadingScreen;
     public RSODataManager rsoDataManager;
     
     private async void Start()
@@ -37,7 +38,7 @@ public class Init : MonoBehaviour
                     DataManager.data.playerStorage.collection.Add(new Item(item.entityIndex));
         }
 
-        if (gameSettings.playLoadingScreen) await loadingScreenUIManager.Animate();
+        if (gameSettings.playLoadingScreen) await loadingScreen.Animate();
 
         Registry.isInitialized = true;
         SceneManager.LoadScene(gameSettings.startingScene);

@@ -1,19 +1,22 @@
 using System;
 using UnityEngine;
 
-public class WrapperVariable<T> : ScriptableObject
+namespace Misc
 {
-
-    private T _value;
-    public T value
+    public class WrapperVariable<T> : ScriptableObject
     {
-        get => _value;
-        set
+
+        private T _value;
+        public T value
         {
-            _value = value;
-            OnChanged?.Invoke();
+            get => _value;
+            set
+            {
+                _value = value;
+                OnChanged?.Invoke();
+            }
         }
-    }
     
-    public event Action OnChanged;
+        public event Action OnChanged;
+    }
 }

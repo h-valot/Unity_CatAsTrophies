@@ -403,42 +403,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164368220}
   m_CullTransparentMesh: 1
---- !u!1 &211968846
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 211968847}
-  m_Layer: 5
-  m_Name: Heal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &211968847
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211968846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 679338041}
-  m_Father: {fileID: 1893454169}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &252704559
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +453,6 @@ GameObject:
   - component: {fileID: 446160265}
   - component: {fileID: 446160264}
   - component: {fileID: 446160263}
-  - component: {fileID: 446160262}
   m_Layer: 5
   m_Name: BTN_HealAllCats
   m_TagString: Untagged
@@ -516,18 +479,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &446160262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446160260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &446160263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,7 +1087,7 @@ RectTransform:
   - {fileID: 1838510531}
   - {fileID: 1479837221}
   - {fileID: 446160261}
-  m_Father: {fileID: 211968847}
+  m_Father: {fileID: 1893454169}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2010,8 +1961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f740eb97b1993ca4faa9ae1617cdeb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeControl: {fileID: 1980929925}
-  healingUIManager: {fileID: 1893454170}
+  volumeController: {fileID: 1980929925}
+  healingManager: {fileID: 1893454170}
 --- !u!4 &1154812257
 Transform:
   m_ObjectHideFlags: 0
@@ -3135,7 +3086,6 @@ GameObject:
   - component: {fileID: 1645191587}
   - component: {fileID: 1645191586}
   - component: {fileID: 1645191585}
-  - component: {fileID: 1645191584}
   m_Layer: 5
   m_Name: BTN_OpenMap
   m_TagString: Untagged
@@ -3162,18 +3112,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1645191584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645191582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1645191585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3573,7 +3511,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 211968847}
+  - {fileID: 679338041}
   - {fileID: 252704560}
   m_Father: {fileID: 1759011953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3595,7 +3533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapManager: {fileID: 806230974}
-  heal: {fileID: 211968846}
+  heal: {fileID: 679338040}
   done: {fileID: 252704559}
   doneDuration: 3
   doneLoadingImage: {fileID: 2129133807}
@@ -4185,7 +4123,6 @@ GameObject:
   - component: {fileID: 2083664005}
   - component: {fileID: 2083664004}
   - component: {fileID: 2083664003}
-  - component: {fileID: 2083664002}
   m_Layer: 5
   m_Name: BTN_OpenSettings
   m_TagString: Untagged
@@ -4212,18 +4149,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2083664002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083664000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2083664003
 MonoBehaviour:
   m_ObjectHideFlags: 0

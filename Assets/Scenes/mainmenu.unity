@@ -150,7 +150,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1010764600}
-  - {fileID: 1625950754}
   - {fileID: 18688614380663807}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1326,7 +1325,6 @@ GameObject:
   - component: {fileID: 691977218}
   - component: {fileID: 691977217}
   - component: {fileID: 691977216}
-  - component: {fileID: 691977215}
   m_Layer: 5
   m_Name: BTN_OpenShop
   m_TagString: Untagged
@@ -1353,18 +1351,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &691977215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691977213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &691977216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,8 +1823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b596ae2e66f1d1145ad2eff03b300061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeControl: {fileID: 531828591}
-  mainMenuButtonAnimation: {fileID: 1210967905}
+  volumeController: {fileID: 531828591}
+  buttonsAnimation: {fileID: 1210967905}
 --- !u!1 &1066025148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,7 +2165,6 @@ GameObject:
   - component: {fileID: 1222023922}
   - component: {fileID: 1222023921}
   - component: {fileID: 1222023920}
-  - component: {fileID: 1222023919}
   m_Layer: 5
   m_Name: BTN_OpenSettings
   m_TagString: Untagged
@@ -2206,18 +2191,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1222023919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222023917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1222023920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,7 +2450,6 @@ GameObject:
   - component: {fileID: 1521723932}
   - component: {fileID: 1521723931}
   - component: {fileID: 1521723930}
-  - component: {fileID: 1521723929}
   m_Layer: 5
   m_Name: BTN_OpenCatsCollection
   m_TagString: Untagged
@@ -2504,18 +2476,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1521723929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521723927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1521723930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2584,58 +2544,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521723927}
   m_CullTransparentMesh: 1
---- !u!1 &1625950753
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1625950754}
-  - component: {fileID: 1625950755}
-  m_Layer: 5
-  m_Name: CurrenciesManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1625950754
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625950753}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 27842929}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1625950755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625950753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e88c80a0bb49eb49aab5742e1d6f6fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tuna: 0
-  Treats: 0
-  TunaTM: {fileID: 0}
-  TreatsTM: {fileID: 0}
 --- !u!1 &1647644320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,7 +2963,6 @@ GameObject:
   - component: {fileID: 2054150088}
   - component: {fileID: 2054150087}
   - component: {fileID: 2054150090}
-  - component: {fileID: 2054150089}
   m_Layer: 5
   m_Name: BTN_OpenMap
   m_TagString: Untagged
@@ -3120,18 +3027,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054150083}
   m_CullTransparentMesh: 1
---- !u!114 &2054150089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054150083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2054150090
 MonoBehaviour:
   m_ObjectHideFlags: 0

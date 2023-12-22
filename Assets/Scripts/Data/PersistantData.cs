@@ -1,4 +1,4 @@
-using Player;
+using Data.Player;
 
 namespace Data
 {

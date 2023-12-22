@@ -1,3 +1,4 @@
+using Misc;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RSO_CurrencyTuna", menuName = "Data/RSO/Currency/Tuna")]

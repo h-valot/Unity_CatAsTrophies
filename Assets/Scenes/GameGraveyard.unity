@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71d5aaddae65248a8916f3cb5c6abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeControl: {fileID: 1402729215}
+  volumeController: {fileID: 1402729215}
   resurrectionManager: {fileID: 942019987}
 --- !u!4 &408133292
 Transform:
@@ -708,7 +708,6 @@ GameObject:
   - component: {fileID: 493829506}
   - component: {fileID: 493829505}
   - component: {fileID: 493829504}
-  - component: {fileID: 493829503}
   m_Layer: 5
   m_Name: BTN_OpenMap
   m_TagString: Untagged
@@ -735,18 +734,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &493829503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493829501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &493829504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2245,8 +2232,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 961511803}
   - {fileID: 408133292}
+  - {fileID: 961511803}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1317526403
@@ -3098,7 +3085,6 @@ GameObject:
   - component: {fileID: 1705030705}
   - component: {fileID: 1705030704}
   - component: {fileID: 1705030703}
-  - component: {fileID: 1705030702}
   m_Layer: 5
   m_Name: BTN_OpenSettings
   m_TagString: Untagged
@@ -3125,18 +3111,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1705030702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705030700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca69f71113ba9fb44884103223521dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1705030703
 MonoBehaviour:
   m_ObjectHideFlags: 0
