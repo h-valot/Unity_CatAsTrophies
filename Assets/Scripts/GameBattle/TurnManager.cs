@@ -220,8 +220,8 @@ public class TurnManager : MonoBehaviour
         //display the background fade
         backgroundFadeRenderer.enabled = true;
         
-        // display turn title
-        turnMenu.AnimateTitle("Enemy turn");
+        // don't display the turn title if all enemies are dead
+        if (!EnemyGenerator.Instance.allEnemiesDead) turnMenu.AnimateTitle("Enemy turn");
 
         foreach (var battlePawn in BattlefieldManager.Instance.enemyBattlePawns)
         {

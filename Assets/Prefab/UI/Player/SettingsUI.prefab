@@ -1223,7 +1223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -1220}
+  m_AnchoredPosition: {x: 735, y: -1280}
   m_SizeDelta: {x: 1470, y: 300}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1733952772926570084
@@ -1524,7 +1524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -1000}
+  m_AnchoredPosition: {x: 735, y: -1060}
   m_SizeDelta: {x: 1470, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2117532857660286528
@@ -2399,7 +2399,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 735, y: -220}
-  m_SizeDelta: {x: 1470, y: 300}
+  m_SizeDelta: {x: 1470, y: 360}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &3218358141374574233
 GameObject:
@@ -2602,11 +2602,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Camille LABORDERIE
 
-    Marie AVINAIN
-
     Colin BIDARD
 
-    Alexis MARQUES'
+    Alexis MARQUES
+
+    Marie AVINAIN'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dba588e510b97fc49895047eb595846a, type: 2}
   m_sharedMaterial: {fileID: 8247470494970147418, guid: dba588e510b97fc49895047eb595846a, type: 2}
@@ -3094,7 +3094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3195993190223969576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3879,6 +3879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 3688682726647778359}
   confirmExit: {fileID: 4656355557462558794}
+  confirmExitBattle: {fileID: 0}
   credits: {fileID: 8957300437683242001}
 --- !u!1 &4441562017363598888
 GameObject:
@@ -4674,7 +4675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -560}
+  m_AnchoredPosition: {x: 735, y: -620}
   m_SizeDelta: {x: 1470, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6298103150664644023
@@ -5266,7 +5267,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 240}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4173046598100540240
 CanvasRenderer:
@@ -5303,7 +5304,9 @@ MonoBehaviour:
     Camille Laborderie
 
     Timothee
-    Hugues'
+    Hugues
+
+    Alexis Marques'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dba588e510b97fc49895047eb595846a, type: 2}
   m_sharedMaterial: {fileID: 8247470494970147418, guid: dba588e510b97fc49895047eb595846a, type: 2}
@@ -5406,7 +5409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -840}
+  m_AnchoredPosition: {x: 735, y: -900}
   m_SizeDelta: {x: 1470, y: 120}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &7028625414734985652
@@ -6582,7 +6585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -1560}
+  m_AnchoredPosition: {x: 735, y: -1620}
   m_SizeDelta: {x: 1470, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &8741447716343994762
@@ -7241,23 +7244,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5598870184699062533, guid: 532f766affde7224187fc04175c40ca6, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 5598870184699062533, guid: 532f766affde7224187fc04175c40ca6, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5598870184699062533, guid: 532f766affde7224187fc04175c40ca6, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 8174181094823637214, guid: 532f766affde7224187fc04175c40ca6, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 8174181094823637214, guid: 532f766affde7224187fc04175c40ca6, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
