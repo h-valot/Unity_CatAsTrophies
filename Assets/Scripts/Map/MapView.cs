@@ -10,6 +10,7 @@ public class MapView : MonoBehaviour
     public GameObject nodePrefab;
     public Transform contentParent;
     public GameObject escapeButton;
+    public GameObject loadMenuButton;
     public ScrollRect scrollRect;
 
     [Header("MAP UI SETTINGS")] 
@@ -63,6 +64,7 @@ public class MapView : MonoBehaviour
     {
         scrollRect.gameObject.SetActive(false);
         escapeButton.SetActive(showEscapeButton);
+        loadMenuButton.SetActive(!showEscapeButton);
         
         _nodesUI.Clear();
         _lineConnections.Clear();

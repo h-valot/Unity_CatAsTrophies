@@ -22,7 +22,7 @@ MonoBehaviour:
   verticalOffsetDuringDrag: -1.45
   verticalOffsetBlobShadow: -0.151
   holdingTimeMaxSingleClick: 0.3
-  holdingTimeToTriggerAbility: 0.01
+  holdingTimeToTriggerAbility: 0.001
   dragingMinimumAmount: 100
   stackedHandPointPosition:
   - {x: -1.85, y: -2.4, z: -1.75}

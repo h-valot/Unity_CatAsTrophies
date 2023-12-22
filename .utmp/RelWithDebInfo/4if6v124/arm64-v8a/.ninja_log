@@ -1,5 +1,5 @@
 # ninja log v5
-169	386	7249481342276961	D:/data/work/bachelor_2_game_programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4if6v124/obj/arm64-v8a/libswappywrapper.so	aef52e829553398c
-2	168	7249481340856782	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e82dbf76d1e6230d
 2	170	7249482221703173	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e82dbf76d1e6230d
 170	368	7249482223059256	D:/data/work/bachelor_2_game_programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4if6v124/obj/arm64-v8a/libswappywrapper.so	aef52e829553398c
+2	376	7249655918407103	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e82dbf76d1e6230d
+377	642	7249655920469839	D:/data/work/bachelor_2_game_programming/project1_catastrophy/Catastrophy/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4if6v124/obj/arm64-v8a/libswappywrapper.so	aef52e829553398c
