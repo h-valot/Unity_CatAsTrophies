@@ -129,6 +129,7 @@ public class Cat : Entity
         animator.SetBool("IsFalling", false);
         animator.SetBool("IsOnBattlefield", false);
 
+        startedTurnOnBattlefield = false;
         state = CatState.IN_HAND;
         return id;
     }

@@ -19,6 +19,12 @@ public class InfoCatPanel : MonoBehaviour
         Debug.Log(graphicsParent);
     }
 
+    private void OnDisable()
+    {
+        Registry.events.OnCatStacked -= DisplayCatInfo;
+        Registry.events.OnCatDestacked -= RemoveCatInfo;
+    }
+
     private void DisplayCatInfo(string catTypeName, string catTypeInfo)
     {
         graphicsParent.SetActive(true);

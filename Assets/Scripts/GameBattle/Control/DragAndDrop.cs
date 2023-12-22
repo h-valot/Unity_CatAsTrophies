@@ -66,6 +66,7 @@ public class DragAndDrop : MonoBehaviour
         if ((Input.mousePosition - dragStartPosition).magnitude > Registry.gameSettings.dragingMinimumAmount || dragTimerStart > Registry.gameSettings.holdingTimeMaxSingleClick)
         {
             DragStarted = true;
+            Registry.events.OnCatDestacked.Invoke();
             HandManager.Instance.RemoveFromHand(catDragged.id);
             HandManager.Instance.HideHand();
             catDragged.OnDrag();
