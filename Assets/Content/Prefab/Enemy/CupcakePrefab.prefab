@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  gameSettings: {fileID: 11400000, guid: 5ecbe0496ee895944bb2d2b1a1bbf8b6, type: 2}
   graphicsParent: {fileID: 3045761098863965795}
   animator: {fileID: 5964470504924716552}
   skinnedMeshRenderer: {fileID: 4434541979177952349}

@@ -41,14 +41,14 @@ namespace UI.GameBattle
                 entityRef = Misc.IdManager.GetEntityById(battlePawn.entityIdLinked);
                 canvasGO.SetActive(true);
             
-                entityRef.OnStatsUpdate += UpdateDisplay;
+                entityRef.onStatsUpdate += UpdateDisplay;
                 entityRef.onIntentUpdate += DisplayIntent;
                 entityRef.onIntentReset += ResetIntent;
                 UpdateDisplay();
             }
             else
             {
-                entityRef.OnStatsUpdate -= UpdateDisplay;
+                entityRef.onStatsUpdate -= UpdateDisplay;
                 entityRef.onIntentUpdate -= DisplayIntent;
                 entityRef.onIntentReset -= ResetIntent;
                 canvasGO.SetActive(false);

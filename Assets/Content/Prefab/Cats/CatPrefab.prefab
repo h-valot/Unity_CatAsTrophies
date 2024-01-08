@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  gameSettings: {fileID: 11400000, guid: 5ecbe0496ee895944bb2d2b1a1bbf8b6, type: 2}
   graphicsParent: {fileID: 5399714602900072910}
   animator: {fileID: 7914928801325751493}
   skinnedMeshRenderer: {fileID: 3576935699718850821}
@@ -62,6 +63,7 @@ MonoBehaviour:
   handRotation: {x: -20, y: 180, z: 0}
   dragRotation: {x: 0, y: 180, z: 0}
   battleScale: 1.5
+  selectedAutoAttack: 0
   isInFrontOfBackgroundFade: 0
   CatMeshRenderer: {fileID: 3576935699718850821}
   CatEyesMeshRenderer: {fileID: 2304554968783553448}
@@ -72,8 +74,10 @@ MonoBehaviour:
   state: 0
   ability:
     animation: 0
+    intentionSprite: {fileID: 0}
     instructions: []
   isAbilityUsed: 0
+  startedTurnOnBattlefield: 0
 --- !u!1 &4261059433009553284
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0dc3d932e2ab8459117f75ed6f1e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSettings: {fileID: 11400000, guid: 5ecbe0496ee895944bb2d2b1a1bbf8b6, type: 2}
   catUsed: {fileID: 4053573383019069241}
 --- !u!33 &762712032296414012
 MeshFilter:

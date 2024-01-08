@@ -6,7 +6,8 @@ namespace UI.Collection
 {
     public class DropBox : MonoBehaviour, IDropHandler
     {
-        [Header("REFERENCES")]
+        [Header("REFERENCES")] 
+        public PlayerConfig playerConfig;
         public RSE_CollectionDragBox rseCollectionDragBox;
         public RSE_DebugLog rseDebugLog;
     
@@ -28,9 +29,9 @@ namespace UI.Collection
             if (!draggable.itemUI.isInDeck && !isDeck) return;
 
             // exit, if the player's deck is full of cats
-            if (isDeck && DataManager.data.playerStorage.GetLenght(DataManager.data.playerStorage.deck) >= Registry.playerConfig.deckMaxLengh)
+            if (isDeck && DataManager.data.playerStorage.GetLenght(DataManager.data.playerStorage.deck) >= playerConfig.deckMaxLengh)
             {
-                rseDebugLog.Call($"You can't have more than {Registry.playerConfig.deckMaxLengh} cats in your deck.", Color.red);
+                rseDebugLog.Call($"You can't have more than {playerConfig.deckMaxLengh} cats in your deck.", Color.red);
                 return;
             }
 

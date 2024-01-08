@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    public static DeckManager Instance;
-    private void Awake() => Instance = this;
+    [Header("REFERENCES")]
+    public CatManager catManager;
 
     [Header("DEBUGGING")] 
     public List<string> catsInDeck;
@@ -38,7 +38,7 @@ public class DeckManager : MonoBehaviour
             {
                 // continue, if this cat is dead
                 if (catData.isDead) continue;
-                CatManager.Instance.SpawnCatGraphics(catData);
+                catManager.SpawnCatGraphics(catData);
             }
         }
     }

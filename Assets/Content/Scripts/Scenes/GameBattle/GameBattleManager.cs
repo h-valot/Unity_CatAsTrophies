@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameBattleManager : MonoBehaviour
 {
-    public static GameBattleManager Instance;
+    [Header("EXTERNAL REFERENCES")] 
+    public DebugCompManager debugCompManager;
     public VolumeController volumeController;
-    private void Awake() => Instance = this;
+    public GameSettings gameSettings;
+    public Events events;
 
+    [Header("MANAGERS")] 
+    public DeckManager deckManager;
+    public CatManager catManager;
+    
     private void Start()
     {
         // load the init scene if it hasn't been loaded yet
@@ -19,29 +25,29 @@ public class GameBattleManager : MonoBehaviour
         }
         
         // initialize all managers - the order matters
-        DeckManager.Instance.Initialize();
-        CatManager.Instance.Initialize();
+        deckManager.Initialize();
+        catManager.Initialize();
         EnemyGenerator.Instance.Initialize();
         TurnManager.Instance.Initialize();
         HandManager.Instance.Initialize();
         BattlefieldManager.Instance.Initialize(); 
         DiscardManager.Instance.Initialize();
-        Registry.events.OnSceneLoaded?.Invoke();
+        events.OnSceneLoaded?.Invoke();
         volumeController.Initialize();
 
         // instantiate player's deck of cats
-        DeckManager.Instance.LoadPlayerDeck();
-        DeckManager.Instance.ShuffleDeck();
+        deckManager.LoadPlayerDeck();
+        deckManager.ShuffleDeck();
         
-        if (Registry.gameSettings.gameBattleDebugMode)
+        if (gameSettings.gameBattleDebugMode)
         {
             // debugging
-            DebugCompManager.Instance.InstantiateAllButtons();
-            DebugCompManager.Instance.ShowDebugButtons();
+            debugCompManager.InstantiateAllButtons();
+            debugCompManager.Show();
         }
         else
         {
-            DebugCompManager.Instance.HideDebugButtons();
+            debugCompManager.Hide();
             EnemyGenerator.Instance.GenerateComposition(DataManager.data.compoToLoad);
         }
         

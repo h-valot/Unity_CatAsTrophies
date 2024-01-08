@@ -6,6 +6,9 @@ namespace UI.GameBattle.Menus
 {
     public class CatItem : MonoBehaviour
     {
+        [Header("EXTERNAL REFERENCES")] 
+        public EntitiesConfig entitiesConfig;
+        
         [Header("INFORMATION")]
         public TextMeshProUGUI nameTM;
 
@@ -23,13 +26,13 @@ namespace UI.GameBattle.Menus
         {
             var catType = Misc.IdManager.GetCatById(catId).catType;
             
-            nameTM.text = Registry.entitiesConfig.cats[catType].entityName;
+            nameTM.text = entitiesConfig.cats[catType].entityName;
 
-            healthTM.text = $"{Misc.IdManager.GetCatById(catId).health} / {Registry.entitiesConfig.cats[catType].health}";
-            healthFillImage.fillAmount = (float)Misc.IdManager.GetCatById(catId).health / (float)Registry.entitiesConfig.cats[catType].health;
+            healthTM.text = $"{Misc.IdManager.GetCatById(catId).health} / {entitiesConfig.cats[catType].health}";
+            healthFillImage.fillAmount = (float)Misc.IdManager.GetCatById(catId).health / (float)entitiesConfig.cats[catType].health;
         
-            catFaceImage.sprite = Registry.entitiesConfig.cats[catType].sprite;
-            catBackgroundImage.sprite = Registry.entitiesConfig.cats[catType].rarety == Rarety.EPIC ? epicBackground : commonBackground;
+            catFaceImage.sprite = entitiesConfig.cats[catType].sprite;
+            catBackgroundImage.sprite = entitiesConfig.cats[catType].rarety == Rarety.EPIC ? epicBackground : commonBackground;
         }
     }
 }

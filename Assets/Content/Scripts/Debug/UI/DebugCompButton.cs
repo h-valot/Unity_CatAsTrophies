@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class DebugCompButton : MonoBehaviour
 {
-    private int compoId;
+    [Header("EXTERNAL REFERENCES")]
+    public EntitiesConfig entitiesConfig;
+    
+    [Header("REFERENCES")] 
     public TextMeshProUGUI textTM;
+    
+    private int compoId;
 
     public void Initialize(int _compoId)
     {
         compoId = _compoId;
-        textTM.text = $"DEBUG: {Registry.entitiesConfig.compositions[compoId].compositionName}";
+        textTM.text = $"DEBUG: {entitiesConfig.compositions[compoId].compositionName}";
     }
 
     public void OnButtonPressed()
@@ -26,7 +31,7 @@ public class DebugCompButton : MonoBehaviour
 
         if (battlefieldEmpty)
         {
-            EnemyGenerator.Instance.GenerateComposition(Registry.entitiesConfig.compositions[compoId]);
+            EnemyGenerator.Instance.GenerateComposition(entitiesConfig.compositions[compoId]);
         }
         else
         {

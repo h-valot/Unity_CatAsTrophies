@@ -17,13 +17,13 @@ public class Enemy : Entity
         autoAttacks = Registry.entitiesConfig.enemies[enemyType].autoAttack;  
         
         // update game stat on ui display
-        OnStatsUpdate?.Invoke();
+        onStatsUpdate?.Invoke();
         
         // graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;
         graphicsParent.transform.localScale *= battleScale;
         
-        OnBattlefieldEntered?.Invoke();
+        onBattlefieldEntered?.Invoke();
     }
     
     private void OnEnable()
@@ -42,12 +42,12 @@ public class Enemy : Entity
         Registry.events.OnEnemiesUseAutoAttack -= UseAutoAttack;
     }
     
-    public override void UpdateBattlePosition(BattlePosition _battlePosition)
+    public override void UpdateBattlePosition(BattlePosition battlePosition)
     {
-        base.UpdateBattlePosition(_battlePosition);
+        base.UpdateBattlePosition(battlePosition);
         
         // set the entity position to the corresponding battle pawn
-        transform.position = BattlefieldManager.Instance.enemyBattlePawns[(int)battlePosition].transform.position;
+        transform.position = BattlefieldManager.Instance.enemyBattlePawns[(int)base.battlePosition].transform.position;
     }
     
     /// <summary>

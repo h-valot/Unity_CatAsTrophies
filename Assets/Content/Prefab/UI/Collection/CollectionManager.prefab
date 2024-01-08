@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b03d7b973d71b4b84334f55900e13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerConfig: {fileID: 11400000, guid: ec3c8e6c6bee9ac4ab5315ea24b3ce84, type: 2}
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
   rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
   isDeck: 1
@@ -3734,8 +3735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b03d7b973d71b4b84334f55900e13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerConfig: {fileID: 11400000, guid: ec3c8e6c6bee9ac4ab5315ea24b3ce84, type: 2}
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
-  rseDebugLog: {fileID: 0}
+  rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
   isDeck: 0
 --- !u!114 &3928295341702760623
 MonoBehaviour:
@@ -3830,6 +3832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b03d7b973d71b4b84334f55900e13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerConfig: {fileID: 0}
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
   rseDebugLog: {fileID: 11400000, guid: 90815e82b16ab9341b1b3f851ae4328c, type: 2}
   isDeck: 0

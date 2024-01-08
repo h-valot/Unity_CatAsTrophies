@@ -910,6 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a61e4753c33d9e4c999ee9463e77051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   catItemPrefab: {fileID: 4092236635688906646, guid: f8a7a05e063a57242b4a253740bd03b4, type: 3}
   parent: {fileID: 918063131915167599}
   amount: {fileID: 533044579698530846}
@@ -1048,6 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b03d7b973d71b4b84334f55900e13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerConfig: {fileID: 0}
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
   rseDebugLog: {fileID: 0}
   isDeck: 1
@@ -1222,6 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b03d7b973d71b4b84334f55900e13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerConfig: {fileID: 0}
   rseCollectionDragBox: {fileID: 11400000, guid: 0279a36ee33782743906562a0000642f, type: 2}
   rseDebugLog: {fileID: 0}
   isDeck: 1

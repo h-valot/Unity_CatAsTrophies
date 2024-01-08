@@ -13,6 +13,7 @@ public class TurnManager : MonoBehaviour
 
     [Header("REFERENCES")]
     public EndBattleManager endBattleManager;
+    public DeckManager deckManager;
     public TurnMenu turnMenu;
     
     [Header("ENTITY ATTACKS SETUP")]
@@ -57,8 +58,8 @@ public class TurnManager : MonoBehaviour
                     Entity enemyEntity = Misc.IdManager.GetEntityById(battlePawn.entityIdLinked);
                     
                     if (enemyEntity == null) continue;
-                    if (enemyEntity.HasEffect(EffectType.Stun)) continue;
-                    if (enemyEntity.HasEffect(EffectType.Sleep)) continue;
+                    if (enemyEntity.HasEffect(EffectType.STUN)) continue;
+                    if (enemyEntity.HasEffect(EffectType.SLEEP)) continue;
 
                     enemyEntity.SelectAutoAttack();
                 }
@@ -113,10 +114,10 @@ public class TurnManager : MonoBehaviour
     {
         for (int i = 0; i < catCount; i++)
         {
-            if (DeckManager.Instance.catsInDeck.Count > 0 ||
+            if (deckManager.catsInDeck.Count > 0 ||
                 DiscardManager.Instance.catsDiscarded.Count > 0)
             {
-                HandManager.Instance.DrawCat(DeckManager.Instance.RemoveCat());
+                HandManager.Instance.DrawCat(deckManager.RemoveCat());
                 HandManager.Instance.ArrangeHand();
             }
         }

@@ -6,6 +6,9 @@ namespace UI.GameBattle.Menus
 {
     public class DeckMenu : MonoBehaviour
     {
+        [Header("EXTERNAL REFERENCES")] 
+        public DeckManager deckManager;
+        
         [Header("REFERENCES")]
         public CatItem catItemPrefab;
         public Transform parent;
@@ -26,7 +29,7 @@ namespace UI.GameBattle.Menus
 
         private void InstantiateAllCats()
         {
-            foreach (string catId in DeckManager.Instance.catsInDeck)
+            foreach (string catId in deckManager.catsInDeck)
             {
                 // instantiate a new display
                 CatItem newCard = Instantiate(catItemPrefab, parent);

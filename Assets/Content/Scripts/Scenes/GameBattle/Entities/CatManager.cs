@@ -5,6 +5,13 @@ using UnityEngine;
 public class CatManager : MonoBehaviour
 {
     public static CatManager Instance;
+
+    [Header("EXTERNAL REFERENCES")] 
+    public EntitiesConfig entitiesConfig;
+
+    [Header("REFERENCES")]
+    public EntityManager entityManager;
+    public DeckManager deckManager;
     
     [Header("DEBUGGING")]
     public List<Cat> cats;
@@ -29,20 +36,20 @@ public class CatManager : MonoBehaviour
     /// <param name="catData">Type of the cat</param>
     public void SpawnCatGraphics(CatData catData)
     {
-        Cat newCat = Instantiate(Registry.entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
+        Cat newCat = Instantiate(entitiesConfig.cats[0].basePrefab, transform).GetComponent<Cat>();
         
         // setup the cat
         newCat.Initialize(catData.entityIndex, catData.health);
-        newCat.ability = Registry.entitiesConfig.cats[catData.entityIndex].ability;
-        newCat.autoAttacks = Registry.entitiesConfig.cats[catData.entityIndex].autoAttack;
+        newCat.ability = entitiesConfig.cats[catData.entityIndex].ability;
+        newCat.autoAttacks = entitiesConfig.cats[catData.entityIndex].autoAttack;
         
         // register the entity in lists 
         cats.Add(newCat);
-        EntityManager.Instance.entities.Add(newCat);
-        DeckManager.Instance.AddCat(newCat.id);
+        entityManager.entities.Add(newCat);
+        deckManager.AddCat(newCat.id);
         
         // name the cat's game object
-        newCat.gameObject.name = $"Cat_{totalCatCount}_{Registry.entitiesConfig.cats[catData.entityIndex].entityName}";
+        newCat.gameObject.name = $"Cat_{totalCatCount}_{entitiesConfig.cats[catData.entityIndex].entityName}";
         newCat.graphicsParent.SetActive(false);
 
         totalCatCount++;

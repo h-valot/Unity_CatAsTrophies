@@ -8,6 +8,9 @@ public class Entity : MonoBehaviour
 {
     public string id;
 
+    [Header("EXTERNAL REFERENCES")] 
+    public GameSettings gameSettings;
+    
     [Header("REFERENCES")]
     public GameObject graphicsParent;
     public Animator animator;
@@ -30,16 +33,16 @@ public class Entity : MonoBehaviour
     public Vector3 dragRotation;
     public float battleScale;
     
-    public Action OnStatsUpdate;
-    public Action OnBattlefieldEntered;
-    public Action<string, Color, bool> OnStatusRecieved; //text to display, color of the text, is an effect or not (change font size)
+    public Action onStatsUpdate;
+    public Action onBattlefieldEntered;
+    public Action<string, Color, bool> onStatusReceived; // text to display, color of the text, is an effect or not (change font size)
     public Action onIntentUpdate;
     public Action<Entity> onIntentReset;
 
     public int selectedAutoAttack;
     protected bool stopAsync;
 
-    public bool isInFrontOfBackgroundFade = false; //used by TurnManager.cs
+    public bool isInFrontOfBackgroundFade = false; // used by TurnManager.cs
 
     public void Initialize()
     {
@@ -48,16 +51,15 @@ public class Entity : MonoBehaviour
     }
 
     /// <summary>
-    /// Select an auto attacks ability amoung the list of auto attacks abilities.
+    /// Select an auto attacks ability among the list of auto attacks abilities.
     /// </summary>
     public void SelectAutoAttack()
     {
-        // exit if entity is stunned or slep
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
-        {
-            selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count);
-            onIntentUpdate?.Invoke();
-        } 
+        // exit if entity is stunned or slept
+        if (HasEffect(EffectType.STUN) || HasEffect(EffectType.SLEEP)) return;
+        
+        selectedAutoAttack = UnityEngine.Random.Range(0, autoAttacks.Count);
+        onIntentUpdate?.Invoke();
     }
 
     /// <summary>
@@ -65,26 +67,21 @@ public class Entity : MonoBehaviour
     /// </summary>
     public List<string> GetAutoAttackTarget()
     {
-        // exit if entity is stunned or slep
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
-        {
-            return autoAttacks[selectedAutoAttack].GetInvolvedTargetId(this);
-        }
-        else
-        {
-            return new List<string>();
-        }
+        // exit if entity is stunned or slept
+        return !HasEffect(EffectType.STUN) && !HasEffect(EffectType.SLEEP)
+            ? autoAttacks[selectedAutoAttack].GetInvolvedTargetId(this)
+            : new List<string>();
     }
 
     /// <summary>
     /// Use the auto attacks ability previously selected.
-    /// Cannot be used if the entity is stunned or slep
+    /// Cannot be used if the entity is stunned or slept
     /// </summary>
     public virtual void UseAutoAttack()
     {
-        // exit if entity is stunned or slep
-        if (HasEffect(EffectType.Stun)) return;
-        if (HasEffect(EffectType.Sleep)) return;
+        // exit if entity is stunned or slept
+        if (HasEffect(EffectType.STUN)) return;
+        if (HasEffect(EffectType.SLEEP)) return;
 
         // exif if entity hasn't auto attacks
         if (autoAttacks.Count == 0) return;
@@ -93,41 +90,40 @@ public class Entity : MonoBehaviour
         autoAttacks[selectedAutoAttack].Use(this);
         onIntentReset?.Invoke(this);
 
-        //Play Adapted Sound
+        // play Adapted Sound
     }
     
-    public void UpdateHealth(int _value)
+    public void UpdateHealth(int value)
     {
-        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
-        OnStatusRecieved?.Invoke(_value.ToString().TrimStart('-'), Registry.gameSettings.colorTextDamage, false);
+        // triggers function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        onStatusReceived?.Invoke(value.ToString().TrimStart('-'), gameSettings.colorTextDamage, false);
 
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        if (!HasEffect(EffectType.STUN) && !HasEffect(EffectType.SLEEP))
         {
             animator.SetBool("IsActing", true);
             animator.SetTrigger("IsTakingDamage");
         }
 
-        TimerToResetToIdleFighting(Registry.gameSettings.abilityAnimationDuration);
+        TimerToResetToIdleFighting(gameSettings.abilityAnimationDuration);
 
-        // apply resistance if
-        // - has effect
-        if (HasEffect(EffectType.Resistance))
+        // apply resistance, if it has effect
+        if (HasEffect(EffectType.RESISTANCE))
         {
             // multiply the damage value by the resistance modifier
-            _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
+            value = Mathf.FloorToInt(value * gameSettings.damageResistanceModifier);
         }
 
-        _value += armor;
-        if (_value > 0)
+        value += armor;
+        if (value > 0)
         {
-            DecreaseArmorTo(_value);
-            _value = 0;
+            DecreaseArmorTo(value);
+            value = 0;
         }
         else
         {
             DecreaseArmorTo(0);
         }
-        health += _value;
+        health += value;
 
         if (health <= 0)
         {
@@ -140,35 +136,35 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
         
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
 
     /// <summary>
     /// Apply the desired effect to this entity
     /// </summary>
-    /// <param name="_turnDuration">Number of turn this effect will last</param>
-    public void ApplyEffect(EffectType _effectType, int _turnDuration)
+    /// <param name="turnDuration">Number of turn this effect will last</param>
+    public void ApplyEffect(EffectType effectType, int turnDuration)
     {
-        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
-        OnStatusRecieved?.Invoke(_effectType.ToString(), Registry.gameSettings.colorTextEffect, true);
+        // triggers function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        onStatusReceived?.Invoke(effectType.ToString(), gameSettings.colorTextEffect, true);
 
-        // increment the effect if already exists
+        // increments the effect if already exists
         foreach (Effect effect in effects)
         {
-            if (effect.type == _effectType)
+            if (effect.type == effectType)
             {
-                effect.turnDuration += _turnDuration;
-                OnStatsUpdate?.Invoke();
+                effect.turnDuration += turnDuration;
+                onStatsUpdate?.Invoke();
                 return;
             }
         }
         
-        // else, create a new effect
-        effects.Add(new Effect(_effectType, _turnDuration, id));
+        // else, creates a new effect
+        effects.Add(new Effect(effectType, turnDuration, id));
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
     
     /// <summary>
@@ -179,7 +175,7 @@ public class Entity : MonoBehaviour
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
-            if ( effect.type == EffectType.Dot || effect.type == EffectType.Hot)
+            if ( effect.type == EffectType.DOT || effect.type == EffectType.HOT)
             {
                 effect.Trigger();
 
@@ -199,13 +195,13 @@ public class Entity : MonoBehaviour
         }
 
 
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        if (!HasEffect(EffectType.STUN) && !HasEffect(EffectType.SLEEP))
         {
             animator.SetBool("IsSleeping", false);
         }
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
 
     protected virtual void TriggerAllEffectsEndTurn()
@@ -213,7 +209,7 @@ public class Entity : MonoBehaviour
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
-            if (effect.type != EffectType.Dot && effect.type != EffectType.Hot)
+            if (effect.type != EffectType.DOT && effect.type != EffectType.HOT)
             {
                 effect.Trigger();
 
@@ -233,13 +229,13 @@ public class Entity : MonoBehaviour
         }
 
 
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep))
+        if (!HasEffect(EffectType.STUN) && !HasEffect(EffectType.SLEEP))
         {
             animator.SetBool("IsSleeping", false);
         }
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
 
     public void ClearAllHarmfulEffects()
@@ -259,19 +255,19 @@ public class Entity : MonoBehaviour
             effects.Remove(effect);
         }
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
 
     /// <summary>
     /// Browse all effects to check if this entity has the requested effect
     /// </summary>
-    public bool HasEffect(EffectType _effectType)
+    public bool HasEffect(EffectType effectType)
     {
         bool output = false;
         foreach (var effect in effects)
         {
-            if (effect.type == _effectType)
+            if (effect.type == effectType)
             {
                 output = true;
                 break;
@@ -283,78 +279,78 @@ public class Entity : MonoBehaviour
     public virtual void HandleDeath()
     {
         stopAsync = true;
-        // do nothing in the parent
+        // do nothing else in the parent
     }
     
-    public void IncreaseArmor(int _value)
+    public void IncreaseArmor(int value)
     {
-        int temporaryArmor = _value;
-        if (HasEffect(EffectType.BuffArmor))
+        int temporaryArmor = value;
+        if (HasEffect(EffectType.BUFF_ARMOR))
         {
-            temporaryArmor = temporaryArmor + Registry.gameSettings.buffArmorAmount;
+            temporaryArmor += gameSettings.buffArmorAmount;
         }
-        if (HasEffect(EffectType.DebuffArmor))
+        if (HasEffect(EffectType.DEBUFF_ARMOR))
         {
-            temporaryArmor = temporaryArmor - Registry.gameSettings.debuffArmorAmout;
+            temporaryArmor -= gameSettings.debuffArmorAmout;
         }
 
-        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
-        OnStatusRecieved?.Invoke(_value.ToString(), Registry.gameSettings.colorTextArmor, false);
+        // triggers function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        onStatusReceived?.Invoke(value.ToString(), gameSettings.colorTextArmor, false);
 
         armor += temporaryArmor;
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
-
+    
     // function used at the start of every entity's turn 
     public void ResetArmor()
     {
         armor = 0;
     }
 
-    public void DecreaseArmorTo(int _value)
+    public void DecreaseArmorTo(int value)
     {
-        armor = _value;
+        armor = value;
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
 
-    public void HealUpdate(int _value)
+    public void HealUpdate(int value)
     {
-        int temporaryHeal = _value;
-        if (HasEffect(EffectType.AntiHeal))
+        int temporaryHeal = value;
+        if (HasEffect(EffectType.ANTI_HEAL))
         {
-            temporaryHeal = temporaryHeal - Registry.gameSettings.antiHealAmout;
+            temporaryHeal -= gameSettings.antiHealAmout;
         }
 
-        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
-        OnStatusRecieved?.Invoke(_value.ToString(), Registry.gameSettings.colorTextHeal, false);
+        // triggers function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        onStatusReceived?.Invoke(value.ToString(), gameSettings.colorTextHeal, false);
 
-        health = health + temporaryHeal;
+        health += temporaryHeal;
 
         if (health > maxHealth)
         {
             health = maxHealth;
         }
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
 
-    public void UpdateHealthPassArmor(int _value)
+    public void UpdateHealthPassArmor(int value)
     {
-        if (HasEffect(EffectType.Resistance))
+        if (HasEffect(EffectType.RESISTANCE))
         {
             // multiply the damage value by the resistance modifier
-            _value = Mathf.FloorToInt(_value * Registry.gameSettings.damageResistanceModifier);
+            value = Mathf.FloorToInt(value * gameSettings.damageResistanceModifier);
         }
 
-        //Trigger function in scrollingFeedback.cs attached to each pawn to create a feedback text
-        OnStatusRecieved?.Invoke(_value.ToString().TrimStart('-'), Registry.gameSettings.colorTextDamage, false);
+        // triggers function in scrollingFeedback.cs attached to each pawn to create a feedback text
+        onStatusReceived?.Invoke(value.ToString().TrimStart('-'), gameSettings.colorTextDamage, false);
 
-        health += _value;
+        health += value;
 
         if (health <= 0)
         {
@@ -367,32 +363,29 @@ public class Entity : MonoBehaviour
             health = maxHealth;
         }
 
-        //trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        // triggers update display function in EntityUIDisplay.cs
+        onStatsUpdate?.Invoke();
     }
 
     /// <summary>
     /// Update the entity position depending on the desired battle position
     /// </summary>
-    /// <param name="_battlePosition">Desired position</param>
-    public virtual void UpdateBattlePosition(BattlePosition _battlePosition)
+    /// <param name="battlePosition">Desired position</param>
+    public virtual void UpdateBattlePosition(BattlePosition battlePosition)
     {
-        battlePosition = _battlePosition;
+        this.battlePosition = battlePosition;
     }
 
-    private async void TimerToResetToIdleFighting(float _timerToWait)
+    private async void TimerToResetToIdleFighting(float timerToWait)
     {
-        await Task.Delay((int)(_timerToWait * 1000));
-        if (!stopAsync)
-        {
-            animator.SetBool("IsActing", false);
-        }
+        await Task.Delay((int)(timerToWait * 1000));
+        if (!stopAsync) animator.SetBool("IsActing", false);
     }
 }
 
 public enum BattlePosition
 {
-    Front = 0,
-    Middle,
-    Back
+    FRONT = 0,
+    MIDDLE,
+    BACK
 }

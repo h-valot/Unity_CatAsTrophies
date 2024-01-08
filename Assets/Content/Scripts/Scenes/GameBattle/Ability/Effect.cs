@@ -6,45 +6,44 @@ public class Effect
     public bool isHarmful;
     public string sourceId;
 
-    public Effect(EffectType _type, int _turnDuration, string _sourceId)
+    public Effect(EffectType type, int turnDuration, string sourceId)
     {
-        type = _type;
-        turnDuration = _turnDuration;
-        sourceId = _sourceId;
-        
+        this.type = type;
+        this.turnDuration = turnDuration;
+        this.sourceId = sourceId;
     }
     
     public void Trigger()
     {
         switch (type)
         {
-            case EffectType.Dot: //Usable
+            case EffectType.DOT: // usable
                 Misc.IdManager.GetEntityById(sourceId).UpdateHealth(-Registry.gameSettings.dotDamageAmount);
                 break;
-            case EffectType.Hot: //Usable
+            case EffectType.HOT: // usable
                 Misc.IdManager.GetEntityById(sourceId).HealUpdate(Registry.gameSettings.hotHealAmount);
                 break;
-            case EffectType.DebuffAttack: //Usable
+            case EffectType.DEBUFF_ATTACK: // usable
                 break;
-            case EffectType.DebuffArmor: //Usable
+            case EffectType.DEBUFF_ARMOR: // usable
                 break;
-            case EffectType.Stun: //Usable
+            case EffectType.STUN: // usable
                 break;
-            case EffectType.Sleep: //Usable
+            case EffectType.SLEEP: // usable
                 break;
-            case EffectType.AntiHeal: //Usable
+            case EffectType.ANTI_HEAL: // usable
                 break;
-            case EffectType.BuffAttack: //Usable
+            case EffectType.BUFF_ATTACK: // usable
                 break;
-            case EffectType.BuffArmor: //Usable
+            case EffectType.BUFF_ARMOR: // usable
                 break;
-            case EffectType.Resistance: //Usable but actual value of resistance is to be determined
+            case EffectType.RESISTANCE: // usable but actual value of resistance is to be determined
                 break;
-            case EffectType.PassArmor: //Usable
+            case EffectType.PASS_ARMOR: // usable
                 break;
-            case EffectType.ImmunityTurn:
+            case EffectType.IMMUNITY_TURN:
                 break;
-            case EffectType.Invisible:
+            case EffectType.INVISIBLE:
                 break;
         }
 
@@ -54,17 +53,17 @@ public class Effect
 
 public enum EffectType
 {
-    Dot = 0,
-    Hot,
-    DebuffAttack,
-    DebuffArmor,
-    Stun,
-    Sleep,
-    AntiHeal,
-    BuffAttack,
-    BuffArmor,
-    Resistance,
-    PassArmor,
-    ImmunityTurn,
-    Invisible
+    DOT = 0,
+    HOT,
+    DEBUFF_ATTACK,
+    DEBUFF_ARMOR,
+    STUN,
+    SLEEP,
+    ANTI_HEAL,
+    BUFF_ATTACK,
+    BUFF_ARMOR,
+    RESISTANCE,
+    PASS_ARMOR,
+    IMMUNITY_TURN,
+    INVISIBLE
 }

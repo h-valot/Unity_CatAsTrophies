@@ -43,7 +43,7 @@ public class Cat : Entity
         ability = Registry.entitiesConfig.cats[catType].ability;
         
         // update entity stats on the ui displayer
-        OnStatsUpdate?.Invoke();
+        onStatsUpdate?.Invoke();
 
         // graphics scale update
         graphicsParent.transform.localScale *= battleScale;
@@ -155,7 +155,7 @@ public class Cat : Entity
         // add armor on placed
         armor = Registry.entitiesConfig.cats[catType].armorAtStart;
         // update entity stats on the ui displayer
-        OnStatsUpdate?.Invoke();
+        onStatsUpdate?.Invoke();
         
         // handle graphics tweaking
         graphicsParent.transform.eulerAngles = battleRotation;
@@ -169,7 +169,7 @@ public class Cat : Entity
         animator.SetBool("IsFalling", false);
         
         state = CatState.ON_BATTLE;
-        OnBattlefieldEntered?.Invoke();
+        onBattlefieldEntered?.Invoke();
         stopAsync = false;
     }
 
@@ -184,7 +184,7 @@ public class Cat : Entity
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
-            if (effect.type == EffectType.Dot || effect.type == EffectType.Hot)
+            if (effect.type == EffectType.DOT || effect.type == EffectType.HOT)
             {
                 effect.Trigger();
 
@@ -203,13 +203,13 @@ public class Cat : Entity
         }
 
 
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.IN_HAND)
+        if (!HasEffect(EffectType.STUN) && !HasEffect(EffectType.SLEEP) && state != CatState.IN_HAND)
         {
             animator.SetBool("IsActing", false);
         }
 
         // trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        onStatsUpdate?.Invoke();
     }
 
     protected override void TriggerAllEffectsEndTurn()
@@ -217,7 +217,7 @@ public class Cat : Entity
         List<Effect> effectsToRemove = new List<Effect>();
         foreach (var effect in effects)
         {
-            if (effect.type != EffectType.Dot && effect.type != EffectType.Hot)
+            if (effect.type != EffectType.DOT && effect.type != EffectType.HOT)
             {
                 effect.Trigger();
 
@@ -236,21 +236,21 @@ public class Cat : Entity
         }
 
 
-        if (!HasEffect(EffectType.Stun) && !HasEffect(EffectType.Sleep) && state != CatState.IN_HAND)
+        if (!HasEffect(EffectType.STUN) && !HasEffect(EffectType.SLEEP) && state != CatState.IN_HAND)
         {
             animator.SetBool("IsActing", false);
         }
 
         // trigger update display function in EntityUIDisplay.cs
-        OnStatsUpdate?.Invoke();
+        onStatsUpdate?.Invoke();
     }
 
-    public override void UpdateBattlePosition(BattlePosition _battlePosition)
+    public override void UpdateBattlePosition(BattlePosition battlePosition)
     {
-        base.UpdateBattlePosition(_battlePosition);
+        base.UpdateBattlePosition(battlePosition);
         
         // set the entity position to the corresponding battle pawn
-        transform.position = BattlefieldManager.Instance.catBattlePawns[(int)battlePosition].transform.position;
+        transform.position = BattlefieldManager.Instance.catBattlePawns[(int)base.battlePosition].transform.position;
     }
 
     /// <summary>

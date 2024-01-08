@@ -17,19 +17,19 @@ namespace UI.GameBattle
         {
             if (battlePawn.entityIdLinked == "")
             {
-                _entityRef.OnStatusRecieved -= CreateScrollingFeedbackElement;
+                _entityRef.onStatusReceived -= CreateScrollingFeedbackElement;
                 _entityRef = null;
             }
             else if(_entityRef == null)
             {
                 _entityRef = Misc.IdManager.GetEntityById(battlePawn.entityIdLinked);
-                _entityRef.OnStatusRecieved += CreateScrollingFeedbackElement;
+                _entityRef.onStatusReceived += CreateScrollingFeedbackElement;
             }
             else
             {
-                _entityRef.OnStatusRecieved -= CreateScrollingFeedbackElement;
+                _entityRef.onStatusReceived -= CreateScrollingFeedbackElement;
                 _entityRef = Misc.IdManager.GetEntityById(battlePawn.entityIdLinked);
-                _entityRef.OnStatusRecieved += CreateScrollingFeedbackElement;
+                _entityRef.onStatusReceived += CreateScrollingFeedbackElement;
             }
         }
 

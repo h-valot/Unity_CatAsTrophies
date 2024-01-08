@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class DebugCompManager : MonoBehaviour
 {
-    public static DebugCompManager Instance;
+    [Header("EXTERNAL REFERENCES")]
+    public EntitiesConfig entitiesConfig;
 
+    [Header("REFERENCES")]
     public Transform layoutGroup;
     public GameObject debugButtonPrefab;
     public GameObject graphicsParent;
     
-    private void Awake() => Instance = this;
-    
     public void InstantiateAllButtons()
     {
-        for (var index = 0; index < Registry.entitiesConfig.compositions.Count; index++)
+        for (var index = 0; index < entitiesConfig.compositions.Count; index++)
         {
             var newDebugButton = Instantiate(debugButtonPrefab, layoutGroup).GetComponent<DebugCompButton>();
             newDebugButton.Initialize(index);
         }
     }
 
-    public void ShowDebugButtons() => graphicsParent.SetActive(true);
-    public void HideDebugButtons() => graphicsParent.SetActive(false);
+    public void Show() => graphicsParent.SetActive(true);
+    public void Hide() => graphicsParent.SetActive(false);
 }

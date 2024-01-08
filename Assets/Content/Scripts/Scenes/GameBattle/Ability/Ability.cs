@@ -356,17 +356,17 @@ public class Ability
                 // Damage target for X amount
                 int temporaryAttack = _instruction.value;
                 
-                if (source.HasEffect(EffectType.DebuffAttack))
+                if (source.HasEffect(EffectType.DEBUFF_ATTACK))
                 {
                     temporaryAttack -= Registry.gameSettings.debuffAttackAmout;
                 }
                 
-                if (source.HasEffect(EffectType.BuffAttack))
+                if (source.HasEffect(EffectType.BUFF_ATTACK))
                 {
                     temporaryAttack += Registry.gameSettings.buffAttackAmout;
                 }
 
-                if (source.HasEffect(EffectType.PassArmor))
+                if (source.HasEffect(EffectType.PASS_ARMOR))
                 {
                     Misc.IdManager.GetEntityById(_targetId).UpdateHealthPassArmor(-temporaryAttack);
                 }
@@ -378,7 +378,7 @@ public class Ability
 
             case InstructionType.Dot:
                 // Apply 1 damage per turn at the beginning of the turn 
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.Dot, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.DOT, _instruction.value);
                 break;
             
             case InstructionType.SelfExplosion:
@@ -410,7 +410,7 @@ public class Ability
             
             case InstructionType.Hot:
                 // Heals 1 damage per turn at the beginning
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.Hot, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.HOT, _instruction.value);
                 break;
             
             case InstructionType.LinkHealth:
@@ -423,37 +423,37 @@ public class Ability
             
             case InstructionType.DebuffAttack:
                 // Debuff Damage done by 1
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.DebuffAttack, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.DEBUFF_ATTACK, _instruction.value);
                 break;
             
             case InstructionType.DebuffArmor:
                 // Debuff armor gain by 1
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.DebuffArmor, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.DEBUFF_ARMOR, _instruction.value);
                 break;
             
             case InstructionType.Stun:
                 // Forbids to an Entity to attack at the end of a turn
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.Stun, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.STUN, _instruction.value);
                 break;
             
             case InstructionType.Sleep:
                 // Forbids to an Entity to attack at the end of a turn
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.Sleep, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.SLEEP, _instruction.value);
                 break;
             
             case InstructionType.AntiHeal:
                 // Reduce heals received by 1
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.AntiHeal, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.ANTI_HEAL, _instruction.value);
                 break;
             
             case InstructionType.BuffAttack:
                 // Buff damage done by 1
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.BuffAttack, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.BUFF_ATTACK, _instruction.value);
                 break;
             
             case InstructionType.BuffArmor:
                 // Buff armor gain by 1
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.BuffArmor, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.BUFF_ARMOR, _instruction.value);
                 break;
             
             case InstructionType.Summon:
@@ -466,22 +466,22 @@ public class Ability
             
             case InstructionType.Resistance:
                 // isn't use for the moment
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.Resistance, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.RESISTANCE, _instruction.value);
                 break;
             
             case InstructionType.PassArmor:
                 // isn't use for the moment
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.PassArmor, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.PASS_ARMOR, _instruction.value);
                 break;
             
             case InstructionType.ImmunityTurn:
                 // isn't use for the moment
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.ImmunityTurn, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.IMMUNITY_TURN, _instruction.value);
                 break;
             
             case InstructionType.Invisible:
                 // isn't use for the moment
-                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.Invisible, _instruction.value);
+                Misc.IdManager.GetEntityById(_targetId).ApplyEffect(EffectType.INVISIBLE, _instruction.value);
                 break;
             
             case InstructionType.Repeat:
@@ -540,7 +540,7 @@ public class Ability
     {
         await Task.Delay((int)(_timerToWait * 1000));
         source.animator.SetBool("IsActing", false);
-        if (source.HasEffect(EffectType.Stun) || source.HasEffect(EffectType.Sleep))
+        if (source.HasEffect(EffectType.STUN) || source.HasEffect(EffectType.SLEEP))
         {
             source.animator.SetBool("IsSleeping", true);
         }

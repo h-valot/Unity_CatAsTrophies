@@ -79,9 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  gameSettings: {fileID: 11400000, guid: 5ecbe0496ee895944bb2d2b1a1bbf8b6, type: 2}
   graphicsParent: {fileID: 3045761098863965795}
   animator: {fileID: 8607778281485670815}
   skinnedMeshRenderer: {fileID: 0}
+  catEyesRenderer: {fileID: 0}
   blobShadow: {fileID: 8447845708646851671}
   blobShadowRenderer: {fileID: 295559058976969517}
   battlePosition: 0
@@ -94,6 +96,7 @@ MonoBehaviour:
   handRotation: {x: 0, y: 0, z: 0}
   dragRotation: {x: 0, y: 0, z: 0}
   battleScale: 1.25
+  selectedAutoAttack: 0
   isInFrontOfBackgroundFade: 0
   enemyType: 0
 --- !u!1 &8447845708646851671

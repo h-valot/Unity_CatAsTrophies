@@ -5,6 +5,9 @@ public class DiscardManager : MonoBehaviour
 {
     public static DiscardManager Instance;
 
+    [Header("REFERENCES")] 
+    public DeckManager deckManager;
+    
     [Header("DEBUGGING")] 
     public List<string> catsDiscarded;
 
@@ -24,7 +27,7 @@ public class DiscardManager : MonoBehaviour
     {
         foreach (string catId in catsDiscarded)
         {
-            DeckManager.Instance.AddCat(catId);
+            deckManager.AddCat(catId);
         }
         catsDiscarded.Clear();
     }
