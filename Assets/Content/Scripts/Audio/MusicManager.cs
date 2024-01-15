@@ -8,6 +8,7 @@ namespace Audio
     {
         [Header("REFERENCES")]
         public AudioSource audioSource;
+        public Events events;
         
         [Header("SOUNGS")]
         public AudioClip introSong;
@@ -135,11 +136,11 @@ namespace Audio
         }
 
         private void OnRestStopPlaying() => audioSource.Stop();
-        private void OnEnable() => Registry.events.onRestClick += OnRestStopPlaying;
+        private void OnEnable() => events.onRestClick += OnRestStopPlaying;
         private void OnDisable()
         {
             _stopAsync = true;
-            Registry.events.onRestClick -= OnRestStopPlaying;
+            events.onRestClick -= OnRestStopPlaying;
         }
     }
 }

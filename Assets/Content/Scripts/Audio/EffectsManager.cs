@@ -4,6 +4,8 @@ namespace Audio
 {
     public class EffectsManager : MonoBehaviour
     {
+        public Events events;
+        
         public AudioSource audioSource;
         public AudioClip attackSound;
         public AudioClip buffSound;
@@ -14,18 +16,18 @@ namespace Audio
         
         public void OnEnable()
         {
-            Registry.events.AttackSound += AttackSound;
-            Registry.events.BuffSound += BuffSound;
-            Registry.events.DebuffSound += DebuffSound;
-            Registry.events.HealSound += HealSound;
+            events.AttackSound += AttackSound;
+            events.BuffSound += BuffSound;
+            events.DebuffSound += DebuffSound;
+            events.HealSound += HealSound;
         }
 
         public void OnDisable()
         {
-            Registry.events.AttackSound -= AttackSound;
-            Registry.events.BuffSound -= BuffSound;
-            Registry.events.DebuffSound -= DebuffSound;
-            Registry.events.HealSound -= HealSound;
+            events.AttackSound -= AttackSound;
+            events.BuffSound -= BuffSound;
+            events.DebuffSound -= DebuffSound;
+            events.HealSound -= HealSound;
         }
         
         private void AttackSound()

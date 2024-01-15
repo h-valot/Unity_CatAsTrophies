@@ -174,8 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6017ff36446c8949b15bacddaa59b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  events: {fileID: 0}
   audioSource: {fileID: 5351926425546367437}
-  buttonSound: {fileID: 8300000, guid: 4f8d9b11615ab68488395130c5c45534, type: 3}
   attackSound: {fileID: 8300000, guid: ae4c4d4dcf45fe3409eb49f35b24d044, type: 3}
   buffSound: {fileID: 8300000, guid: 5224e9b5ae3104b4b90fc0cf30de6174, type: 3}
   debuffSound: {fileID: 8300000, guid: 41d713e1ad8da404dbec349bedf2f1fe, type: 3}
@@ -321,10 +321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bcf5a6e6056a048b22260e992c4e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 1738186487456979651}
+  events: {fileID: 11400000, guid: 53a8944a4f66d06488e650440ad92b5d, type: 2}
   introSong: {fileID: 8300000, guid: feaa3268a480ef94a8a7634b9d4eadf4, type: 3}
   loopSong: {fileID: 8300000, guid: 333367d4b7714804da9f972f364a5900, type: 3}
   introBattleSong: {fileID: 8300000, guid: 6154c03fb3a866e408d6fa8a903cad3d, type: 3}
   loopBattleSong: {fileID: 8300000, guid: 79e7af7a41b4e5c43b11d78fd84b74e8, type: 3}
   graveyardSong: {fileID: 8300000, guid: 62c4cdccca7eaf34d915361e9cd2e7b0, type: 3}
   restSong: {fileID: 8300000, guid: 641536db4f75c954ca21dbfcbb8bd10f, type: 3}
-  audioSource: {fileID: 1738186487456979651}
